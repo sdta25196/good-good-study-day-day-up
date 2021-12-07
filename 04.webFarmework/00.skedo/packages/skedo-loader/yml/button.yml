@@ -1,0 +1,93 @@
+group : basic
+name: button
+componentType: react
+imageUrl : "https://voice-static.oss-accelerate.aliyuncs.com//img/70680ec911a742b4ff60b041308f1424dc701efc.png"
+title : "按钮"
+box : {
+  width : 75,
+  height : 26,
+}
+initialHeight :  26 
+defaultProps : {
+  text : "点我"
+}
+style :
+  borderWidth : 1
+  backgroundColor : white
+url : local.Button
+editor : 
+  groups:
+  - name : border 
+    props :  
+      - name : border-color
+        default : "#eee"
+      - name : border-top-left-radius
+        default : 3
+      - name : border-top-right-radius
+        default : 3
+      - name : border-bottom-right-radius
+        default : 3
+      - name : border-bottom-left-radius
+        default : 3
+      
+  - name : padding
+    title : 内边距
+    props :
+      - name : border-top
+        default : 3px
+        type : integer
+        path : passProps.style.paddingTop
+      - name : border-right
+        type : integer
+        default : 3px
+        path : passProps.style.paddingRight
+      - name : border-bottom
+        type : integer
+        default : 3px
+        path : passProps.style.paddingBottom
+      - name : border-left
+        type : integer
+        default : 3px
+        path : passProps.style.paddingLeft
+
+
+
+
+  - name : font
+    title : 字体
+    props : 
+    - name : font-size
+      type : integer
+      range : [6, 72] 
+      props : 
+        suffix : 号
+        style:
+          width : 80
+      default : 14 
+      row : 1
+      path : passProps.fontSize
+    - name : font-family
+      title : 字体
+      type : font-family
+      default : Microsofot YaHei
+      row : 1
+      path : passProps.fontFamily
+    - name : font-style
+      title : 样式
+      type : font-style
+      row : 2
+      path : passProps.fontStyle
+    - name : align 
+      title : 文本对齐
+      type : font-align
+      default : left
+      row : 2
+      path : passProps.align
+    - name : color
+      title : 颜色
+      type : color
+      default : #000 
+      row : 2
+      path : passProps.color
+
+

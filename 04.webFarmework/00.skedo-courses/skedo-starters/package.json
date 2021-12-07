@@ -1,0 +1,26 @@
+{
+  "name": "course-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^26.0.24",
+    "@types/jsdom": "^16.2.13",
+    "@types/node": "^16.3.2",
+    "immutable": "^4.0.0-rc.14",
+    "jest": "^27.0.6",
+    "jsdom": "^16.6.0",
+    "redux": "^4.1.0",
+    "rxjs": "^7.2.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-typescript": "^7.14.5",
+    "ts-jest": "^27.0.3"
+  }
+}

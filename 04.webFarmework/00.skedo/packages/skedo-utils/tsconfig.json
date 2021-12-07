@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "es",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "rootDir": "src",
+    "allowJs": false,
+    "downlevelIteration": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "declaration": true,
+  },
+  "include": ["src/**/*"]
+}

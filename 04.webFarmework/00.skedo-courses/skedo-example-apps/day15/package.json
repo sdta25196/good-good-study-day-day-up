@@ -1,0 +1,27 @@
+{
+  "name": "day15",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/koa": "^2.13.4",
+    "@types/mysql": "^2.15.19",
+    "express": "^4.17.1",
+    "koa": "^2.13.1",
+    "koa-router": "^10.1.1",
+    "koa2": "^2.0.0-alpha.7",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/koa-router": "^7.4.4"
+  }
+}

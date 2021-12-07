@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"lib" : ["es6", "DOM"],
+		"esModuleInterop": true,
+		"downlevelIteration": true ,
+		"experimentalDecorators": true
+	}
+}

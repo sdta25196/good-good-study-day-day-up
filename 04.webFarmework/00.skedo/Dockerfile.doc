@@ -1,0 +1,7 @@
+FROM node:14
+WORKDIR /usr/app
+COPY . .
+RUN sh ./scripts/build-doc.sh
+EXPOSE 7002
+
+CMD npm run serve -- --name @skedo/doc-service

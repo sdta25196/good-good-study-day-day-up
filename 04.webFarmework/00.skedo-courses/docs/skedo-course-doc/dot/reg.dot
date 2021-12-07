@@ -1,0 +1,17 @@
+digraph {
+
+	node[shape=doublecircle, style=filled]
+	node[color=green, fillcolor=green,fontcolor=white]
+	start
+	accept
+	node[color=red, fillcolor=red]
+  error	
+	node[shape=ellipse]
+	node[color=black, fillcolor=white, fontcolor=black]
+
+	start -> a [label="a"]
+	start -> error [label="other"]
+	a -> a[label="a"]
+	a -> accept[label="ε"]
+	a -> error[label="other"]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "@skedo/project",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./scripts/bootstrap/bootstrap.ts start",
+    "reinstall": "ts-node ./scripts/bootstrap/bootstrap.ts reinstall",
+    "install-link": "ts-node ./scripts/bootstrap/bootstrap.ts install-link",
+    "list": "ts-node ./scripts/bootstrap/bootstrap.ts list",
+    "npm-clear": "ts-node ./scripts/bootstrap/bootstrap.ts clear",
+    "dev": "ts-node ./scripts/bootstrap/bootstrap.ts dev",
+    "build": "ts-node ./scripts/bootstrap/bootstrap.ts build",
+    "publish": "ts-node ./scripts/bootstrap/bootstrap.ts publish",
+    "set-all-ver": "ts-node ./scripts/bootstrap/bootstrap.ts set-all-ver",
+    "use-lib-es": "ts-node ./scripts/bootstrap/bootstrap.ts use-lib-es",
+    "build-ts": "ts-node ./scripts/bootstrap/bootstrap.ts build-ts",
+    "use-lib-ts": "ts-node ./scripts/bootstrap/bootstrap.ts use-lib-ts",
+    "install-dep": "ts-node ./scripts/bootstrap/bootstrap.ts install-dep",
+    "serve": "ts-node ./scripts/bootstrap/bootstrap.ts serve",
+    "help": "ts-node ./scripts/bootstrap/bootstrap.ts help"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@code.aliyun.com:skedo/skedo-01class.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "express": "^4.17.1",
+    "figlet": "^1.5.0",
+    "inquirer": "^8.1.2",
+    "ramda": "^0.27.1",
+    "rxjs": "^7.3.0",
+    "typescript": "^4.4.3",
+    "yargs-parser": "^20.2.9"
+  },
+  "devDependencies": {
+    "@types/node": "^16.6.1",
+    "@types/yargs-parser": "^20.2.1",
+    "autod": "^3.0.1",
+    "eslint-plugin-autofix": "^1.0.5",
+    "typescript-plugin-css-modules": "^3.4.0"
+  }
+}

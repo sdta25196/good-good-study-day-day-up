@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "esModuleInterop": true 
+  },
+  "include": ["src/**/*"]
+}

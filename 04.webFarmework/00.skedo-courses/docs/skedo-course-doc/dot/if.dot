@@ -1,0 +1,18 @@
+digraph {
+
+	rankdir="LR"
+
+	node[shape=doublecircle, style=filled]
+	node[color=green, fillcolor=green,fontcolor=white]
+	start
+	accept
+	node[color=red, fillcolor=red]
+	node[shape=ellipse]
+	node[color=black, fillcolor=white, fontcolor=black]
+
+	start -> A [label="if(expr) {Block}"]
+	A -> accept [label="ε"]
+	A -> B [label="else"]
+	A -> C [label="else"]
+
+}

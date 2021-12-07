@@ -1,0 +1,33 @@
+{
+  "name": "@skedo/code-tools",
+  "version": "0.0.2",
+  "description": "",
+  "main": "es/index.js",
+  "dependencies": {
+    "@types/redis": "^2.8.32",
+    "node-fetch": "^2.6.1",
+    "redis": "^4.0.0-rc.1",
+    "rollup": "^2.56.3",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "tslib": "^2.1.0",
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "skedo": {
+    "type": "lib",
+    "devLinks": [
+      "@skedo/request",
+      "@skedo/code",
+      "@skedo/dao"
+    ],
+    "bootstrap" : "src/scripts/upload_templates.ts"
+  }
+}

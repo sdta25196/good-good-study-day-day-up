@@ -1,0 +1,20 @@
+{
+  "name": "@skedo/code",
+  "version": "0.0.2",
+  "description": "",
+  "main": "es/index.js",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "skedo": {
+    "type": "lib",
+    "devLinks": [
+      "@skedo/request"
+    ]
+  }
+}

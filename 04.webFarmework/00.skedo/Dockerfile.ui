@@ -1,0 +1,11 @@
+FROM node:14
+
+WORKDIR /usr/app
+
+COPY . .
+
+RUN sh scripts/build-skedo-ui.sh
+
+EXPOSE 5000 
+
+CMD node scripts/serve.js ./build 5000 

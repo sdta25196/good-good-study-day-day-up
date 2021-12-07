@@ -1,0 +1,22 @@
+digraph {
+
+	rankdir="LR"
+
+	node[shape=doublecircle, style=filled]
+	node[color=green, fillcolor=green,fontcolor=white]
+	start
+	start1
+	node[color=red, fillcolor=red]
+	node[shape=ellipse]
+	node[color=black, fillcolor=white, fontcolor=black]
+	start -> DragStart[label="evt:dragstart"];
+	DragStart -> Moving[label="evt:drag"];
+	Moving -> Moving[label="evt:drag"]
+	Moving -> Stoped[label="evt:dragend"];
+	Stoped -> start1[label="<auto>"];
+
+	DragStart -> Selected[label="evt:dragend"]
+	Selected -> start1[label="<auto>"]
+
+
+}

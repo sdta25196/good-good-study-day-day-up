@@ -1,0 +1,35 @@
+{
+  "name": "@skedo/doc-service",
+  "version": "0.0.2",
+  "description": "",
+  "main": "es/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch './src/**/*.ts' --exec ts-node src/index.ts",
+    "serve": "cross-env NODE_ENV=production nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.3.0"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "chalk": "^4.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.10",
+    "sequelize": "^6.6.5",
+    "sqlite3": "^5.0.2"
+  },
+  "skedo": {
+    "type": "service",
+    "port": 7002,
+    "devLinks": [
+      "@skedo/svc-config",
+      "@skedo/dao"
+    ]
+  }
+}

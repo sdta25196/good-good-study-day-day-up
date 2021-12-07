@@ -1,0 +1,10 @@
+{
+  "compilerOptions" : {
+    "target": "ES6",
+    "lib" : ["esnext", "DOM"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "noImplicitAny": true 
+  }
+}
