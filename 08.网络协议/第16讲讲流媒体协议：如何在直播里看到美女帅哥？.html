@@ -1,0 +1,485 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <style type="text/css">
+
+#watermark {
+
+  position: relative;
+  overflow: hidden;
+}
+
+#watermark .x {
+  position: absolute;
+  top: 800;
+  left: 400;
+  color: #3300ff;
+  font-size: 50px;
+  pointer-events: none;
+  opacity:0.5;
+  filter:Alpha(opacity=50);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+}
+    </style>
+
+
+    <style type="text/css">
+ html{color:#333;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;text-rendering:optimizelegibility;font-family:Helvetica Neue,PingFang SC,Verdana,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif}html.borderbox *,html.borderbox :after,html.borderbox :before{box-sizing:border-box}article,aside,blockquote,body,button,code,dd,details,dl,dt,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hr,input,legend,li,menu,nav,ol,p,pre,section,td,textarea,th,ul{margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,menu,nav,section{display:block}audio,canvas,video{display:inline-block}body,button,input,select,textarea{font:300 1em/1.8 PingFang SC,Lantinghei SC,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,Helvetica,sans-serif}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}blockquote{position:relative;color:#999;font-weight:400;border-left:1px solid #1abc9c;padding-left:1em;margin:1em 3em 1em 2em}@media only screen and (max-width:640px){blockquote{margin:1em 0}}abbr,acronym{border-bottom:1px dotted;font-variant:normal}abbr{cursor:help}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:400}ol,ul{list-style:none}caption,th{text-align:left}q:after,q:before{content:""}sub,sup{font-size:75%;line-height:0;position:relative}:root sub,:root sup{vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}a{color:#1abc9c}a:hover{text-decoration:underline}.typo a{border-bottom:1px solid #1abc9c}.typo a:hover{border-bottom-color:#555;color:#555}.typo a:hover,a,ins{text-decoration:none}.typo-u,u{text-decoration:underline}mark{background:#fffdd1;border-bottom:1px solid #ffedce;padding:2px;margin:0 5px}code,pre,pre tt{font-family:Courier,Courier New,monospace}pre{background:hsla(0,0%,97%,.7);border:1px solid #ddd;padding:1em 1.5em;display:block;-webkit-overflow-scrolling:touch}hr{border:none;border-bottom:1px solid #cfcfcf;margin-bottom:.8em;height:10px}.typo-small,figcaption,small{font-size:.9em;color:#888}b,strong{font-weight:700;color:#000}[draggable]{cursor:move}.clearfix:after,.clearfix:before{content:"";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}.textwrap,.textwrap td,.textwrap th{word-wrap:break-word;word-break:break-all}.textwrap-table{table-layout:fixed}.serif{font-family:Palatino,Optima,Georgia,serif}.typo-dl,.typo-form,.typo-hr,.typo-ol,.typo-p,.typo-pre,.typo-table,.typo-ul,.typo dl,.typo form,.typo hr,.typo ol,.typo p,.typo pre,.typo table,.typo ul,blockquote{margin-bottom:1rem}h1,h2,h3,h4,h5,h6{font-family:PingFang SC,Helvetica Neue,Verdana,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif;color:#000;line-height:1.35}.typo-h1,.typo-h2,.typo-h3,.typo-h4,.typo-h5,.typo-h6,.typo h1,.typo h2,.typo h3,.typo h4,.typo h5,.typo h6{margin-top:1.2em;margin-bottom:.6em;line-height:1.35}.typo-h1,.typo h1{font-size:2em}.typo-h2,.typo h2{font-size:1.8em}.typo-h3,.typo h3{font-size:1.6em}.typo-h4,.typo h4{font-size:1.4em}.typo-h5,.typo-h6,.typo h5,.typo h6{font-size:1.2em}.typo-ul,.typo ul{margin-left:1.3em;list-style:disc}.typo-ol,.typo ol{list-style:decimal;margin-left:1.9em}.typo-ol ol,.typo-ol ul,.typo-ul ol,.typo-ul ul,.typo li ol,.typo li ul{margin-bottom:.8em;margin-left:2em}.typo-ol ul,.typo-ul ul,.typo li ul{list-style:circle}.typo-table td,.typo-table th,.typo table caption,.typo table td,.typo table th{border:1px solid #ddd;padding:.5em 1em;color:#666}.typo-table th,.typo table th{background:#fbfbfb}.typo-table thead th,.typo table thead th{background:hsla(0,0%,95%,.7)}.typo table caption{border-bottom:none}.typo-input,.typo-textarea{-webkit-appearance:none;border-radius:0}.typo-em,.typo em,caption,legend{color:#000;font-weight:inherit}.typo-em{position:relative}.typo-em:after{position:absolute;top:.65em;left:0;width:100%;overflow:hidden;white-space:nowrap;content:"\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB"}.typo img{max-width:100%}.common-content{font-weight:400;color:#353535;line-height:1.75rem;white-space:normal;word-break:normal;font-size:1rem}.common-content img{display:block;max-width:100%;background-color:#eee}.common-content audio,.common-content video{width:100%;background-color:#eee}.common-content center,.common-content font{margin-top:1rem;display:inline-block}.common-content center{width:100%}.common-content pre{margin-top:1rem;padding-left:0;padding-right:0;position:relative;overflow:hidden}.common-content pre code{font-size:.8rem;font-family:Consolas,Liberation Mono,Menlo,monospace,Courier;display:block;width:100%;box-sizing:border-box;padding-left:1rem;padding-right:1rem;overflow-x:auto}.common-content hr{border:none;margin-top:1.5rem;margin-bottom:1.5rem;border-top:1px solid #f5f5f5;height:1px;background:none}.common-content b,.common-content h1,.common-content h2,.common-content h3,.common-content h4,.common-content h5,.common-content strong{font-weight:700}.common-content h1,.common-content h2{font-size:1.125rem;margin-bottom:.45rem}.common-content h3,.common-content h4,.common-content h5{font-size:1rem;margin-bottom:.45rem}.common-content p{font-weight:400;color:#353535;margin-top:.15rem}.common-content .orange{color:#ff5a05}.common-content .reference{font-size:1rem;color:#888}.custom-rich-content h1{margin-top:0;font-weight:400;font-size:15.25px;border-bottom:1px solid #eee;line-height:2.8}.custom-rich-content li,.custom-rich-content p{font-size:14px;color:#888;line-height:1.6}table.hljs-ln{margin-bottom:0;border-spacing:0;border-collapse:collapse}table.hljs-ln,table.hljs-ln tbody,table.hljs-ln td,table.hljs-ln tr{box-sizing:border-box}table.hljs-ln td{padding:0;border:0}table.hljs-ln td.hljs-ln-numbers{min-width:15px;color:rgba(27,31,35,.3);text-align:right;white-space:nowrap;cursor:pointer;user-select:none}table.hljs-ln td.hljs-ln-code,table.hljs-ln td.hljs-ln-numbers{font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;font-size:12px;line-height:20px;vertical-align:top}table.hljs-ln td.hljs-ln-code{position:relative;padding-right:10px;padding-left:10px;overflow:visible;color:#24292e;word-wrap:normal;white-space:pre}video::-webkit-media-controls{overflow:hidden!important}video::-webkit-media-controls-enclosure{width:calc(100% + 32px);margin-left:auto}.button-cancel{color:#888;border:1px solid #888;border-radius:3px;margin-right:12px}.button-cancel,.button-primary{-ms-flex-positive:1;flex-grow:1;height:35px;display:inline-block;font-size:15px;text-align:center;line-height:36px}.button-primary{color:#fff;background-color:#ff5a05;border-radius:3px}@font-face{font-family:iconfont;src:url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.eot);src:url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.eot#iefix) format("embedded-opentype"),url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.woff) format("woff"),url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.ttf) format("truetype"),url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.svg#iconfont) format("svg")}@font-face{font-family:player-font;src:url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.eot);src:url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.eot#iefix) format("embedded-opentype"),url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.woff) format("woff"),url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.ttf) format("truetype"),url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.svg#player-font) format("svg")}.iconfont{font-family:iconfont!important;font-size:16px;font-style:normal;-webkit-font-smoothing:antialiased;-webkit-text-stroke-width:.2px;-moz-osx-font-smoothing:grayscale}html{background:#fff;min-height:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{width:100%}body.fixed{overflow:hidden;position:fixed;width:100vw;height:100vh}i{font-style:normal}a{word-wrap:break-word;-webkit-tap-highlight-color:rgba(0,0,0,0)}a:hover{text-decoration:none}.fade-enter-active,.fade-leave-active{transition:opacity .3s}.fade-enter,.fade-leave-to{opacity:0}.MathJax,.MathJax_CHTML,.MathJax_MathContainer,.MathJax_MathML,.MathJax_PHTML,.MathJax_PlainSource,.MathJax_SVG{outline:0}.ios-app-switch .js-audit{display:none}._loading_wrap_{position:fixed;width:100vw;height:100vh;top:50%;left:50%;transform:translate(-50%,-50%);z-index:999}._loading_div_class_,._loading_wrap_{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center}._loading_div_class_{word-wrap:break-word;padding:.5rem .75rem;text-align:center;z-index:9999;font-size:.6rem;max-width:60%;color:#fff;border-radius:.25rem;-ms-flex-direction:column;flex-direction:column}._loading_div_class_ .message{color:#353535;font-size:16px;line-height:3}.spinner{animation:circle-rotator 1.4s linear infinite}.spinner *{line-height:0;box-sizing:border-box}@keyframes circle-rotator{0%{transform:rotate(0deg)}to{transform:rotate(270deg)}}.path{stroke-dasharray:187;stroke-dashoffset:0;transform-origin:center;animation:circle-dash 1.4s ease-in-out infinite,circle-colors 5.6s ease-in-out infinite}@keyframes circle-colors{0%{stroke:#ff5a05}to{stroke:#ff5a05}}@keyframes circle-dash{0%{stroke-dashoffset:187}50%{stroke-dashoffset:46.75;transform:rotate(135deg)}to{stroke-dashoffset:187;transform:rotate(450deg)}}.confirm-box-wrapper,.confirm-box-wrapper .mask{position:absolute;top:0;left:0;right:0;bottom:0}.confirm-box-wrapper .mask{background:rgba(0,0,0,.6)}.confirm-box-wrapper .confirm-box{position:fixed;top:50%;left:50%;width:267px;background:#fff;transform:translate(-50%,-50%);border-radius:7px}.confirm-box-wrapper .confirm-box .head{margin:0 18px;font-size:18px;text-align:center;line-height:65px;border-bottom:1px solid #d9d9d9}.confirm-box-wrapper .confirm-box .body{padding:18px;padding-bottom:0;color:#353535;font-size:12.5px;max-height:150px;overflow:auto}.confirm-box-wrapper .confirm-box .foot{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;padding:18px}.confirm-box-wrapper .confirm-box .foot .button-cancel{border:1px solid #d9d9d9}.hljs{display:block;overflow-x:auto;padding:.5em;color:#333;background:#f8f8f8}.hljs-comment,.hljs-quote{color:#998;font-style:italic}.hljs-keyword,.hljs-selector-tag,.hljs-subst{color:#333;font-weight:700}.hljs-literal,.hljs-number,.hljs-tag .hljs-attr,.hljs-template-variable,.hljs-variable{color:teal}.hljs-doctag,.hljs-string{color:#d14}.hljs-section,.hljs-selector-id,.hljs-title{color:#900;font-weight:700}.hljs-subst{font-weight:400}.hljs-class .hljs-title,.hljs-type{color:#458;font-weight:700}.hljs-attribute,.hljs-name,.hljs-tag{color:navy;font-weight:400}.hljs-link,.hljs-regexp{color:#009926}.hljs-bullet,.hljs-symbol{color:#990073}.hljs-built_in,.hljs-builtin-name{color:#0086b3}.hljs-meta{color:#999;font-weight:700}.hljs-deletion{background:#fdd}.hljs-addition{background:#dfd}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
+
+
+
+
+    </style>
+    <style type="text/css">
+        .button-cancel[data-v-87ffcada]{color:#888;border:1px solid #888;border-radius:3px;margin-right:12px}.button-cancel[data-v-87ffcada],.button-primary[data-v-87ffcada]{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;height:35px;display:inline-block;font-size:15px;text-align:center;line-height:36px}.button-primary[data-v-87ffcada]{color:#fff;background-color:#ff5a05;border-radius:3px}.pd[data-v-87ffcada]{padding-left:1.375rem;padding-right:1.375rem}.article[data-v-87ffcada]{max-width:70rem;margin:0 auto}.article .article-unavailable[data-v-87ffcada]{color:#fa8919;font-size:15px;font-weight:600;line-height:24px;border-radius:5px;padding:12px;background-color:#f6f7fb;margin-top:20px}.article .article-unavailable .iconfont[data-v-87ffcada]{font-size:12px}.article .main[data-v-87ffcada]{padding:1.25rem 0;margin-bottom:52px}.article-title[data-v-87ffcada]{color:#353535;font-weight:400;line-height:1.65rem;font-size:1.34375rem}.article-info[data-v-87ffcada]{color:#888;font-size:.9375rem;margin-top:1.0625rem}.article-content[data-v-87ffcada]{margin-top:1.0625rem}.article-content.android video[data-v-87ffcada]::-webkit-media-controls-fullscreen-button{display:none}.copyright[data-v-87ffcada]{color:#b2b2b2;padding-bottom:20px;margin-top:20px;font-size:13px}.audio-player[data-v-87ffcada]{width:100%;margin:20px 0}.to-comment[data-v-87ffcada]{overflow:hidden;padding-top:10px;margin-bottom:-30px}.to-comment a.button-primary[data-v-87ffcada]{float:right;height:20px;font-size:12px;line-height:20px;padding:4px 8px;cursor:pointer}.article-comments[data-v-87ffcada]{margin-top:2rem}.article-comments h2[data-v-87ffcada]{text-align:center;color:#888;position:relative;z-index:1;margin-bottom:1rem}.article-comments h2[data-v-87ffcada]:before{border-top:1px dotted #888;content:"";position:absolute;top:56%;left:0;width:100%;z-index:-1}.article-comments h2 span[data-v-87ffcada]{font-size:15.25px;font-weight:400;padding:0 1rem;background:#fff;display:inline-block}.article-sub-bottom[data-v-87ffcada]{z-index:10;cursor:pointer}.switch-btns[data-v-87ffcada]{height:76px;cursor:pointer;padding-top:24px;padding-bottom:24px;border-bottom:10px solid #f6f7fb;position:relative}.switch-btns[data-v-87ffcada]:before{content:" ";height:1px;background:#e8e8e8;position:absolute;top:0;left:0;-webkit-box-sizing:border-box;box-sizing:border-box;left:1.375rem;right:1.375rem}.switch-btns .btn[data-v-87ffcada]{height:38px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.switch-btns .btn .tag[data-v-87ffcada]{-webkit-box-flex:0;-ms-flex:0 0 62px;flex:0 0 62px;text-align:center;color:#888;font-size:14px;border-radius:10px;height:22px;line-height:22px;background:#f6f7fb;font-weight:400}.switch-btns .btn .txt[data-v-87ffcada]{margin-left:10px;-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;color:#888;font-size:15px;height:22px;line-height:22px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:400}@media (max-width:769px){.article .breadcrumb[data-v-87ffcada]{padding-top:10px;padding-bottom:10px}}
+
+
+
+
+
+    </style>
+
+    <style type="text/css">
+        .comment-item{list-style-position:inside;width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;margin-bottom:1rem}.comment-item a{border-bottom:none}.comment-item .avatar{width:2.625rem;height:2.625rem;-ms-flex-negative:0;flex-shrink:0;border-radius:50%}.comment-item .info{margin-left:.5rem;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1}.comment-item .info .hd{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.comment-item .info .hd .username{color:#888;font-size:15.25px;font-weight:400;line-height:1.2}.comment-item .info .hd .control{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.comment-item .info .hd .control .btn-share{color:#888;font-size:.75rem;margin-right:1rem}.comment-item .info .hd .control .btn-praise{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:15.25px;text-decoration:none}.comment-item .info .hd .control .btn-praise i{color:#888;display:inline-block;font-size:.75rem;margin-right:.3rem;margin-top:-.01rem}.comment-item .info .hd .control .btn-praise i.on,.comment-item .info .hd .control .btn-praise span{color:#ff5a05}.comment-item .info .bd{color:#353535;font-size:15.25px;font-weight:400;white-space:normal;word-break:break-all;line-height:1.6}.comment-item .info .time{color:#888;font-size:9px;line-height:1}.comment-item .info .reply .reply-hd{font-size:15.25px}.comment-item .info .reply .reply-hd span{margin-left:-12px;color:#888;font-weight:400}.comment-item .info .reply .reply-hd i{color:#ff5a05;font-size:15.25px}.comment-item .info .reply .reply-content{color:#353535;font-size:15.25px;font-weight:400;white-space:normal;word-break:break-all}.comment-item .info .reply .reply-time{color:#888;font-size:9px}
+
+
+
+
+    </style>
+</head>
+<body>
+<div id="app">
+
+
+    <div data-v-87ffcada="" class="article" id="watermark">
+        <p class="x">所有最新极客时间课程请加QQ群170701297</p>
+        <div data-v-87ffcada="" class="main main-app">
+            <h1 data-v-87ffcada="" class="article-title pd">
+                第16讲讲流媒体协议：如何在直播里看到美女帅哥？
+            </h1>
+            <div data-v-87ffcada="" class="article-content typo common-content pd"><img data-v-87ffcada=""
+                                                                                        src="https://static001.geekbang.org/resource/image/f6/1f/f60c56f78597ee8952f254be2a99d21f.jpg">
+
+
+                <div data-v-87ffcada="" id="article-content" class="">
+                    <div class="text">
+                        <p>最近直播比较火，很多人都喜欢看直播，那一个直播系统里面都有哪些组成部分，都使用了什么协议呢？</p>
+<p>无论是直播还是点播，其实都是对于视频数据的传输。一提到视频，大家都爱看，但是一提到视频技术，大家都头疼，因为名词实在是太多了。</p>
+<h2 id="-">三个名词系列</h2>
+<p>我这里列三个名词系列，你先大致有个印象。</p>
+<ul>
+<li><p><strong>名词系列一</strong>：AVI、MPEG、RMVB、MP4、MOV、FLV、WebM、WMV、ASF、MKV。例如RMVB和MP4，看着是不是很熟悉？</p>
+</li>
+<li><p><strong>名词系列二</strong>：H.261、 H.262、H.263、H.264、H.265。这个是不是就没怎么听过了？别着急，你先记住，要重点关注H.264。</p>
+</li>
+<li><p><strong>名词系列</strong>三：MPEG-1、MPEG-2、MPEG-4、MPEG-7。MPEG好像听说过，但是后面的数字是怎么回事？是不是又熟悉又陌生？</p>
+</li>
+</ul>
+<p>这里，我想问你个问题，视频是什么？我说，其实就是快速播放一连串连续的图片。</p>
+<p>每一张图片，我们称为一<strong>帧</strong>。只要每秒钟帧的数据足够多，也即播放得足够快。比如每秒30帧，以人的眼睛的敏感程度，是看不出这是一张张独立的图片的，这就是我们常说的<strong>帧率</strong>（<strong>FPS</strong>）。</p>
+<p>每一张图片，都是由<strong>像素</strong>组成的，假设为1024*768（这个像素数不算多）。每个像素由RGB组成，每个8位，共24位。</p><!-- [[[read_end]]] -->
+<p>我们来算一下，每秒钟的视频有多大？</p>
+<p>30帧 × 1024 × 768 × 24 = 566,231,040Bits = 70,778,880Bytes</p>
+<p>如果一分钟呢？4,246,732,800Bytes，已经是4个G了。</p>
+<p>是不是不算不知道，一算吓一跳？这个数据量实在是太大，根本没办法存储和传输。如果这样存储，你的硬盘很快就满了；如果这样传输，那多少带宽也不够用啊！</p>
+<p>怎么办呢？人们想到了<strong>编码</strong>，就是看如何用尽量少的Bit数保存视频，使播放的时候画面看起来仍然很精美。<strong>编码是一个压缩的过程。</strong></p>
+<h2 id="-">视频和图片的压缩过程有什么特点？</h2>
+<p>之所以能够对视频流中的图片进行压缩，因为视频和图片有这样一些特点。</p>
+<ol>
+<li><p><strong>空间冗余</strong>：图像的相邻像素之间有较强的相关性，一张图片相邻像素往往是渐变的，不是突变的，没必要每个像素都完整地保存，可以隔几个保存一个，中间的用算法计算出来。</p>
+</li>
+<li><p><strong>时间冗余</strong>：视频序列的相邻图像之间内容相似。一个视频中连续出现的图片也不是突变的，可以根据已有的图片进行预测和推断。</p>
+</li>
+<li><p><strong>视觉冗余</strong>：人的视觉系统对某些细节不敏感，因此不会每一个细节都注意到，可以允许丢失一些数据。</p>
+</li>
+<li><p><strong>编码冗余</strong>：不同像素值出现的概率不同，概率高的用的字节少，概率低的用的字节多，类似<a href="https://zh.wikipedia.org/wiki/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81">霍夫曼编码（Huffman Coding）</a>的思路。</p>
+</li>
+</ol>
+<p>总之，用于编码的算法非常复杂，而且多种多样，但是编码过程其实都是类似的。</p>
+<p><img src="https://static001.geekbang.org/resource/image/43/b4/433a51e15d0ed50e313454ceccd61cb4.jpg" alt="">
+﻿﻿</p>
+<h2 id="-">视频编码的两大流派</h2>
+<p>能不能形成一定的标准呢？要不然开发视频播放的人得累死了。当然能，我这里就给你介绍，视频编码的两大流派。</p>
+<ul>
+<li><p>流派一：ITU（International Telecommunications Union）的VCEG（Video Coding Experts Group），这个称为<strong>国际电联下的VCEG</strong>。既然是电信，可想而知，他们最初做视频编码，主要侧重传输。名词系列二，就是这个组织制定的标准。</p>
+</li>
+<li><p>流派二：ISO（International Standards Organization）的MPEG（Moving Picture Experts Group），这个是<strong>ISO旗下的MPEG</strong>，本来是做视频存储的。例如，编码后保存在VCD和DVD中。当然后来也慢慢侧重视频传输了。名词系列三，就是这个组织制定的标准。</p>
+</li>
+</ul>
+<p>后来，ITU-T（国际电信联盟电信标准化部门，ITU Telecommunication Standardization Sector）与MPEG联合制定了H.264/MPEG-4 AVC，这才是我们这一节要重点关注的。</p>
+<p>经过编码之后，生动活泼的一帧一帧的图像，就变成了一串串让人看不懂的二进制，这个二进制可以放在一个文件里面，按照一定的格式保存起来，这就是名词系列一。</p>
+<p>其实这些就是视频保存成文件的格式。例如，前几个字节是什么意义，后几个字节是什么意义，然后是数据，数据中保存的就是编码好的结果。</p>
+<h2 id="-">如何在直播里看到帅哥美女？</h2>
+<p>当然，这个二进制也可以通过某种网络协议进行封装，放在互联网上传输，这个时候就可以进行网络直播了。</p>
+<p>网络协议将<strong>编码</strong>好的视频流，从主播端推送到服务器，在服务器上有个运行了同样协议的服务端来接收这些网络包，从而得到里面的视频流，这个过程称为<strong>接流</strong>。</p>
+<p>服务端接到视频流之后，可以对视频流进行一定的处理，例如<strong>转码</strong>，也即从一个编码格式，转成另一种格式。因为观众使用的客户端千差万别，要保证他们都能看到直播。</p>
+<p><strong>流处理</strong>完毕之后，就可以等待观众的客户端来请求这些视频流。观众的客户端请求的过程称为<strong>拉流</strong>。</p>
+<p>如果有非常多的观众，同时看一个视频直播，那都从一个服务器上<strong>拉流</strong>，压力太大了，因而需要一个视频的<strong>分发</strong>网络，将视频预先加载到就近的边缘节点，这样大部分观众看的视频，是从边缘节点拉取的，就能降低服务器的压力。</p>
+<p>当观众的客户端将视频流拉下来之后，就需要进行<strong>解码</strong>，也即通过上述过程的逆过程，将一串串看不懂的二进制，再转变成一帧帧生动的图片，在客户端<strong>播放</strong>出来，这样你就能看到美女帅哥啦。</p>
+<p>整个直播过程，可以用这个的图来描述。</p>
+<p><img src="https://static001.geekbang.org/resource/image/e4/f8/e4d4b538c434ec0eade37028a34391f8.jpg" alt=""></p>
+<p>接下来，我们依次来看一下每个过程。</p>
+<h3 id="-">编码：如何将丰富多彩的图片变成二进制流？</h3>
+<p>虽然我们说视频是一张张图片的序列，但是如果每张图片都完整，就太大了，因而会将视频序列分成三种帧。</p>
+<ul>
+<li><p><strong>I帧</strong>，也称关键帧。里面是完整的图片，只需要本帧数据，就可以完成解码。</p>
+</li>
+<li><p><strong>P帧</strong>，前向预测编码帧。P帧表示的是这一帧跟之前的一个关键帧（或P帧）的差别，解码时需要用之前缓存的画面，叠加上和本帧定义的差别，生成最终画面。</p>
+</li>
+<li><p><strong>B帧</strong>，双向预测内插编码帧。B帧记录的是本帧与前后帧的差别。要解码B帧，不仅要取得之前的缓存画面，还要解码之后的画面，通过前后画面的数据与本帧数据的叠加，取得最终的画面。</p>
+</li>
+</ul>
+<p>可以看出，I帧最完整，B帧压缩率最高，而压缩后帧的序列，应该是在IBBP的间隔出现的。这就是<strong>通过时序进行编码</strong>。</p>
+<p><img src="https://static001.geekbang.org/resource/image/b8/70/b8f215697ce950005a532d3be341f570.jpg" alt="">  </p>
+<p>在一帧中，分成多个片，每个片中分成多个宏块，每个宏块分成多个子块，这样将一张大的图分解成一个个小块，可以方便进行<strong>空间上的编码</strong>。</p>
+<p>尽管时空非常立体的组成了一个序列，但是总归还是要压缩成一个二进制流。这个流是有结构的，是一个个的<strong>网络提取层单元</strong>（<strong>NALU</strong>，<strong>Network Abstraction Layer Unit</strong>）。变成这种格式就是为了传输，因为网络上的传输，默认的是一个个的包，因而这里也就分成了一个个的单元。</p>
+<p><img src="https://static001.geekbang.org/resource/image/42/60/42dcd0705e3b1bad05d59fd9d6707d60.jpg" alt="">
+﻿﻿</p>
+<p>每一个NALU首先是一个起始标识符，用于标识NALU之间的间隔；然后是NALU的头，里面主要配置了NALU的类型；最终Payload里面是NALU承载的数据。</p>
+<p>在NALU头里面，主要的内容是类型<strong>NAL Type</strong>。</p>
+<ul>
+<li><p>0x07表示SPS，是序列参数集， 包括一个图像序列的所有信息，如图像尺寸、视频格式等。</p>
+</li>
+<li><p>0x08表示PPS，是图像参数集，包括一个图像的所有分片的所有相关信息，包括图像类型、序列号等。</p>
+</li>
+</ul>
+<p>在传输视频流之前，必须要传输这两类参数，不然无法解码。为了保证容错性，每一个I帧前面，都会传一遍这两个参数集合。</p>
+<p>如果NALU Header里面的表示类型是SPS或者PPS，则Payload中就是真正的参数集的内容。</p>
+<p>如果类型是帧，则Payload中才是正的视频数据，当然也是一帧一帧存放的，前面说了，一帧的内容还是挺多的，因而每一个NALU里面保存的是一片。对于每一片，到底是I帧，还是P帧，还是B帧，在片结构里面也有个Header，这里面有个类型，然后是片的内容。</p>
+<p>这样，整个格式就出来了，<strong><span class="orange">一个视频，可以拆分成一系列的帧，每一帧拆分成一系列的片，每一片都放在一个NALU里面，NALU之间都是通过特殊的起始标识符分隔，在每一个I帧的第一片前面，要插入单独保存SPS和PPS的NALU，最终形成一个长长的NALU序列</span></strong>。</p>
+<h3 id="-">推流：如何把数据流打包传输到对端？</h3>
+<p>那这个格式是不是就能够直接在网上传输到对端，开始直播了呢？其实还不是，还需要将这个二进制的流打包成网络包进行发送，这里我们使用<strong>RTMP协议</strong>。这就进入了第二个过程，<strong>推流</strong>。</p>
+<p>RTMP是基于TCP的，因而肯定需要双方建立一个TCP的连接。在有TCP的连接的基础上，还需要建立一个RTMP的连接，也即在程序里面，你需要调用RTMP类库的Connect函数，显示创建一个连接。</p>
+<p>RTMP为什么需要建立一个单独的连接呢？</p>
+<p>因为它们需要商量一些事情，保证以后的传输能正常进行。主要就是两个事情，一个是<strong>版本号</strong>，如果客户端、服务器的版本号不一致，则不能工作。另一个就是<strong>时间戳</strong>，视频播放中，时间是很重要的，后面的数据流互通的时候，经常要带上时间戳的差值，因而一开始双方就要知道对方的时间戳。</p>
+<p>未来沟通这些事情，需要发送六条消息：客户端发送C0、C1、  C2，服务器发送S0、  S1、  S2。</p>
+<p>首先，客户端发送C0表示自己的版本号，不必等对方的回复，然后发送C1表示自己的时间戳。</p>
+<p>服务器只有在收到C0的时候，才能返回S0，表明自己的版本号，如果版本不匹配，可以断开连接。</p>
+<p>服务器发送完S0后，也不用等什么，就直接发送自己的时间戳S1。客户端收到S1的时候，发一个知道了对方时间戳的ACK  C2。同理服务器收到C1的时候，发一个知道了对方时间戳的ACK  S2。</p>
+<p>于是，握手完成。</p>
+<p><img src="https://static001.geekbang.org/resource/image/de/c7/de6301500d02c5afa3e6c6f5fa47bac7.jpg" alt="">
+﻿﻿</p>
+<p>握手之后，双方需要互相传递一些控制信息，例如Chunk块的大小、窗口大小等。</p>
+<p>真正传输数据的时候，还是需要创建一个流Stream，然后通过这个Stream来推流publish。</p>
+<p>推流的过程，就是将NALU放在Message里面发送，这个也称为<strong>RTMP Packet包</strong>。Message的格式就像这样。</p>
+<p><img src="https://static001.geekbang.org/resource/image/1a/4b/1a97a0b90c2304cbdf22a2bc8a8ce94b.jpg" alt="">﻿﻿</p>
+<p>发送的时候，去掉NALU的起始标识符。因为这部分对于RTMP协议来讲没有用。接下来，将SPS和PPS参数集封装成一个RTMP包发送，然后发送一个个片的NALU。</p>
+<p>RTMP在收发数据的时候并不是以Message为单位的，而是把Message拆分成Chunk发送，而且必须在一个Chunk发送完成之后，才能开始发送下一个Chunk。每个Chunk中都带有Message  ID，表示属于哪个Message，接收端也会按照这个ID将Chunk组装成Message。</p>
+<p>前面连接的时候，设置的Chunk块大小就是指这个Chunk。将大的消息变为小的块再发送，可以在低带宽的情况下，减少网络拥塞。</p>
+<p>这有一个分块的例子，你可以看一下。</p>
+<p>假设一个视频的消息长度为307，但是Chunk大小约定为128，于是会拆分为三个Chunk。</p>
+<p>第一个Chunk的Type＝0，表示Chunk头是完整的；头里面Timestamp为1000，总长度Length 为307，类型为9，是个视频，Stream  ID为12346，正文部分承担128个字节的Data。</p>
+<p>第二个Chunk也要发送128个字节，Chunk头由于和第一个Chunk一样，因此采用Chunk Type＝3，表示头一样就不再发送了。</p>
+<p>第三个Chunk要发送的Data的长度为307-128-128=51个字节，还是采用Type＝3。</p>
+<p><img src="https://static001.geekbang.org/resource/image/41/2f/41abff0d11198fcf8b8308f3222b8c2f.jpg" alt=""></p>
+<p>就这样数据就源源不断到达流媒体服务器，整个过程就像这样。</p>
+<p><img src="https://static001.geekbang.org/resource/image/14/2e/14221e482876b0b243f5213c7a1cc62e.jpg" alt=""></p>
+<p>这个时候，大量观看直播的观众就可以通过RTMP协议从流媒体服务器上拉取，但是这么多的用户量，都去同一个地方拉取，服务器压力会很大，而且用户分布在全国甚至全球，如果都去统一的一个地方下载，也会时延比较长，需要有分发网络。</p>
+<p>分发网络分为<strong>中心</strong>和<strong>边缘</strong>两层。边缘层服务器部署在全国各地及横跨各大运营商里，和用户距离很近。中心层是流媒体服务集群，负责内容的转发。智能负载均衡系统，根据用户的地理位置信息，就近选择边缘服务器，为用户提供推/拉流服务。中心层也负责转码服务，例如，把RTMP协议的码流转换为HLS码流。</p>
+<p><img src="https://static001.geekbang.org/resource/image/6c/db/6cdbe17d580f46d60d5f6380262834db.jpg" alt="">
+﻿﻿</p>
+<p>这套机制在后面的DNS、HTTPDNS、CDN的章节会更有详细的描述。</p>
+<h3 id="-">拉流：观众的客户端如何看到视频？</h3>
+<p>接下来，我们再来看观众的客户端通过RTMP拉流的过程。</p>
+<p><img src="https://static001.geekbang.org/resource/image/52/ee/52d2e201f87462bc3afed8ce4d743aee.jpg" alt="">﻿﻿</p>
+<p>先读到的是H.264的解码参数，例如SPS和PPS，然后对收到的NALU组成的一个个帧，进行解码，交给播发器播放，一个绚丽多彩的视频画面就出来了。</p>
+<h2 id="-">小结</h2>
+<p>好了，今天的内容就到这里了，我们来总结一下：</p>
+<ul>
+<li><p><span class="orange"> 视频名词比较多，编码两大流派达成了一致，都是通过时间、空间的各种算法来压缩数据；</span></p>
+</li>
+<li><p><span class="orange">压缩好的数据，为了传输组成一系列NALU，按照帧和片依次排列；</span></p>
+</li>
+<li><p><span class="orange">排列好的NALU，在网络传输的时候，要按照RTMP包的格式进行包装，RTMP的包会拆分成Chunk进行传输；</span></p>
+</li>
+<li><p><span class="orange">推送到流媒体集群的视频流经过转码和分发，可以被客户端通过RTMP协议拉取，然后组合为NALU，解码成视频格式进行播放。</span></p>
+</li>
+</ul>
+<p>最后，给你留两个思考题：</p>
+<ol>
+<li><p>你觉得基于RTMP的视频流传输的机制存在什么问题？如何进行优化？</p>
+</li>
+<li><p>在线看视频之前，大家都是把电影下载下来看的，电影这么大，你知道如何快速下载吗？</p>
+</li>
+</ol>
+<p>欢迎你留言和我讨论。趣谈网络协议，我们下期见！</p>
+<p><img src="https://static001.geekbang.org/resource/image/b5/fb/b5bc14cb81d3630919fee94a512cc3fb.jpg" alt=""></p>
+
+                    </div>
+                </div>
+
+            </div>
+            <div data-v-87ffcada="" class="article-comments pd"><h2 data-v-87ffcada=""><span
+                    data-v-87ffcada="">精选留言</span></h2>
+                <ul data-v-87ffcada="">
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/12/ce/a8c8b5e8.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Jason</span>
+                            </div>
+                            <div class="bd">写的特别清楚明白，超哥绝对适合当老师。问题1，rtmp的问题是基于tcp连接的，不适合做实时流传输？改进方法，那就是把UDP引进？ <br></div>
+                            <span class="time">2018-06-22 08:05</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">赞</p>
+                                <p class="reply-time">2018-06-22 23:47</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/44/75/f4a202ac.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">fang</span>
+                            </div>
+                            <div class="bd">RTMP握手的图是不是有点问题？服务器收到客户端c0发来的版本号才回s0，图上服务器啥也没收到就发s0，它怎么知道给谁发？ <br></div>
+                            <span class="time">2018-06-27 22:51</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/a6/6b/12d87713.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Jealone</span>
+                            </div>
+                            <div class="bd">优化方式就是QUIC协议 <br></div>
+                            <span class="time">2018-06-22 10:43</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/ba/f4/0dda3069.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">小白</span>
+                            </div>
+                            <div class="bd">前面看得很顺，这篇开始就开始懵了，主要是没有做过相互的业务，老师，有什么方法来理解谢谢吗 <br></div>
+                            <span class="time">2018-07-28 18:21</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/12/ce/a8c8b5e8.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Jason</span>
+                            </div>
+                            <div class="bd">再度一遍，还是很牛，以rtmp为例很系统的讲述了流媒体服务的原理，其实rtsp、hls也是类似的原理，只是交互形式的不同。每个视频从业者都应该拿去读读。 <br></div>
+                            <span class="time">2018-07-12 18:20</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/4d/36/7c35e241.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">吃鳄鱼的猫</span>
+                            </div>
+                            <div class="bd">现在好像都是http-flv, rtmp和hls延迟太高 <br></div>
+                            <span class="time">2018-06-23 23:08</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/0b/0a/fa152399.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">wahaha</span>
+                            </div>
+                            <div class="bd">一般说的看视频其实包含了音频，不然成了哑巴剧了，请老师讲下音频。 <br></div>
+                            <span class="time">2018-06-23 20:14</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">有机会补充一下</p>
+                                <p class="reply-time">2018-06-23 23:33</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/95/96/0020bd67.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">夏洛克的救赎</span>
+                            </div>
+                            <div class="bd">老师   是不是忘记说视频混流了🙃 <br></div>
+                            <span class="time">2018-06-22 20:49</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">没说音频</p>
+                                <p class="reply-time">2018-06-22 23:06</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/d1/15/7d47de48.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">咖啡猫口里的咖啡猫🐱</span>
+                            </div>
+                            <div class="bd">直播用TCP延迟太高了吧，，，他的保证有序，拥塞机制，，导致current等待之前的包 <br></div>
+                            <span class="time">2018-06-22 08:56</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">是的，赞</p>
+                                <p class="reply-time">2018-06-22 23:46</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/8b/50/bd1136e3.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">新征程</span>
+                            </div>
+                            <div class="bd">rtmp与dash hls. dash与mp4这些是啥关系 <br></div>
+                            <span class="time">2018-10-09 14:51</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/57/48/3da605c6.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">July</span>
+                            </div>
+                            <div class="bd">RTMP 沟通的版本号是指什么的版本号呢？ <br></div>
+                            <span class="time">2018-08-22 20:00</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">  对于版本号的定义：当前rtmp协议的版本号一致为“3”，0、1、2是旧版本号，已经弃用。</p>
+                                <p class="reply-time">2018-08-23 10:17</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/53/99/473cdc36.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Hulk</span>
+                            </div>
+                            <div class="bd">讲解清晰，大赞 <br></div>
+                            <span class="time">2018-07-01 23:43</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/14/ee/8126a5b1.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">小新是也</span>
+                            </div>
+                            <div class="bd">视频是一帧一帧的图片，那么音频呢？它又是怎么压缩的？ <br></div>
+                            <span class="time">2018-06-24 14:18</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">是的，没说音频</p>
+                                <p class="reply-time">2018-06-24 20:00</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/12/0b/a7/c00ed7b9.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Keep-Moving</span>
+                            </div>
+                            <div class="bd">1.如果 NALU Header 里面的表示类型是 SPS 或者 PPS，则 Payload 中就是真正的参数集的内容。<br>2.如果类型是帧，则 Payload 中才是正的视频数据。<br>一个视频，可以拆分成一系列的帧，每一帧拆分成一系列的片，每一片都放在一个 NALU 里面，NALU 之间都是通过特殊的起始标识符分隔，在每一个 I 帧的第一片前面，要插入单独保存 SPS 和 PPS 的 NALU，最终形成一个长长的 NALU 序列。 <br></div>
+                            <span class="time">2018-10-12 10:17</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/95/96/0020bd67.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">夏洛克的救赎</span>
+                            </div>
+                            <div class="bd">做直播前后端有啥学习路线吗？把文章中的概念都搞清楚？<br><br>如果做音视频开发需要深入了解NALU吗？<br><br> <br></div>
+                            <span class="time">2018-09-29 19:15</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/12/23/25/fe87906a.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">anzaikk</span>
+                            </div>
+                            <div class="bd">一开始看不懂，看了五六遍感觉很清晰，赞👍 <br></div>
+                            <span class="time">2018-09-22 15:03</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/12/a2/a0/46ccc5a2.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Malcolm</span>
+                            </div>
+                            <div class="bd">感谢老师！讲的很透彻！ <br></div>
+                            <span class="time">2018-09-11 18:49</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/8a/8a/0bffaed5.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">吴传卜</span>
+                            </div>
+                            <div class="bd">流媒体也会有权限认证的问题，这块怎么实现呢？回去先google下 <br></div>
+                            <span class="time">2018-09-05 08:42</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/ca/61/b3f00e6f.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">byte</span>
+                            </div>
+                            <div class="bd">希望补充在线视频网站的使用协议以及音频的协议。 <br></div>
+                            <span class="time">2018-07-06 20:32</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/6a/92/413f4633.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">orangleliu</span>
+                            </div>
+                            <div class="bd">1 tcp拥塞控制 优化的话 quic kcp这种基于udp的协议<br><br>2 p2p 网络 bt或者电驴这种 <br></div>
+                            <span class="time">2018-07-04 19:15</span>
+                            
+                        </div>
+                    </li>
+                    
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

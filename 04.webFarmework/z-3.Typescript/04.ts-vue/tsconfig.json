@@ -1,0 +1,5 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true, //开启ts模式支持 umd\amd\cmd
+  }
+}

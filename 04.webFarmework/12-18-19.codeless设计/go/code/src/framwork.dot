@@ -1,0 +1,6 @@
+
+digraph{
+  CodeProject->FileTreeNode[label="fileNode"]
+  CodeProjectFS->FileTreeNode
+  CodeProjectFS->CodeProject
+}

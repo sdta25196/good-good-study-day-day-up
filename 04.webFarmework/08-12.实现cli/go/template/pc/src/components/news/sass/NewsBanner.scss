@@ -1,0 +1,32 @@
+@import "./index.module.scss";
+
+.news-banner {
+  .banner {
+    width: 544px;
+    height: 400px;
+    float: left;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    overflow: hidden;
+  }
+
+  .swiper-pagination {
+    position: absolute;
+    text-align: right;
+    padding-right: 40px;
+    transition: 0.3s;
+    transform: translate3d(0, 0, 0);
+    z-index: 10;
+  }
+  .swiper-pagination-bullet,
+  .swiper-pagination-bullet-active {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 100%;
+  }
+  .swiper-pagination-bullet-active {
+    width: 16px;
+    border-radius: 4px;
+  }
+}

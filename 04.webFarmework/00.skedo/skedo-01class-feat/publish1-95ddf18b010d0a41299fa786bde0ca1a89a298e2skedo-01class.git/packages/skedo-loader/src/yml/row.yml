@@ -1,0 +1,34 @@
+group : container 
+name : row 
+componentType: react
+imageUrl : https://voice-static.oss-accelerate.aliyuncs.com/img/4d10b18f29340958d103c152e9c8502e606ddba2.png
+title : 行布局
+box:
+  width : fill 
+  height : 200
+  display : flex
+  flexDirection : row
+  container : true
+  left : 
+    value : 0
+    unit : px
+    mode : fixed
+
+url : local.Row
+style:
+  borderWidth : 1px
+  borderColor : "#eee"
+  
+editor : 
+  groups:
+  - name: shape
+    title : 形状
+    props:
+    - name: left
+      disabled: true
+    - name: top 
+      disabled: true
+    - name: width 
+      disabled: true
+    - name: height 
+      disabled: true

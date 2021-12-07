@@ -1,0 +1,15 @@
+Sketch And Do IT!
+Usage: skedo <command> [options]
+
+Commands：
+  skedo delete --yml [yml-file]    delete component
+  skedo doc [dir]                  view markdown directory
+  skedo init [groupAndName] [src]  init a component. e.g.
+                                   skedo init foo.bar ./components/A.vue
+  skedo list                       list components
+  skedo publish --yml [yml-file]   publish component
+  skedo rollup --yml [yml-file]    use rollup compile a component
+
+Options：
+  --help      
+  --version  

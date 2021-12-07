@@ -1,0 +1,66 @@
+@import "index.module.scss";
+
+.ttBox {
+  display: inline-block;
+  background: white;
+  border-top-right-radius: 8px;
+  ul {
+    width: 302px;
+    padding: 20px;
+    padding-top: 10px;
+    li {
+      color: #000;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: bold;
+      padding-bottom: 10px;
+      .num {
+        width: 12px;
+        height: 20px;
+        display: inline-block;
+        margin-right: 10px;
+        background-image: url("../../../assets/images/num.png");
+        background-size: cover;
+        vertical-align: bottom;
+      }
+      .content {
+        font-size: 14px;
+      }
+    }
+    li:hover {
+      color: $theme-color;
+    }
+    li:nth-child(1n + 4) {
+      font-weight: normal;
+    }
+    li:nth-child(1) .num {
+      background-position-x: 3px;
+    }
+    li:nth-child(2) .num {
+      background-position-x: -20px;
+    }
+    li:nth-child(3) .num {
+      background-position-x: -43px;
+    }
+    li:nth-child(4) .num {
+      background-position-x: -64px;
+    }
+    li:nth-child(5) .num {
+      background-position-x: -86px;
+    }
+    li:nth-child(6) .num {
+      background-position-x: 112px;
+    }
+    li:nth-child(7) .num {
+      background-position-x: 90px;
+    }
+    li:nth-child(8) .num {
+      background-position-x: 66px;
+    }
+    li + li {
+      padding-top: 10px;
+    }
+  }
+}

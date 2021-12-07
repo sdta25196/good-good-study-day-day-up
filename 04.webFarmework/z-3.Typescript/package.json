@@ -1,0 +1,15 @@
+{
+  "name": "9-3.typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^16.4.2",
+    "stat-line": "^0.0.2"
+  }
+}

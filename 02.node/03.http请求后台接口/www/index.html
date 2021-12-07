@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+  <script>
+
+    function getInfo() {
+      $.ajax({
+        url: "http://localhost:3000/getinfo",
+        method: "get",
+        success: function (res) {
+          console.log(res);
+        }
+      })
+    }
+    function getReq() {
+      $.ajax({
+        url: "http://localhost:3000/getReq?str=1112",
+        type: "get",
+        success: function (res) {
+          console.log(res);
+        }
+      })
+    }
+    function postReq() {
+      $.ajax({
+        url: "http://localhost:3000/postReq",
+        type: "post",
+        data: {
+          suggegst: "666",
+        },
+        success: function (res) {
+          console.log(res);
+        }
+      })
+    }
+  </script>
+</head>
+
+<body>
+  <button onclick="getInfo()">
+    点击请求数据
+  </button>
+  <button onclick="getReq()">
+    get请求
+  </button>
+  <button onclick="postReq()">
+    post请求
+  </button>
+</body>
+
+</html>

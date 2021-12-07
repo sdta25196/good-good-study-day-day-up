@@ -1,0 +1,79 @@
+@import "../../../assets/style/theme.scss";
+
+.proKey {
+  color: #666666;
+  font-size: 16px;
+  display: inline-block;
+  margin-left: 20px;
+  cursor: pointer;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.proKey.active {
+  color: $theme-color;
+  font-weight: bold;
+}
+
+.contentBox {
+  .key {
+    display: inline-block;
+    vertical-align: top;
+    width: 34px;
+    height: 34px;
+    background: #f0f0f0;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 34px;
+    font-size: 18px;
+    margin-right: 20px;
+    cursor: default;
+  }
+  .singleBox {
+    padding: 14px 20px;
+  }
+  .singleBox.active {
+    border-radius: 6px;
+    background-color: #f7f7f7;
+    border: 1px solid #eeeeee;
+    .key {
+      background-color: $theme-color;
+      color: white;
+    }
+  }
+  .proBox {
+    width: 1100px;
+    display: inline-block;
+    .l {
+      padding-bottom: 16px;
+    }
+    .l + .l {
+      border-top: 1px solid #eeeeee;
+      padding-top: 16px;
+    }
+    .pro {
+      display: inline-block;
+      vertical-align: top;
+      width: 65px;
+      span {
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+        cursor: default;
+      }
+    }
+    .cityBox {
+      display: inline-block;
+      width: calc(100% - 65px);
+      .city {
+        color: #000;
+        margin-right: 32px;
+        font-size: 14px;
+        display: inline-block;
+        cursor: pointer;
+      }
+      .city:hover {
+        color: $theme-color;
+      }
+    }
+  }
+}

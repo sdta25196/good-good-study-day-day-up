@@ -1,0 +1,372 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <style type="text/css">
+
+#watermark {
+
+  position: relative;
+  overflow: hidden;
+}
+
+#watermark .x {
+  position: absolute;
+  top: 800;
+  left: 400;
+  color: #3300ff;
+  font-size: 50px;
+  pointer-events: none;
+  opacity:0.5;
+  filter:Alpha(opacity=50);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+}
+    </style>
+
+
+    <style type="text/css">
+ html{color:#333;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;text-rendering:optimizelegibility;font-family:Helvetica Neue,PingFang SC,Verdana,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif}html.borderbox *,html.borderbox :after,html.borderbox :before{box-sizing:border-box}article,aside,blockquote,body,button,code,dd,details,dl,dt,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hr,input,legend,li,menu,nav,ol,p,pre,section,td,textarea,th,ul{margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,menu,nav,section{display:block}audio,canvas,video{display:inline-block}body,button,input,select,textarea{font:300 1em/1.8 PingFang SC,Lantinghei SC,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,Helvetica,sans-serif}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}blockquote{position:relative;color:#999;font-weight:400;border-left:1px solid #1abc9c;padding-left:1em;margin:1em 3em 1em 2em}@media only screen and (max-width:640px){blockquote{margin:1em 0}}abbr,acronym{border-bottom:1px dotted;font-variant:normal}abbr{cursor:help}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:400}ol,ul{list-style:none}caption,th{text-align:left}q:after,q:before{content:""}sub,sup{font-size:75%;line-height:0;position:relative}:root sub,:root sup{vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}a{color:#1abc9c}a:hover{text-decoration:underline}.typo a{border-bottom:1px solid #1abc9c}.typo a:hover{border-bottom-color:#555;color:#555}.typo a:hover,a,ins{text-decoration:none}.typo-u,u{text-decoration:underline}mark{background:#fffdd1;border-bottom:1px solid #ffedce;padding:2px;margin:0 5px}code,pre,pre tt{font-family:Courier,Courier New,monospace}pre{background:hsla(0,0%,97%,.7);border:1px solid #ddd;padding:1em 1.5em;display:block;-webkit-overflow-scrolling:touch}hr{border:none;border-bottom:1px solid #cfcfcf;margin-bottom:.8em;height:10px}.typo-small,figcaption,small{font-size:.9em;color:#888}b,strong{font-weight:700;color:#000}[draggable]{cursor:move}.clearfix:after,.clearfix:before{content:"";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}.textwrap,.textwrap td,.textwrap th{word-wrap:break-word;word-break:break-all}.textwrap-table{table-layout:fixed}.serif{font-family:Palatino,Optima,Georgia,serif}.typo-dl,.typo-form,.typo-hr,.typo-ol,.typo-p,.typo-pre,.typo-table,.typo-ul,.typo dl,.typo form,.typo hr,.typo ol,.typo p,.typo pre,.typo table,.typo ul,blockquote{margin-bottom:1rem}h1,h2,h3,h4,h5,h6{font-family:PingFang SC,Helvetica Neue,Verdana,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif;color:#000;line-height:1.35}.typo-h1,.typo-h2,.typo-h3,.typo-h4,.typo-h5,.typo-h6,.typo h1,.typo h2,.typo h3,.typo h4,.typo h5,.typo h6{margin-top:1.2em;margin-bottom:.6em;line-height:1.35}.typo-h1,.typo h1{font-size:2em}.typo-h2,.typo h2{font-size:1.8em}.typo-h3,.typo h3{font-size:1.6em}.typo-h4,.typo h4{font-size:1.4em}.typo-h5,.typo-h6,.typo h5,.typo h6{font-size:1.2em}.typo-ul,.typo ul{margin-left:1.3em;list-style:disc}.typo-ol,.typo ol{list-style:decimal;margin-left:1.9em}.typo-ol ol,.typo-ol ul,.typo-ul ol,.typo-ul ul,.typo li ol,.typo li ul{margin-bottom:.8em;margin-left:2em}.typo-ol ul,.typo-ul ul,.typo li ul{list-style:circle}.typo-table td,.typo-table th,.typo table caption,.typo table td,.typo table th{border:1px solid #ddd;padding:.5em 1em;color:#666}.typo-table th,.typo table th{background:#fbfbfb}.typo-table thead th,.typo table thead th{background:hsla(0,0%,95%,.7)}.typo table caption{border-bottom:none}.typo-input,.typo-textarea{-webkit-appearance:none;border-radius:0}.typo-em,.typo em,caption,legend{color:#000;font-weight:inherit}.typo-em{position:relative}.typo-em:after{position:absolute;top:.65em;left:0;width:100%;overflow:hidden;white-space:nowrap;content:"\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB"}.typo img{max-width:100%}.common-content{font-weight:400;color:#353535;line-height:1.75rem;white-space:normal;word-break:normal;font-size:1rem}.common-content img{display:block;max-width:100%;background-color:#eee}.common-content audio,.common-content video{width:100%;background-color:#eee}.common-content center,.common-content font{margin-top:1rem;display:inline-block}.common-content center{width:100%}.common-content pre{margin-top:1rem;padding-left:0;padding-right:0;position:relative;overflow:hidden}.common-content pre code{font-size:.8rem;font-family:Consolas,Liberation Mono,Menlo,monospace,Courier;display:block;width:100%;box-sizing:border-box;padding-left:1rem;padding-right:1rem;overflow-x:auto}.common-content hr{border:none;margin-top:1.5rem;margin-bottom:1.5rem;border-top:1px solid #f5f5f5;height:1px;background:none}.common-content b,.common-content h1,.common-content h2,.common-content h3,.common-content h4,.common-content h5,.common-content strong{font-weight:700}.common-content h1,.common-content h2{font-size:1.125rem;margin-bottom:.45rem}.common-content h3,.common-content h4,.common-content h5{font-size:1rem;margin-bottom:.45rem}.common-content p{font-weight:400;color:#353535;margin-top:.15rem}.common-content .orange{color:#ff5a05}.common-content .reference{font-size:1rem;color:#888}.custom-rich-content h1{margin-top:0;font-weight:400;font-size:15.25px;border-bottom:1px solid #eee;line-height:2.8}.custom-rich-content li,.custom-rich-content p{font-size:14px;color:#888;line-height:1.6}table.hljs-ln{margin-bottom:0;border-spacing:0;border-collapse:collapse}table.hljs-ln,table.hljs-ln tbody,table.hljs-ln td,table.hljs-ln tr{box-sizing:border-box}table.hljs-ln td{padding:0;border:0}table.hljs-ln td.hljs-ln-numbers{min-width:15px;color:rgba(27,31,35,.3);text-align:right;white-space:nowrap;cursor:pointer;user-select:none}table.hljs-ln td.hljs-ln-code,table.hljs-ln td.hljs-ln-numbers{font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;font-size:12px;line-height:20px;vertical-align:top}table.hljs-ln td.hljs-ln-code{position:relative;padding-right:10px;padding-left:10px;overflow:visible;color:#24292e;word-wrap:normal;white-space:pre}video::-webkit-media-controls{overflow:hidden!important}video::-webkit-media-controls-enclosure{width:calc(100% + 32px);margin-left:auto}.button-cancel{color:#888;border:1px solid #888;border-radius:3px;margin-right:12px}.button-cancel,.button-primary{-ms-flex-positive:1;flex-grow:1;height:35px;display:inline-block;font-size:15px;text-align:center;line-height:36px}.button-primary{color:#fff;background-color:#ff5a05;border-radius:3px}@font-face{font-family:iconfont;src:url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.eot);src:url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.eot#iefix) format("embedded-opentype"),url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.woff) format("woff"),url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.ttf) format("truetype"),url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.svg#iconfont) format("svg")}@font-face{font-family:player-font;src:url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.eot);src:url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.eot#iefix) format("embedded-opentype"),url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.woff) format("woff"),url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.ttf) format("truetype"),url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.svg#player-font) format("svg")}.iconfont{font-family:iconfont!important;font-size:16px;font-style:normal;-webkit-font-smoothing:antialiased;-webkit-text-stroke-width:.2px;-moz-osx-font-smoothing:grayscale}html{background:#fff;min-height:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{width:100%}body.fixed{overflow:hidden;position:fixed;width:100vw;height:100vh}i{font-style:normal}a{word-wrap:break-word;-webkit-tap-highlight-color:rgba(0,0,0,0)}a:hover{text-decoration:none}.fade-enter-active,.fade-leave-active{transition:opacity .3s}.fade-enter,.fade-leave-to{opacity:0}.MathJax,.MathJax_CHTML,.MathJax_MathContainer,.MathJax_MathML,.MathJax_PHTML,.MathJax_PlainSource,.MathJax_SVG{outline:0}.ios-app-switch .js-audit{display:none}._loading_wrap_{position:fixed;width:100vw;height:100vh;top:50%;left:50%;transform:translate(-50%,-50%);z-index:999}._loading_div_class_,._loading_wrap_{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center}._loading_div_class_{word-wrap:break-word;padding:.5rem .75rem;text-align:center;z-index:9999;font-size:.6rem;max-width:60%;color:#fff;border-radius:.25rem;-ms-flex-direction:column;flex-direction:column}._loading_div_class_ .message{color:#353535;font-size:16px;line-height:3}.spinner{animation:circle-rotator 1.4s linear infinite}.spinner *{line-height:0;box-sizing:border-box}@keyframes circle-rotator{0%{transform:rotate(0deg)}to{transform:rotate(270deg)}}.path{stroke-dasharray:187;stroke-dashoffset:0;transform-origin:center;animation:circle-dash 1.4s ease-in-out infinite,circle-colors 5.6s ease-in-out infinite}@keyframes circle-colors{0%{stroke:#ff5a05}to{stroke:#ff5a05}}@keyframes circle-dash{0%{stroke-dashoffset:187}50%{stroke-dashoffset:46.75;transform:rotate(135deg)}to{stroke-dashoffset:187;transform:rotate(450deg)}}.confirm-box-wrapper,.confirm-box-wrapper .mask{position:absolute;top:0;left:0;right:0;bottom:0}.confirm-box-wrapper .mask{background:rgba(0,0,0,.6)}.confirm-box-wrapper .confirm-box{position:fixed;top:50%;left:50%;width:267px;background:#fff;transform:translate(-50%,-50%);border-radius:7px}.confirm-box-wrapper .confirm-box .head{margin:0 18px;font-size:18px;text-align:center;line-height:65px;border-bottom:1px solid #d9d9d9}.confirm-box-wrapper .confirm-box .body{padding:18px;padding-bottom:0;color:#353535;font-size:12.5px;max-height:150px;overflow:auto}.confirm-box-wrapper .confirm-box .foot{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;padding:18px}.confirm-box-wrapper .confirm-box .foot .button-cancel{border:1px solid #d9d9d9}.hljs{display:block;overflow-x:auto;padding:.5em;color:#333;background:#f8f8f8}.hljs-comment,.hljs-quote{color:#998;font-style:italic}.hljs-keyword,.hljs-selector-tag,.hljs-subst{color:#333;font-weight:700}.hljs-literal,.hljs-number,.hljs-tag .hljs-attr,.hljs-template-variable,.hljs-variable{color:teal}.hljs-doctag,.hljs-string{color:#d14}.hljs-section,.hljs-selector-id,.hljs-title{color:#900;font-weight:700}.hljs-subst{font-weight:400}.hljs-class .hljs-title,.hljs-type{color:#458;font-weight:700}.hljs-attribute,.hljs-name,.hljs-tag{color:navy;font-weight:400}.hljs-link,.hljs-regexp{color:#009926}.hljs-bullet,.hljs-symbol{color:#990073}.hljs-built_in,.hljs-builtin-name{color:#0086b3}.hljs-meta{color:#999;font-weight:700}.hljs-deletion{background:#fdd}.hljs-addition{background:#dfd}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
+
+
+
+
+    </style>
+    <style type="text/css">
+        .button-cancel[data-v-87ffcada]{color:#888;border:1px solid #888;border-radius:3px;margin-right:12px}.button-cancel[data-v-87ffcada],.button-primary[data-v-87ffcada]{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;height:35px;display:inline-block;font-size:15px;text-align:center;line-height:36px}.button-primary[data-v-87ffcada]{color:#fff;background-color:#ff5a05;border-radius:3px}.pd[data-v-87ffcada]{padding-left:1.375rem;padding-right:1.375rem}.article[data-v-87ffcada]{max-width:70rem;margin:0 auto}.article .article-unavailable[data-v-87ffcada]{color:#fa8919;font-size:15px;font-weight:600;line-height:24px;border-radius:5px;padding:12px;background-color:#f6f7fb;margin-top:20px}.article .article-unavailable .iconfont[data-v-87ffcada]{font-size:12px}.article .main[data-v-87ffcada]{padding:1.25rem 0;margin-bottom:52px}.article-title[data-v-87ffcada]{color:#353535;font-weight:400;line-height:1.65rem;font-size:1.34375rem}.article-info[data-v-87ffcada]{color:#888;font-size:.9375rem;margin-top:1.0625rem}.article-content[data-v-87ffcada]{margin-top:1.0625rem}.article-content.android video[data-v-87ffcada]::-webkit-media-controls-fullscreen-button{display:none}.copyright[data-v-87ffcada]{color:#b2b2b2;padding-bottom:20px;margin-top:20px;font-size:13px}.audio-player[data-v-87ffcada]{width:100%;margin:20px 0}.to-comment[data-v-87ffcada]{overflow:hidden;padding-top:10px;margin-bottom:-30px}.to-comment a.button-primary[data-v-87ffcada]{float:right;height:20px;font-size:12px;line-height:20px;padding:4px 8px;cursor:pointer}.article-comments[data-v-87ffcada]{margin-top:2rem}.article-comments h2[data-v-87ffcada]{text-align:center;color:#888;position:relative;z-index:1;margin-bottom:1rem}.article-comments h2[data-v-87ffcada]:before{border-top:1px dotted #888;content:"";position:absolute;top:56%;left:0;width:100%;z-index:-1}.article-comments h2 span[data-v-87ffcada]{font-size:15.25px;font-weight:400;padding:0 1rem;background:#fff;display:inline-block}.article-sub-bottom[data-v-87ffcada]{z-index:10;cursor:pointer}.switch-btns[data-v-87ffcada]{height:76px;cursor:pointer;padding-top:24px;padding-bottom:24px;border-bottom:10px solid #f6f7fb;position:relative}.switch-btns[data-v-87ffcada]:before{content:" ";height:1px;background:#e8e8e8;position:absolute;top:0;left:0;-webkit-box-sizing:border-box;box-sizing:border-box;left:1.375rem;right:1.375rem}.switch-btns .btn[data-v-87ffcada]{height:38px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.switch-btns .btn .tag[data-v-87ffcada]{-webkit-box-flex:0;-ms-flex:0 0 62px;flex:0 0 62px;text-align:center;color:#888;font-size:14px;border-radius:10px;height:22px;line-height:22px;background:#f6f7fb;font-weight:400}.switch-btns .btn .txt[data-v-87ffcada]{margin-left:10px;-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;color:#888;font-size:15px;height:22px;line-height:22px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:400}@media (max-width:769px){.article .breadcrumb[data-v-87ffcada]{padding-top:10px;padding-bottom:10px}}
+
+
+
+
+
+    </style>
+
+    <style type="text/css">
+        .comment-item{list-style-position:inside;width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;margin-bottom:1rem}.comment-item a{border-bottom:none}.comment-item .avatar{width:2.625rem;height:2.625rem;-ms-flex-negative:0;flex-shrink:0;border-radius:50%}.comment-item .info{margin-left:.5rem;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1}.comment-item .info .hd{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.comment-item .info .hd .username{color:#888;font-size:15.25px;font-weight:400;line-height:1.2}.comment-item .info .hd .control{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.comment-item .info .hd .control .btn-share{color:#888;font-size:.75rem;margin-right:1rem}.comment-item .info .hd .control .btn-praise{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:15.25px;text-decoration:none}.comment-item .info .hd .control .btn-praise i{color:#888;display:inline-block;font-size:.75rem;margin-right:.3rem;margin-top:-.01rem}.comment-item .info .hd .control .btn-praise i.on,.comment-item .info .hd .control .btn-praise span{color:#ff5a05}.comment-item .info .bd{color:#353535;font-size:15.25px;font-weight:400;white-space:normal;word-break:break-all;line-height:1.6}.comment-item .info .time{color:#888;font-size:9px;line-height:1}.comment-item .info .reply .reply-hd{font-size:15.25px}.comment-item .info .reply .reply-hd span{margin-left:-12px;color:#888;font-weight:400}.comment-item .info .reply .reply-hd i{color:#ff5a05;font-size:15.25px}.comment-item .info .reply .reply-content{color:#353535;font-size:15.25px;font-weight:400;white-space:normal;word-break:break-all}.comment-item .info .reply .reply-time{color:#888;font-size:9px}
+
+
+
+
+    </style>
+</head>
+<body>
+<div id="app">
+
+
+    <div data-v-87ffcada="" class="article" id="watermark">
+        <p class="x">所有最新极客时间课程请加QQ群170701297</p>
+        <div data-v-87ffcada="" class="main main-app">
+            <h1 data-v-87ffcada="" class="article-title pd">
+                测一测讲这些网络协议你都掌握了吗？
+            </h1>
+            <div data-v-87ffcada="" class="article-content typo common-content pd"><img data-v-87ffcada=""
+                                                                                        src="https://static001.geekbang.org/resource/image/ba/2e/ba5110afcd2d4ed84f320535f7ece62e.jpg">
+
+
+                <div data-v-87ffcada="" id="article-content" class="">
+                    <div class="text">
+                        <p>经过三个多月的学习，相信你对网络协议的基础概念和使用场景有了更深入的了解。我从专栏中精心筛选了核心知识点，编成了这10道测试题。希望可以帮助你学习自检，消化吸收，以期获得更好的学习效果。</p>
+<p>如果你刚刚打开这个专栏，可以用这10道题，找到自己的薄弱点，<strong>对症下药</strong>；如果你已经学习了一段时间，可以用这10道题，检测一下学习成果，<strong>查漏补缺</strong>。</p>
+<p><span class="orange">你可以拿出纸笔，写下自己的回答，之后再与文末的答案进行对照。</span></p>
+<hr />
+<p><strong>1.<span class="orange">（多选）</span>下列哪种方式可以给网卡配置IP地址？</strong></p>
+<p>A. 通过DHCP协议</p>
+<p>B. 通过ip addr命令</p>
+<p>C. 通过PXE</p>
+<p>D. 通过Ubuntu的Interface文件配置</p>
+<hr />
+<p><strong>2.<span class="orange">（多选）</span>下列哪种方式可以配置VLAN？</strong></p>
+<p>A. 通过交换机可以配置某个口的VLAN</p>
+<p>B. 通过网桥的tag</p>
+<p>C. 通过vconfig命令</p>
+<p>D. 通过VTEP</p>
+<hr />
+<p><strong>3.（单选）对于网关和路由器，下列说法正确的是</strong></p>
+<p>A. 网关和路由器是一回事儿</p>
+<p>B. 网关是三层的，路由器可以是三层的，也可以是二层的</p>
+<p>C. 网关是路由器的一个接口</p>
+<p>D. 网关可以做NAT，路由器不能</p>
+<hr />
+<p><strong>4.<span class="orange">（多选）</span>对于路由协议，下列描述正确的有</strong></p>
+<p>A. 路由协议主要是用来寻找最短路径</p>
+<p>B. 最短路径往往只有一条</p>
+<p>C. 数据中心内部和外部往往使用不同的路由协议</p><!-- [[[read_end]]] -->
+<p>D. 边界路由器只把部分IP告知外面的网络</p>
+<hr />
+<p><strong>5.（单选）对于传输层协议，下列描述正确的是</strong></p>
+<p>A. 传输层只有两种协议：TCP和UDP</p>
+<p>B. 由于UDP过于简单，因而只在数据中心内部使用</p>
+<p>C. TCP通过Sequence Number标识重传和回复的包</p>
+<p>D. TCP通过滑动窗口解决网络拥塞的问题</p>
+<hr />
+<p><strong>6.<span class="orange">（多选）</span>对于HTTP协议，下列描述正确的有</strong></p>
+<p>A. HTTP协议是基于TCP协议的</p>
+<p>B. TCP的重传机制会导致HTTP服务端收到重复的包，因而需要实现幂等</p>
+<p>C. HTTP的POST方法可以用来发送数据，也可以用来请求数据</p>
+<p>D. HTTP协议主要用来传输HTML网页</p>
+<hr />
+<p><strong>7.<span class="orange">（多选）</span>对于Socket，下列描述正确的有</strong></p>
+<p>A. Socket可以建立TCP连接，也可以建立UDP连接，所以它在传输层工作</p>
+<p>B. 对于Linux内核来看，Socket也是一个文件</p>
+<p>C. 启动一个Socket来监听，当连接建立之后，会将这个socket交给一个线程来处理</p>
+<p>D. UDP的Socket可以接收来自多个源的网络包</p>
+<hr />
+<p><strong>8.（单选）对于DNS协议，下列描述正确的是</strong></p>
+<p>A. 如果没有DNS，服务器之间无法通信</p>
+<p>B. 客户端端需要去轮询DNS树进行域名解析</p>
+<p>C. DNS既可以做本地负载均衡，也可以做全局负载均衡</p>
+<p>D. 只要修改了DNS域名对应的IP地址，马上就起作用</p>
+<hr />
+<p><strong>9.<span class="orange">（多选）</span>对于CDN，下列描述正确的有</strong></p>
+<p>A. 使用了CDN之后，访问的域名会发生变化</p>
+<p>B. CDN只能用来加速静态数据</p>
+<p>C. CDN厂商的节点分布在各个地区的各个运营商</p>
+<p>D. 相同运营商比相同地点有更高优先级</p>
+<hr />
+<p><strong>10.（单选）对于移动通信网络，下列描述正确的是</strong></p>
+<p>A. 移动通信网络也是在运营商，因而一旦到了有线部分，就都一样了</p>
+<p>B. 之所以分SGW和PGW，主要是解决异地上网的问题</p>
+<p>C. 手机的IP地址是公网IP地址，是由互联网上的DHCP服务器分配的</p>
+<p>D. 手机上网不稳定，因而所有的协议都要基于TCP，不然一旦丢包就麻烦了</p>
+<hr />
+<h2><span class="orange">答案与解析</span></h2>
+<p><strong>1.<span class="orange">（多选）</span>答案. ABD</strong></p>
+<p>解析：配置的参数如果是DHCP，会通过DHCP协议自动配置IP地址；如果是Static会通过ip addr命令行进行手动配置。而PXE不是用于配置IP地址的，是用于物理机初始化的。</p>
+<hr />
+<p><strong>2.<span class="orange">（多选）</span>答案. ABC</strong></p>
+<p>解析：物理交换机可以配置VLAN，brctl里面的tag可以配置VLAN，vconfig可以配置一个带VLAN ID的虚拟网卡。VTEP是用来封装VXLAN的。</p>
+<hr />
+<p><strong>3.（单选）答案. C</strong></p>
+<p>解析：网关和路由器都是三层的，都可以做NAT，网关往往是路由器在某个局域网里面的口。</p>
+<hr />
+<p><strong>4.<span class="orange">（多选）</span>答案. CD</strong></p>
+<p>解析：数据中心内部和外部使用的路由协议不太一样。内部的协议主要是用来寻找最短路径，外部的协议往往会有一些策略，可以选择将部分的IP地址广播出去。</p>
+<hr />
+<p><strong>5.（单选）答案. C</strong></p>
+<p>解析：传输层常用的两种协议是TCP和UDP，其实还有其他的，例如SCTP。UDP比较简单，常用于内网，但是它可以让应用层自己实现可靠连接和拥塞控制，因此也常在数据中心外使用。TCP通过Sequence Number和滑动窗口，解决重传和回复的问题，而拥塞窗口解决的是网络拥塞问题。</p>
+<hr />
+<p><strong>6.<span class="orange">（多选）</span>答案. AC</strong></p>
+<p>解析：HTTP是基于TCP的。TCP虽然会重传，但是只有一个包可以到达HTTP层，所以HTTP层不会收到重复的包。为了防止重新发送HTTP的请求，需要实现幂等。POST仅仅是一个方法，实现可以很灵活。SOAP协议中常用POST实现调用get函数。HTTP不仅仅是传输HTML的，可以传输很多东西，比如视频、JSON、XML等。</p>
+<hr />
+<p><strong>7.  <span class="orange">（多选）</span>答案. BD</strong></p>
+<p>解析：Socket可以建立TCP和UDP连接，但是它处于应用层。Socket连接后会生成一个文件描述符，所以从内核来看，它只是一个文件。监听的Socket和读写的Socket并不是同一个。UDP的Socket不是面向连接的，它可以接收来自多个源的网络包。</p>
+<hr />
+<p><strong>8.（单选）答案. C</strong></p>
+<p>解析：没有DNS，上网就会很不方便，但是使用IP地址，仍然可以互相通信。轮询DNS树的不是客户端，而是本地DNS服务器。DNS可以在数据中心里面做本地负载均衡，也可以做跨数据中心的全局负载均衡。修改DNS域名对应的IP之后，过一段时间才会起作用。</p>
+<hr />
+<p><strong>9.<span class="orange">（多选）</span>答案. ACD</strong></p>
+<p>解析：使用了CDN之后，域名会CNAME成为CDN的域名。CDN可以加速静态数据，也可以加速动态数据。CDN节点分布在各个地区和运营商。相同的运营商路径更短一些。有时候相同的地区，不同的运营商不能直接连接，而是要到两个运营商互通的地方转一下，所以相同运营商更加重要一些。而对于同一个运营商，地区比较重要。</p>
+<hr />
+<p><strong>10.（单选）答案. B</strong></p>
+<p>解析：移动通信网络有无线的部分、核心网的部分、互联网的部分，不是到了有线就都一样了。区分SGW和PGW可以解决异地上网的问题，SGW是服务本地PGW的登记地结算的。手机的IP地址是PGW分配的。手机里面的GTP协议是基于UDP的。</p>
+<hr />
+<p><img src="https://static001.geekbang.org/resource/image/b5/fb/b5bc14cb81d3630919fee94a512cc3fb.jpg" alt="" /></p>
+
+                    </div>
+                </div>
+
+            </div>
+            <div data-v-87ffcada="" class="article-comments pd"><h2 data-v-87ffcada=""><span
+                    data-v-87ffcada="">精选留言</span></h2>
+                <ul data-v-87ffcada="">
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/12/ce/a8c8b5e8.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Jason</span>
+                            </div>
+                            <div class="bd">老师真有心，佩服。 <br></div>
+                            <span class="time">2018-08-31 07:53</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/09/42/b7a406c9.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Hurt</span>
+                            </div>
+                            <div class="bd">感谢老师🙏 老师太用心了 等回头再学一遍 来好好做题 加油 <br></div>
+                            <span class="time">2018-08-31 17:06</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/67/0e/c77ad9b1.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">eason2017</span>
+                            </div>
+                            <div class="bd">老师有心了，👍 <br></div>
+                            <span class="time">2018-08-31 08:43</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/cb/83/bf876c13.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">张南南</span>
+                            </div>
+                            <div class="bd">老师您好，我想请教您一个问题，我用一些组件比如java中的HttpClient，发送一个post请求，然后就得到了一个响应，HTTP协议是怎么自动转化成了TCP层，操作系统做了哪些事情，还有就是有很多HTTP请求，他是怎么把HTTP请求和HTTP的响应对应起来的，这两个问题希望您能不吝赐教，谢谢啦~ <br></div>
+                            <span class="time">2018-08-31 08:31</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">底层实现还是socket，就到了tcp层，http的默认行为是一去一回，上一个回了，下一个才能去，所以才有http 2.0</p>
+                                <p class="reply-time">2018-08-31 10:04</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/27/fc/b8d83d56.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">liangjf</span>
+                            </div>
+                            <div class="bd">从买专栏那刻做了下，10分，到看完一遍是40分，有些错的是漏选，收货还是有的。接下来专攻tcp&#47;ip详解查漏补缺😁 <br></div>
+                            <span class="time">2018-11-07 10:53</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/60/c7/a147b71b.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Fisher</span>
+                            </div>
+                            <div class="bd">太有心了，还整理出来一套题，可以根据题目针对性学习 <br></div>
+                            <span class="time">2018-09-02 10:08</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/b7/b6/17103195.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Elliot</span>
+                            </div>
+                            <div class="bd">给老师点赞👍 <br></div>
+                            <span class="time">2018-09-01 07:01</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/80/b5/f59d92f1.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Cloud</span>
+                            </div>
+                            <div class="bd">购买的第一个课程，值！ <br></div>
+                            <span class="time">2018-11-17 20:19</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/45/82/164b9073.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Majorin_Che</span>
+                            </div>
+                            <div class="bd">我就对了两题，好惭愧 <br></div>
+                            <span class="time">2018-10-05 19:54</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/50/39/14adb0f0.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">trllllllll</span>
+                            </div>
+                            <div class="bd">特意过了一段时间再来答，惨不忍睹，再去复习了。。。 <br></div>
+                            <span class="time">2018-10-03 18:43</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">加油</p>
+                                <p class="reply-time">2018-10-03 21:27</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/52/c3/896f3410.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">kissingers</span>
+                            </div>
+                            <div class="bd">刚好及格，有的没接触过，开个头吧。谢谢 <br></div>
+                            <span class="time">2018-09-14 13:13</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/12/be/d2/3d88cb8e.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">NeverMore</span>
+                            </div>
+                            <div class="bd">一半一半。。 <br></div>
+                            <span class="time">2018-09-13 17:59</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/ca/d7/ee885390.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Quan</span>
+                            </div>
+                            <div class="bd">第五题，解释是：TCP 通过 Sequence Number 和滑动窗口，解决重传和回复的问题，而拥塞窗口解决的是网络拥塞问题。<br>那么答案不应该是D（TCP通过滑动窗口解决网络拥堵问题）吗？ <br></div>
+                            <span class="time">2018-09-05 11:32</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/95/96/0020bd67.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">夏洛克的救赎</span>
+                            </div>
+                            <div class="bd">网络协议是在操作系统内核实现的吗？<br><br>网络协议格式就是实现约定？<br><br>谁来管理网络协议的标准？ <br></div>
+                            <span class="time">2018-09-03 07:15</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/57/04/07eb8cbb.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">hhq</span>
+                            </div>
+                            <div class="bd">1.Abd 2.Abc 3.C 4.Cd 5.C 6.Acd 7.Abcd 8.C 9.Bc 10.A <br></div>
+                            <span class="time">2018-08-31 13:13</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/7c/28/cb6d8768.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Jobs</span>
+                            </div>
+                            <div class="bd">1.ABD <br>2. AB<br>3. C<br>4. ABC<br>5.D<br>6. AD<br>7. BCD<br>8.BC<br>9. BCD<br>10. B <br></div>
+                            <span class="time">2018-08-31 08:28</span>
+                            
+                        </div>
+                    </li>
+                    
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <style type="text/css">
+
+#watermark {
+
+  position: relative;
+  overflow: hidden;
+}
+
+#watermark .x {
+  position: absolute;
+  top: 800;
+  left: 400;
+  color: #3300ff;
+  font-size: 50px;
+  pointer-events: none;
+  opacity:0.5;
+  filter:Alpha(opacity=50);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+}
+    </style>
+
+
+    <style type="text/css">
+ html{color:#333;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;text-rendering:optimizelegibility;font-family:Helvetica Neue,PingFang SC,Verdana,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif}html.borderbox *,html.borderbox :after,html.borderbox :before{box-sizing:border-box}article,aside,blockquote,body,button,code,dd,details,dl,dt,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hr,input,legend,li,menu,nav,ol,p,pre,section,td,textarea,th,ul{margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,menu,nav,section{display:block}audio,canvas,video{display:inline-block}body,button,input,select,textarea{font:300 1em/1.8 PingFang SC,Lantinghei SC,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,Helvetica,sans-serif}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}blockquote{position:relative;color:#999;font-weight:400;border-left:1px solid #1abc9c;padding-left:1em;margin:1em 3em 1em 2em}@media only screen and (max-width:640px){blockquote{margin:1em 0}}abbr,acronym{border-bottom:1px dotted;font-variant:normal}abbr{cursor:help}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:400}ol,ul{list-style:none}caption,th{text-align:left}q:after,q:before{content:""}sub,sup{font-size:75%;line-height:0;position:relative}:root sub,:root sup{vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}a{color:#1abc9c}a:hover{text-decoration:underline}.typo a{border-bottom:1px solid #1abc9c}.typo a:hover{border-bottom-color:#555;color:#555}.typo a:hover,a,ins{text-decoration:none}.typo-u,u{text-decoration:underline}mark{background:#fffdd1;border-bottom:1px solid #ffedce;padding:2px;margin:0 5px}code,pre,pre tt{font-family:Courier,Courier New,monospace}pre{background:hsla(0,0%,97%,.7);border:1px solid #ddd;padding:1em 1.5em;display:block;-webkit-overflow-scrolling:touch}hr{border:none;border-bottom:1px solid #cfcfcf;margin-bottom:.8em;height:10px}.typo-small,figcaption,small{font-size:.9em;color:#888}b,strong{font-weight:700;color:#000}[draggable]{cursor:move}.clearfix:after,.clearfix:before{content:"";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}.textwrap,.textwrap td,.textwrap th{word-wrap:break-word;word-break:break-all}.textwrap-table{table-layout:fixed}.serif{font-family:Palatino,Optima,Georgia,serif}.typo-dl,.typo-form,.typo-hr,.typo-ol,.typo-p,.typo-pre,.typo-table,.typo-ul,.typo dl,.typo form,.typo hr,.typo ol,.typo p,.typo pre,.typo table,.typo ul,blockquote{margin-bottom:1rem}h1,h2,h3,h4,h5,h6{font-family:PingFang SC,Helvetica Neue,Verdana,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif;color:#000;line-height:1.35}.typo-h1,.typo-h2,.typo-h3,.typo-h4,.typo-h5,.typo-h6,.typo h1,.typo h2,.typo h3,.typo h4,.typo h5,.typo h6{margin-top:1.2em;margin-bottom:.6em;line-height:1.35}.typo-h1,.typo h1{font-size:2em}.typo-h2,.typo h2{font-size:1.8em}.typo-h3,.typo h3{font-size:1.6em}.typo-h4,.typo h4{font-size:1.4em}.typo-h5,.typo-h6,.typo h5,.typo h6{font-size:1.2em}.typo-ul,.typo ul{margin-left:1.3em;list-style:disc}.typo-ol,.typo ol{list-style:decimal;margin-left:1.9em}.typo-ol ol,.typo-ol ul,.typo-ul ol,.typo-ul ul,.typo li ol,.typo li ul{margin-bottom:.8em;margin-left:2em}.typo-ol ul,.typo-ul ul,.typo li ul{list-style:circle}.typo-table td,.typo-table th,.typo table caption,.typo table td,.typo table th{border:1px solid #ddd;padding:.5em 1em;color:#666}.typo-table th,.typo table th{background:#fbfbfb}.typo-table thead th,.typo table thead th{background:hsla(0,0%,95%,.7)}.typo table caption{border-bottom:none}.typo-input,.typo-textarea{-webkit-appearance:none;border-radius:0}.typo-em,.typo em,caption,legend{color:#000;font-weight:inherit}.typo-em{position:relative}.typo-em:after{position:absolute;top:.65em;left:0;width:100%;overflow:hidden;white-space:nowrap;content:"\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB"}.typo img{max-width:100%}.common-content{font-weight:400;color:#353535;line-height:1.75rem;white-space:normal;word-break:normal;font-size:1rem}.common-content img{display:block;max-width:100%;background-color:#eee}.common-content audio,.common-content video{width:100%;background-color:#eee}.common-content center,.common-content font{margin-top:1rem;display:inline-block}.common-content center{width:100%}.common-content pre{margin-top:1rem;padding-left:0;padding-right:0;position:relative;overflow:hidden}.common-content pre code{font-size:.8rem;font-family:Consolas,Liberation Mono,Menlo,monospace,Courier;display:block;width:100%;box-sizing:border-box;padding-left:1rem;padding-right:1rem;overflow-x:auto}.common-content hr{border:none;margin-top:1.5rem;margin-bottom:1.5rem;border-top:1px solid #f5f5f5;height:1px;background:none}.common-content b,.common-content h1,.common-content h2,.common-content h3,.common-content h4,.common-content h5,.common-content strong{font-weight:700}.common-content h1,.common-content h2{font-size:1.125rem;margin-bottom:.45rem}.common-content h3,.common-content h4,.common-content h5{font-size:1rem;margin-bottom:.45rem}.common-content p{font-weight:400;color:#353535;margin-top:.15rem}.common-content .orange{color:#ff5a05}.common-content .reference{font-size:1rem;color:#888}.custom-rich-content h1{margin-top:0;font-weight:400;font-size:15.25px;border-bottom:1px solid #eee;line-height:2.8}.custom-rich-content li,.custom-rich-content p{font-size:14px;color:#888;line-height:1.6}table.hljs-ln{margin-bottom:0;border-spacing:0;border-collapse:collapse}table.hljs-ln,table.hljs-ln tbody,table.hljs-ln td,table.hljs-ln tr{box-sizing:border-box}table.hljs-ln td{padding:0;border:0}table.hljs-ln td.hljs-ln-numbers{min-width:15px;color:rgba(27,31,35,.3);text-align:right;white-space:nowrap;cursor:pointer;user-select:none}table.hljs-ln td.hljs-ln-code,table.hljs-ln td.hljs-ln-numbers{font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;font-size:12px;line-height:20px;vertical-align:top}table.hljs-ln td.hljs-ln-code{position:relative;padding-right:10px;padding-left:10px;overflow:visible;color:#24292e;word-wrap:normal;white-space:pre}video::-webkit-media-controls{overflow:hidden!important}video::-webkit-media-controls-enclosure{width:calc(100% + 32px);margin-left:auto}.button-cancel{color:#888;border:1px solid #888;border-radius:3px;margin-right:12px}.button-cancel,.button-primary{-ms-flex-positive:1;flex-grow:1;height:35px;display:inline-block;font-size:15px;text-align:center;line-height:36px}.button-primary{color:#fff;background-color:#ff5a05;border-radius:3px}@font-face{font-family:iconfont;src:url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.eot);src:url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.eot#iefix) format("embedded-opentype"),url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.woff) format("woff"),url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.ttf) format("truetype"),url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.svg#iconfont) format("svg")}@font-face{font-family:player-font;src:url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.eot);src:url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.eot#iefix) format("embedded-opentype"),url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.woff) format("woff"),url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.ttf) format("truetype"),url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.svg#player-font) format("svg")}.iconfont{font-family:iconfont!important;font-size:16px;font-style:normal;-webkit-font-smoothing:antialiased;-webkit-text-stroke-width:.2px;-moz-osx-font-smoothing:grayscale}html{background:#fff;min-height:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{width:100%}body.fixed{overflow:hidden;position:fixed;width:100vw;height:100vh}i{font-style:normal}a{word-wrap:break-word;-webkit-tap-highlight-color:rgba(0,0,0,0)}a:hover{text-decoration:none}.fade-enter-active,.fade-leave-active{transition:opacity .3s}.fade-enter,.fade-leave-to{opacity:0}.MathJax,.MathJax_CHTML,.MathJax_MathContainer,.MathJax_MathML,.MathJax_PHTML,.MathJax_PlainSource,.MathJax_SVG{outline:0}.ios-app-switch .js-audit{display:none}._loading_wrap_{position:fixed;width:100vw;height:100vh;top:50%;left:50%;transform:translate(-50%,-50%);z-index:999}._loading_div_class_,._loading_wrap_{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center}._loading_div_class_{word-wrap:break-word;padding:.5rem .75rem;text-align:center;z-index:9999;font-size:.6rem;max-width:60%;color:#fff;border-radius:.25rem;-ms-flex-direction:column;flex-direction:column}._loading_div_class_ .message{color:#353535;font-size:16px;line-height:3}.spinner{animation:circle-rotator 1.4s linear infinite}.spinner *{line-height:0;box-sizing:border-box}@keyframes circle-rotator{0%{transform:rotate(0deg)}to{transform:rotate(270deg)}}.path{stroke-dasharray:187;stroke-dashoffset:0;transform-origin:center;animation:circle-dash 1.4s ease-in-out infinite,circle-colors 5.6s ease-in-out infinite}@keyframes circle-colors{0%{stroke:#ff5a05}to{stroke:#ff5a05}}@keyframes circle-dash{0%{stroke-dashoffset:187}50%{stroke-dashoffset:46.75;transform:rotate(135deg)}to{stroke-dashoffset:187;transform:rotate(450deg)}}.confirm-box-wrapper,.confirm-box-wrapper .mask{position:absolute;top:0;left:0;right:0;bottom:0}.confirm-box-wrapper .mask{background:rgba(0,0,0,.6)}.confirm-box-wrapper .confirm-box{position:fixed;top:50%;left:50%;width:267px;background:#fff;transform:translate(-50%,-50%);border-radius:7px}.confirm-box-wrapper .confirm-box .head{margin:0 18px;font-size:18px;text-align:center;line-height:65px;border-bottom:1px solid #d9d9d9}.confirm-box-wrapper .confirm-box .body{padding:18px;padding-bottom:0;color:#353535;font-size:12.5px;max-height:150px;overflow:auto}.confirm-box-wrapper .confirm-box .foot{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;padding:18px}.confirm-box-wrapper .confirm-box .foot .button-cancel{border:1px solid #d9d9d9}.hljs{display:block;overflow-x:auto;padding:.5em;color:#333;background:#f8f8f8}.hljs-comment,.hljs-quote{color:#998;font-style:italic}.hljs-keyword,.hljs-selector-tag,.hljs-subst{color:#333;font-weight:700}.hljs-literal,.hljs-number,.hljs-tag .hljs-attr,.hljs-template-variable,.hljs-variable{color:teal}.hljs-doctag,.hljs-string{color:#d14}.hljs-section,.hljs-selector-id,.hljs-title{color:#900;font-weight:700}.hljs-subst{font-weight:400}.hljs-class .hljs-title,.hljs-type{color:#458;font-weight:700}.hljs-attribute,.hljs-name,.hljs-tag{color:navy;font-weight:400}.hljs-link,.hljs-regexp{color:#009926}.hljs-bullet,.hljs-symbol{color:#990073}.hljs-built_in,.hljs-builtin-name{color:#0086b3}.hljs-meta{color:#999;font-weight:700}.hljs-deletion{background:#fdd}.hljs-addition{background:#dfd}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
+
+
+
+
+    </style>
+    <style type="text/css">
+        .button-cancel[data-v-87ffcada]{color:#888;border:1px solid #888;border-radius:3px;margin-right:12px}.button-cancel[data-v-87ffcada],.button-primary[data-v-87ffcada]{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;height:35px;display:inline-block;font-size:15px;text-align:center;line-height:36px}.button-primary[data-v-87ffcada]{color:#fff;background-color:#ff5a05;border-radius:3px}.pd[data-v-87ffcada]{padding-left:1.375rem;padding-right:1.375rem}.article[data-v-87ffcada]{max-width:70rem;margin:0 auto}.article .article-unavailable[data-v-87ffcada]{color:#fa8919;font-size:15px;font-weight:600;line-height:24px;border-radius:5px;padding:12px;background-color:#f6f7fb;margin-top:20px}.article .article-unavailable .iconfont[data-v-87ffcada]{font-size:12px}.article .main[data-v-87ffcada]{padding:1.25rem 0;margin-bottom:52px}.article-title[data-v-87ffcada]{color:#353535;font-weight:400;line-height:1.65rem;font-size:1.34375rem}.article-info[data-v-87ffcada]{color:#888;font-size:.9375rem;margin-top:1.0625rem}.article-content[data-v-87ffcada]{margin-top:1.0625rem}.article-content.android video[data-v-87ffcada]::-webkit-media-controls-fullscreen-button{display:none}.copyright[data-v-87ffcada]{color:#b2b2b2;padding-bottom:20px;margin-top:20px;font-size:13px}.audio-player[data-v-87ffcada]{width:100%;margin:20px 0}.to-comment[data-v-87ffcada]{overflow:hidden;padding-top:10px;margin-bottom:-30px}.to-comment a.button-primary[data-v-87ffcada]{float:right;height:20px;font-size:12px;line-height:20px;padding:4px 8px;cursor:pointer}.article-comments[data-v-87ffcada]{margin-top:2rem}.article-comments h2[data-v-87ffcada]{text-align:center;color:#888;position:relative;z-index:1;margin-bottom:1rem}.article-comments h2[data-v-87ffcada]:before{border-top:1px dotted #888;content:"";position:absolute;top:56%;left:0;width:100%;z-index:-1}.article-comments h2 span[data-v-87ffcada]{font-size:15.25px;font-weight:400;padding:0 1rem;background:#fff;display:inline-block}.article-sub-bottom[data-v-87ffcada]{z-index:10;cursor:pointer}.switch-btns[data-v-87ffcada]{height:76px;cursor:pointer;padding-top:24px;padding-bottom:24px;border-bottom:10px solid #f6f7fb;position:relative}.switch-btns[data-v-87ffcada]:before{content:" ";height:1px;background:#e8e8e8;position:absolute;top:0;left:0;-webkit-box-sizing:border-box;box-sizing:border-box;left:1.375rem;right:1.375rem}.switch-btns .btn[data-v-87ffcada]{height:38px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.switch-btns .btn .tag[data-v-87ffcada]{-webkit-box-flex:0;-ms-flex:0 0 62px;flex:0 0 62px;text-align:center;color:#888;font-size:14px;border-radius:10px;height:22px;line-height:22px;background:#f6f7fb;font-weight:400}.switch-btns .btn .txt[data-v-87ffcada]{margin-left:10px;-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;color:#888;font-size:15px;height:22px;line-height:22px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:400}@media (max-width:769px){.article .breadcrumb[data-v-87ffcada]{padding-top:10px;padding-bottom:10px}}
+
+
+
+
+
+    </style>
+
+    <style type="text/css">
+        .comment-item{list-style-position:inside;width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;margin-bottom:1rem}.comment-item a{border-bottom:none}.comment-item .avatar{width:2.625rem;height:2.625rem;-ms-flex-negative:0;flex-shrink:0;border-radius:50%}.comment-item .info{margin-left:.5rem;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1}.comment-item .info .hd{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.comment-item .info .hd .username{color:#888;font-size:15.25px;font-weight:400;line-height:1.2}.comment-item .info .hd .control{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.comment-item .info .hd .control .btn-share{color:#888;font-size:.75rem;margin-right:1rem}.comment-item .info .hd .control .btn-praise{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:15.25px;text-decoration:none}.comment-item .info .hd .control .btn-praise i{color:#888;display:inline-block;font-size:.75rem;margin-right:.3rem;margin-top:-.01rem}.comment-item .info .hd .control .btn-praise i.on,.comment-item .info .hd .control .btn-praise span{color:#ff5a05}.comment-item .info .bd{color:#353535;font-size:15.25px;font-weight:400;white-space:normal;word-break:break-all;line-height:1.6}.comment-item .info .time{color:#888;font-size:9px;line-height:1}.comment-item .info .reply .reply-hd{font-size:15.25px}.comment-item .info .reply .reply-hd span{margin-left:-12px;color:#888;font-weight:400}.comment-item .info .reply .reply-hd i{color:#ff5a05;font-size:15.25px}.comment-item .info .reply .reply-content{color:#353535;font-size:15.25px;font-weight:400;white-space:normal;word-break:break-all}.comment-item .info .reply .reply-time{color:#888;font-size:9px}
+
+
+
+
+    </style>
+</head>
+<body>
+<div id="app">
+
+
+    <div data-v-87ffcada="" class="article" id="watermark">
+        <p class="x">所有最新极客时间课程请加QQ群170701297</p>
+        <div data-v-87ffcada="" class="main main-app">
+            <h1 data-v-87ffcada="" class="article-title pd">
+                结束语讲放弃完美主义，执行力就是限时限量认真完成
+            </h1>
+            <div data-v-87ffcada="" class="article-content typo common-content pd"><img data-v-87ffcada=""
+                                                                                        src="https://static001.geekbang.org/resource/image/34/29/34236e05a5a681cf6c8ef79f8cb6ae29.jpg">
+
+
+                <div data-v-87ffcada="" id="article-content" class="">
+                    <div class="text">
+                        <p>你好，我是刘超。</p>
+<p>从筹备、上线到今天专栏完结，过去了将近半年的时间。200多天，弹指一挥间。</p>
+<p>我原本计划写36篇，最后愣是写到了45篇。原本编辑让我一篇写两三千字，结果几乎每篇都是四五千字。这里面涉及图片张数我没具体数过，但是据说多到让编辑上传到吐。编辑一篇我的稿件的工作量相当于别的专栏的两倍。</p>
+<p>人常说，有多少付出，就有多少回报。但是，写这个“趣谈网络协议”专栏，我收获的东西远超过我的想象。我希望你的收获也是如此。为什么这么说呢？我们把时间放回到这个专栏最开始的时候，我慢慢跟你讲。</p>
+<h2>我不是最懂的人，但我想尝试成为这样的人</h2>
+<p>今年年初，极客时间来找我，希望我讲一些偏重基础的知识，比如网络协议。</p>
+<p>他们一提到这个主题，我就很兴奋，因为这也触动了我心中长期以来的想法，因为网络这个东西学起来实在是太痛苦。</p>
+<p>但是，说实话，接下这个重任，我心里其实是有点“怕”的。我怕自己不够专业，毕竟业内有这么多网络工程师和研究网络理论的教授。我讲这个课会不会贻笑大方啊？</p>
+<p>我知道，很多技术人员不敢写博客、写公众号，其实都有这种“怕”的心理：我又不牛，没啥要分享的，要是误导了别人怎么办？</p>
+<p>如果你想做出一些成绩，这个心理一定要克服。其实每个人都有自己的<strong>相对优势</strong>。对于某个东西，你研究的时间不一定是最长的，但是你可能有特殊的角度、表达方式和应用场景。坚定了这个想法之后，我就开始投入热火朝天的专栏写作了。</p><!-- [[[read_end]]] -->
+<p>一旦开始写，我发现，这个事情远没有看上去那么简单。它会花费你非常多的个人时间。写专栏这几个月，晚上两点之后睡，周末全在写专栏，基本成为我的生活常态。但是<strong>我想挑战一下自己，我觉得，只要咬牙挺过去，自己的技术就会上升一个层次。</strong></p>
+<h2>放弃完美主义，执行力就是限时限量认真完成</h2>
+<p>技术人都有完美主义倾向，觉得什么事情都要钻研个底儿朝天，才拿出来见人。我也一样。</p>
+<p>我曾经答应某出版社写一本搜索引擎的书。这本书分为原理篇和实践篇。我总觉得我还没把原理篇写完，就不能写实践篇。但是，仅原理篇我就写了一年。搜索引擎就火了一两年，最后时间窗口过了，书稿没有完成，这件事儿也就这么搁浅了。</p>
+<p>所以，完美主义虽然是个很好听的词，但是它往往是和拖延症如影随形的，它常常会给拖延症披上一个华丽的外衣，说，我是因为追求完美嘛。但是，最终的结果往往是，理论研究半天还没动手，执行力很差。时间点过了，就心安理得地说，反正现在也不需要了，那就算了吧。久而久之，你就会发现，自己好像陷入了瓶颈。</p>
+<p>我慢慢明白过来，我们<strong>不是为了做技术而做技术，做技术是为了满足人类需求的</strong>。完美主义是好事儿，但是，坚持完美主义的同时要限时限量地完成，才能形成执行力。</p>
+<p>写这个专栏之后，我更加深刻地体会到这一点。每周都要写三篇文章，压力很大，根本容不得任何拖延。如果我还是坚持以前完美主义的做法，读完十本书，用三年时间把网络协议都研究透再来写，那现在就没有这个专栏了。</p>
+<p>如果我们要强调执行力，时间点这个因素就至关重要。在固定的时间点上，就要把控范围，不能顾虑太多，要勇于放弃。就像给产品做排期，先做最小闭环的功能集合，其他的放在以后再补充。在这个前提下，以自己最大的限度往完美的方向上努力。比如，我觉得每天2点睡是我的身体极限，努力到这个程度，我也就无愧于心了。</p>
+<p>所以说，我们做事情的目的并不是完美，而是在固定的时间点，以固定的数量和质量，尽可能认真地满足当时的客户需求，这才是最重要的。</p>
+<p>这样做肯定会有不满意的地方，比如很多同学在留言区指出我的错误，甚至有的同学提的问题，我原来都没思考过。但是，我觉得这些都不是事儿。我可以再查资料，再补充、再完善。所以，后来时间宽裕了，我还增加了5期答疑，回答了一下之前没来得及回答地问题。高手在民间，咱们一起来讨论和进步。这个过程已经让我受益良多。</p>
+<h2>保持饥渴，不怕被“鄙视”，勇于脱离舒适区</h2>
+<p>有人可能会问了，你看你既不是最专业的，还不追求完美，真的不怕被人“鄙视”吗？</p>
+<p>被“鄙视”，谁都怕，这也是为什么越大的会议，参加人数越多的演讲，越是没有人提出具体的问题。大家都怕丢人，看上去好像大家都听懂了，就我啥都不懂，我要是问，被大家笑话怎么办？我想很多人都有这样的经历吧？我也来给你讲讲我的亲身经历。</p>
+<p>我从Windows开发去做Linux的存储系统开发时，连Linux man都不会看；我在惠普从事OpenStack实施工作的时候，对于网络的了解一塌糊涂，一直被甲方骂；我在华为做云计算，支撑运营商项目的时候，面对一大堆核心网词汇，一脸懵；我在网易云对内支撑考拉的时候，在微服务架构方面也是小白……被“鄙视”了这么多次之后，我不怕了。因为这每一次“鄙视”都可以让我发现自己的短板，然后啃下这些东西，这不就是最大的收获吗？</p>
+<p>我就是这样一直被“鄙视”着成长起来的人，我就是常常在别人分享的时候坐第一排问很傻的那种问题的人，我就是常常一知半解还愿意和别人讨论的人……</p>
+<p><strong>怕被“鄙视”，说明你还不够饥渴，还没有勇气脱离你的舒适区。</strong> 在你熟悉的领域里面，你是最最权威的，但是，天下之大，你真的只满足于眼前这一亩三分地吗？</p>
+<p>很多人因为怕被“鄙视”，不敢问、不敢做，因而与很多美好的东西都擦肩而过了。直到有一天你用到了，你才后悔，当时自己怎么没去多问一句。</p>
+<p>所以，当你看到一个特别好的、突破自己的学习机会，别犹豫，搭上这辆车。等过了十年，你会发现，当年那些嘲笑、轻视，甚至谩骂，都算不了什么，进步本身才是最最重要的。</p>
+<p>今天，咱们没有谈具体的知识，我只表达了一下我的观点。我就是那个你在直播里看到的，那个邋遢、搞笑、不装，同时做事认真，愿意和你一起进步的技术大叔。</p>
+<p>脱离舒适区吧，希望我们可以一起成长！</p>
+<p><a href="http://cn.mikecrm.com/aeGIhYd"><img src="https://static001.geekbang.org/resource/image/45/7b/453624426d36c2255ef1dfd08a42517b.jpg" alt="" /></a></p>
+<hr />
+<p><img src="https://static001.geekbang.org/resource/image/b5/fb/b5bc14cb81d3630919fee94a512cc3fb.jpg" alt="" /></p>
+
+                    </div>
+                </div>
+
+            </div>
+            <div data-v-87ffcada="" class="article-comments pd"><h2 data-v-87ffcada=""><span
+                    data-v-87ffcada="">精选留言</span></h2>
+                <ul data-v-87ffcada="">
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/53/a8/bb2aa340.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">return</span>
+                            </div>
+                            <div class="bd">这是我看过的最好的且最值得的基础理论教程。 希望老师 有经历的话再出个数据结构和算法的教程。 <br></div>
+                            <span class="time">2018-09-03 09:21</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">谢谢</p>
+                                <p class="reply-time">2018-09-03 11:57</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">神灯</span>
+                            </div>
+                            <div class="bd">超哥，这边说到心坎上了，句句戳心，感谢分享 <br></div>
+                            <span class="time">2018-09-03 07:53</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/6d/bd/2666ab9c.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">caizz</span>
+                            </div>
+                            <div class="bd">老师，这些内容会出书吗😄😄😄   很想要一本实体书 <br></div>
+                            <span class="time">2018-09-03 08:27</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/1a/e5/6899701e.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">favorlm</span>
+                            </div>
+                            <div class="bd">并不是学习成本高，是因为大多数人懒。 <br></div>
+                            <span class="time">2018-09-03 09:07</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/63/5d/b523af2d.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Hunsbiously</span>
+                            </div>
+                            <div class="bd">https:&#47;&#47;m.youtube.com&#47;watch?v=ER9eIXL2_14#fauxfullscreen<br>这个视频里头介绍了一种新的网络技术，不知道您可不可以解读一下。 <br></div>
+                            <span class="time">2018-09-19 21:11</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/12/ce/a8c8b5e8.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Jason</span>
+                            </div>
+                            <div class="bd">看得出来，这篇是超哥的肺腑之言，对我的启发意义甚至比前面所有篇章都多。感谢超哥的分享。 <br></div>
+                            <span class="time">2018-09-07 18:11</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/60/bc/c6ba84bd.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Ant</span>
+                            </div>
+                            <div class="bd">能合辑出本书就好了，拿在手里更方便前后对照着反复琢磨理解 <br></div>
+                            <span class="time">2018-09-04 13:36</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/71/f0/be872719.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">炎炎</span>
+                            </div>
+                            <div class="bd">希望老师出个Linux 专栏 <br></div>
+                            <span class="time">2018-09-03 22:14</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/95/96/0020bd67.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">夏洛克的救赎</span>
+                            </div>
+                            <div class="bd">企业得能够容忍你犯错，承担得起员工的犯错成本 <br></div>
+                            <span class="time">2018-09-03 07:09</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/5b/66/ad35bc68.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">党</span>
+                            </div>
+                            <div class="bd">确实 技术人总追求完美 甚至把项目推倒重来 但是天下没有最完美 只有更完美 尽力做就好了 <br></div>
+                            <span class="time">2018-09-14 07:39</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/60/c7/a147b71b.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Fisher</span>
+                            </div>
+                            <div class="bd">这一篇收获也很大，我就是一个有着完美主义的人，昨晚和导师聊天还提到过这个问题，我看代码的过程会一字一句看过去，然后梳理出框架，这样就完全清楚了，但是有时候需要快速解决问题我就做不到了，平时也是因为这点导致坚持不下去写博客，学一个东西前期准备耽误太久，等准备好了没热情学了 <br></div>
+                            <span class="time">2018-09-04 08:52</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">先下手再说</p>
+                                <p class="reply-time">2018-09-04 12:51</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/18/03/5a47f26b.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Eid</span>
+                            </div>
+                            <div class="bd">老师整理下，出本书吧。 <br></div>
+                            <span class="time">2018-09-03 19:39</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/4f/af/ad6a1c83.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">登品</span>
+                            </div>
+                            <div class="bd">强烈希望能出个数据结构和算法的基础专栏。第一个购买 <br></div>
+                            <span class="time">2018-09-03 12:30</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/23/5b/dead073b.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Jay</span>
+                            </div>
+                            <div class="bd">每一篇都有惊喜，刘老师的文章讲解的技术非常深入。 <br></div>
+                            <span class="time">2018-09-03 08:30</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/12/96/73/1bfeffe4.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Seina</span>
+                            </div>
+                            <div class="bd">我是非计算机专业的同学，听老师的课有点吃力，请老师推荐几本网络协议相关的书我业余时间再加强加强可以嘛，谢谢老师 <br></div>
+                            <span class="time">2018-12-05 19:00</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/50/0a/0ab85b6c.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">瘦皮猴</span>
+                            </div>
+                            <div class="bd">赞 <br></div>
+                            <span class="time">2018-12-01 09:12</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/6f/13/c0121962.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">lllweiz</span>
+                            </div>
+                            <div class="bd">我就是一个拖延症患者，超哥说的话让我非常有触动。只有鼓起勇气走出舒适区才能有提升，不然很容易长期沉浸在自欺欺人的状态！ <br></div>
+                            <span class="time">2018-11-26 16:49</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/42/d3/5cb266ea.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">静处常思己过</span>
+                            </div>
+                            <div class="bd">终于看完了。因为专栏里的知识，工作时并不是都涉及，所以有几篇都没看懂。不过这68没白花。😁 <br></div>
+                            <span class="time">2018-11-22 17:30</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/14/09/f2/e04b7a23.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">夏目木木、</span>
+                            </div>
+                            <div class="bd">谢谢老师 <br></div>
+                            <span class="time">2018-11-22 11:00</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/4a/6f/abb7bfe3.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Sunsun</span>
+                            </div>
+                            <div class="bd">搜索引擎过过时，但是网络协议作为基础学科，应该十年不会过时！ <br></div>
+                            <span class="time">2018-11-21 18:12</span>
+                            
+                        </div>
+                    </li>
+                    
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

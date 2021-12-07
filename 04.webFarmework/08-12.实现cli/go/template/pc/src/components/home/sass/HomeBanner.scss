@@ -1,0 +1,56 @@
+@import "./index.module.scss";
+
+.home-banner {
+  .banner {
+    width: 898px;
+    height: 400px;
+    float: left;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    overflow: hidden;
+  }
+
+  .swiper-button-prev {
+    width: 28px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 0px 100px 100px 0px;
+    left: 0;
+    background-image: url("../../../assets/images/bannerLeft.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: 6px;
+    background-size: 9px;
+  }
+  .swiper-button-next {
+    width: 28px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 100px 0px 0px 100px;
+    right: 0;
+    background-image: url("../../../assets/images/bannerRight.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: 12px;
+    background-size: 11px;
+  }
+  .swiper-pagination {
+    position: absolute;
+    text-align: right;
+    padding-right: 40px;
+    transition: 0.3s;
+    transform: translate3d(0, 0, 0);
+    z-index: 10;
+  }
+  .swiper-pagination-bullet,
+  .swiper-pagination-bullet-active {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 100%;
+  }
+  .swiper-pagination-bullet-active {
+    width: 16px;
+    border-radius: 4px;
+  }
+}

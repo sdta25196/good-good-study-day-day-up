@@ -1,0 +1,14 @@
+@import "./index.module.scss";
+
+.title {
+  font-size: 50px;
+  @include hotTitle;
+}
+.imgBox {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.imgBox > div {
+  margin-bottom: 20px;
+}

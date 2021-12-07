@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",                          
+    "module": "commonjs",                    
+    "lib": ["es6", "dom"],                     
+    "allowJs": true,
+    "outDir": "es",                          
+    "rootDir": "./src",
+    "strict": true,         
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "experimentalDecorators": true
+  },
+  "include": ["src/**/*"]
+}

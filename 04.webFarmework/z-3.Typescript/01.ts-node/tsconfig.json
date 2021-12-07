@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "outDir": "build", //输出路径
+    "module": "umd", //编译格式
+  }
+}

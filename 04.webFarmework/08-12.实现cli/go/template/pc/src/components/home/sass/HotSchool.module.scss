@@ -1,0 +1,122 @@
+@import "./index.module.scss";
+
+.title {
+  @include hotTitle;
+  .hot {
+    display: inline-block;
+    vertical-align: sub;
+    margin-right: 6px;
+  }
+  span {
+    font-size: 20px;
+  }
+  .subTitle {
+    float: right;
+    font-size: 12px;
+    color: $theme-color;
+    background-image: url("../../../assets/images/changeNext.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 12px;
+    padding-right: 20px;
+    background-position-y: 4px;
+    cursor: pointer;
+    margin-top: 12px;
+  }
+}
+.box {
+  padding-top: 20px;
+}
+.left {
+  width: 438px;
+  height: 364px;
+  border-radius: 10px;
+  background-image: linear-gradient(to bottom left, #39cadf, #28a5e3, #1477e7);
+  display: inline-block;
+  padding: 32px 40px;
+  cursor: pointer;
+  p {
+    margin: 0;
+  }
+  .name {
+    margin-bottom: 9px;
+    color: #fff;
+    font-size: 26px;
+    text-align: center;
+  }
+  .label {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 33px;
+    span {
+      display: inline-block;
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 0px 6px;
+      font-size: 12px;
+    }
+  }
+  .logo {
+    border-radius: 8px;
+    background: #fff;
+    width: 190px;
+    height: 190px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+    img {
+      width: 148px;
+      height: 148px;
+    }
+  }
+}
+.right {
+  display: inline-block;
+  vertical-align: top;
+  width: 760px;
+}
+.card {
+  width: 360px;
+  height: 108px;
+  display: inline-block;
+  background: #ffffff;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 24px 20px 0;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  img {
+    vertical-align: top;
+    margin-right: 20px;
+  }
+  .cardRight {
+    display: inline-block;
+    max-width: 240px;
+  }
+  .t {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 14px;
+  }
+  .labelCard {
+    font-size: 12px;
+    color: #b3b3b3;
+    border: 1px solid #eeeeee;
+    padding: 3px 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+  .labelCard + .labelCard {
+    margin-left: 6px;
+  }
+}
+.card:hover {
+  transform: translate(0px, -5px);
+  box-shadow: 0px 10px 8px 0px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  .t {
+    color: $theme-color;
+  }
+}

@@ -1,0 +1,40 @@
+@import "./index.module.scss";
+
+.special {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 0 20px;
+  .item {
+    padding: 20px 0;
+    .l {
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: middle;
+      width: 1000px;
+      .name {
+        font-weight: bold;
+        color: #000;
+        display: block;
+        margin-bottom: 12px;
+      }
+      .label {
+        color: #555;
+        font-size: 14px;
+      }
+    }
+    .r {
+      display: inline-block;
+      width: 100px;
+      text-align: center;
+      color: white;
+      background: $theme-color;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+  .item + .item {
+    border-top: 1px solid #eee;
+  }
+}

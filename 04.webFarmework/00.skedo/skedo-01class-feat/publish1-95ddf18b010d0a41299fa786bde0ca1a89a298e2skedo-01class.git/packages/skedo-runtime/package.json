@@ -1,0 +1,19 @@
+{
+  "name": "@skedo/runtime",
+  "version": "0.0.2",
+  "description": "",
+  "main": "es/index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "skedo": {
+    "type": "lib",
+    "devLinks": [
+      "@skedo/meta"
+    ]
+  }
+}

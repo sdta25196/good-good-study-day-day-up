@@ -1,0 +1,24 @@
+@import "./index.module.scss";
+
+.titleBox {
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #eee;
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+  }
+  .source,
+  .date {
+    color: #999;
+    font-size: 16px;
+    display: inline-block;
+  }
+  .date {
+    margin-left: 20px;
+  }
+}
+.content {
+  padding: 20px 0;
+}

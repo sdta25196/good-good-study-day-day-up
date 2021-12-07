@@ -1,0 +1,108 @@
+@import "./index.module.scss";
+
+.title {
+  @include Title;
+}
+.specialBox {
+  .tese {
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    .left {
+      display: inline-block;
+      width: 142px;
+      text-align: center;
+      background: url(../../../assets/images/tese.png);
+      padding-left: 10px;
+      background-repeat: no-repeat;
+      background-size: 15px;
+      background-position-x: 20px;
+      background-position-y: center;
+      color: #000;
+    }
+    .right {
+      display: inline-block;
+      width: 655px;
+      padding: 20px;
+      padding-right: 0;
+      border-left: 1px solid #eee;
+    }
+  }
+  .special {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    .t {
+      border-bottom: 1px solid #eee;
+      text-align: center;
+      display: table;
+      height: 60px;
+      box-sizing: border-box;
+      .lt {
+        width: 210px;
+        font-size: 16px;
+        color: #000;
+        display: table-cell;
+        vertical-align: middle;
+        font-weight: bold;
+      }
+      .rt {
+        width: 990px;
+        font-size: 16px;
+        color: #000;
+        display: table-cell;
+        vertical-align: middle;
+        border-left: 1px solid #eee;
+        font-weight: bold;
+      }
+    }
+    .content {
+      text-align: center;
+      display: table;
+      border-bottom: 1px solid #eee;
+      .lc {
+        width: 210px;
+        font-size: 14px;
+        color: #000;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 20px 0;
+      }
+      .rc {
+        width: 990px;
+        font-size: 14px;
+        color: #000;
+        display: table-cell;
+        vertical-align: middle;
+        border-left: 1px solid #eee;
+        padding: 20px 0;
+        .specialItem {
+          cursor: pointer;
+          display: inline-block;
+          margin-right: 10px;
+        }
+      }
+    }
+    .content:last-child {
+      border-bottom: 0;
+    }
+  }
+  .rightSpan {
+    font-size: 14px;
+    color: #000;
+    display: inline-block;
+    margin-right: 30px;
+    cursor: pointer;
+    line-height: 40px;
+  }
+  .rightSpan:hover {
+    color: $theme-color;
+  }
+}
+
+.detialTitle {
+  @include detialTitle;
+}
+.detialTitle::before {
+  @include detialTitleBefore;
+}

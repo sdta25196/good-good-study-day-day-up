@@ -1,0 +1,75 @@
+@import "./index.module.scss";
+
+.itemBox {
+  .itemTitle {
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
+  .itemTitle::before {
+    content: " ";
+    width: 4px;
+    height: 20px;
+    background: $theme-color;
+    margin-right: 10px;
+    display: inline-block;
+    border-radius: 4.5px;
+    vertical-align: middle;
+    margin-bottom: 4px;
+  }
+
+  .itemSubTitle {
+    height: 45px;
+    color: $theme-color;
+    padding: 10px 20px 0 20px;
+    font-weight: bold;
+    display: inline-block;
+    border: 1px solid #eee;
+    border-bottom: 1px solid white;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    bottom: -1px;
+    margin-top: 20px;
+  }
+  .itemList {
+    border: 1px solid #eee;
+    padding: 0 20px;
+    border-radius: 0 10px 10px 10px;
+    .item {
+      padding: 20px 0;
+      .l {
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: middle;
+        width: 650px;
+        .name {
+          font-weight: bold;
+          color: #000;
+          display: block;
+          margin-bottom: 12px;
+        }
+        .label {
+          color: #555;
+          font-size: 14px;
+        }
+      }
+      .r {
+        display: inline-block;
+        width: 100px;
+        text-align: center;
+        color: white;
+        background: $theme-color;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
+    .item + .item {
+      border-top: 1px solid #eee;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+@import "../../../assets/style/theme.scss";
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.box {
+  padding: 20px 16px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  ul {
+    margin-bottom: 0;
+    li {
+      color: #000;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: bold;
+      padding-bottom: 10px;
+      .num {
+        width: 18px;
+        height: 20px;
+        display: inline-block;
+        margin-right: 10px;
+        background-image: url("../../../assets/images/num.png");
+        background-size: cover;
+        vertical-align: sub;
+      }
+      .logo {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+      .logo.active {
+        width: 68px;
+        height: 68px;
+      }
+      .name {
+        font-size: 14px;
+        color: #000000;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .name.active {
+        font-size: 18px;
+      }
+    }
+    li:hover {
+      color: $theme-color;
+      .name {
+        color: $theme-color;
+      }
+    }
+    li:nth-child(1n + 4) {
+      font-weight: normal;
+    }
+    li:nth-child(1) .num {
+      background-position-x: 3px;
+    }
+    li:nth-child(2) .num {
+      background-position-x: -20px;
+    }
+    li:nth-child(3) .num {
+      background-position-x: -43px;
+    }
+    li:nth-child(4) .num {
+      background-position-x: -64px;
+    }
+    li:nth-child(5) .num {
+      background-position-x: -86px;
+    }
+    li:nth-child(6) .num {
+      background-position-x: 112px;
+    }
+    li:nth-child(7) .num {
+      background-position-x: 90px;
+    }
+    li:nth-child(8) .num {
+      background-position-x: 66px;
+    }
+    li:nth-child(9) .num {
+      background-position-x: 44px;
+    }
+    li:nth-child(10) .num {
+      background-position-x: 22px;
+    }
+    li + li {
+      padding-top: 10px;
+    }
+  }
+}

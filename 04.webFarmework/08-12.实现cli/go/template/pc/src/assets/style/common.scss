@@ -1,0 +1,65 @@
+@import "theme.scss";
+
+* {
+  font-size: $font-size;
+}
+.ant-pagination-item-active a {
+  font-size: 14px;
+}
+.button {
+  border: 1px solid #eeeeee;
+  background: white;
+  padding: 10px 40px;
+  font-size: 14px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: $theme-color;
+  cursor: pointer;
+}
+.button:hover {
+  background: $theme-color;
+  color: white;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.bg-white {
+  background-color: white;
+}
+.color-main {
+  color: $theme-color;
+}
+.color-black {
+  color: #000;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+.show {
+  display: block;
+}
+.inlineBlock {
+  display: inline-block;
+}

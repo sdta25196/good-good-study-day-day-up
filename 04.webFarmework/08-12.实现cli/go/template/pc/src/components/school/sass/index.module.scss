@@ -1,0 +1,40 @@
+@import "../../../assets/style/theme.scss";
+
+.box {
+  padding: 20px 0;
+  .filterBox {
+    border-radius: 10px;
+    border: 1px solid #eee;
+    padding: 0 20px;
+  }
+  .listBox {
+    margin: 30px 0;
+    border-top: 1px solid #eee;
+  }
+}
+
+
+@mixin Title {
+  font-weight: bold;
+  font-size: 20px;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+@mixin detialTitle {
+  color: #000;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 20px 0;
+}
+@mixin detialTitleBefore {
+  content: " ";
+  width: 4px;
+  height: 20px;
+  background: $theme-color;
+  margin-right: 10px;
+  display: inline-block;
+  border-radius: 4.5px;
+  vertical-align: middle;
+  margin-bottom: 4px;
+}

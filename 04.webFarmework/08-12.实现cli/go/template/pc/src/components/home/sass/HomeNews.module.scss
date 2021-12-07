@@ -1,0 +1,36 @@
+@import "./index.module.scss";
+
+.tab {
+  border-bottom: 1px solid #116dc3;
+  .span {
+    display: inline-block;
+    width: 140px;
+    height: 51px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .span:hover {
+    box-shadow: 0 21px 24px -28px #1477e7 inset;
+    color: $theme-color;
+    font-weight: bold;
+  }
+  .span.active {
+    box-shadow: 0 21px 24px -28px #1477e7 inset;
+    color: $theme-color;
+    font-weight: bold;
+  }
+  .span + .span {
+    margin-left: 10px;
+  }
+}
+.list {
+  padding-top: 20px;
+}
+.btnBox {
+  text-align: center;
+  padding-bottom: 50px;
+}

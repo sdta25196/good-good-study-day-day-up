@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true, //开启ts模式支持 umd\amd\cmd
+    "jsx": "react", //开启jsx的支持
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        // targets: { //设置目标浏览器，不设置会使用package.json中的浏览器集合配置
+        //   edge: "17",
+        //   chrome: "67",
+        // },
+        "corejs": 2, //polyfill核心版本库
+        // entry 需要在入口文件引入一次import '@babel/polyfill'
+        // usage 不需要import，全自动检测
+        // false(默认),不会按需加载
+        "useBuiltIns": "usage"
+      }
+    ]
+  ]
+}

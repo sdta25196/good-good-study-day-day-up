@@ -1,0 +1,264 @@
+.w {
+    width: 1200px;
+    margin: 0 auto;
+}
+.h1 {
+    margin-top: 27px;
+}
+
+.tp1 {
+    width: 1200px;
+}
+.tp2 {
+    width: 1200px;
+}
+.box1 {
+    margin-top: -190px;
+    width: 1200px;
+  font-size: 20px;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #1E1E54;
+  line-height: 36px;
+}
+.h2 {
+    margin: 75px  auto;
+    margin-bottom: 0;
+    width: 585px;
+    height: 70px;
+    background: #9CBFFA;
+    border-radius: 35px;
+    line-height: 70px;
+    text-align: center;
+    font-size: 28px;
+font-family: Microsoft YaHei;
+font-weight: bold;
+color: #000000;
+}
+.b2 {
+    margin-top: 30px;
+    padding-top: 50px;
+    width: 1200px;
+    background: #f4f8ff;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.b3 {
+    margin-top: 30px;
+    padding-top: 50px;
+    width: 1200px;
+    overflow: hidden;
+    background: #f4f8ff;
+    border-radius: 20px;
+}
+.wz1 {
+    margin:  0 auto;
+    font-size: 18px;
+    font-family: Microsoft YaHei;
+    font-weight: bold;
+    color: #000000;
+   line-height: 36px;
+text-align: center;
+}
+.wz2 {
+    margin-top: 29px;
+    margin-left: 26px;
+    margin-right: 54px;
+    font-size: 16px;
+font-family: Microsoft YaHei;
+font-weight: 400;
+color: #000000;
+line-height: 28px;
+text-indent: 2em;
+}
+.box2 {
+     margin: 32px  auto;
+    text-align: center;
+
+}
+.box2 .tp5 {
+    padding-right: 22px;
+}
+.wz3 {
+    margin-top: 50px;
+    font-size: 18px;
+font-family: Microsoft YaHei;
+font-weight: bold;
+color: #000000;
+line-height: 36px;
+text-align: center;
+}
+.b2 ul {
+    margin-left: 62px;
+    margin-top: 42px;
+}
+.b2 ul li {
+
+    display: inline-block;
+}
+.focus {
+    margin-left: 0;
+    margin-right: 43px;
+    font-size: 16px;
+font-family: Microsoft YaHei;
+font-weight: 400;
+color: #000000;
+line-height: 36px;
+}
+.box3 {
+    margin: 41px  auto;
+    margin-bottom: 0;
+    text-align: center;
+
+}
+.tp6,.tp7 {
+    display: inline-block;
+   vertical-align: bottom;
+}
+.tp7 {
+    width: 415px;
+    height: 274px;
+    background-color: #C4D9FC;
+    border-radius: 20px;
+    text-align: left;
+}
+ .box4 {
+    width: 339px;
+    height: 27px;
+    border: 2px solid #C5DAFC;
+    border-top: none;
+    margin-left: 554px;
+    margin-top: 0;
+    
+ }
+.wz4 {
+    margin-top: 32px;
+    
+    font-size: 16px;
+font-family: Microsoft YaHei;
+font-weight: 300;
+color: #999999;
+line-height: 36px;
+text-align: center;
+}
+.wz5 {
+
+    margin-left: 56px;
+    margin-right: 64px;
+    font-size: 16px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: #000000;
+    line-height: 28px;
+    text-indent: 2em;
+}
+.b3 ul{
+    margin-left: 465px;
+    margin-top: 20px;
+}
+.b3 ul li {
+
+    display: inline-block;
+    text-align: center;
+}
+.focus1 {
+    margin-right: 35px;
+    margin-left: 0px;
+
+height: 17px;
+font-size: 16px;
+font-family: Microsoft YaHei;
+font-weight: 400;
+color: #000000;
+vertical-align: top;
+}
+.box5 {
+    margin: 15px  auto;
+    margin-bottom: 0;
+    padding-top: 5px;
+   text-align: center;
+    width: 630px;
+height: 301px;
+
+}
+.box6 {
+    text-align: center;
+    margin: 35px auto;
+    margin-bottom: 0;
+}
+
+
+/* 初始清除样式 */
+
+/* 把我们所有标签的内外边距清零 */
+* {
+    margin: 0;
+    padding: 0;
+    /* css3盒子模型 */
+    box-sizing: border-box;
+
+}
+/* em 和 i 斜体的文字不倾斜 */
+
+em,
+i {
+    font-style: normal
+}
+/* 去掉li 的小圆点 */
+li {
+    list-style: none
+}
+
+img {
+    /* border 0 照顾低版本浏览器 如果 图片外面包含了链接会有边框的问题 */
+    border: 0;
+    /* 取消图片底侧有空白缝隙的问题 */
+    vertical-align: middle;
+}
+
+button {
+    /* 当我们鼠标经过button 按钮的时候，鼠标变成小手 */
+    cursor: pointer
+}
+
+a {
+    color: #666;
+    text-decoration: none
+}
+
+a:hover {
+    color: #c81623
+}
+
+button,
+input {
+    /* "\5B8B\4F53" 就是宋体的意思 这样浏览器兼容性比较好 */
+    font-family: Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif;
+    /* 默认有灰色边框我们需要手动去掉 */
+    border: 0; 
+    outline: none;
+}
+
+body {
+    /* CSS3 抗锯齿形 让文字显示的更加清晰 */
+    -webkit-font-smoothing: antialiased;
+    background-color:#1E1E54 ;
+
+}
+
+.hide,
+.none {
+    display: none
+}
+/* 清除浮动 */
+.clearfix:after {
+    visibility: hidden;
+    clear: both;
+    display: block;
+    content: ".";
+    height: 0
+}
+.clearfix {
+    *zoom: 1
+}
+

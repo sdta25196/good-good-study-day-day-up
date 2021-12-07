@@ -1,0 +1,491 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <style type="text/css">
+
+#watermark {
+
+  position: relative;
+  overflow: hidden;
+}
+
+#watermark .x {
+  position: absolute;
+  top: 800;
+  left: 400;
+  color: #3300ff;
+  font-size: 50px;
+  pointer-events: none;
+  opacity:0.5;
+  filter:Alpha(opacity=50);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+}
+    </style>
+
+
+    <style type="text/css">
+ html{color:#333;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;text-rendering:optimizelegibility;font-family:Helvetica Neue,PingFang SC,Verdana,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif}html.borderbox *,html.borderbox :after,html.borderbox :before{box-sizing:border-box}article,aside,blockquote,body,button,code,dd,details,dl,dt,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hr,input,legend,li,menu,nav,ol,p,pre,section,td,textarea,th,ul{margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,menu,nav,section{display:block}audio,canvas,video{display:inline-block}body,button,input,select,textarea{font:300 1em/1.8 PingFang SC,Lantinghei SC,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,Helvetica,sans-serif}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}blockquote{position:relative;color:#999;font-weight:400;border-left:1px solid #1abc9c;padding-left:1em;margin:1em 3em 1em 2em}@media only screen and (max-width:640px){blockquote{margin:1em 0}}abbr,acronym{border-bottom:1px dotted;font-variant:normal}abbr{cursor:help}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:400}ol,ul{list-style:none}caption,th{text-align:left}q:after,q:before{content:""}sub,sup{font-size:75%;line-height:0;position:relative}:root sub,:root sup{vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}a{color:#1abc9c}a:hover{text-decoration:underline}.typo a{border-bottom:1px solid #1abc9c}.typo a:hover{border-bottom-color:#555;color:#555}.typo a:hover,a,ins{text-decoration:none}.typo-u,u{text-decoration:underline}mark{background:#fffdd1;border-bottom:1px solid #ffedce;padding:2px;margin:0 5px}code,pre,pre tt{font-family:Courier,Courier New,monospace}pre{background:hsla(0,0%,97%,.7);border:1px solid #ddd;padding:1em 1.5em;display:block;-webkit-overflow-scrolling:touch}hr{border:none;border-bottom:1px solid #cfcfcf;margin-bottom:.8em;height:10px}.typo-small,figcaption,small{font-size:.9em;color:#888}b,strong{font-weight:700;color:#000}[draggable]{cursor:move}.clearfix:after,.clearfix:before{content:"";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}.textwrap,.textwrap td,.textwrap th{word-wrap:break-word;word-break:break-all}.textwrap-table{table-layout:fixed}.serif{font-family:Palatino,Optima,Georgia,serif}.typo-dl,.typo-form,.typo-hr,.typo-ol,.typo-p,.typo-pre,.typo-table,.typo-ul,.typo dl,.typo form,.typo hr,.typo ol,.typo p,.typo pre,.typo table,.typo ul,blockquote{margin-bottom:1rem}h1,h2,h3,h4,h5,h6{font-family:PingFang SC,Helvetica Neue,Verdana,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif;color:#000;line-height:1.35}.typo-h1,.typo-h2,.typo-h3,.typo-h4,.typo-h5,.typo-h6,.typo h1,.typo h2,.typo h3,.typo h4,.typo h5,.typo h6{margin-top:1.2em;margin-bottom:.6em;line-height:1.35}.typo-h1,.typo h1{font-size:2em}.typo-h2,.typo h2{font-size:1.8em}.typo-h3,.typo h3{font-size:1.6em}.typo-h4,.typo h4{font-size:1.4em}.typo-h5,.typo-h6,.typo h5,.typo h6{font-size:1.2em}.typo-ul,.typo ul{margin-left:1.3em;list-style:disc}.typo-ol,.typo ol{list-style:decimal;margin-left:1.9em}.typo-ol ol,.typo-ol ul,.typo-ul ol,.typo-ul ul,.typo li ol,.typo li ul{margin-bottom:.8em;margin-left:2em}.typo-ol ul,.typo-ul ul,.typo li ul{list-style:circle}.typo-table td,.typo-table th,.typo table caption,.typo table td,.typo table th{border:1px solid #ddd;padding:.5em 1em;color:#666}.typo-table th,.typo table th{background:#fbfbfb}.typo-table thead th,.typo table thead th{background:hsla(0,0%,95%,.7)}.typo table caption{border-bottom:none}.typo-input,.typo-textarea{-webkit-appearance:none;border-radius:0}.typo-em,.typo em,caption,legend{color:#000;font-weight:inherit}.typo-em{position:relative}.typo-em:after{position:absolute;top:.65em;left:0;width:100%;overflow:hidden;white-space:nowrap;content:"\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB\30FB"}.typo img{max-width:100%}.common-content{font-weight:400;color:#353535;line-height:1.75rem;white-space:normal;word-break:normal;font-size:1rem}.common-content img{display:block;max-width:100%;background-color:#eee}.common-content audio,.common-content video{width:100%;background-color:#eee}.common-content center,.common-content font{margin-top:1rem;display:inline-block}.common-content center{width:100%}.common-content pre{margin-top:1rem;padding-left:0;padding-right:0;position:relative;overflow:hidden}.common-content pre code{font-size:.8rem;font-family:Consolas,Liberation Mono,Menlo,monospace,Courier;display:block;width:100%;box-sizing:border-box;padding-left:1rem;padding-right:1rem;overflow-x:auto}.common-content hr{border:none;margin-top:1.5rem;margin-bottom:1.5rem;border-top:1px solid #f5f5f5;height:1px;background:none}.common-content b,.common-content h1,.common-content h2,.common-content h3,.common-content h4,.common-content h5,.common-content strong{font-weight:700}.common-content h1,.common-content h2{font-size:1.125rem;margin-bottom:.45rem}.common-content h3,.common-content h4,.common-content h5{font-size:1rem;margin-bottom:.45rem}.common-content p{font-weight:400;color:#353535;margin-top:.15rem}.common-content .orange{color:#ff5a05}.common-content .reference{font-size:1rem;color:#888}.custom-rich-content h1{margin-top:0;font-weight:400;font-size:15.25px;border-bottom:1px solid #eee;line-height:2.8}.custom-rich-content li,.custom-rich-content p{font-size:14px;color:#888;line-height:1.6}table.hljs-ln{margin-bottom:0;border-spacing:0;border-collapse:collapse}table.hljs-ln,table.hljs-ln tbody,table.hljs-ln td,table.hljs-ln tr{box-sizing:border-box}table.hljs-ln td{padding:0;border:0}table.hljs-ln td.hljs-ln-numbers{min-width:15px;color:rgba(27,31,35,.3);text-align:right;white-space:nowrap;cursor:pointer;user-select:none}table.hljs-ln td.hljs-ln-code,table.hljs-ln td.hljs-ln-numbers{font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;font-size:12px;line-height:20px;vertical-align:top}table.hljs-ln td.hljs-ln-code{position:relative;padding-right:10px;padding-left:10px;overflow:visible;color:#24292e;word-wrap:normal;white-space:pre}video::-webkit-media-controls{overflow:hidden!important}video::-webkit-media-controls-enclosure{width:calc(100% + 32px);margin-left:auto}.button-cancel{color:#888;border:1px solid #888;border-radius:3px;margin-right:12px}.button-cancel,.button-primary{-ms-flex-positive:1;flex-grow:1;height:35px;display:inline-block;font-size:15px;text-align:center;line-height:36px}.button-primary{color:#fff;background-color:#ff5a05;border-radius:3px}@font-face{font-family:iconfont;src:url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.eot);src:url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.eot#iefix) format("embedded-opentype"),url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.woff) format("woff"),url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.ttf) format("truetype"),url(//at.alicdn.com/t/font_372689_bwwwtosxtzp.svg#iconfont) format("svg")}@font-face{font-family:player-font;src:url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.eot);src:url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.eot#iefix) format("embedded-opentype"),url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.woff) format("woff"),url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.ttf) format("truetype"),url(//at.alicdn.com/t/font_509397_1cyjv4o90qiod2t9.svg#player-font) format("svg")}.iconfont{font-family:iconfont!important;font-size:16px;font-style:normal;-webkit-font-smoothing:antialiased;-webkit-text-stroke-width:.2px;-moz-osx-font-smoothing:grayscale}html{background:#fff;min-height:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{width:100%}body.fixed{overflow:hidden;position:fixed;width:100vw;height:100vh}i{font-style:normal}a{word-wrap:break-word;-webkit-tap-highlight-color:rgba(0,0,0,0)}a:hover{text-decoration:none}.fade-enter-active,.fade-leave-active{transition:opacity .3s}.fade-enter,.fade-leave-to{opacity:0}.MathJax,.MathJax_CHTML,.MathJax_MathContainer,.MathJax_MathML,.MathJax_PHTML,.MathJax_PlainSource,.MathJax_SVG{outline:0}.ios-app-switch .js-audit{display:none}._loading_wrap_{position:fixed;width:100vw;height:100vh;top:50%;left:50%;transform:translate(-50%,-50%);z-index:999}._loading_div_class_,._loading_wrap_{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center}._loading_div_class_{word-wrap:break-word;padding:.5rem .75rem;text-align:center;z-index:9999;font-size:.6rem;max-width:60%;color:#fff;border-radius:.25rem;-ms-flex-direction:column;flex-direction:column}._loading_div_class_ .message{color:#353535;font-size:16px;line-height:3}.spinner{animation:circle-rotator 1.4s linear infinite}.spinner *{line-height:0;box-sizing:border-box}@keyframes circle-rotator{0%{transform:rotate(0deg)}to{transform:rotate(270deg)}}.path{stroke-dasharray:187;stroke-dashoffset:0;transform-origin:center;animation:circle-dash 1.4s ease-in-out infinite,circle-colors 5.6s ease-in-out infinite}@keyframes circle-colors{0%{stroke:#ff5a05}to{stroke:#ff5a05}}@keyframes circle-dash{0%{stroke-dashoffset:187}50%{stroke-dashoffset:46.75;transform:rotate(135deg)}to{stroke-dashoffset:187;transform:rotate(450deg)}}.confirm-box-wrapper,.confirm-box-wrapper .mask{position:absolute;top:0;left:0;right:0;bottom:0}.confirm-box-wrapper .mask{background:rgba(0,0,0,.6)}.confirm-box-wrapper .confirm-box{position:fixed;top:50%;left:50%;width:267px;background:#fff;transform:translate(-50%,-50%);border-radius:7px}.confirm-box-wrapper .confirm-box .head{margin:0 18px;font-size:18px;text-align:center;line-height:65px;border-bottom:1px solid #d9d9d9}.confirm-box-wrapper .confirm-box .body{padding:18px;padding-bottom:0;color:#353535;font-size:12.5px;max-height:150px;overflow:auto}.confirm-box-wrapper .confirm-box .foot{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;padding:18px}.confirm-box-wrapper .confirm-box .foot .button-cancel{border:1px solid #d9d9d9}.hljs{display:block;overflow-x:auto;padding:.5em;color:#333;background:#f8f8f8}.hljs-comment,.hljs-quote{color:#998;font-style:italic}.hljs-keyword,.hljs-selector-tag,.hljs-subst{color:#333;font-weight:700}.hljs-literal,.hljs-number,.hljs-tag .hljs-attr,.hljs-template-variable,.hljs-variable{color:teal}.hljs-doctag,.hljs-string{color:#d14}.hljs-section,.hljs-selector-id,.hljs-title{color:#900;font-weight:700}.hljs-subst{font-weight:400}.hljs-class .hljs-title,.hljs-type{color:#458;font-weight:700}.hljs-attribute,.hljs-name,.hljs-tag{color:navy;font-weight:400}.hljs-link,.hljs-regexp{color:#009926}.hljs-bullet,.hljs-symbol{color:#990073}.hljs-built_in,.hljs-builtin-name{color:#0086b3}.hljs-meta{color:#999;font-weight:700}.hljs-deletion{background:#fdd}.hljs-addition{background:#dfd}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
+
+
+
+
+    </style>
+    <style type="text/css">
+        .button-cancel[data-v-87ffcada]{color:#888;border:1px solid #888;border-radius:3px;margin-right:12px}.button-cancel[data-v-87ffcada],.button-primary[data-v-87ffcada]{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;height:35px;display:inline-block;font-size:15px;text-align:center;line-height:36px}.button-primary[data-v-87ffcada]{color:#fff;background-color:#ff5a05;border-radius:3px}.pd[data-v-87ffcada]{padding-left:1.375rem;padding-right:1.375rem}.article[data-v-87ffcada]{max-width:70rem;margin:0 auto}.article .article-unavailable[data-v-87ffcada]{color:#fa8919;font-size:15px;font-weight:600;line-height:24px;border-radius:5px;padding:12px;background-color:#f6f7fb;margin-top:20px}.article .article-unavailable .iconfont[data-v-87ffcada]{font-size:12px}.article .main[data-v-87ffcada]{padding:1.25rem 0;margin-bottom:52px}.article-title[data-v-87ffcada]{color:#353535;font-weight:400;line-height:1.65rem;font-size:1.34375rem}.article-info[data-v-87ffcada]{color:#888;font-size:.9375rem;margin-top:1.0625rem}.article-content[data-v-87ffcada]{margin-top:1.0625rem}.article-content.android video[data-v-87ffcada]::-webkit-media-controls-fullscreen-button{display:none}.copyright[data-v-87ffcada]{color:#b2b2b2;padding-bottom:20px;margin-top:20px;font-size:13px}.audio-player[data-v-87ffcada]{width:100%;margin:20px 0}.to-comment[data-v-87ffcada]{overflow:hidden;padding-top:10px;margin-bottom:-30px}.to-comment a.button-primary[data-v-87ffcada]{float:right;height:20px;font-size:12px;line-height:20px;padding:4px 8px;cursor:pointer}.article-comments[data-v-87ffcada]{margin-top:2rem}.article-comments h2[data-v-87ffcada]{text-align:center;color:#888;position:relative;z-index:1;margin-bottom:1rem}.article-comments h2[data-v-87ffcada]:before{border-top:1px dotted #888;content:"";position:absolute;top:56%;left:0;width:100%;z-index:-1}.article-comments h2 span[data-v-87ffcada]{font-size:15.25px;font-weight:400;padding:0 1rem;background:#fff;display:inline-block}.article-sub-bottom[data-v-87ffcada]{z-index:10;cursor:pointer}.switch-btns[data-v-87ffcada]{height:76px;cursor:pointer;padding-top:24px;padding-bottom:24px;border-bottom:10px solid #f6f7fb;position:relative}.switch-btns[data-v-87ffcada]:before{content:" ";height:1px;background:#e8e8e8;position:absolute;top:0;left:0;-webkit-box-sizing:border-box;box-sizing:border-box;left:1.375rem;right:1.375rem}.switch-btns .btn[data-v-87ffcada]{height:38px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.switch-btns .btn .tag[data-v-87ffcada]{-webkit-box-flex:0;-ms-flex:0 0 62px;flex:0 0 62px;text-align:center;color:#888;font-size:14px;border-radius:10px;height:22px;line-height:22px;background:#f6f7fb;font-weight:400}.switch-btns .btn .txt[data-v-87ffcada]{margin-left:10px;-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;color:#888;font-size:15px;height:22px;line-height:22px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:400}@media (max-width:769px){.article .breadcrumb[data-v-87ffcada]{padding-top:10px;padding-bottom:10px}}
+
+
+
+
+
+    </style>
+
+    <style type="text/css">
+        .comment-item{list-style-position:inside;width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;margin-bottom:1rem}.comment-item a{border-bottom:none}.comment-item .avatar{width:2.625rem;height:2.625rem;-ms-flex-negative:0;flex-shrink:0;border-radius:50%}.comment-item .info{margin-left:.5rem;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1}.comment-item .info .hd{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.comment-item .info .hd .username{color:#888;font-size:15.25px;font-weight:400;line-height:1.2}.comment-item .info .hd .control{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.comment-item .info .hd .control .btn-share{color:#888;font-size:.75rem;margin-right:1rem}.comment-item .info .hd .control .btn-praise{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:15.25px;text-decoration:none}.comment-item .info .hd .control .btn-praise i{color:#888;display:inline-block;font-size:.75rem;margin-right:.3rem;margin-top:-.01rem}.comment-item .info .hd .control .btn-praise i.on,.comment-item .info .hd .control .btn-praise span{color:#ff5a05}.comment-item .info .bd{color:#353535;font-size:15.25px;font-weight:400;white-space:normal;word-break:break-all;line-height:1.6}.comment-item .info .time{color:#888;font-size:9px;line-height:1}.comment-item .info .reply .reply-hd{font-size:15.25px}.comment-item .info .reply .reply-hd span{margin-left:-12px;color:#888;font-weight:400}.comment-item .info .reply .reply-hd i{color:#ff5a05;font-size:15.25px}.comment-item .info .reply .reply-content{color:#353535;font-size:15.25px;font-weight:400;white-space:normal;word-break:break-all}.comment-item .info .reply .reply-time{color:#888;font-size:9px}
+
+
+
+
+    </style>
+</head>
+<body>
+<div id="app">
+
+
+    <div data-v-87ffcada="" class="article" id="watermark">
+        <p class="x">所有最新极客时间课程请加QQ群170701297</p>
+        <div data-v-87ffcada="" class="main main-app">
+            <h1 data-v-87ffcada="" class="article-title pd">
+                第9讲讲路由协议：西出网关无故人，敢问路在何方
+            </h1>
+            <div data-v-87ffcada="" class="article-content typo common-content pd"><img data-v-87ffcada=""
+                                                                                        src="https://static001.geekbang.org/resource/image/73/2c/73ec27e596b73dba28b36c3ad1cce82c.jpg">
+
+
+                <div data-v-87ffcada="" id="article-content" class="">
+                    <div class="text">
+                        <p>俗话说得好，在家千日好，出门一日难。网络包一旦出了网关，就像玄奘西行一样踏上了江湖漂泊的路。</p>
+<p>上一节我们描述的是一个相对简单的情形。出了网关之后，只有一条路可以走。但是，网络世界复杂得多，一旦出了网关，会面临着很多路由器，有很多条道路可以选。如何选择一个更快速的道路求取真经呢？这里面还有很多门道可以讲。</p>
+<h2 id="-">如何配置路由？</h2>
+<p>通过上一节的内容，你应该已经知道，路由器就是一台网络设备，它有多张网卡。当一个入口的网络包送到路由器时，它会根据一个本地的转发信息库，来决定如何正确地转发流量。这个转发信息库通常被称为<strong>路由表</strong>。</p>
+<p>一张路由表中会有多条路由规则。每一条规则至少包含这三项信息。</p>
+<ul>
+<li><p>目的网络：这个包想去哪儿？</p>
+</li>
+<li><p>出口设备：将包从哪个口扔出去？</p>
+</li>
+<li><p>下一跳网关：下一个路由器的地址。</p>
+</li>
+</ul>
+<p>通过route命令和ip route命令都可以进行查询或者配置。</p>
+<p>例如，我们设置ip route add 10.176.48.0/20 via 10.173.32.1 dev eth0，就说明要去10.176.48.0/20这个目标网络，要从eth0端口出去，经过10.173.32.1。</p>
+<p>上一节的例子中，网关上的路由策略就是按照这三项配置信息进行配置的。这种配置方式的一个核心思想是：<strong>根据目的IP地址来配置路由</strong>。</p>
+<h2 id="-">如何配置策略路由？</h2>
+<p>当然，在真实的复杂的网络环境中，除了可以根据目的ip地址配置路由外，还可以根据多个参数来配置路由，这就称为<strong>策略路由</strong>。</p>
+<p>可以配置多个路由表，可以根据源IP地址、入口设备、TOS等选择路由表，然后在路由表中查找路由。这样可以使得来自不同来源的包走不同的路由。</p>
+<p>例如，我们设置：</p>
+<pre><code>ip rule add from 192.168.1.0/24 table 10 
+ip rule add from 192.168.2.0/24 table 20
+</code></pre><p>表示从192.168.1.10/24这个网段来的，使用table 10中的路由表，而从192.168.2.0/24网段来的，使用table20的路由表。</p>
+<p>在一条路由规则中，也可以走多条路径。例如，在下面的路由规则中：</p>
+<pre><code>ip route add default scope global nexthop via 100.100.100.1 weight 1 nexthop via 200.200.200.1 weight 2
+</code></pre><p>下一跳有两个地方，分别是100.100.100.1和200.200.200.1，权重分别为1比2。</p>
+<p>在什么情况下会用到如此复杂的配置呢？我来举一个现实中的例子。</p>
+<p>我是房东，家里从运营商那儿拉了两根网线。这两根网线分别属于两个运行商。一个带宽大一些，一个带宽小一些。这个时候，我就不能买普通的家用路由器了，得买个高级点的，可以接两个外网的。</p>
+<p>家里的网络呢，就是普通的家用网段192.168.1.x/24。家里有两个租户，分别把线连到路由器上。IP地址为192.168.1.101/24和192.168.1.102/24，网关都是192.168.1.1/24，网关在路由器上。</p>
+<p>就像上一节说的一样，家里的网段是私有网段，出去的包需要NAT成公网的IP地址，因而路由器是一个NAT路由器。</p>
+<p>两个运营商都要为这个网关配置一个公网的IP地址。如果你去查看你们家路由器里的网段，基本就是我图中画的样子。</p>
+<!-- [[[read_end]]] -->
+<p><img style="margin: 0 auto" src="https://static001.geekbang.org/resource/image/03/69/03df39f76b60ac2c0a61b75a4dc25869.jpg"></p>
+<p>运行商里面也有一个IP地址，在运营商网络里面的网关。不同的运营商方法不一样，有的是/32的，也即一个一对一连接。</p>
+<p>例如，运营商1给路由器分配的地址是183.134.189.34/32，而运营商网络里面的网关是183.134.188.1/32。有的是/30的，也就是分了一个特别小的网段。运营商2给路由器分配的地址是60.190.27.190/30，运营商网络里面的网关是60.190.27.189/30。</p>
+<p>根据这个网络拓扑图，可以将路由配置成这样：</p>
+<pre><code>$ ip route list table main 
+60.190.27.189/30 dev eth3  proto kernel  scope link  src 60.190.27.190
+183.134.188.1 dev eth2  proto kernel  scope link  src 183.134.189.34
+192.168.1.0/24 dev eth1  proto kernel  scope link  src 192.168.1.1
+127.0.0.0/8 dev lo  scope link
+default via 183.134.188.1 dev eth2
+</code></pre><p>当路由这样配置的时候，就告诉这个路由器如下的规则：</p>
+<ul>
+<li><p>如果去运营商二，就走eth3；</p>
+</li>
+<li><p>如果去运营商一呢，就走eth2；</p>
+</li>
+<li><p>如果访问内网，就走eth1；</p>
+</li>
+<li><p>如果所有的规则都匹配不上，默认走运营商一，也即走快的网络。</p>
+</li>
+</ul>
+<p>但是问题来了，租户A不想多付钱，他说我就上上网页，从不看电影，凭什么收我同样贵的网费啊？没关系，咱有技术可以解决。</p>
+<p>下面我添加一个Table，名字叫<strong>chao</strong>。</p>
+<pre><code># echo 200 chao &gt;&gt; /etc/iproute2/rt_tables
+</code></pre><p>添加一条规则：</p>
+<pre><code># ip rule add from 192.168.1.101 table chao
+# ip rule ls
+0:    from all lookup local 
+32765:    from 10.0.0.10 lookup chao
+32766:    from all lookup main 
+32767:    from all lookup default
+</code></pre><p>设定规则为：从192.168.1.101来的包都查看个chao这个新的路由表。</p>
+<p>在chao路由表中添加规则：</p>
+<pre><code># ip route add default via 60.190.27.189 dev eth3 table chao
+# ip route flush cache
+</code></pre><p>默认的路由走慢的，谁让你不付钱。</p>
+<p>上面说的都是静态的路由，一般来说网络环境简单的时候，在自己的可控范围之内，自己捣鼓还是可以的。但是有时候网络环境复杂并且多变，如果总是用静态路由，一旦网络结构发生变化，让网络管理员手工修改路由太复杂了，因而需要动态路由算法。</p>
+<h2 id="-">动态路由算法</h2>
+<p>使用动态路由路由器，可以根据路由协议算法生成动态路由表，随网络运行状况的变化而变化。那路由算法是什么样的呢？</p>
+<p>我们可以想象唐僧西天取经，需要解决两大问题，一个是在每个国家如何找到正确的路，去换通关文牒、吃饭、休息；一个是在国家之间，野外行走的时候，如何找到正确的路、水源的问题。</p>
+<p><img style="margin: 0 auto" src="https://static001.geekbang.org/resource/image/6d/bb/6d1f0be048a04a08a40b16010f1180bb.jpg"></p>
+<p>无论是一个国家内部，还是国家之间，我们都可以将复杂的路径，抽象为一种叫作图的数据结构。至于唐僧西行取经，肯定想走得路越少越好，道路越短越好，因而这就转化成为<strong>如何在途中找到最短路径</strong>的问题。</p>
+<p>咱们在大学里面学习计算机网络与数据结构的时候，知道求最短路径常用的有两种方法，一种是Bellman-Ford算法，一种是Dijkstra算法。在计算机网络中基本也是用这两种方法计算的。</p>
+<h3 id="1-">1.距离矢量路由算法</h3>
+<p>第一大类的算法称为<strong>距离矢量路由</strong>（<strong>distance vector routing</strong>）。它是基于Bellman-Ford算法的。</p>
+<p>这种算法的基本思路是，每个路由器都保存一个路由表，包含多行，每行对应网络中的一个路由器，每一行包含两部分信息，一个是要到目标路由器，从那条线出去，另一个是到目标路由器的距离。</p>
+<p>由此可以看出，每个路由器都是知道全局信息的。那这个信息如何更新呢？每个路由器都知道自己和邻居之间的距离，每过几秒，每个路由器都将自己所知的到达所有的路由器的距离告知邻居，每个路由器也能从邻居那里得到相似的信息。</p>
+<p>每个路由器根据新收集的信息，计算和其他路由器的距离，比如自己的一个邻居距离目标路由器的距离是M，而自己距离邻居是x，则自己距离目标路由器是x+M。</p>
+<p>这个算法比较简单，但是还是有问题。</p>
+<p><strong>第一个问题就是好消息传得快，坏消息传得慢。</strong>如果有个路由器加入了这个网络，它的邻居就能很快发现它，然后将消息广播出去。要不了多久，整个网络就都知道了。但是一旦一个路由器挂了，挂的消息是没有广播的。当每个路由器发现原来的道路到不了这个路由器的时候，感觉不到它已经挂了，而是试图通过其他的路径访问，直到试过了所有的路径，才发现这个路由器是真的挂了。</p>
+<p>我再举个例子。</p>
+<p><img style="margin: 0 auto" src="https://static001.geekbang.org/resource/image/64/3f/641b14ede460105d15e23b077532013f.jpg"> </p>
+<p>原来的网络包括两个节点，B和C。A加入了网络，它的邻居B很快就发现A启动起来了。于是它将自己和A的距离设为1，同样C也发现A起来了，将自己和A的距离设置为2。但是如果A挂掉，情况就不妙了。B本来和A是邻居，发现连不上A了，但是C还是能够连上，只不过距离远了点，是2，于是将自己的距离设置为3。殊不知C的距离2其实是基于原来自己的距离为1计算出来的。C发现自己也连不上A，并且发现B设置为3，于是自己改成距离4。依次类推，数越来越大，直到超过一个阈值，我们才能判定A真的挂了。</p>
+<p>这个道理有点像有人走丢了。当你突然发现找不到这个人了。于是你去学校问，是不是在他姨家呀？找到他姨家，他姨说，是不是在他舅舅家呀？他舅舅说，是不是在他姥姥家呀？他姥姥说，是不是在学校呀？总归要问一圈，或者是超过一定的时间，大家才会认为这个人的确走丢了。如果这个人其实只是去见了一个谁都不认识的网友去了，当这个人回来的时候，只要他随便见到其中的一个亲戚，这个亲戚就会拉着他到他的家长那里，说你赶紧回家，你妈都找你一天了。</p>
+<p><strong>这种算法的第二个问题是，每次发送的时候，要发送整个全局路由表。</strong>网络大了，谁也受不了，所以最早的路由协议RIP就是这个算法。它适用于小型网络（小于15跳）。当网络规模都小的时候，没有问题。现在一个数据中心内部路由器数目就很多，因而不适用了。</p>
+<p>所以上面的两个问题，限制了距离矢量路由的网络规模。</p>
+<h3 id="2-">2.链路状态路由算法</h3>
+<p>第二大类算法是<strong>链路状态路由</strong>（<strong>link state routing</strong>），基于Dijkstra算法。</p>
+<p>这种算法的基本思路是：当一个路由器启动的时候，首先是发现邻居，向邻居say hello，邻居都回复。然后计算和邻居的距离，发送一个echo，要求马上返回，除以二就是距离。然后将自己和邻居之间的链路状态包广播出去，发送到整个网络的每个路由器。这样每个路由器都能够收到它和邻居之间的关系的信息。因而，每个路由器都能在自己本地构建一个完整的图，然后针对这个图使用Dijkstra算法，找到两点之间的最短路径。</p>
+<p>不像距离距离矢量路由协议那样，更新时发送整个路由表。链路状态路由协议只广播更新的或改变的网络拓扑，这使得更新信息更小，节省了带宽和CPU利用率。而且一旦一个路由器挂了，它的邻居都会广播这个消息，可以使得坏消息迅速收敛。</p>
+<h2 id="-">动态路由协议</h2>
+<h3 id="1-ospf">1.基于链路状态路由算法的OSPF</h3>
+<p><strong>OSPF</strong>（<strong>Open Shortest Path First</strong>，<strong>开放式最短路径优先</strong>）就是这样一个基于链路状态路由协议，广泛应用在数据中心中的协议。由于主要用在数据中心内部，用于路由决策，因而称为<strong>内部网关协议</strong>（<strong>Interior Gateway Protocol</strong>，简称<strong>IGP</strong>）。</p>
+<p>内部网关协议的重点就是找到最短的路径。在一个组织内部，路径最短往往最优。当然有时候OSPF可以发现多个最短的路径，可以在这多个路径中进行负载均衡，这常常被称为<strong>等价路由</strong>。</p>
+<p><img style="margin: 0 auto" src="https://static001.geekbang.org/resource/image/67/9b/6791cdd30119e78fcb3c350223d5049b.jpg"></p>
+<p>这一点非常重要。有了等价路由，到一个地方去可以有相同的两个路线，可以分摊流量，还可以当一条路不通的时候，走另外一条路。这个在后面我们讲数据中心的网络的时候，一般应用的接入层会有负载均衡LVS。它可以和OSPF一起，实现高吞吐量的接入层设计。</p>
+<p>有了内网的路由协议，在一个国家内，唐僧可以想怎么走怎么走了，两条路选一条也行。</p>
+<h3 id="2-bgp">2.基于距离矢量路由算法的BGP</h3>
+<p>但是外网的路由协议，也即国家之间的，又有所不同。我们称为<strong>外网路由协议</strong>（<strong>Border Gateway Protocol</strong>，简称<strong>BGP</strong>）。</p>
+<p>在一个国家内部，有路当然选近的走。但是国家之间，不光远近的问题，还有政策的问题。例如，唐僧去西天取经，有的路近。但是路过的国家看不惯僧人，见了僧人就抓。例如灭法国，连光头都要抓。这样的情况即便路近，也最好绕远点走。</p>
+<p>对于网络包同样，每个数据中心都设置自己的Policy。例如，哪些外部的IP可以让内部知晓，哪些内部的IP可以让外部知晓，哪些可以通过，哪些不能通过。这就好比，虽然从我家里到目的地最近，但是不能谁都能从我家走啊！</p>
+<p>在网络世界，这一个个国家成为自治系统<strong>AS</strong>（Autonomous System）。自治系统分几种类型。</p>
+<ul>
+<li><p>Stub AS：对外只有一个连接。这类AS不会传输其他AS的包。例如，个人或者小公司的网络。</p>
+</li>
+<li><p>Multihomed AS：可能有多个连接连到其他的AS，但是大多拒绝帮其他的AS传输包。例如一些大公司的网络。</p>
+</li>
+<li><p>Transit AS：有多个连接连到其他的AS，并且可以帮助其他的AS传输包。例如主干网。</p>
+</li>
+</ul>
+<p>每个自治系统都有边界路由器，通过它和外面的世界建立联系。</p>
+<p><img style="margin: 0 auto" src="https://static001.geekbang.org/resource/image/c3/43/c3bce0ec298138d8e36e6ebf1375d843.jpg"></p>
+<p><strong>BGP又分为两类，eBGP和iBGP。</strong>自治系统间，边界路由器之间使用eBGP广播路由。内部网络也需要访问其他的自治系统。边界路由器如何将BGP学习到的路由导入到内部网络呢？就是通过运行iBGP，使得内部的路由器能够找到到达外网目的地的最好的边界路由器。</p>
+<p>BGP协议使用的算法是<strong>路径矢量路由协议</strong>（path-vector protocol）。它是距离矢量路由协议的升级版。</p>
+<p>前面说了距离矢量路由协议的缺点。其中一个是收敛慢。在BGP里面，除了下一跳hop之外，还包括了自治系统AS的路径，从而可以避免坏消息传的慢的问题，也即上面所描述的，B知道C原来能够到达A，是因为通过自己，一旦自己都到达不了A了，就不用假设C还能到达A了。</p>
+<p>另外，在路径中将一个自治系统看成一个整体，不区分自治系统内部的路由器，这样自治系统的数目是非常有限的。就像大家都能记住出去玩，从中国出发先到韩国然后到日本，只要不计算细到具体哪一站，就算是发送全局信息，也是没有问题的。</p>
+<h2 id="-">小结</h2>
+<p>好了，这一节就到这里了，我来做个总结：</p>
+<ul>
+<li><p>路由分静态路由和动态路由，静态路由可以配置复杂的策略路由，控制转发策略；</p>
+</li>
+<li><p>动态路由主流算法有两种，距离矢量算法和链路状态算法。基于两种算法产生两种协议，BGP协议和OSPF协议。</p>
+</li>
+</ul>
+<p>最后，再给你留两个思考题：</p>
+<ol>
+<li><p>路由协议要在路由器之间交换信息，这些信息的交换还需要走路由吗？不是死锁了吗？</p>
+</li>
+<li><p>路由器之间信息的交换使用什么协议呢？报文格式是什么样呢？</p>
+</li>
+</ol>
+<p>欢迎你留言和我讨论。趣谈网络协议，我们下期见！</p>
+<p><img src="https://static001.geekbang.org/resource/image/b5/fb/b5bc14cb81d3630919fee94a512cc3fb.jpg" alt=""></p>
+
+                    </div>
+                </div>
+
+            </div>
+            <div data-v-87ffcada="" class="article-comments pd"><h2 data-v-87ffcada=""><span
+                    data-v-87ffcada="">精选留言</span></h2>
+                <ul data-v-87ffcada="">
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/45/be/494010aa.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">zcpromising</span>
+                            </div>
+                            <div class="bd">老师，更新前，能否解释下上一期的问题吗 <br></div>
+                            <span class="time">2018-06-06 15:20</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">问题分两个，第一个往往是这一章的延伸思考题，一般是需要一节时间才能解释清楚的，所以不适合第二期回答，所以可能会另写文章的方式回答，第二个问题往往就是下一节内容。目前一周三篇压力还是挺大的，基本周末都进去了，所以另写的文章慢慢放出，望体谅，谢谢</p>
+                                <p class="reply-time">2018-06-06 18:27</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/20/5d/69170b96.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">灰灰</span>
+                            </div>
+                            <div class="bd">都是干货，本来是来读小说的，不知不觉学了很多东西，作为一个从事系统开发的女生表示很受用。 <br></div>
+                            <span class="time">2018-06-07 10:22</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">谢谢</p>
+                                <p class="reply-time">2018-06-07 18:59</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/4d/dc/87809ad2.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">埃罗芒阿老师</span>
+                            </div>
+                            <div class="bd">BGP基于TCP，OSPF基于UDP <br></div>
+                            <span class="time">2018-06-06 10:32</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/04/8d/575cfabd.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">sprinty</span>
+                            </div>
+                            <div class="bd">老师您好，运营商1和eth2的连接是一对一的是什么意思？&#47;32 的话，子网掩码是255.255.255.255，eth2和运营商并不在一个网络，是怎么通信的？ <br></div>
+                            <span class="time">2018-06-06 09:17</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">p2p</p>
+                                <p class="reply-time">2018-06-06 16:01</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/60/be/68ce2fd0.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">小田</span>
+                            </div>
+                            <div class="bd">#提纲<br>1. 静态路由实现原理<br>  - 3项路由：目标ip，出口ip，下一跳网关IP<br>  - 策略路由：多路由表&#47;多路径<br>2. 动态路由实现原理<br>  - 距离矢量路由算法：BGP<br>  - 链路状态路由算法：OSPF <br></div>
+                            <span class="time">2018-06-07 00:27</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">姜戈</span>
+                            </div>
+                            <div class="bd">学过网络的人表示很形象，相见恨晚 <br></div>
+                            <span class="time">2018-06-06 08:49</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">谢谢</p>
+                                <p class="reply-time">2018-06-06 16:03</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/12/5f/dc/d16e0923.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">heliang</span>
+                            </div>
+                            <div class="bd">老师你好，文章这部分<br>32765: from.10.0.0.10  lookup chao  <br>中10.0.0.10的地址是不是应改为租户A的地址:192.168.1.101 <br></div>
+                            <span class="time">2018-09-23 10:27</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">是的，谢谢指正</p>
+                                <p class="reply-time">2018-09-25 16:24</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/67/0e/c77ad9b1.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">eason2017</span>
+                            </div>
+                            <div class="bd">老师好，您路由协议这块可以再深入讲解一节吗？谢谢🙏 <br></div>
+                            <span class="time">2018-08-01 20:30</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/41/c7/3aead12b.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">林先森</span>
+                            </div>
+                            <div class="bd">请问下老师，都说lastmile是网络链路中延迟最大的，也是是业界最难解决的问题，能解释下lastmile为什么会有比较大的延迟吗？ <br></div>
+                            <span class="time">2018-06-06 23:35</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/61/bc/88a905a5.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">赵强强</span>
+                            </div>
+                            <div class="bd">老师，距离矢量路由算法避免不了循环更新路由吗？比如上面举例B和C，当B到不了A时，此时B把距离变更为不可达，当C向B发送路由信息表时，B应该可以发现C到A的下一跳是自己，应该不更新自己就好了，并告诉C路由失效，就可以避免无用的循环更新。请老师解答一下。 <br></div>
+                            <span class="time">2018-06-06 11:12</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">因为没有下一跳的信息，如果有这个相当于记录了路径了</p>
+                                <p class="reply-time">2018-06-06 15:53</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/57/4f/6fb51ff1.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">一步</span>
+                            </div>
+                            <div class="bd">没学习过网络的，表示有点蒙<br>只能学习到有这个东西，具体的就不行了 <br></div>
+                            <span class="time">2018-07-02 09:11</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">番茄尼玛</span>
+                            </div>
+                            <div class="bd">rip是udp协议，ospf直接发ip包。而bgp使用tcp协议，路由器之间会建立tcp连接，每60s发送一次keep-alive消息。 <br></div>
+                            <span class="time">2018-06-22 16:00</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/12/f1/15/70af5d9e.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">William</span>
+                            </div>
+                            <div class="bd">BGP用到的路径矢量路由协议是距离矢量路由协议的升级版，这个不太理解。老师有没有推荐的资料呢？ <br></div>
+                            <span class="time">2018-11-20 10:38</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">就是保存了路径，计算机网络 书籍里面都有</p>
+                                <p class="reply-time">2018-11-20 17:12</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/a7/ce/10db29da.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">武坤</span>
+                            </div>
+                            <div class="bd">本文说的路由距离，是指响应的时间吗？ <br></div>
+                            <span class="time">2018-06-15 11:46</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/1a/f3/41d5ba7d.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">iLeGeND</span>
+                            </div>
+                            <div class="bd">这个问题疑惑了我20年 <br></div>
+                            <span class="time">2018-06-07 19:04</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/4c/b4/1b079b47.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">文子</span>
+                            </div>
+                            <div class="bd">请教下，在开篇简单路由器是有多个网卡的，记得路由器网络设置里分为lan口和wlan口设置，这两口的mac地址不同，说明lan和wlan是两个网卡，但是路由器是有多个lan口的，发现lan口的mac地址是统一的，这是不是说明lan是一个网卡，且有多个网口;wlan是一个网卡?还有就是lan和wlan是两个网卡，他们之间的网络包传递是怎么实现的？谢谢！ <br></div>
+                            <span class="time">2018-06-07 07:06</span>
+                            
+                            <div class="reply">
+                                <div class="reply-hd"><span>作者回复</span></div>
+                                <p class="reply-content">是的，家用路由器虽然多个口，但是其实像我们示意图里面一样，是一个地址加交换机的形式。wlan和lan要过路由</p>
+                                <p class="reply-time">2018-06-07 13:21</p>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/10/14/e1/20878da0.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">Zend</span>
+                            </div>
+                            <div class="bd">在公司内网的测试环境 就遇到 多个部署微服务的物理机网段不一样，但http服务走浏览器访问能通，但机器之间ping不通，这是为什么啊 <br></div>
+                            <span class="time">2018-06-06 20:44</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">docker</span>
+                            </div>
+                            <div class="bd">顶 <br></div>
+                            <span class="time">2018-06-06 07:29</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/0f/dd/65/3b4a2930.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">张盼盼</span>
+                            </div>
+                            <div class="bd">第一个问题，应该是使用广播模式吧，这个就可以避免鸡生蛋生鸡的问题<br>第二个问题，应该是使用udp协议发广播包 <br></div>
+                            <span class="time">2018-12-13 14:08</span>
+                            
+                        </div>
+                    </li>
+                    
+                    <li data-v-87ffcada="" class="comment-item"><img
+                            src="https://static001.geekbang.org/account/avatar/00/11/6e/7d/370b0d4c.jpg" class="avatar">
+                        <div class="info">
+                            <div class="hd"><span class="username">西部世界</span>
+                            </div>
+                            <div class="bd">一、求最短距离的两个常见算法：<br>1.1 Bellman-Ford：是求含负权图的单源最短路径的一种算法，效率较低，代码难度较小。其原理为连续进行松弛，在每次松弛时把每条边都更新一下，若在n-1次松弛后还能更新，则说明图中有负环，因此无法得出结果，否则就完成。<br>1.2 Dijkstra：是从一个顶点到其余各顶点的最短路径算法，解决的是有向图中最短路径问题。迪杰斯特拉算法主要特点是以起始点为中心向外层层扩展，直到扩展到终点为止。<br>二、路由器的路由算法：<br>2.1 距离矢量路由算法：每个路由器维护一张路由表，即一个矢量，它以网络中的每个路由器为索引，表中列出了当前已知的路由器到每个目标路由器的最佳距离，以及所使用的线路。通过在邻居之间相互交换信息，路由器不断地更新他们的内部路由表。（该算法基于Bellman-Ford）<br>2.2 链路状态路由算法：是要求网络中所有参与链路状态路由协议的路由器都掌握网络的全部拓扑结构信息，并记录在路由数据库中。链路状态算法中路由数据库实质上是一个网络结构的拓扑图，该拓扑图由一个节点的集合和一个边的集合构成。在网络拓扑图中，结点代表网络中路由器，边代表路由器之间的物理链路。在网络拓扑结构图中，每一条链路上可以附加不同的属性，例如链路的状态、距离或费用等。如果每一个路由器所保存的网络拓扑结构图都是一致的，那么个路由器生成的路由表也是最佳的，不存在错误路由或循环路由。（该算法基于Dijkstra）。<br>三：基于两个路由算法而衍生出来的两个路由协议：<br>3.1基于距离矢量路由算法的BGP协议：???<br>3.2基于链路状态路由算法的OSPF协议：???<br>小结：<br>1.距离矢量路由算法存在环回路由，慢收敛，无穷计算，扩展性差等，存在的问题：环回路由，慢收敛，无穷计算，扩展性差，仅适用于小网络场景。<br>2.链路状态路由算法：链路状态算法具有更快的收敛速度,具有更好的功能扩展能力.还提供了更好的在规模上的可升级性，缺点：每个路由器需要有较大的存储空间，用以存储所收到的每一个节点的链路状态分组；计算工作量大，每次都必须计算最短路径。<br>===============================================================<br>自我查阅总结：路由协议应该比老师讲的要深的深得多。 并且是基于和结合很多另外的一些知识点而形成的一整套路由方案的解决课题。要深入理解和学习的话，还要学习的太多， 老师这个讲的只是一个敲门砖。 <br></div>
+                            <span class="time">2018-12-04 15:53</span>
+                            
+                        </div>
+                    </li>
+                    
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

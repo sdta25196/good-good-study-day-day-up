@@ -1,0 +1,38 @@
+@import "../../../assets/style/theme.scss";
+
+.content {
+  width: $content-width;
+  margin: 0 auto;
+  background-color: #fafafa;
+  padding: 20px 18px;
+  padding-right: 50px;
+  color: #000;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  .leftBox {
+    width: 800px;
+    display: inline-block;
+    .title {
+      font-size: 20px;
+    }
+    .info {
+      font-size: 14px;
+      line-height: 30px;
+    }
+  }
+  .qrBox {
+    float: right;
+    text-align: center;
+    p {
+      margin: 0;
+      margin-top: 10px;
+    }
+  }
+}
+.beianBox {
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+  padding-bottom: 20px;
+  line-height: 30px;
+}

@@ -1,0 +1,41 @@
+@import "../../../assets/style/theme.scss";
+
+.filterBox {
+  padding: 20px 0;
+  .titleBox,
+  .itemBox {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .filterTitle {
+    font-size: 12px;
+    color: #000;
+    cursor: default;
+  }
+  .itemBox {
+    width: 90%;
+  }
+  .filterItem {
+    font-size: 12px;
+    color: #000;
+    padding: 2px 19px;
+    cursor: pointer;
+    display: inline-block;
+    min-width: 60px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .filterItem.active {
+    color: white;
+    background: $theme-color;
+    border-radius: 50%;
+    border-radius: 10px;
+  }
+  .filterItem:not(.active):hover {
+    color: $theme-color;
+  }
+}
+
+.filterBox + .filterBox {
+  border-top: 1px solid #eee;
+}

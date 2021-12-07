@@ -1,0 +1,63 @@
+@import "./index.module.scss";
+
+.box {
+  padding: 26px 0;
+  border-bottom: 1px solid #eee;
+  color: #000;
+  .img {
+    width: 80px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: top;
+  }
+  .content {
+    width: 610px;
+    padding-left: 30px;
+    cursor: pointer;
+    display: inline-block;
+    .name {
+      font-weight: bold;
+      font-size: 18px;
+      max-width: 400px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .pos {
+      font-size: 14px;
+      max-width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+    }
+    .xiaoxun {
+      font-size: 12px;
+      color: #999;
+      padding: 0px 2px;
+      border: 1px solid #999;
+      margin-top: 9px;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+    .label {
+      color: #555;
+      font-size: 14px;
+    }
+  }
+  .btn {
+    width: 100px;
+    color: #fff;
+    font-size: 14px;
+    background: $theme-color;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    vertical-align: top;
+    margin-left: 10px;
+    margin-top: 30px;
+    cursor: pointer;
+  }
+}

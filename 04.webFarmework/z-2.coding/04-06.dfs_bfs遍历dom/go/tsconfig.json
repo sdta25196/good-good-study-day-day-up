@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    // "lib": [
+    //   "es6",
+    //   "DOM"
+    // ],
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+  }
+}

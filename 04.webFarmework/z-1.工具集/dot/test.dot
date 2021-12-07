@@ -1,0 +1,12 @@
+// ### dot
+//   * 安装[graphviz](http://www.graphviz.org/) 
+//   * vscode 安装graphvizprevidw
+//   * 创建后缀.dot的文件使用
+digraph {
+  node[color=red]
+  a->b->c
+  b->d[label="NB"]
+  v->v[label="3666"]
+  d->cc->v
+  v->a[label="NB"]
+}

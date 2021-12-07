@@ -1,0 +1,66 @@
+@import "../../../assets/style/theme.scss";
+
+.box {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #eeeeee;
+  padding: 25px 21px;
+  margin-bottom: 20px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.box:hover {
+  transform: translate(0px, -5px);
+  box-shadow: 0px 6px 8px 0px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  .t {
+    color: $theme-color;
+  }
+}
+
+.date {
+  display: inline-block;
+  width: 54px;
+  height: 54px;
+  background: #116dc3;
+  border-radius: 8px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 14px;
+  padding-top: 10px;
+  vertical-align: top;
+  margin-right: 15px;
+  .day {
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+  }
+  .year {
+    font-size: 12px;
+  }
+}
+.content {
+  display: inline-block;
+  line-height: 39px;
+  width: calc(100% - 70px);
+  p {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .t {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    color: #000;
+  }
+  .subT {
+    color: #333;
+    font-size: 14px;
+  }
+  .source {
+    font-size: 12px;
+    color: #bababa;
+  }
+}

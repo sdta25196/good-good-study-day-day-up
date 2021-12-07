@@ -1,0 +1,100 @@
+@import "./index.module.scss";
+
+.mainBox {
+  background-image: url(../../../assets/images/schoolbg.png);
+  padding-left: 40px;
+  padding-top: 30px;
+  background-size: cover;
+  border-radius: 10px;
+  .infoBox {
+    display: flex;
+    align-items: center;
+    .logo {
+      width: 166px;
+      height: 166px;
+      padding: 10px;
+      border-radius: 30px;
+      background: white;
+      display: inline-block;
+    }
+    .info {
+      margin-left: 20px;
+      width: 950px;
+      display: inline-block;
+      .name {
+        color: white;
+        font-size: 24px;
+        margin-right: 10px;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .xiaoxun {
+        display: inline-block;
+        background: rgba(255,255,255,.8);
+        padding: 2px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        color: #116dc3;
+        vertical-align: text-bottom;
+      }
+      .label {
+        border-radius: 15px;
+        border: 1px solid #fff;
+        color: white;
+        background: rgba(255, 255, 255, 0.3);
+        font-size: 12px;
+        padding: 2px 13px;
+        display: inline-block;
+      }
+      .label + .label {
+        margin-left: 10px;
+      }
+
+      .pos {
+        margin-top: 20px;
+        background: url(../../../assets/images/pos.png);
+      }
+      .url {
+        background: url(../../../assets/images/url.png);
+      }
+      .phone {
+        background: url(../../../assets/images/phone.png);
+      }
+      .emil {
+        background: url(../../../assets/images/emil.png);
+      }
+      .pos,
+      .url,
+      .phone,
+      .emil {
+        color: white;
+        font-size: 12px;
+        display: block;
+        background-repeat: no-repeat;
+        background-size: 16px;
+        background-position: 0px 6px;
+        padding: 5px 0 5px 24px;
+        margin-bottom: 14px;
+      }
+    }
+  }
+
+  .tabBar {
+    display: inline-block;
+    width: 159px;
+    height: 52px;
+    line-height: 52px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 6px 6px 0px 0px;
+    text-align: center;
+    color: #fff;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  .tabBar.active,
+  .tabBar:hover {
+    background: white;
+    color: $theme-color;
+    font-weight: bold;
+  }
+}

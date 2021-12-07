@@ -1,0 +1,56 @@
+@import "../../../assets/style/theme.scss";
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.box {
+  padding: 20px 16px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  ul {
+    li {
+      color: #000;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-bottom: 10px;
+      .day {
+        width: 38px;
+        height: 20px;
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: middle;
+        background: #eef0fa;
+        color: #999;
+        border-radius: 3px;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      .name {
+        font-size: 14px;
+        color: #000000;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    li + li {
+      padding-top: 10px;
+    }
+    li:hover {
+      .day {
+        color: white;
+        background: $theme-color;
+      }
+      .name {
+        color: $theme-color;
+      }
+    }
+  }
+}

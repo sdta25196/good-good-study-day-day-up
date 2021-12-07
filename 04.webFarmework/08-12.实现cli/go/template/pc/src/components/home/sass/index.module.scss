@@ -1,0 +1,14 @@
+@import "../../../assets/style/theme.scss";
+
+.litleImgBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin hotTitle {
+  font-weight: bold;
+  font-size: 20px;
+  color: #000;
+  border-bottom: 1px solid $theme-color;
+  padding-bottom: 8px;
+}

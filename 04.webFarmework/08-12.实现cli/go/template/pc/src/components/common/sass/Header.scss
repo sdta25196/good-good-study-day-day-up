@@ -1,0 +1,100 @@
+@import "../../../assets/style/theme.scss";
+
+.header-content {
+  background-color: white;
+  height: 97px;
+  line-height: 97px;
+  width: $content-width;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .logo {
+    width: 130px;
+    height: 45px;
+  }
+  .nav {
+    a {
+      color: #000;
+      display: inline-block;
+      padding: 0 25px;
+    }
+    span {
+      font-size: 18px;
+    }
+  }
+  .nav a:hover {
+    color: $theme-color;
+  }
+  .search {
+    display: flex;
+  }
+  .location {
+    cursor: pointer;
+    img {
+      vertical-align: sub;
+      margin-right: 5px;
+    }
+    .changeCity {
+      margin-left: 5px;
+      color: #999;
+      font-size: 12px;
+    }
+  }
+  // 处理antd搜索框样式
+  .ant-select-selection-selected-value {
+    font-size: 14px;
+    color: #000;
+  }
+  .anticon-down {
+    transform: rotateX(45deg) translate(7px, -2px);
+  }
+  .ant-select-selection {
+    background: #fff !important;
+    border: 0 !important;
+    margin: 0 !important;
+  }
+  .ant-input-group-addon,
+  .ant-input {
+    border: 0;
+  }
+  .ant-input:focus {
+    border: 0;
+    box-shadow: none !important;
+  }
+  .ant-input + .ant-input-group-addon {
+    cursor: pointer;
+    background: $theme-color !important;
+    color: #fff;
+    font-size: 16px;
+    border: 0 !important;
+    padding: 0;
+    .searchBtn {
+      padding: 0 19px;
+    }
+  }
+  .ant-select {
+    border-top: 1px solid $theme-color !important;
+    border-bottom: 1px solid $theme-color !important;
+    border-left: 1px solid $theme-color !important;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+  .ant-input {
+    border-top: 1px solid $theme-color !important;
+    border-bottom: 1px solid $theme-color !important;
+    padding: 0;
+    box-sizing: content-box;
+  }
+}
+
+.headerBtmBorder {
+  border-bottom: 1px solid #eee;
+}
+
+// 处理antd下拉框样式
+.ant-select-dropdown-menu-item-selected,
+.ant-select-dropdown-menu-item:hover:not(.ant-select-dropdown-menu-item-disabled) {
+  background-color: #f5f5f5 !important;
+  color: $theme-color !important;
+}

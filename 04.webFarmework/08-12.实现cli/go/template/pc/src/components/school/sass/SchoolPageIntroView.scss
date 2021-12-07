@@ -1,0 +1,67 @@
+@import "./index.module.scss";
+
+.viewsBox {
+  width: 763px;
+  margin: 0 auto;
+  .title {
+    @include Title;
+  }
+  .swiper-container {
+    img {
+      border-radius: 10px;
+    }
+  }
+  .swiper-button-prev {
+    width: 28px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 0px 100px 100px 0px;
+    left: 0;
+    background-image: url("../../../assets/images/bannerLeft.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: 6px;
+    background-size: 9px;
+  }
+  .swiper-button-next {
+    width: 28px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 100px 0px 0px 100px;
+    right: 0;
+    background-image: url("../../../assets/images/bannerRight.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: 12px;
+    background-size: 11px;
+  }
+  .swiper-pagination {
+    position: absolute;
+    text-align: right;
+    padding-right: 40px;
+    transition: 0.3s;
+    transform: translate3d(0, 0, 0);
+    z-index: 10;
+  }
+  .swiper-pagination-bullet,
+  .swiper-pagination-bullet-active {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 100%;
+  }
+  .swiper-pagination-bullet-active {
+    width: 16px;
+    border-radius: 4px;
+  }
+  .gallery-thumbs .swiper-slide-thumb-active {
+    img {
+      border: 2px solid $theme-color;
+    }
+  }
+  .l2 .swiper-slide-visible:nth-child(3),
+  .l2 .swiper-slide-visible:nth-child(4),
+  .l3 .swiper-slide-visible:nth-child(4) {
+    opacity: 0;
+  }
+}
