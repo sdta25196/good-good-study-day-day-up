@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "outDir": "es",
-    "downlevelIteration": true,
-    "esModuleInterop": true
-  },
-  "include": ["src/**/*"]
-}
