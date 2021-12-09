@@ -11,12 +11,13 @@ puppeteer
   await page.keyboard.up('Control');
 ```
 ### 屏幕截图
+  区域截图
 ```js
   await page.screenshot({
     type: 'jpeg',
     path: 'exampl1e.jpg',
     quality: 100,
-    clip: {
+    clip: { // 截图区间受屏幕大小影响，用clip可以处理，
       x: 0,
       y: 0,
       width: 200,
@@ -24,6 +25,14 @@ puppeteer
     }
   })
 ```
+  元素截图
+```js
+  let ele = await page.$('.ele')
+  await ele.screenshot({
+    path: "ele.png", 
+  })
+```
+
 ### 元素操作
 
 ele.evaluate
