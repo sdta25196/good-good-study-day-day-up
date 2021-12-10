@@ -1,8 +1,26 @@
-puppeteer
-
 ## 爬虫工具
+  Puppeteer 是一个 Node 库，它提供了一个高级 API 来通过 DevTools 协议控制 Chromium 或 Chrome。Puppeteer 默认以 headless 模式运行，但是可以通过修改配置文件运行“有头”模式。 
 
 ## 示例
+```js
+  const puppeteer = require('puppeteer');
+
+  (async () => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto('https://example.com');
+    await page.screenshot({path: 'example.png'});
+
+    await browser.close();
+  })();
+```
+
+### 开启“有头”模式
+```js
+  const browser = await puppeteer.launch({
+    headless:false
+  });
+```
 
 ### 复制操作
 ```js
