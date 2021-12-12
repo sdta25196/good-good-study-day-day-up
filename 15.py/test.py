@@ -50,7 +50,85 @@
 #   print(x)
   
 
-line = [1,2,3]
-print(type(str(line)))
+# line = [1,2,3]
+# print(type(str(line)))
 
-print(str(2.0))
+# print(str(2.0))
+
+
+# a = [['1','2'],'2']
+# str1 = '2'
+# for x in a: 
+#   if(isinstance(x, list)):
+#     str1 = str1 + ''.join(x)
+#   else:
+#     str1 = str1 + x
+
+# print(str1)
+
+
+# print(not 3>1)
+
+
+# # help(list.index)
+
+# # print([1,2,3].index(5))
+# c = {'a':1}
+# del c['a']
+# try:
+#   print(c['a'])
+# except KeyError:
+#   print(1)
+# finally:
+#   print('这句话，无论异常是否发生都会执行。')
+  
+# c = {'a':1}.keys()
+# print(c)
+# for x in c:
+#   print(x)
+
+#   print('{},{},{}'.format(1,2,3))
+
+# class Dog:
+#   pass
+
+# a = Dog()
+# ab = Dog()
+
+# print(a == ab)
+
+# print(type(a))
+
+# def toLowerCase(str1:str):
+#   str1 = str1.lower()
+#   return str1
+
+# print(toLowerCase('AASAS'))
+
+# def reverseWords(s: str):
+#     #Put you anwser here
+#     a = list(s)
+#     a.sort(reverse=True)
+#     return ''.join(a)
+
+# print(reverseWords('abc'))
+
+def Permutation(arr):
+    res = []
+    used = {}
+    def dfs(path:list):
+        if len(path)==3:
+            res.append(path[:])
+            return 
+        for x in arr:
+          if(used.get(x, False)): 
+              continue
+          path.append(x)
+          used[x] = True
+          dfs(path)
+          path.pop()
+          del used[x]
+    dfs([])
+    return res
+
+print(Permutation([1,2,3,4]))
