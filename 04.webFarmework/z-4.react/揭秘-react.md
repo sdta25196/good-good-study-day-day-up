@@ -12,6 +12,32 @@
 
 所以React实现了功能更完备的requestIdleCallback的polyfill，这就是`Scheduler`。除了在空闲时触发回调的功能外，Scheduler还提供了多种调度优先级供任务设置。
 
+### scheduler原理
+
+根据优先级调用：优先级预设了5种
+  * ImmediatePriority，最高的同步优先级
+  * UserBlockingPriority
+  * NormalPriority
+  * LowPriority
+  * IdlePriority，最低优先级
+
+用户的交互提供工作（work）,每个具体的work都有优先级，一组work会被scheduler进行调度运行
+
+scheduler中任务（task）数据结构有一个过期时间字段(expiration)，优先会执行过期的task，而ImmediatePriority的过期时间是-1，会立即过期，所以就会立即执行。
+
+在perform中一组work的执行循环中，拥有一个中断任务的判断，如果发现优先级更高的任务，就中断当前循环，执行优先级更高的任务，执行完成之后，再继续执行原本的低优先级任务队列
+
+scheduler 大体分为两步，
+  1. schedule 调度
+    
+    这一步调度用户提供过的`worklist`,找到优先级最高的`work`,如果有`perform`正在执行，则中断，然后执行优先级更高的`work`
+
+  2. perform
+
+    这一步是执行具体`work`,执行完成就从`worklist`中移除。然后`schedule`继续调度
+
+**[点击查看在线的建议demo](https://codesandbox.io/s/xenodochial-alex-db74g?file=/src/index.ts)**
+
 ## fiber
   fiber的三种用处
   
