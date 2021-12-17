@@ -65,4 +65,13 @@ scheduler 大体分为两步，
   reactTools提供了`__REACT_DEVTOOLS_GLOBAL_HOOK__` 对象，用来暴漏react对象，F12直接使用即可
 
 
+## 整体流程
+
+* render阶段
+ 
+  对数据进行递归处理，最后整理出一条链表，
+
+* commit阶段
+
+  开始于`commitRoot`函数是真正的渲染阶段，渲染变遍历render阶段整理出的链表
 
