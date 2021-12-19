@@ -4,7 +4,9 @@ import Command from "../interface/Command"
 import yaml from 'js-yaml'
 import inquirer from 'inquirer'
 
-
+/**
+ * 生成模板
+ */
 const template = `
 initialWidth : 100
 initialHeight : 100 

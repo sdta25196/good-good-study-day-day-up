@@ -5,6 +5,7 @@ const topic = {
   add: "add",
   minus: "minux",
 }
+
 class Emiter {
   handler = []
 
@@ -13,10 +14,10 @@ class Emiter {
     if (!this.handler[topic]) {
       this.handler[topic] = []
     }
-    let index = this.handler[topic].push(fun)
+    let len = this.handler[topic].push(fun)
     return () => {
       // this.handler[topic] = this.handler[topic].filter(e => e !== fun)
-      this.handler[topic].splice(index, 1)
+      this.handler[topic].splice(len - 1, 1)
     }
   }
 

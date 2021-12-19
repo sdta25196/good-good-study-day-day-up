@@ -1,4 +1,5 @@
 const path = require('path')
+const TerserPlugin = require('terser-webpack-plugin')
 
 /**
 *
@@ -12,14 +13,17 @@ module.exports = {
   mode: "production",
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'),
-    library: 'MyComponent',
-    libraryTarget: 'umd',
+    path: path.resolve(__dirname, 'components'),
+    library: {
+      // name: 'MyComponent',
+      // type: 'umd',
+      type: 'amd-require',
+    },
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.jsx?$/, //jsx交给babel-loader去做
         use: {
           loader: "babel-loader",
           options: {
@@ -30,7 +34,32 @@ module.exports = {
           }
         },
         exclude: /node_modules/
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [{
+          loader: "style-loader" // creates style nodes from JS strings
+        }, {
+          loader: "css-loader" // translates CSS into CommonJS
+        }, {
+          loader: "less-loader" // compiles Less to CSS
+        }]
       }
     ]
   },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  }
 }

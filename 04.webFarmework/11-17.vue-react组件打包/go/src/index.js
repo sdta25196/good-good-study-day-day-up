@@ -6,3 +6,7 @@
   外部组件的话就走外部组件渲染逻辑
 */
 //! 能这么干的核心逻辑是因为DSL
+
+// 前面部分讲如何上传
+// 1:48 左右再讲怎么拉取组件并实现
+// D:\good-good-study-day-day-up\04.webFarmework\00.skedo\packages\skedo-ui\src\components\render\ExternalComponent.tsx  外部组件使用

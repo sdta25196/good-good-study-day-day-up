@@ -50,7 +50,7 @@ export default class ExternalComponent extends React.Component<ExternalComponent
 	}
 
 	getComponent(text : string){
-		// @ts-ignore
+		// @ts-ignore //! 定义一个define , text是amd代码字符串，使用eval直接就可以执行了
 		function define(deps : Array<string>, callback : (...deps : Array<any>) => void){
 			const depTypes = deps.map(stringName => {
 				const modules = Modules.get()
@@ -94,7 +94,7 @@ export default class ExternalComponent extends React.Component<ExternalComponent
 
 						node.meta.cache.set(node.meta.url!, ComponentC)
 						console.log('build remove component--')
-						self.setState({C : ComponentC})
+						self.setState({C : ComponentC}) //! 赋值组件
 					} else if(componentType === 'vue') {
 						// eslint-disable-next-line
 						const Component = self.getComponent(text)

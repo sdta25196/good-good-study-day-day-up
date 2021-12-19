@@ -1,10 +1,11 @@
 import React from "react"
-// import styles from './index.moudle.less'
-function App({ x }) {
+import styles from './index.module.less'
+
+function App({ x,img }) {
   return (
-    // <div className={styles.box}>
-    <div>
-      这个组件使用上下文x:{666}
+    <div className={styles.box}>
+      这个组件使用上下文x:{x}
+      <img src={img} alt="" />
     </div>
   )
 }

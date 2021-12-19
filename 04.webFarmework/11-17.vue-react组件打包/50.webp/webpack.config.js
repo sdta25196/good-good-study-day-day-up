@@ -24,11 +24,35 @@ module.exports = {
           }
         },
         exclude: /node_modules/
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [{
+          loader: "style-loader" // creates style nodes from JS strings
+        }, {
+          loader: "css-loader" // translates CSS into CommonJS
+        }, {
+          loader: "less-loader" // compiles Less to CSS
+        }]
       }
     ]
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js']//表示在import 文件时文件后缀名可以不写
+  },
+  performance: { //不提示打包资源太大
+    hints: false
   },
   plugins: [
     // 配置 打包时使用index.html作为模板打包，会把script标签直接打进去

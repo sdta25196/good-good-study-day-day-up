@@ -25,26 +25,20 @@ class Modules {
 
 }
 
-// amd打包的效果
+// webpack amd打包的效果
 async function getComponent() {
-  function define(deps, callback) {
-    const depTypes = deps.map(stringName => {
-      const modules = Modules.get()
-      return modules.resolve(stringName)
-    })
-    return callback(...depTypes)
+  let require = function (dependencies, factory) {
+    return factory()
   }
   try {
-    let val = await axios.get('comp.js')
+    let val = await axios.get('main.js')
     return eval(val.data)
   }
   catch (ex) {
     console.error(ex)
-    // throw new Error("eval error:" + text)
     return null
   }
 }
-
 // umd打包的效果 webpack
 async function getComponent2() {
   try {
@@ -58,26 +52,17 @@ async function getComponent2() {
   }
 }
 
-let bridge = {
-  passProps: () => {
-    return {
-      text: '66666'
-    }
-  }
-}
-
-
 const Codeless = (props) => {
   let [C, setC] = useState(null)
 
   useEffect(() => {
-    // getComponent().then(cmp => {
-    //   setC(c => cmp)
-    // })
-    getComponent2().then(() => {
-      console.log(window.MyComponent.default)
-      setC(c => window.MyComponent.default)
+    getComponent().then(cmp => {
+      setC(c => cmp.default)
     })
+    // getComponent2().then(() => {
+    //   console.log(window.MyComponent.default)
+    //   setC(c => window.MyComponent.default)
+    // })
   }, [])
 
   if (C === null) {
