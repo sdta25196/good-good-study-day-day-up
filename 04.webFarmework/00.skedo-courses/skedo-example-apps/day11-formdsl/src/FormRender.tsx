@@ -2,33 +2,47 @@ import React, { useEffect, useMemo, useRef } from "react";
 import { FormItemProps, FormTopic, Meta } from "./dsl.types";
 import { Form, FormItem } from "./Form";
 
-export default {
-  setup : () => {
-    const form = ref(new Form())
-    return () => {
-      return <FormComponent item={form.value.getRoot()} /
-    }
-  }
+// export default {
+//   setup: (meta: Meta) => {
+//     const form = useRef(new Form(meta))
+//     return () => {
+//       return <FormComponent item={form.value.getRoot()} />
+//     }
+//   }
+// }
+
+export default ({ meta }: { meta: Meta, context?: {} }) => {
+
+  // 此处把DSL转化为一个可用的Form类
+  const form = useRef(new Form(meta))
+
+  console.log(form);
+  return <FormComponent item={form.current.getRoot()} />
+
 }
-const FormComponent = (props : FormItemProps) => {
+const FormComponent = (props: FormItemProps) => {
 
   const item = props.item
+  console.log(item);
+  // 拿到数据后循环渲染
   return <div>
-    {item.getChildren().map(child => {
-      return render(child)
+    {item.getChildren().map((child, i) => {
+      return <React.Fragment key={i}>
+        {render(child)}
+      </React.Fragment>
     })}
   </div>
 }
 
 
-const Condition = (props : FormItemProps) => {
-  const cond = props.item.getCond() 
+const Condition = (props: FormItemProps) => {
+  const cond = props.item.getCond()
   const index = cond()
   return render(props.item.getChildren()[index])
 
 }
 
-const Input = (props : FormItemProps) => {
+const Input = (props: FormItemProps) => {
   const ref = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -40,7 +54,7 @@ const Input = (props : FormItemProps) => {
   }, [])
 
   useEffect(() => {
-    ref.current!.value = props.defaultValue 
+    ref.current!.value = props.defaultValue
   }, [])
 
   return (
@@ -52,16 +66,16 @@ const Input = (props : FormItemProps) => {
     />
   )
 }
-function render(formItem : FormItem) {
+function render(formItem: FormItem) {
 
   const passProps = {
-    onChange:(value : any) => {
+    onChange: (value: any) => {
       formItem.setValue(value)
     },
     defaultValue: formItem.getValue(),
-    item : formItem
+    item: formItem
   }
-  switch(formItem.getType()) {
+  switch (formItem.getType()) {
     case "form":
       return <FormComponent {...passProps} />
     case "input":

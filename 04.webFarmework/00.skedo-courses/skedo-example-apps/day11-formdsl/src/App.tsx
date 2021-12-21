@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import FormRender from "./FormRender" 
+import FormRender from "./FormRender"
 import meta from './meta.config'
-import {Input} from './Input'
+import { Input } from './Input'
+
 function App() {
   return <FormRender meta={meta} context={{
-    user : {
-      state : "loggedin"
+    user: {
+      state: "loggedin"
     }
   }} />
   // const [val, setVal] = useState("hello")

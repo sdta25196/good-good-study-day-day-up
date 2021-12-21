@@ -1,37 +1,39 @@
 type FooContext = {
-  user : {
-    state : string
+  user: {
+    state: string
   }
 }
-// and
-// redux-form
 
-{
-  type : 'input',
-  data : 100,
-}
-
+// 元数据DSL
 export default {
   form: {
-    type : "form",
-    items: [{
-      type : 'input',
-      path : ['user', 'name'],
-      default : "hello"
-    }, {
-      type : "condition",
-      cond : (ctx : FooContext) => {
-        return ctx.user.state === 'loggedin' ? 
-          0 : 1
+    type: "form",
+    items: [
+      {
+        type: 'input',
+        path: ['user', 'name'],
+        default: "hello55485"
       },
-      items : [{
-        type : 'input',
-        path : ['lang', 'ts'],
-      }, {
-        type : 'input',
-        puath : ['lang', 'node']
-      }]
-    }],
+      {
+        type: 'input',
+        path: ['user', 'name1'],
+        default: "hello55485"
+      },
+      // {
+      //   type: "condition",
+      //   cond: (ctx: FooContext) => {
+      //     return ctx.user.state === 'loggedin' ?
+      //       0 : 1
+      //   },
+      //   items: [{
+      //     type: 'input',
+      //     path: ['lang', 'ts'],
+      //   }, {
+      //     type: 'input',
+      //     puath: ['lang', 'node']
+      //   }]
+      // }
+    ],
   },
 }
 

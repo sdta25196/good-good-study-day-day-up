@@ -1,6 +1,9 @@
-import {Map as ImmutableMap} from 'immutable'
+import { Map as ImmutableMap } from 'immutable'
 import { FormItem } from './Form'
 
+/*
+类型文件
+*/
 export type Store = ImmutableMap<string, Store>
 
 export enum FormTopic {
@@ -8,19 +11,19 @@ export enum FormTopic {
 }
 
 export type FormItemMeta = {
-  type : string, 
-  path? : Array<string | number>,
-  cond ? : (ctx : any) => any,
-  default? : any,
-  items? : Array<FormItemMeta>
+  type: string,
+  path?: Array<string | number>,
+  cond?: (ctx: any) => any,
+  default?: any,
+  items?: Array<FormItemMeta>
 }
 
 export type Meta = {
-  form : FormItemMeta 
+  form: FormItemMeta
 }
 
 export type FormItemProps = {
-  onChange? : (value : any) => any,
-  item : FormItem,
-  defaultValue? : any
+  onChange?: (value: any) => any,
+  item: FormItem,
+  defaultValue?: any
 }
