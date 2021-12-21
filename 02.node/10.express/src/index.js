@@ -11,11 +11,23 @@ app.all('*', function (req, res, next) {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.send('nb 我的哥')
+app.get('/android', (req, res) => {
+  res.setHeader('Content-Type', 'text/html');
+  res.sendfile(require('path').resolve(__dirname, 'android.html'))
+})
+app.get('/ios', (req, res) => {
+  res.setHeader('Content-Type', 'text/html');
+  res.sendfile(require('path').resolve(__dirname, 'ios.html'))
+})
+app.get('/download', (req, res) => {
+  res.setHeader('Content-Type', 'text/html');
+  res.sendfile(require('path').resolve(__dirname, 'download.html'))
 })
 
+app.get('/file', (req, res) => {
+  res.download(require('path').resolve(__dirname, 'VR播放器.apk'))
+})
 
-app.listen(3003, () => {
-  console.log(`listen http://localhost:${3003}`)
+app.listen(3000, () => {
+  console.log(`listen http://localhost:${3000}`)
 })
