@@ -15,11 +15,11 @@
 ### scheduler原理
 
 根据优先级调用：优先级预设了5种
-  * ImmediatePriority，最高的同步优先级
-  * UserBlockingPriority
-  * NormalPriority
-  * LowPriority
-  * IdlePriority，最低优先级
+  * ImmediatePriority，最高的同步优先级 - 立即过期
+  * UserBlockingPriority - 250毫秒后过期
+  * NormalPriority - 5秒后过期
+  * LowPriority  - 10秒后过期
+  * IdlePriority，最低优先级 - 用不过期，可以在任意空闲时间内执行
 
 用户的交互提供工作（work）,每个具体的work都有优先级，一组work会被scheduler进行调度运行
 

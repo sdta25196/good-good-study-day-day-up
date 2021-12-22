@@ -1,81 +1,157 @@
-## Concurrent Mode
 
-在运行时的主要瓶颈就是 CPU、IO ，如果能够破这两个瓶颈，就可以实现应用的保持响应。
+# REACT
 
-* 在 CPU 上，我们的主要问题是，在 JS 执行超过 16.6 ms 时，页面就会产生卡顿，那么 React  的解决思路，就是在浏览器每一帧的时间中预留一些时间给 JS 线程，React 利用这部分时间更新组件。当预留的时间不够用时，React 将线程控制权交还给浏览器让他有时间渲染UI，React 则等待下一帧再继续被中断的工作。
+## Element、Component、JSX、Fiber
+  
+  JSX只是调用 React.createElement(component, props, ...children) 的语法糖。所以，reactComponent并不是一定要用jsx编写，也可以直接返回element。如果使用了JSX, babel会把JSX转译成 React.createElement() 函数调用。
+  ```js
+    class Hello extends React.Component {
+      render() {
+        return React.createElement('div', null, `Hello ${this.props.toWhat}`);
+      }
+    }
+  ```
 
-> 其实，上面我们提到的，这种将长任务分拆到每一帧中，每一帧执行一小段任务的操作，就是我们常说的时间切片。
+  reactElement是一个js对象，用来描述DOM node(我们希望在屏幕上看到的内容)。由React.createElement创建。
+  
+  
+  reactComponent 依照输入的props返回一个element, UI = Fn(state)。
+  > A component is a function or a Class which optionally accepts input and returns a React element.
+  
+  ReactDOM.render 依照Component返回的Element对象去渲染真实dom。
+  
+  ***
 
-* 那么在 IO 上面，需要解决的是发送网络请求后，由于需要等待数据返回才能进一步操作导致不能快速响应的问题。React 希望通过控制组件渲染的优先级去解决这个问题。
+  JSX只是一种描述当前组件内容的数据结构，而**组件在更新中的优先级**、**组件的state**、**组件被打上的用于Renderer的标记**这些信息，都存在Fiber中
+  
+  在组件`mount`时，`Reconciler`根据JSX描述的组件内容生成组件对应的`Fiber节点`。
+  
+  在`update`时，`Reconciler`将JSX与Fiber节点保存的数据对比（`diff`），生成组件对应的Fiber节点，并根据对比结果为Fiber节点打上标记。
 
-实际上，Concurrent Mode 就是为了解决以上两个问题而设计的一套新的架构，重点就是，**让组件的渲染 “可中断” 并且具有 “优先级”** ，其中包括几个不同的模块，他们各自负责不同的工作。首先，我们先来看看，如何让组件的渲染 “可中断” 呢？
+## react架构
+
+React15架构可以分为两层：
+  * Reconciler（协调器）—— 负责找出变化的组件
+  * Renderer（渲染器）—— 负责将变化的组件渲染到页面上
+
+React16架构可以分为三层：
+  * Scheduler（调度器）—— 调度任务的优先级，高优任务优先进入Reconciler
+  * Reconciler（协调器）—— 负责找出变化的组件
+  * Renderer（渲染器）—— 负责将变化的组件渲染到页面上
+
+
+在新的 React 架构中，一个组件的渲染被分为两个阶段：第一个阶段（`Reconciler阶段`）是可以被 React 打断的，一旦被打断，这阶段所做的所有事情都被废弃，当 React 处理完紧急的事情回来，依然会重新渲染这个组件，这时候第一阶段的工作会重做一遍。
+
+第二个阶段（`Renderer阶段`），一旦开始就不能中断，也就是说第二个阶段的工作会直接做到这个组件的渲染结束。
+
+两个阶段的分界点，就是 render 函数。render 函数之前的所有生命周期函数（包括 render)都属于第一阶段，之后的都属于第二阶段。开启 Concurrent Mode 之后， render 之前的所有生命周期都有可能会被打断，或者重复调用：
+* componentWillMount
+* componentWillReceiveProps
+* componentWillUpdate
 
 
 ## Scheduler
-  Scheduler 将所有已经准备就绪，可以执行的任务，都存在了一个叫 taskQueue 的队列中，而这个队列使用了小顶堆这种数据结构
+
+  `requestIdleCallback`浏览器每帧执行完有剩余时间时执行这个API，但是由于浏览器兼容性、触发频率稳定性的原因，react团队自己实现了`requestIdleCallback`的`polyfill`，也就是`Scheduler`
+
+  `Scheduler` 除了提供**空闲时间触发回调**功能之外，还提供了**调度优先级**功能
+
+**何时Scheduler**
+  Reconciler + Renderer 统称为 work, 每个work都需要Scheduler调度
+
+**Scheduler做什么**
+
+  Scheduler 会进行调度，将所有已经准备就绪，可以执行的任务，都存在了一个叫 taskQueue 的队列中，而这个队列使用了小顶堆这种数据结构
   
-  在小顶堆中，所有的任务按照任务的过期时间，从小到大进行排列，这样 Scheduler 就可以只花费O(1)复杂度找到队列中最早过期，或者说最高优先级的那个任务。
+  在小顶堆中，所有的任务按照任务的过期时间，从小到大进行排列，这样 Scheduler 就可以只花费O(1)复杂度找到队列中最早过期，或者说最高优先级的那个任务，交给Reconciler
 
-## fiber
+**Scheduler生命周期**
 
-  在新的 React 架构中，一个组件的渲染被分为两个阶段：第一个阶段（也叫做 **render** 阶段）是可以被 React 打断的，一旦被打断，这阶段所做的所有事情都被废弃，当 React 处理完紧急的事情回来，依然会重新渲染这个组件，这时候第一阶段的工作会重做一遍。
+  一个Scheduler生命周期分为几个阶段
+  * 调度前
+    * 注册任务队列(环状链表，头接尾，尾接头)，按照过期时间从小到大排列，如果当前任务是最饥饿的任务，则排到最前面，并立即开始调度，如果并不是最饥饿的任务，则放到队列中间或者最后面，不做任何操作，等待被调度，此时任务都在`taskQueue`中
+  * 调度准备
+    * 通过requestAnimationFrame在下一次屏幕刚开始刷新的帧起点时计算当前帧的截止时间(33毫秒内)
+    * 如果不超过当前帧的截止时间且当前任务没有过期，进入任务调度
+    * 如果已经超过当前帧的截止时间，但没有过期，进入下一帧，并更新计算帧截止时间，重新判断时间(轮询判断)，直到没有任何过期超时或者超时才进入任务调度
+    * 如果已经超过当前帧的截止时间，同时已经过期，进入过期调度
+  * 正式调度
+    * 执行调度
+      * 在当前帧的截止时间前批量调用所有任务，不管是否过期
+    * 过期调度
+      * 批量调用饥饿任务或超时任务的回调，删除任务节点
+  * 调度完成
+    * 检查任务队列是否还有任务
+    * 先执行最饥饿的任务
+    * 如果存在任务，则进入下一帧，进入下一个Scheduler生命周期
 
-  第二个阶段叫做 **commit** 阶段，一旦开始就不能中断，也就是说第二个阶段的工作会直接做到这个组件的渲染结束。
 
-  两个阶段的分界点，就是 render 函数。render 函数之前的所有生命周期函数（包括 render)都属于第一阶段，之后的都属于第二阶段。开启 Concurrent Mode 之后， render 之前的所有生命周期都有可能会被打断，或者重复调用：
+## Reconciler
 
-  * componentWillMount
-  * componentWillReceiveProps
-  * componentWillUpdate
+  Reconciler - 老版本叫Stack reconciler，16版本之后修改为Fiber reconciler
 
-## 18.0新增hook、api
-  ReactDOM.createRoot // 根组件渲染使用 createRoot，可以开启并发渲染
+**何时Reconciler**
+  每次 setState 或 ReactDOM.render时
 
-  useDeferredValue //设置优先级，滞后渲染
+**Reconciler做什么**
+
+stack版本Reconciler - 递归执行
+
+负责找出变化的组件
+
+  * 调用函数组件、或class组件的render方法，将返回的JSX转化为虚拟DOM
+  * 将虚拟DOM和上次更新时的虚拟DOM对比
+  * 通过对比找出本次更新中变化的虚拟DOM
+  * 通知Renderer将变化的虚拟DOM渲染到页面上
+
+Fiber版本Reconciler:
   
-  startTransition  //标记为非紧急处理事件
+  收到Scheduler交出的任务后，Reconciler会为变化的虚拟DOM打上代表增/删/更新的标记，标记类似：
+  ```js
+    export const Placement = /*             */ 0b0000000000010;
+    export const Update = /*                */ 0b0000000000100;
+    export const PlacementAndUpdate = /*    */ 0b0000000000110;
+    export const Deletion = /*              */ 0b0000000001000;
+  ```
 
-  useTransition  //ispending标志
+  整个Scheduler与Reconciler的工作都在内存中进行。只有当所有组件都完成Reconciler的工作，才会统一交给Renderer。
 
-## Suspense
-React 16.6 新增了 <Suspense> 组件，它主要是解决运行时的 IO 问题。
+## Renderer
 
-
-## Suspense + react-cache 可以同步的方式实现异步编程
-
-```js
-  // x.js
-  import {unstable_createResource as createResource} from 'react-cache';
+  Renderer用于管理一棵 React 树，使其根据底层平台进行不同的调用。
   
-  const fetchUser = (id) => {
-    return fetch(`xxx/user/${id}`).then(
-      res => res.json()
-    )
-  };
-  const userResource = createResource(fetchUser);
+  由于React支持跨平台，所以不同平台有不同的Renderer，web浏览器端的Renderer是`ReactDOM`
 
-  function User({ userID }) {
-    const data = userResource.read(userID);
-    
-    return (
-      <div>
-        <p>name: {data.name}</p>
-        <p>age: {data.age}</p>
-      </div>
-    )
-  }
-  
-  // 外部配合Suspense使用
-  <Suspense>
-    <User/>
-  </Suspense>
-```
+  * ReactNative (opens new window)渲染器，渲染App原生组件
+  * ReactTest (opens new window)渲染器，渲染出纯Js对象用于测试
+  * ReactArt (opens new window)渲染器，渲染到Canvas, SVG 或 VML (IE8)
 
-## LRU
-  react-cache是需要清理缓存的，否则会内存溢出，使用的缓存清理算法就是LRU算法。
+**何时Renderer**
+  Reconciler结束后-会通知Renderer进行工作
 
-  LRU（Least recently used，最近最少使用）
+**Renderer做什么**
 
-  LRU 内部是双向环装链表，有一个指针指向当前最后一次访问的缓存，达到上限后，从指针的pre节点，开始进行缓存清理。
-  
-  * 权重问题：指针指向的节点是权重最高的节点，指针的上一个节点是权重最弱的节点
+  在web浏览器宿主环境下，在每次更新发生时，Renderer（ReactDOM）接到Reconciler通知，将变化的 React 组件渲染成 DOM。
+
+  Renderer根据Reconciler为虚拟DOM打的标记，同步执行对应的DOM操作。
+
+  ![流程](assets/1640152959.jpg)
+
+其中红框中的步骤随时可能由于以下原因被中断：
+  * 有其他更高优任务需要先更新
+  * 当前帧没有剩余时间
+
+由于红框中的工作都在内存中进行，不会更新页面上的DOM，所以即使反复中断，用户也不会看见更新不完全的DOM。
+
+## diff
+**何时diff**
+  当组件update时，（Reconciler阶段）会将当前组件与该组件在上次更新时对应的Fiber节点比较（也就是俗称的Diff算法），将比较的结果生成新Fiber节点
+
+## Fiber
+
+**QA**
+* 为什么要用链表结构？
+  答：因为链表结构就是为了空间换时间，对于插入删除操作性能非常好
+
+
+## Vdom
