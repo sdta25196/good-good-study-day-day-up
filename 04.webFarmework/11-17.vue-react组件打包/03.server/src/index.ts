@@ -6,7 +6,10 @@ const app = express()
 app.use(cors())
 
 app.get('/', (req, res) => {
-  res.send('666')
+  setTimeout(() => {
+
+    res.send('666')
+  }, 3000)
 })
 
 app.listen(3100, () => {

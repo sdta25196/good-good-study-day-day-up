@@ -15,10 +15,13 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'components'),
     library: {
-      // name: 'MyComponent',
-      // type: 'umd',
-      type: 'amd-require',
+      name: 'MyComponent',
+      type: 'umd',
+      // type: 'amd-require',
     },
+  },
+  externals: {
+    react: 'react'
   },
   module: {
     rules: [

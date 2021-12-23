@@ -8,28 +8,10 @@ import IMG from './test.jpg'
 //! 研究打包组件 - 成功 - 使用webpack打包umd即可
 //! 提供业务上下文 - 
 
-class Modules {
-
-  static inst = new Modules()
-
-  static get() {
-    return Modules.inst
-  }
-
-  resolve(name) {
-    console.log('resolve name:' + name)
-    switch (name) {
-      case 'react':
-        return React
-    }
-  }
-
-}
-
 // webpack amd打包的效果
 async function getComponent() {
   let require = function (dependencies, factory) {
-    return factory()
+    return factory(React)
   }
   try {
     let val = await axios.get('main.js')
@@ -43,8 +25,10 @@ async function getComponent() {
 // umd打包的效果 webpack
 async function getComponent2() {
   try {
+    window.react = window.react || React
     let val = await axios.get('main.js')
     eval(val.data)
+    window.react = undefined
   }
   catch (ex) {
     console.error(ex)
@@ -57,14 +41,14 @@ const Codeless = (props) => {
   let [C, setC] = useState(null)
 
   useEffect(() => {
-    getComponent().then(cmp => {
-      console.log(cmp.default)
-      setC(c => cmp.default)
-    })
-    // getComponent2().then(() => {
-    //   console.log(window.MyComponent.default)
-    //   setC(c => window.MyComponent.default)
+    // getComponent().then(cmp => {
+    //   console.log(cmp.default)
+    //   setC(c => cmp.default)
     // })
+    getComponent2().then(() => {
+      console.log(window.MyComponent.default)
+      setC(c => window.MyComponent.default)
+    })
   }, [])
 
   if (C === null) {
