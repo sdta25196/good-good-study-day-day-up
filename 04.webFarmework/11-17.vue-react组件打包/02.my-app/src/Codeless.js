@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState, useLayoutEffect } from "react"
+import IMG from './test.jpg'
 
 //! 写一个组件，依据组件生成一个dsl，然后打包上传服务器的时候，根据dsl文件对组件进行打包
 //! 使用组件打包后代码。在class组件中成功，function组件中需要setState使用函数修改值才可成功
@@ -57,6 +58,7 @@ const Codeless = (props) => {
 
   useEffect(() => {
     getComponent().then(cmp => {
+      console.log(cmp.default)
       setC(c => cmp.default)
     })
     // getComponent2().then(() => {
@@ -73,7 +75,7 @@ const Codeless = (props) => {
   return (
     <div>
       555
-      <C x={99} />
+      <C x={99} img={IMG} />
     </div>
   )
 }
