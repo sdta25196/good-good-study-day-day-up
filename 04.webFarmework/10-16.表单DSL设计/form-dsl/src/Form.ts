@@ -23,10 +23,10 @@ export class FormItem {
   }
 
   public getValue() {
-    const val = this.form.getValue(this.meta.path!)
-    if (typeof val === 'undefined') {
-      return this.meta.default
-    }
+    // const val = this.form.getValue(this.meta.path!)
+    // if (typeof val === 'undefined') {
+    return this.meta.default
+    // }
   }
   public setValue(val: any) {
     this.form.setValue(this.meta.path!, val)

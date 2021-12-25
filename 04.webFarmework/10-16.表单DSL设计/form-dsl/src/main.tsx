@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
+import metaConfig from './meta.config'
+import App from './Render'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App meta={metaConfig} />
   </React.StrictMode>,
   document.getElementById('root')
 )

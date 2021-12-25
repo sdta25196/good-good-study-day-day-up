@@ -1,5 +1,5 @@
 import { Form, FormItem } from './Form';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Meta, Store, FormItemMeta, propsType } from './dsl.types'
 
 function useForm(meta: Meta) {
@@ -26,16 +26,6 @@ const FormCompont = (props: propsType) => {
   </div>
 }
 
-// input组件
-const Input = (props: propsType) => {
-
-  return (
-    <input
-      onChange={e => { props.onChange && props.onChange(e.target.value) }}
-      defaultValue={props.defaultValue}
-    />)
-}
-
 // 最终根据元数据渲染的函数
 function render(formItem: FormItem) {
   const passProps = {
@@ -46,12 +36,27 @@ function render(formItem: FormItem) {
   switch (formItem.getType()) {
     case 'form':
       return <FormCompont {...passProps} />
-      break;
     case 'input':
       return <Input {...passProps} />
-      break;
     default:
       throw new Error('666')
-      break;
   }
+}
+
+// input组件
+const Input = (props: propsType) => {
+  const inp = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (inp.current && inp.current.value != props.defaultValue) {
+      inp.current.value = props.defaultValue
+    }
+  }, [])
+
+  return (
+    <input
+      ref={inp}
+      onChange={e => { props.onChange && props.onChange(e.target.value) }}
+      defaultValue={props.defaultValue}
+    />)
 }
