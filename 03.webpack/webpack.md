@@ -166,3 +166,8 @@
   * tree shaking 摇树, 或者叫剪枝
   * sourcemap 源码映射配置
     * [sourcemap配置](https://webpack.js.org/configuration/devtool/#devtool)
+
+
+## webpack拆包，拆到多少算合适？
+  拆包的目的一部分是按需加载，一部分是减少初始chunk的下载压力，单纯把一个大的包拆分成多个小包并不是最合理的，这里也要看http协议版本。
+  http1的协议版本，有请求数量的队列限制（6个），http2\3 就没有了。是并行发送请求的。
