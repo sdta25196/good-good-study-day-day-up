@@ -1,6 +1,6 @@
 ### dot
   * 安装[graphviz](http://www.graphviz.org/) 
-  * vscode 安装预览插件 ```graphvizprevidw```
+  * vscode 安装预览插件 ```graphviz previdw```
   * 创建后缀```.dot```的文件即可使用
   
   使用如下

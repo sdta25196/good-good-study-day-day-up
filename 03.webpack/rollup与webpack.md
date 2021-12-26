@@ -15,7 +15,9 @@ rollup更适合打包库 因为他打包**体积更小** - 但是缺乏一些优
 
 webpack更适合打包框架 因为他支持优化打包应用程序时需要的功能，但是打包体积偏大，不适合作为库
 
-比如：**从动态导入中消除死代码**
+比如：
+
+**从动态导入中消除死代码**
 
   * rollup 不支持 - [issues](https://github.com/rollup/rollup/issues/3447)
 
@@ -23,3 +25,7 @@ webpack更适合打包框架 因为他支持优化打包应用程序时需要的
   ```js
     const { logCaps } = await import(/* webpackExports: "logCaps" */ './utils.js');
   ```
+
+**打包出ESM规范的代码**
+
+目前webpack依然不能打包出ESM代码，不过webpack5提供了测试功能
