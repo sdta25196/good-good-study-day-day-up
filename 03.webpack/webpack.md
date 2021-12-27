@@ -171,3 +171,21 @@
 ## webpack拆包，拆到多少算合适？
   拆包的目的一部分是按需加载，一部分是减少初始chunk的下载压力，单纯把一个大的包拆分成多个小包并不是最合理的，这里也要看http协议版本。
   http1的协议版本，有请求数量的队列限制（6个），http2\3 就没有了。是并行发送请求的。
+
+  此外还有几个关键性的指标可以作为参考：
+  * fcp 1.8s内
+  * lcp2.8s内
+  * fid 100ms
+  * cls < 0.1
+
+  google 提出的RAIL指标
+
+  * Focus on the user. - 以用户为中心
+
+  * Respond to user input in under 100 ms. - 100ms内响应用户输入
+
+  * Produce a frame in under 10 ms when animating or scrolling. - 10ms内生成动画帧或滚动
+
+  * Maximize main thread idle time. - 最大化空闲时间 （js任务50ms内）
+
+  * Load interactive content in under 5000 ms. - 加载交互内容在5000毫秒以下。
