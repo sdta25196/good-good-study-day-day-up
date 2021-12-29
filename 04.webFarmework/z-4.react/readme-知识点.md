@@ -104,6 +104,32 @@ React 16.6 新增了 <Suspense> 组件，它主要是解决运行时的 IO 问�
         )
       }
     ```
+
+### 关于useState优化
+
+* 组相关状态。如果您总是同时更新两个或多个状态变量，请考虑将它们合并为一个状态变量。
+* 避免状态矛盾。当状态的结构使得多个状态可能相互矛盾和“不同意”时，就会为错误留出空间。尽量避免这种情况。
+* 避免冗余状态。如果您可以在渲染期间从组件的 props 或其现有状态变量中计算出一些信息，则不应将该信息放入该组件的状态中。
+* 避免状态重复。当相同的数据在多个状态变量之间或嵌套对象中重复时，很难保持它们同步。尽可能减少重复。
+* 避免深度嵌套状态。很深层次的状态更新起来不是很方便。如果可能，更喜欢以扁平的方式构建状态。 可使用`use-immer`、`immutable`
+
+### 比较useState和useReducer
+* 代码大小：通常，useState您必须预先编写更少的代码。使用useReducer，您必须同时编写 reducer 函数和调度操作。但是，useReducer如果许多事件处理程序以类似的方式修改状态，则可以帮助减少代码。**复用程度越高且具有一定复杂度就越倾向与使用useReducer**
+
+* 可读性： useState当状态更新很简单时很容易阅读。当它们变得更复杂时，它们会使您的组件代码膨胀并使其难以扫描。在这种情况下，useReducer您可以干净地分离如何从更新逻辑发生了什么事件处理程序。**可读性useReducer更高**
+
+* 调试：**useReducer更利于调试**
+  * 当你有一个bug useState，它可以是很难分辨其中的状态设置不正确，以及为什么。
+  * 使用useReducer，您可以将控制台日志添加到您的减速器中以查看每个状态更新，以及它发生的原因（由于哪个action）。如果每个action都正确，您就会知道错误在于减速器逻辑本身。
+
+* 测试： reducer 是一个纯函数，不依赖于你的组件。这意味着您可以单独导出和测试它。虽然通常最好在更现实的环境中测试组件，但对于复杂的状态更新逻辑，断言您的 reducer 为特定的初始状态和操作返回特定状态会很有用。**useReducer更利于测试**
+### useContexxt
+在使用上下文之前，您应该考虑以下几种替代方案：
+
+* 从传递 props开始。如果您的组件不是微不足道的，那么通过十几个组件向下传递十几个 props 并不少见。可能感觉像一个slog，但它很清楚哪些组件使用哪些数据！维护你的代码的人会很高兴你用 props 明确了数据流。
+
+* 提取组件并将JSX 传递children给它们。如果您通过许多不使用该数据的中间组件层传递某些数据（并且仅将其进一步向下传递），这通常意味着您在此过程中忘记了提取某些组件。例如，也许您将数据道具传递posts给不直接使用它们的可视化组件，例如`<Layout posts={posts} />`. 相反， make Layouttakechildren作为道具，然后 render `<Layout><Posts posts={posts} /></Layout>`。这减少了指定数据的组件和需要它的组件之间的层数。
+
 ### useEffect
   * 将渲染之外的事情（副作用）进行收敛，集中管理
   * 页面render之后执行
@@ -130,3 +156,123 @@ https://zh-hans.reactjs.org/docs/concurrent-mode-intro.html#putting-research-int
 * 设置动画或滚动时，在 16ms以内生成帧.
 * 最大程度增加主线程的空闲时间，保证JS单任务执行时间不超过50ms。
 * 持续吸引用户；在 1000ms以内呈现交互内容，首屏秒开。
+
+## react 相同位置的相同组件会保持状态
+
+**以下示例中`<Counter>`内部的状态随着`isFancy`的改变而重置**，因为`isFancy`为false时，`<Counter>`并没渲染
+```js
+  export default function App() {
+    const [isFancy, setIsFancy] = useState(false);
+    return (
+      <div>
+        { isFancy && <Counter isFancy={isFancy} /> }
+        <label>
+          <input
+            type="checkbox"
+            checked={isFancy}
+            onChange={e => {
+              setIsFancy(e.target.checked)
+            }}
+          />
+          Use fancy styling
+        </label>
+      </div>
+    );
+  }
+```
+
+**以下示例中`<Counter>`内部的状态不会随着`isFancy`的改变而重置**，因为渲染的是相同位置相同组件
+```js
+  export default function App() {
+    const [isFancy, setIsFancy] = useState(false);
+    return (
+      <div>
+        {isFancy ? (
+          <Counter isFancy={true} /> 
+        ) : (
+          <Counter isFancy={false} /> 
+        )}
+        <label>
+          <input
+            type="checkbox"
+            checked={isFancy}
+            onChange={e => {
+              setIsFancy(e.target.checked)
+            }}
+          />
+          Use fancy styling
+        </label>
+      </div>
+    );
+  }
+```
+
+> 需要注意这里说的`相同位置的相同组件`是指在UI树中的位置，而不是JSX标记中的
+
+以下示例中，**`<Counter>`内部的状态仍然不会随着`isFancy`的改变而重置**，因为渲染的还是相同位置相同组件
+
+```js
+  export default function App() {
+    const [isFancy, setIsFancy] = useState(false);
+    if(isFancy){
+      return (
+        <div>
+          <Counter isFancy={isFancy} /> 
+          <label>
+            <input
+              type="checkbox"
+              checked={isFancy}
+              onChange={e => {
+                setIsFancy(e.target.checked)
+              }}
+            />
+            Use fancy styling
+          </label>
+        </div>
+      )
+    }
+    return (
+      <div>
+        <Counter isFancy={isFancy} /> 
+        <label>
+          <input
+            type="checkbox"
+            checked={isFancy}
+            onChange={e => {
+              setIsFancy(e.target.checked)
+            }}
+          />
+          Use fancy styling
+        </label>
+      </div>
+    );
+  }
+```
+
+> 如果想要使相同位置相同组件的状态不保存，直接给组件添加不一样的`key`就行了
+
+**以下示例中`<Counter>`内部的状态随着`isFancy`的改变而重置**，因为组件`key`不一样
+```js
+  export default function App() {
+    const [isFancy, setIsFancy] = useState(false);
+    return (
+      <div>
+        {isFancy ? (
+          <Counter isFancy={true} key='a'/> 
+        ) : (
+          <Counter isFancy={false} key='b'/> 
+        )}
+        <label>
+          <input
+            type="checkbox"
+            checked={isFancy}
+            onChange={e => {
+              setIsFancy(e.target.checked)
+            }}
+          />
+          Use fancy styling
+        </label>
+      </div>
+    );
+  }
+```
