@@ -42,3 +42,18 @@
 ## ts-react、ts-vue
   // 详见课程文档
   * ts-loader 与 babel-loader, babel-loader性能、优化、速度等都会优于ts-loader
+
+
+## type和interface的区别
+
+  type 本质上是一个类型别名，只是对某类型起个新名字
+
+  interface 是声明一个对象类型
+
+
+  type 不能重新定义，只能定义一次
+
+  interface 可以多次定义，最终使用并集
+
+  
+
