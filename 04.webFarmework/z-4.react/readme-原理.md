@@ -181,13 +181,35 @@ Fiber版本Reconciler:
 
 
 **QA**
+
 * 为什么要用链表结构？
   * 1.节省空间，只用指针指向其他节点即可。2. 对于插入删除这类前端DOM常见操作的性能非常好
 
-* Fiber是个链表，它是怎么做到并发的呢？
+* Fiber是个链表，它是怎么做到并发模式的呢？
   * Fiber在计算Work in progress的时候是严格按照递归顺序逐级进行的，但是current Fiber与WorkInProress Fiber之间的diff算法是并发计算的，而这一块计算才是真正耗时的地方。由于可以并发计算，所以就快了。
 
 * Fiber是什么？
   * Fiber有几层含义，首先它是React新的架构方式，用来配合Scheduler来实现任务的异步渲染。
   * 然后它是一个数据结构，同构了Element，保存了对应的Element信息。
   * 最后它是一个动态的工作单元，使用了双缓存技术（copy on wirte），在触发Fiber执行的时候，会生成一个WorkInProress Fiber树，然后与原来的Fiber树进行diff对比，再把渲染树的指针直接指向WorkInProress Fiber树。
+
+* react 16 到底更新了啥
+  * react作为一个ui库，将前端编程由传统的命令式编程转变为声明式编程，即所谓的数据驱动视图，但如果简单粗暴的操作，比如讲生成的html直接采用innerHtml替换，会带来重绘重排之类的性能问题。为了尽量提高性能，React团队引入了虚拟dom，即采用js对象来描述dom树，通过对比前后两次的虚拟对象，来找到最小的dom操作（vdom diff），以此提高性能。
+  
+  * 上面提到的vDom diff，在react 16之前，这个过程我们称之为stack reconciler，它是一个递归的过程，在树很深的时候，单次diff时间过长会造成JS线程持续被占用，用户交互响应迟滞，页面渲染会出现明显的卡顿，这在现代前端是一个致命的问题。所以为了解决这种问题，react 团队对整个架构进行了调整，引入了fiber架构，将以前的stack reconciler替换为fiber reconciler。采用增量式渲染。引入了任务优先级(expiration)和requestIdleCallback的循环调度算法，简单来说就是将以前的一根筋diff更新，首先拆分成两个阶段：reconciliation与commit;第一个reconciliation阶段是可打断的，被拆分成一个个的小任务（fiber），在每一侦的渲染空闲期做小任务diff。然后是commit阶段，这个阶段是不拆分且不能打断的，将diff节点的effectTag一口气更新到页面上。
+  
+  * 由于reconciliation是可以被打断的，且存在任务优先级的问题，所以会导致commit前的一些生命周期函数多次被执行， 如componentWillMount、componentWillReceiveProps 和 componetWillUpdate，但react官方已申明这些问题，并将其标记为unsafe，在React17中将会移除
+  
+  * 由于每次唤起更新是从根节点(RootFiber)开始，为了更好的节点复用与性能优化。在react中始终存workInprogressTree(future vdom) 与 oldTree（current vdom）两个链表，两个链表相互引用。这无形中又解决了另一个问题，当workInprogressTree生成报错时，这时也不会导致页面渲染崩溃，而只是更新失败,页面仍然还在。
+
+* react使用legacy模式进行渲染的时候，并没有并发，为什么还要用fiber架构
+  * React团队回归`UI = fn(state)`的初心，要解决class Components的几个痛点：
+    * this问题；
+    * 生命周期的复杂性，很多时候我们需要在多个生命周期同时编写同一个逻辑
+    * 写法臃肿，constructor，super，render等等。。。
+  * Fiber 架构让每一个节点都拥有对应的实例，也就拥有了保存状态的能力，利用了闭包和链表。
+  * 通过闭包，将 state 保存在 `memoizedState[cursor]`。
+  * 在每个状态 Hook（如 useState）节点中，会通过 queue 属性上的循环链表记住所有的更新操作，并在 updade 阶段依次执行循环链表中的所有更新操作，最终拿到最新的 state 返回。
+  * 在每个副作用 Hook（如 useEffect）节点中，创建 effect 挂载到 Hook 的 memoizedState 中，并添加到环形链表的末尾，该链表会保存到 Fiber 节点的 updateQueue 中，在 commit 阶段执行。
+
+* 
