@@ -61,8 +61,8 @@ function deepMerge(a: any, b: any) {
 }
 
 // 测试用例
-console.log(deepMerge(['a'], ['b', 'c', {}]))
-console.log(deepMerge(1, 2))
+console.log(deepMergeObject({ "d": 1 }, { "c": 2 }))
+// console.log(deepMerge(1, 2))
 
 
 

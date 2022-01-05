@@ -65,13 +65,20 @@ scheduler 大体分为两步，
   reactTools提供了`__REACT_DEVTOOLS_GLOBAL_HOOK__` 对象，用来暴漏react对象，F12直接使用即可
 
 
-## 整体流程
+## 实现篇~、
+scheduler的时间切片是通过宏任务实现的，settimeout和MessageCannel，如果当前宿主环境不支持MessageCannel就settimeout
 
-* render阶段
- 
-  对数据进行递归处理，最后整理出一条链表，
+scheduler默认定义了5ms的执行，但是也会同通过当前设备的帧率（fps）进行动态的调整
+  
+scheduler有两个队列：
+  * timerQueue 保存未过期任务
+  * taskQueue 保存过期任务
 
-* commit阶段
+每当有新的未过期任务被注册，就把任务插入到timerQueue，并重新排列timerQueue中的任务顺序
 
-  开始于`commitRoot`函数是真正的渲染阶段，渲染变遍历render阶段整理出的链表
+当timerQueue中有任务过期，就取出来加入到taskQueue中。任何取出taskQueue中过距离期时间最小的任务并执行
 
+此处为了实现在O（1）复杂度下找出最早过期的任务，这里使用了小顶堆
+
+* react怎么实现的时间切片？
+  * 是使用的一个判断，如果时间不够了就切断当前任务，然后等有空闲时间了就再次开启新的任务。因为用的是宏任务，每次执行完一个宏任务，都会触发渲染。所以就实现了时间切片

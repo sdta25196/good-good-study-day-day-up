@@ -179,7 +179,20 @@ Fiber版本Reconciler:
   * props变更
 
 
+## virtualDOM
+  VDom 是一个虚拟概念，对应的是ReactElement和Fiber
 
+## hooks解决了什么问题
+
+  **对HOOK的理解**
+
+  hoos是一种消息通知机制，React在某种特定状态发生变化的时候会通知 HOOK，然后HOOK再完成相应的特定行为，
+  
+  Hook重新定义了react的写法，更加符合react的函数式编程思想，解决了this的问题，不需要再去关注class Conmponents的各种生命周期。
+  
+  封装了程序的复杂性（副作用、状态、上下文、缓存等），用户只需要使用hooks就行，不需要知道hooks背后做了什么事，同时让用户以最小的代价实现了关注点分离。
+
+ 
 **QA**
 * 为什么要用链表结构？
   * 1.节省空间，只用指针指向其他节点即可。2. 对于插入删除这类前端DOM常见操作的性能非常好
