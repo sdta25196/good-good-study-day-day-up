@@ -57,3 +57,72 @@
 
   
 
+## is有啥用
+  帮助ts在编译期间进行类型推导，最终编译后的js代码， is 和 boolean 是一样的
+
+## 联合类型可以用来控制某个参数必须存在
+  ```js
+    interface Shape {
+      kind: "circle" | "square";
+      radius?: number;
+      sideLength?: number;
+    }
+  ```
+  改成
+  ```js
+    interface Circle {
+      kind: "circle";
+      radius: number;
+      sideLength: number;
+    }
+     interface Square {
+      kind: "square";
+    }
+
+    type Shape = Circle | Square
+  ```
+
+## 返回值使用`unknown`
+  如果返回值使用`unkonwn`,就需要使用者知道这是一个什么类型，然后使用`as` 给一个类型
+  
+  ```ts
+  function a():unknown{
+    return ""
+  }
+
+  let c = a() as string
+  ```
+
+## 函数定义可以使用属性
+  
+  类型DescribableFunction可以直接当做函数调用，但是同时他还有属性可以使用
+  > 需要注意这里使用的函数定义是`:`，而不是`=>`
+```js
+  type DescribableFunction = {
+    description: string;
+    (someArg: number): boolean;
+  };
+  function doSomething(fn: DescribableFunction) {
+    console.log(fn.description + " returned " + fn(6));
+  }
+```
+
+## 函数重载的列表必须是函数实现的子集，或者超集。
+
+
+## void
+
+void不是undefined。void代表无返回值
+
+如下：f3 会报错，显示声明返回值为void的函数，不可以有返回值，f2不报错，因为有返回值的函数，可以赋值给`()=>void`
+```js
+  const f3 = function (): void {
+    return true;
+  }; 
+
+  type voidFunc = () => void;
+
+  const f2: voidFunc = function () {
+    return true;
+  };
+```
