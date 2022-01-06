@@ -276,3 +276,7 @@ https://zh-hans.reactjs.org/docs/concurrent-mode-intro.html#putting-research-int
     );
   }
 ```
+
+* setState的批处理优化（batchUpdate）,是batchUpdate函数，内部可以获得事件的回调函数和上下文，最终有一个finally，只会执行一次触发更新。 
+  * 老版本由于batchUpdate函数是同步执行的，所以我们使用异步调用setState,就会出现多次更新
+  * 新版本fiber架构，使用的lane模型，解决了这个问题，因为同样的优先级会被return

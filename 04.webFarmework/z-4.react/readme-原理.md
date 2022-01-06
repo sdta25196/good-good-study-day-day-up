@@ -225,4 +225,8 @@ Fiber版本Reconciler:
   * 在每个状态 Hook（如 useState）节点中，会通过 queue 属性上的循环链表记住所有的更新操作，并在 updade 阶段依次执行循环链表中的所有更新操作，最终拿到最新的 state 返回。
   * 在每个副作用 Hook（如 useEffect）节点中，创建 effect 挂载到 Hook 的 memoizedState 中，并添加到环形链表的末尾，该链表会保存到 Fiber 节点的 updateQueue 中，在 commit 阶段执行。
 
-* 
+*  react如何解决低优先级一直被高优先级任务抢占的问题（饥饿问题）
+   *  低优先级如果一直不被执行，就会被判定过期，一旦过期他就是最高优先级任务
+
+* scheduler 是怎么做到中断任务继续的
+  * 中断的任务会被记录下来，下次开始任务的时候 如果有就继续，如果没有就从`taskQueue`中取出一个新的
