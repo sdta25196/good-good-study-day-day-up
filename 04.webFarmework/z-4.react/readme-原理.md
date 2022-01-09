@@ -67,12 +67,13 @@ React16架构可以分为三层：
 
   `Scheduler` 除了提供**空闲时间触发回调**功能之外，还提供了**调度优先级**功能
 
-**何时Scheduler**
-  Reconciler + Renderer 统称为 work, 每个work都需要Scheduler调度
 
 **Scheduler做什么**
+  每当有新的未过期任务被注册，就把任务插入到timerQueue，并重新排列timerQueue中的任务顺序
 
-  Scheduler 会进行调度，将所有已经准备就绪，可以执行的任务，都存在了一个叫 taskQueue 的队列中，而这个队列使用了小顶堆这种数据结构
+  当timerQueue中有任务过期，就取出来加入到taskQueue中。任何取出taskQueue中过距离期时间最小的任务并执行
+  
+  此处为了实现在O（1）复杂度下找出最早过期的任务，这里使用了小顶堆
   
   在小顶堆中，所有的任务按照任务的过期时间，从小到大进行排列，这样 Scheduler 就可以只花费O(1)复杂度找到队列中最早过期，或者说最高优先级的那个任务，交给Reconciler
 
@@ -213,7 +214,7 @@ Fiber版本Reconciler:
   
   * 由于reconciliation是可以被打断的，且存在任务优先级的问题，所以会导致commit前的一些生命周期函数多次被执行， 如componentWillMount、componentWillReceiveProps 和 componetWillUpdate，但react官方已申明这些问题，并将其标记为unsafe，在React17中将会移除
   
-  * 由于每次唤起更新是从根节点(RootFiber)开始，为了更好的节点复用与性能优化。在react中始终存workInprogressTree(future vdom) 与 oldTree（current vdom）两个链表，两个链表相互引用。这无形中又解决了另一个问题，当workInprogressTree生成报错时，这时也不会导致页面渲染崩溃，而只是更新失败,页面仍然还在。
+  * 由于每次唤起更新是从根节点(RootFiber)开始，为了更好的节点复用与性能优化。在react中始终存workInprogressTree(future vdom) 与 oldTree（current vdom）两个链表，两个链表相互引用。这无形中又解决了另一个问题，**当workInprogressTree生成报错时，这时也不会导致页面渲染崩溃，而只是更新失败,页面仍然还在**。
 
 * react使用legacy模式进行渲染的时候，并没有并发，为什么还要用fiber架构
   * React团队回归`UI = fn(state)`的初心，要解决class Components的几个痛点：
