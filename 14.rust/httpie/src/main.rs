@@ -1,17 +1,17 @@
 fn main() {
-    fn first_word(s: &String) -> &str {
-        let bytes = s.as_bytes();
-
-        for (i, &item) in bytes.iter().enumerate() {
-            if item == b' ' {
-                return &s[0..i];
-            }
-        }
-
-        &s[..]
+    struct User {
+        username: String,
+        email: String,
+        sign_in_count: u64,
+        active: bool,
     }
-    let s = String::from("hello world");
 
-    let word = first_word(&s);
-    println!("{}", word);
+    let user1 = User {
+        username: String::from("someusername123"),
+        email: String::from("someone@example.com"),
+        active: true,
+        sign_in_count: 6,
+    };
+
+    let usr2 = User { ..user1 };
 }
