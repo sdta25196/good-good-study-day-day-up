@@ -1,9 +1,17 @@
 fn main() {
-    let mut s = String::from("hello");
+    fn first_word(s: &String) -> &str {
+        let bytes = s.as_bytes();
 
-    let r1 = &s; // 没问题
-    let r2 = &s; // 没问题
-    println!("{} and {}", r1, r2);
-    // 此位置之后 r1 和 r2 不再使用
-    let a = [1, 2, 3];
+        for (i, &item) in bytes.iter().enumerate() {
+            if item == b' ' {
+                return &s[0..i];
+            }
+        }
+
+        &s[..]
+    }
+    let s = String::from("hello world");
+
+    let word = first_word(&s);
+    println!("{}", word);
 }

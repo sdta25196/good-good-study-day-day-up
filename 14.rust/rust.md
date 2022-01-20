@@ -199,3 +199,5 @@ fn makes_copy(some_integer: i32) { // some_integer 进入作用域
   * 上述两条合并：在任意给定时间，要么 只能有一个可变引用，要么只能有多个不可变引用。
 
 ## Slice类型
+  slice是没有所有权的数据类型,字符串字面值就是 slice: `let s = "Hello, world!";`
+
