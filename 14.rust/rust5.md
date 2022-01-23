@@ -71,3 +71,6 @@ let origin = Point(0, 0, 0);
 
   let subject = AlwaysEqual;
 ```
+
+## 第六章 chapter 6
+
