@@ -72,5 +72,96 @@ let origin = Point(0, 0, 0);
   let subject = AlwaysEqual;
 ```
 
-## 第六章 chapter 6
+
+## 打印结构体
+
+1. 给结构体加上宏`#[derive(Debug)]`
+2. `println!`宏 需要使用`{:?}`来声明此处要使用`Debug`输出格式，`Debug`是一个trait
+
+```rust
+  #[derive(Debug)]
+  struct Rectangle {
+      width: u32,
+      height: u32,
+  }
+
+  fn main() {
+      let rect1 = Rectangle { width: 30, height: 50 };
+
+      println!("rect1 is {:?}", rect1);
+  }
+```
+> 还可以使用`{:#?}`来使输出格式更适合阅读，也可以使用dbg!宏`dbg!(&rect1)`来输出
+
+
+## 方法语义
+
+方法与函数类似：它们使用 fn 关键字和名称声明，可以拥有参数和返回值，同时包含在某处调用该方法时会执行的代码。不过方法与函数是不同的，因为它们在结构体的上下文中被定义，并且它们第一个参数总是 self，它代表调用该方法的结构体实例。
+
+示例代码如下:
+```rust 
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    //此处&self是self:&self的缩写
+    fn area(&self) -> u32 { 
+        self.width * self.height
+    }
+}
+
+fn main() {
+    let rect1 = Rectangle { width: 30, height: 50 };
+
+    println!(
+        "The area of the rectangle is {} square pixels.",
+        rect1.area()
+    );
+}
+```
+
+### 方法可与字段重名
+
+方法可与字段重名，在main 中，当我们在 rect1.width 后面加上括号时。Rust 知道我们指的是方法 width。当我们不使用圆括号时，Rust 知道我们指的是字段 width。
+
+我们需要使用`impl`代码块来声明方法，`impl`可以定义多个，但是不可以重复定义方法名
+
+```rust
+impl Rectangle {
+    fn width(&self) -> bool {
+        self.width > 0
+    }
+}
+
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    if rect1.width() {
+        println!("The rectangle has a nonzero width; it is {}", rect1.width);
+    }
+}
+```
+
+## 关联函数（associated functions）
+
+`impl` 块中定义的函数被称为 关联函数,因为它们与 impl 后面命名的类型相关
+
+我们可以定义不以 self 为第一参数的关联函数（因此不是方法），使用结构体名和 :: 语法来调用这个关联函数：比如 `let sq = Rectangle::square(3);`。这个方法位于结构体的命名空间中：:: 语法用于关联函数和模块创建的命名空间。 示例：
+
+```rust
+impl Rectangle {
+    fn square(size: u32) -> Rectangle {
+        Rectangle { width: size, height: size }
+    }
+}
+fn main(){
+  let sq = Rectangle::square(3);
+}
+```
 
