@@ -1,6 +1,11 @@
 
 export default {
   title: 'doc/tools',
+  parameters: {
+    docs: {
+      page: null,
+    },
+  },
 };
 
 const Template = (args) => <div>

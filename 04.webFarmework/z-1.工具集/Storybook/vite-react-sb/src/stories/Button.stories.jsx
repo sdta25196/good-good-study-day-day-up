@@ -8,7 +8,15 @@ export default {
   component: Button,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    backgroundColor: { control: 'color' },
+    backgroundColor: { control: "color" },
+  },
+  parameters: {
+    previewTabs: {
+      'storybook/docs/panel': {
+        hidden: true
+      }
+    },
+    layout: 'centered',
   },
 };
 
