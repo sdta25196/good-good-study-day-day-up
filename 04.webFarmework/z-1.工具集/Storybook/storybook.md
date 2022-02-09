@@ -132,66 +132,83 @@ Button.propTypes = {
 ## 常见操作
 
 * 隐藏docs面板
-```js
-export default {
-  title: 'example',
-  parameters: {
-    previewTabs: {
-      'storybook/docs/panel': {
-        hidden: true
-      }
+  ```js
+  export default {
+    title: 'example',
+    parameters: {
+      previewTabs: {
+        'storybook/docs/panel': {
+          hidden: true
+        }
+      },
     },
-  },
-};
-```
+  };
+  ```
 
 * 组件显示局中
-```js
-export default {
-  title: 'example',
-  parameters: {
-    layout: 'centered',
-  },
-};
-```
+  ```js
+  export default {
+    title: 'example',
+    parameters: {
+      layout: 'centered',
+    },
+  };
+  ```
 
 * ArgTypes的使用
 
-argTypes用来指定props类型
+  argTypes用来指定props类型
 
-```js
-  export default {
-    //....
-    argTypes: {
-      backgroundColor: { control: 'color' }, //可指定组件的backgroundColor属性 为颜色选择器面板
-    },
-    //....
-  };
-```
-参数全部可选项如下：
-```js
-  {
-    // 名称
-    name: 'label',
-    // 字段类型，以及是否必填
-    type: { name: 'string', required: false },
-    // 默认值
-    defaultValue: 'Hello',
-    // 描述信息
-    description: 'demo description',
-    // 描述信息
-    table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: 'Hello' },
-    },
-    // 控制器类型 - radio\color\text等，一般会默认推导
-    control: {
-      type: 'text'
+  ```js
+    export default {
+      //....
+      argTypes: {
+        backgroundColor: { control: 'color' }, //可指定组件的backgroundColor属性 为颜色选择器面板
+      },
+      //....
+    };
+  ```
+  参数全部可选项如下：
+  ```js
+    {
+      // 名称
+      name: 'label',
+      // 字段类型，以及是否必填
+      type: { name: 'string', required: false },
+      // 默认值
+      defaultValue: 'Hello',
+      // 描述信息
+      description: 'demo description',
+      // 描述信息
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Hello' },
+      },
+      // 控制器类型 - radio\color\text等，一般会默认推导
+      control: {
+        type: 'text'
+      }
     }
-  }
-```
- 
+  ```
 
+* 隐藏NoContronls警告
+
+  如果不打算处理 Story 中的控制参数，则可以在parameters中添加以下命令删除警告：
+  ```js
+    //...
+    parameters: {
+      controls: { hideNoControlsWarning: true },
+    };
+    //...
+  ```
+
+* 完整显示操作栏
+
+  想要完整显示底部controls面板的全部属性
+  
+  ```js
+    controls: { expanded: true },
+  ```
 ## 更多
 
 * [文档](https://storybook.js.org/)
