@@ -15,13 +15,13 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'components'),
     library: {
-      name: 'MyComponent',
-      type: 'umd',
-      // type: 'amd-require',
+      name: 'EolComponent',  // umd打包配置
+      type: 'umd',           // umd打包配置
+      // type: 'amd-require', // amd 打包配置
     },
   },
   externals: {
-    react: 'react'
+    react: 'React'
   },
   module: {
     rules: [
