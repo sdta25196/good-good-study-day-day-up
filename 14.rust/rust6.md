@@ -59,5 +59,120 @@ Option 是标准库定义的一个枚举,Option 类型应用广泛因为它编�
   }
 ```
 
+## match控制流运算符
+
+Rust 有一个叫做 match 的极为强大的控制流运算符，它允许我们将一个值与一系列的模式相比较，并根据相匹配的模式执行相应代码。
+
+```rust
+enum Coin {
+  Penny,
+  Nickel,
+  Dime,
+  Quarter,
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
+}
+
+fn main() {}
+```
+
+**甚至可以传参数**
+
+```rust
+#[derive(Debug)]
+enum UsState {
+    Alabama,
+    Alaska,
+    // --snip--
+}
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter(state) => {
+            println!("State quarter from {:?}!", state);
+            25
+        }
+    }
+}
+
+fn main() {
+    value_in_cents(Coin::Quarter(UsState::Alaska));
+}
+```
+
+### 匹配option<T>
+
+Rust 中的匹配是 穷尽的（exhaustive）：必须穷举到最后的可能性来使代码有效。
+
+```rust
+fn main() {
+    fn plus_one(x: Option<i32>) -> Option<i32> {
+        match x {
+            None => None,
+            Some(i) => Some(i + 1),
+        }
+    }
+
+    let five = Some(5);
+    let six = plus_one(five);
+    println!("x,{:?}", six);
+    let none = plus_one(None);
+    println!("a,{:?}", none);
+}
+
+```
+
+### 通配模式和 _ 占位符
+
+使用`other` 代表所有其他可能性
+
+```rust
+    let dice_roll = 9;
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        other => move_player(other),
+    }
+
+    fn add_fancy_hat() {}
+    fn remove_fancy_hat() {}
+    fn move_player(num_spaces: u8) {}
+```
+
+使用`_` 可以匹配任意值，而不绑定到该值, 代表告诉 Rust 我们不会使用这个值，所以 Rust 也不会警告我们存在未使用的变量。
+
+```rust
+  let dice_roll = 9;
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        _ => reroll(), // 使用一个函数，匹配值不是3或者7的时候，就会执行这个函数
+        // _ => (),  使用元祖，代表此处无事发生
+    }
+
+    fn add_fancy_hat() {}
+    fn remove_fancy_hat() {}
+    fn reroll() {}
+```
+
+## if let 简洁控制流
+
 
 * [rust枚举文档](https://doc.rust-lang.org/std/option/enum.Option.html)
