@@ -174,5 +174,19 @@ fn main() {
 
 ## if let 简洁控制流
 
+`if let` 语法让我们以一种不那么冗长的方式结合 if 和 let，来处理只匹配一个模式的值而忽略其他模式的情况。
 
-* [rust枚举文档](https://doc.rust-lang.org/std/option/enum.Option.html)
+```rust
+    let config_max = Some(3u8);
+    if let Some(max) = config_max {
+        println!("The maximum is configured to be {}", max);
+    }
+```
+
+`if let` 语法获取通过等号分隔的一个模式和一个表达式。
+
+可以认为 if let 是 match 的一个语法糖，它当值匹配某一模式时执行代码而忽略所有其他值。
+
+
+
+* [rust枚举文档](https://kaisery.github.io/trpl-zh-cn/ch06-00-enums.html)
