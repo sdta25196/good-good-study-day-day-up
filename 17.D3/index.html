@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+  <p>Hello World 1</p>
+  <p>Hello World 2</p>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script>
+    d3.select("body").selectAll("p").text("www.ourd3js.com");
+    //选择<body>中所有的<p>，其文本内容为 www.ourd3js.com，选择集保存在变量 p 中
+    var p = d3.select("body")
+      .selectAll("p")
+      .text("www.ourd3js.com");
+
+    //修改段落的颜色和字体大小
+    p.style("color", "red")
+      .style("font-size", "72px");
+  </script>
+</body>
+
+</html>
