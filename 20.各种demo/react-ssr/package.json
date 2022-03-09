@@ -22,10 +22,13 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
+    "axios": "^0.26.0",
     "babel-loader": "^8.2.3",
     "express": "^4.17.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1"
   }
 }
