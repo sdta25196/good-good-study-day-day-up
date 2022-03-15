@@ -135,6 +135,84 @@ fundebug.init({
 
 等等... 其他请翻阅文档
 
+
+## Script Error
+
+ 当`a.com` 引用了 `b.com`（通常是CDN的域名，也有可能是公司内的资源服务器） 的js资源，如果这个js资源内部报出一个异常，那么前端的错误捕获脚本就会检测到一个`Script Error`错误。
+
+ 这是由于浏览器基于安全考虑故意隐藏了其它域JS文件抛出的具体错误信息。这样可以有效避免敏感信息无意中被第三方(不受控制的)脚本捕获到，因此，浏览器只允许同域下的脚本捕获具体的错误信息。
+ > 如果浏览器允许这里报里报出具体错误信息的话，就会出现用户的敏感信息泄露问题。
+
+ **解决方案**
+
+  可以给脚本添加`crossorigin`,不过会有兼容性问题，不好使
+  ```js
+  <scrpit src="http://b.com/demo.js" crossorigin></script>
+  ```
+
+  当fundebug检测到`Script Error`的时候，其实我们是没有什么好的办法去处理的。目前采取过滤`Script Error`信息的方式。
+
+## status 0
+
+关于http请求会有status为0的情况。常见可能性为：
+  
+* 非法跨域请求（参见CORS）
+* 防火墙阻止或过滤
+* 请求本身在代码中被取消
+* 已安装的浏览器扩展程序搞砸了 - 例如Firefox 插件 NoScript 可以取消对不受信任主机的 XHR 请求
+* 其他乱七八糟的事情，忽略不计了
+
+在报出`status 0`这样的错误时，浏览器控制台通常会伴随有详细的错误信息。只是出于安全考虑，浏览器依然没有让外部js拿到对应的错误数据。
+
+在fundebug中，我们看到`status 0`时，通常伴随其请求时间一起分析：
+* status为0，而请求时间很短，且大量出现的情况下，通常为用户端出现了跨域的问题
+* status为0，请求时间明显超时，例如大于 5000秒。那就是请求超时
+* status 0，请求时间很短，出现次数较少，可以考虑是用户端行为，不予处理
+
+## 一套基础配置
+```js
+let fundebug = require("fundebug-javascript")
+require("fundebug-revideo")
+fundebug.init({
+  apikey: "your object apikey", // 项目id
+  appversion: `${new Date().getFullYear()}${new Date().getMonth() + 1}${new Date().getDate()}`, // 设置版本号
+  silentDev: true,  // 不抓取开发期间错误
+  setHttpBody: true, // 抓取http请求的参数数据
+  silentConsole: process.env.NODE_ENV !== 'production', // 开发环境关闭fundebug对console对象的改写
+  sampleRate: 0.4, // 设置上传采样比例为0.4
+  maxRevideoSizeInByte: "500", // 最大记录500kb录屏
+  breadcrumbSize: 30, // 用户行为记录30
+  filters: [
+    {
+      message: /Script error/  // 过滤script error
+    },
+    {
+      type: /httpError/,   // 过滤px.effirst.com
+      req: {
+        url: /px.effirst.com/
+      },
+    },
+    {
+      type: /httpError/,    // 过滤tags.growingio.com
+      req: {
+        url: /tags.growingio.com/
+      },
+    },
+    {
+      type: /httpError/,    // 过滤baidu.com
+      req: {
+        url: /baidu.com/
+      },
+    },
+    {
+      type: /httpError/,    // 过滤cnzz.com
+      req: {
+        url: /cnzz.com/
+      },
+    },
+  ]
+})
+```
 ## 更多
 
 [fundebug官方文档](https://docs.fundebug.com/)
