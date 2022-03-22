@@ -1,6 +1,26 @@
 ## react-router-v6
 
-`yarn add react-router-dom@6`
+需要react 16.8+的环境，安装命令：`yarn add react-router-dom@6`
+
+## 示例
+
+```js
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/*" element={<NoMatch />} />
+        <Route path="/" element={<Home />} />
+        <Route path="about/*" element={<About />} >
+          <Route path=":id" element={<AboutChildren1 />} />
+          <Route path="me" element={<AboutChildren2 />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
+)
+```
 
 ## 取消了withRouter
 
@@ -67,7 +87,9 @@ function Users() {
 * v6 中的所有路径匹配都会忽略 URL 上的尾部斜杠, 所以我们可以忽略不写`path`尾部的斜杠 ` <Route path="me" element={<App />} />`
 * `Route`加上`caseSensitive`参数，可以表示区分大小写，不过建议全部小写。` <Route path="me" element={<App />} caseSensitive/>`
 
-## link
+## Link
+
+V6中所有的路由跳转都不需要添加`/`了
 
 `link to`跳转将固定拼接到当前url,例如：当前URL是`/paths`,点击`<link to='me'/>`，页面将跳转到`/paths/me`
 
@@ -208,6 +230,61 @@ function App() {
 }
 ```
 
+**注意：如果要给二级路由传递props，就不能使用`<Outlet/>`，而是要使用在组件中定义`<Route>`的形式**
+```js
+function Dashboard() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      // 如果路由匹配 /messages 或者 /tasks 就会渲染对应的组件，否则不渲染
+    </div>
+    <Routes>
+      <Route path="messages"  element={<DashboardMessages {...props} />} />
+      <Route path="tasks" element={<DashboardTasks />} />
+    </Routes>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+    </Routes>
+  );
+}
+```
+
+上面两种写法效果一样，不过第二种写法可以传递`props`, 第一种写法想要传递状态的话，就需要使用到下面说的`useOutletContext`
+
+## useOutletContext
+
+二级路由共享状态可以使用`useOutletContext`
+
+```js
+function Parent() {
+  const [count, setCount] = React.useState(0);
+  return <Outlet context={[count, setCount]} />;
+}
+```
+```js
+import { useOutletContext } from "react-router-dom";
+
+function Child() {
+  const [count, setCount] = useOutletContext();
+  const increment = () => setCount((c) => c + 1);
+  return <button onClick={increment}>{count}</button>;
+}
+```
+## useSearchParams - 使用url上的参数
+
+```js
+  //  当前URL =>  http://localhost:3000/about/me?brand=nike&sort=asc&sortby=price
+  let [urlSearchParams] = useSearchParams();
+  console.log(urlSearchParams.get("brand")) // => nike
+  useEffect(() => {
+    setSearchParams("x=2") // 给当前URL的参数改成 ?x=2
+  }, [])
+```
 
 > 就个人体验上来说，V6的确比V5更好用了。
 
