@@ -31,6 +31,13 @@ xlsx.writeFile(workBook, `测试.xlsx`, {
 
 ```
 
+## node端示例-读取
+
+```js
+
+```
+
+
 ## 浏览器端示例-导出
 
 ```js
@@ -161,6 +168,60 @@ xlsx.writeFile(workBook, `测试.xlsx`, {
   </body>
 
   </html>
+```
+
+## 浏览器端示例-导入
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.14.3/dist/xlsx.full.min.js"></script>
+  <style>
+    table,
+    td {
+      border: 1px solid #999;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="file" onchange="parseExcelFile(this)">
+  <div id="container">
+
+  </div>
+  <script>
+    function parseExcelFile(inputElement) {
+      var files = inputElement.files || [];
+      if (!files.length) return;
+      var file = files[0];
+
+      console.time();
+      var reader = new FileReader();
+      reader.onloadend = function (event) {
+        var arrayBuffer = reader.result;
+        // debugger
+
+        var options = { type: 'array' };
+        var workbook = XLSX.read(arrayBuffer, options);
+        console.timeEnd();
+
+        var sheetName = workbook.SheetNames
+        var sheet = workbook.Sheets[sheetName]
+        var result1 = document.querySelector("#container")
+        result1.innerHTML = XLSX.utils.sheet_to_html(sheet)
+      };
+      reader.readAsArrayBuffer(file);
+    }
+  </script>
+</body>
+
+</html>
 ```
 
 ## 常用API
