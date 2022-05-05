@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>video-demo</title>
+  <style>
+    iframe {
+      border: 0;
+      width: 500px;
+      height: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    fetch(`https://playvideo.qcloud.com/getplayinfo/v4/1252645828/3701925919241019698?refer=app.eol.cn`).then(response => {
+      return response.json();
+    }).then(res => {
+      console.log(res);
+      document.write(JSON.stringify(res))
+    })
+  </script>
+</body>
+
+</html>
