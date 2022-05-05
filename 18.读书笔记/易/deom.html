@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="select_img_button">选择图片</button>
+		<input type='file' id="inputImgFile" style="display:none" accept="image/*" />
+
+		<!-- 预览图片S -->
+		<img src="" width="120" />
+		<!-- 预览图片E -->
+
+		<button id="resureUpload">确认上传</button>
+		<script>
+			select_img_button.onclick = function() {
+				var ie = navigator.appName == "Microsoft Internet Explorer" ? true : false;
+
+				if (ie) {
+					inputImgFile.click();
+				} else {
+					var a = document.createEvent("MouseEvents");
+					a.initEvent("click", true, true);
+					inputImgFile.dispatchEvent(a);
+				}
+			}
+			//裁剪压缩 添加
+			function getCompressRate(allowMaxSize, fileSize) { //计算压缩比率，size单位为MB
+			    console.log(fileSize)
+			    var compressRate = 1;
+			    if (fileSize / allowMaxSize > 2) {
+			        compressRate = 0.5;
+			    } else if (fileSize / allowMaxSize > 1.5) {
+			        compressRate = 0.6;
+			    } else if (fileSize / allowMaxSize > 1) {
+			        compressRate = 0.7;
+			    } else if (fileSize / allowMaxSize > 0.5) {
+			        compressRate = 0.8;
+			    } else {
+			        compressRate = 0.9;
+			    }
+			    result6 = compressRate;
+			    console.log(compressRate)
+			    return compressRate;
+			}		
+			function showSize(base64url) {
+			    //获取base64图片大小，返回MB数字
+			    var str = base64url.replace('data:image/png;base64,', '');
+			    var equalIndex = str.indexOf('=');
+			    if (str.indexOf('=') > 0) {
+			        str = str.substring(0, equalIndex);
+			    }
+			    var strLength = str.length;
+			    var fileLength = parseInt(strLength - (strLength / 8) * 2);
+			    // 由字节转换为MB
+			    var size = "";
+			    size = (fileLength / (1024 * 1024)).toFixed(2);
+			    var sizeStr = size + "";                        //转成字符串
+			    var index = sizeStr.indexOf(".");                    //获取小数点处的索引
+			    var dou = sizeStr.substr(index + 1, 2)            //获取小数点后两位的值
+			    if (dou == "00") {                                //判断后两位是否为00，如果是则删除00
+			        return sizeStr.substring(0, index) + sizeStr.substr(index + 3, 2)
+			    }
+			    return size;
+			}
+			inputImgFile.onchange = function() {
+				my_data = inputImgFile.files[0];
+				var read = new FileReader()
+				read.readAsDataURL(my_data);
+
+				read.onload = (e) => {
+					var img = new Image();
+					img.src = e.target.result;
+					img.onload = function() {
+						var canvas = document.createElement('canvas');
+						var ctx = canvas.getContext('2d');
+						var base64;
+						canvas.setAttribute('width', 800);
+						canvas.setAttribute('height', 500);
+						ctx.drawImage(this, 0, 0, 800, 500);
+						var result = null;
+						result = canvas.toDataURL('image/jpeg', 1);
+						result = canvas.toDataURL('image/jpeg', getCompressRate(1, showSize(result)));
+						console.log(result)
+					};
+				}
+			}
+		</script>
+	</body>
+</html>
