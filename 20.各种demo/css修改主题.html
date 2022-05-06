@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="day">Day (initial)</div>
+  <div class="day light-scheme">Day ( light scheme)</div>
+  <div class="day dark-scheme">Day ( dark scheme)</div>
+
+
+  <div class="night">Night (initial)</div>
+  <div class="night light-scheme">Night ( light scheme)</div>
+  <div class="night dark-scheme">Night ( dark scheme)</div>
+
+  <style>
+    .day {
+      background: #eee;
+      color: black;
+    }
+
+    .night {
+      background: #333;
+      color: white;
+    }
+
+    .day,
+    .night {
+      display: inline-block;
+      padding: 1em;
+      width: 7em;
+      height: 2em;
+      vertical-align: middle;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .day.dark-scheme {
+        background: #333;
+        color: white;
+      }
+
+      .night.dark-scheme {
+        background: black;
+        color: #ddd;
+      }
+    }
+
+    @media (prefers-color-scheme: light) {
+      .day.light-scheme {
+        background: white;
+        color: #555;
+      }
+
+      .night.light-scheme {
+        background: #eee;
+        color: black;
+      }
+    }
+  </style>
+</body>
+
+</html>
