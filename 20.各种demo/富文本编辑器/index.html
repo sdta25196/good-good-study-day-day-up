@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+  <canvas style="inset: 0px; pointer-events: none; position: fixed; z-index: 1000000000;" width="1920"
+    height="560"></canvas>
+  <title>富文本</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <style>
+    .commandZone {
+      margin: 20px;
+      margin-bottom: 0px;
+      background: burlywood;
+    }
+
+    .editor {
+      border: 1px solid gray;
+      margin: 0px 20px 20px 20px;
+      height: 300px;
+    }
+
+    .btn {
+      margin: 10px 20px;
+      color: black;
+      font-size: 20px;
+      line-height: 20px;
+      display: inline;
+    }
+  </style>
+
+
+  <div class="commandZone">
+    <button id="paragraphBtn" class="btn">段落</button>
+    <select name="hstyle" id="hstyle">
+      <option value="1">h1</option>
+      <option value="2">h2</option>
+      <option value="3">h3</option>
+      <option value="4">h4</option>
+      <option value="5">h5</option>
+      <option value="h6">h6</option>
+    </select>
+    <button id="boldBtn" class="btn">加粗</button>
+    <button id="undoBtn" class="btn">后退</button>
+    <button id="redoBtn" class="btn">前进</button>
+    <button id="insertHorizontalRuleBtn" class="btn">水平线</button>
+    <button id="insertUnorderedListBtn" class="btn">无序列表</button>
+    <button id="createLinkBtn" class="btn">插入链接</button>
+    <button id="insertImageBtn" class="btn">插入图片</button>
+  </div>
+  <div class="editor" contenteditable="true"></div>
+
+  <script>
+    var hStyle = '<h1>';
+    document.getElementById('hstyle').onchange = function () {
+      var optionSelectedIndex = document.getElementsByTagName('option');
+      hStyle = optionSelectedIndex[document.getElementById('hstyle').selectedIndex].innerHTML;
+      execEditorCommand('formatBlock', hStyle);
+    }
+
+    function execEditorCommand(name, args = null) {
+      document.execCommand(name, false, args);
+    }
+
+    document.getElementById('boldBtn').onclick = function () {
+      execEditorCommand('bold', null);
+    }
+    document.getElementById('insertHorizontalRuleBtn').onclick = function () {
+      execEditorCommand('insertHorizontalRule', null);
+    }
+    document.getElementById('insertUnorderedListBtn').onclick = function () {
+      execEditorCommand('insertUnorderedList', null);
+    }
+    document.getElementById('undoBtn').onclick = function () {
+      execEditorCommand('undo', null);
+    }
+    document.getElementById('redoBtn').onclick = function () {
+      execEditorCommand('redo', null);
+    }
+    document.getElementById('paragraphBtn').onclick = function () {
+      execEditorCommand('formatBlock', '<p>');
+    }
+    document.getElementById('createLinkBtn').onclick = function () {
+      let link = window.prompt('请输入链接地址');
+      execEditorCommand('createLink', link);
+    }
+    document.getElementById('insertImageBtn').onclick = function () {
+      let image = window.prompt('请输入图片地址');
+      execEditorCommand('insertImage', image);
+    }
+  </script>
+
+</body>
+
+</html>

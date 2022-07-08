@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>aa</title>
+</head>
+<style>
+  .div {
+    width: 200px;
+    height: 200px;
+    background: red;
+  }
+
+  * {
+    resize: both;
+  }
+</style>
+<script defer src="./a.js"></script>
+<script async src="./b.js"></script>
+<script>
+  console.log(document.readyState);
+  for (let i = 0; i < 50; i++) {
+    console.log(i);
+  }
+  for (let i = 50; i < 100; i++) {
+    console.log(i);
+  }
+</script>
+
+<body>
+  <div class="xx">
+    
+  </div>
+  <div class="div111">
+    <pre>
+      &lt;html&gt;
+      &lt;head&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&quot;loadxmldoc.js&quot;&gt;
+      &lt;/script&gt;
+      &lt;/head&gt;
+      
+      &lt;body&gt;
+      
+        &lt;script type=&quot;text/javascript&quot;&gt;
+          xmlDoc=<a href="dom_loadxmldoc.asp">loadXMLDoc</a>(&quot;books.xml&quot;);
+          document.write(&quot;xmlDoc is loaded, ready for use&quot;);
+        &lt;/script&gt;
+      
+      &lt;/body&gt;
+      
+      &lt;/html&gt;
+      </pre>
+  </div>
+  <div class="div"></div>
+  sssss
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  aaaa
+  <div class="s">
+    <ul>
+      <li>5</li>
+      <li>9</li>
+      <li>88</li>
+      <li>7</li>
+      <li>6</li>
+    </ul>
+  </div>
+  <script>
+    // requestAnimationFrame动画
+    let offsetTop = 0;
+    const div = document.querySelector(".div");
+    const run = () => {
+      div.style.transform = `translate3d(0, ${offsetTop += 10}px, 0)`;
+      // window.requestAnimationFrame(run);
+    };
+    run();
+
+    // 生命周期
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log(document.readyState);
+      console.log('3 seconds passed');
+    });
+    window.onload = function () {
+      console.log(document.readyState);
+      console.log('222assed');
+    }
+  </script>
+</body>
+
+</html>

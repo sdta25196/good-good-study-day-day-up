@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Web Components</title>
+</head>
+
+<body>
+    <custom-button></custom-button>
+
+    <template id="custom-button">
+        <button>自定义按钮</button>
+        <style>
+            button {
+                display: inline-block;
+                line-height: 1;
+                white-space: nowrap;
+                cursor: pointer;
+                text-align: center;
+                box-sizing: border-box;
+                outline: none;
+                margin: 0;
+                transition: .1s;
+                font-weight: 500;
+                padding: 12px 20px;
+                font-size: 14px;
+                border-radius: 4px;
+                color: #fff;
+                background-color: #409eff;
+                border-color: #409eff;
+                border: 0;
+            }
+
+            button:active {
+                background: #3a8ee6;
+                border-color: #3a8ee6;
+                color: #fff;
+            }
+        </style>
+    </template>
+
+    <script>
+        class CustomButton extends HTMLElement {
+            constructor() {
+                // 必须首先调用 super方法 
+                super()
+
+                // 元素的功能代码写在这里
+                const templateContent = document.getElementById('custom-button').content
+                const shadowRoot = this.attachShadow({ mode: 'open' })
+
+                shadowRoot.appendChild(templateContent.cloneNode(true))
+
+                shadowRoot.querySelector('button').onclick = () => {
+                    alert('Hello World!')
+                }
+            }
+
+            connectedCallback() {
+                console.log('connected')
+            }
+        }
+
+        customElements.define('custom-button', CustomButton)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    window.onmousedown = function () {
+      setTimeout(() => {
+        console.log("点击了，这个是个宏任务");
+        queueMicrotask(() => { console.log("点击-执行render") })
+      }, 1000)
+      setTimeout(() => {
+        console.log("点击了，这个是个宏任务");
+        // document.querySelector("#c").innerHTML = Math.random()
+        queueMicrotask(() => { console.log("点击-执行render") })
+      }, 1000)
+
+      queueMicrotask(() => { console.log("点击-执行render111") })
+    }
+    window.onload = () => {
+      console.log("load加载完成");
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log("DOMContenLoaded加载完成");
+    })
+  </script>
+</head>
+
+<body>
+  <div id="c">
+    加载
+  </div>
+  <div id="d">
+    加载
+  </div>
+  <div id="f">
+    加载
+  </div>
+  <script>
+    console.time()
+    function a() {
+      setTimeout(() => {
+        requestAnimationFrame(() => { console.log("rAF1-执行render") })
+        let f = Math.random()
+        document.querySelector("#c").innerHTML = f
+        console.log("f", f);
+        console.log("head宏任务1")
+        queueMicrotask(() => { console.log("微任务1") })
+        queueMicrotask(() => { console.log("微任务1") })
+        console.log("挂起的宏任务1")
+        console.log("head宏任务11")
+      }, 0)
+    }
+    a();
+    console.timeEnd()
+    console.log("body宏任务2")
+    requestAnimationFrame(() => { console.log("rAF2-执行render") })
+    let c1 = Math.random()
+    document.querySelector("#c").innerHTML = c1
+    console.log("c1", c1);
+    queueMicrotask(() => { console.log("微任务2") })
+    queueMicrotask(() => { console.log("微任务2") })
+    console.log("body宏任务22")
+    let c = Promise.resolve()
+    c.then(e => {
+      console.log("promise任务");
+    })
+    console.log("body宏任务3")
+    requestAnimationFrame(() => { console.log("rAF3-执行render") })
+    let d = Math.random()
+    document.querySelector("#c").innerHTML = d
+    console.log("d", d);
+    queueMicrotask(() => { console.log("微任务3") })
+    queueMicrotask(() => { console.log("微任务3") })
+    console.log("body宏任务33")
+    setTimeout(() => {
+      console.log("挂起的宏任务3")
+    }, 1000)
+  </script>
+</body>
+
+</html>

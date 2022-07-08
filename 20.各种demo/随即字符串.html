@@ -1,0 +1,56 @@
+<html>
+
+<head>
+  <title> Random String Generator </title>
+</head>
+
+<script>
+  function randomString() {
+    //define a variable consisting alphabets in small and capital letter  
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+
+    //specify the length for the new string  
+    var lenString = 7;
+    var randomstring = '';
+
+    //loop to select a new character in each iteration  
+    for (var i = 0; i < lenString; i++) {
+      var rnum = Math.floor(Math.random() * characters.length);
+      console.log(rnum, randomstring)
+      randomstring += characters.substring(rnum, rnum + 1);
+    }
+
+    //display the generated string   
+    document.getElementById("randomfield").innerHTML = randomstring;
+  }
+</script>
+
+
+
+
+<body>
+  <center>
+    <p>方式一</p>
+    <h2 style="color: green"> Random String Generator </h2>
+    <h3> Click the button to generate a random string </h3>
+
+    <form name="randomform">
+      <input type="button" value="Generate Random String" onClick="randomString();">
+      <br><br>
+      <b>
+        <p id="randomfield" style="color: green"> </p>
+      </b>
+    </form>
+    <p>方式二</p>
+    <button onClick="random_String_Generator()"> Generate String </button>
+    <p id="random_String" style="color: green; font-size: 22px; font-weight: bold;"> </p>
+  </center>
+  <script>
+    var result = document.getElementById('random_String');
+    function random_String_Generator() {
+      result.innerHTML = Math.random().toString(36).slice(2);
+    }
+  </script>
+</body>
+
+</html>

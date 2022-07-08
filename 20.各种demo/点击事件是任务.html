@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>点击事件回调任务触发时间？</title>
+  <!--
+    点击事件的回调执行机制是优先！不固定的时间执行，异步的东西，我们就不对他们的执行时间有预期
+  -->
+  <script>
+    // 执行期间 点击html，可验证点击事件的触发时间，
+    let c = 0
+    setTimeout(() => {
+      console.log('添加的宏任务') // 添加在最后的宏任务，证明点击事件是微任务队列执行的，第5个输出
+    })
+    document.documentElement.addEventListener('click', () => {
+      c++
+      console.log('触发点击事件') //执行微任务队列的时候输出，第3个输出
+    })
+    let d = new Date().getTime() + 3000
+    while (d > new Date().getTime());
+    queueMicrotask(() => {
+      console.log('自定义的微任务') // 自定义的微任务，第2个输出
+    })
+    console.log('第一个宏任务', c) // 此时宏任务执行到最后一步，微任务还没触发，所以这里是0，第1个输出
+    Array(200).fill('45').forEach(r => {
+      console.log(r)
+    })
+  </script>
+
+  <script>
+    // 这个时候，不一定会执行都点击事件哦，如果执行了点击事件，就是点击的次数，否则就是0
+    console.log('第二个宏任务', c) // 上一个宏任务的微任务队列触发完成, 第4个输出
+  </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

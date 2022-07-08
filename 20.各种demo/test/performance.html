@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function a() {
+      for (let i = 0; i < 100000000; i++);
+    }
+    function b() {
+      a()
+    }
+  </script>
+  <script>
+    b();
+  </script>
+</head>
+
+<body>
+  查看性能火焰图
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <title>
+    Generate random alpha-numeric string using JavaScript
+  </title>
+</head>
+
+<body>
+
+  <center>
+    <h2 style="color:green;"> Random String Generator </h2>
+
+    <h3> Click the button to generate random alpha-numeric string </h3>
+    <button onClick="random_String_Generator()"> Generate String </button>
+
+    <p id="random_String" style="color: green; font-size: 22px; font-weight: bold;"> </p>
+
+    <script>
+      var result = document.getElementById('random_String');
+      function random_String_Generator() {
+        result.innerHTML = Math.random().toString(36).slice(2);
+      }
+    </script>
+  </center>
+
+</body>
+
+</html>

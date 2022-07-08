@@ -1,0 +1,34 @@
+<!-- https://googlechrome.github.io/devtools-samples/jank/ 谷歌的测试地址 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  渲染
+  <button id="but">
+    点击
+  </button>
+  <div id="a"></div>
+  <script>
+    let fun = (e) => {
+      // let d = new Date().getTime() + 600;
+      // while (new Date().getTime() < d);
+      for (let index = 0; index < 50000; index++) {
+        console.log(index);
+      }
+      let span = document.createElement("span");
+      span.innerHTML = "加加"
+      document.querySelector("#a").appendChild(span)
+    }
+    document.querySelector("#but").addEventListener("click", fun)
+  </script>
+</body>
+
+</html>

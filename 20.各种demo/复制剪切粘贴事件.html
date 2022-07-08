@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" id="input">
+  <script>
+    // 剪切复制粘贴功能；
+    input.oncut = input.oncopy = input.onpaste = function (event) {
+      console.log(event);
+      // 或许用户复制的内容
+      window.getSelection().toString()
+      // 用户粘贴时的内容
+      console.log(event.clipboardData.getData('text/plain'));
+      // 复制的文本改成My string
+      console.log(event.clipboardData.items.add('My string', 'text/plain'))
+      // 如果是粘贴就允许
+      if (event.type == "paste") return true;
+      return false;
+    };
+  </script>
+</body>
+
+</html>

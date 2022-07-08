@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 修改鼠标样式 */
+  body {
+    cursor: url(https://gkcx.eol.cn/favicon.ico), auto;
+  }
+</style>
+
+<body>
+  <style>
+    /* 1 模拟输入框 */
+    .typing-demo {
+      width: 22ch;
+      animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid;
+      font-family: monospace;
+      font-size: 2em;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent
+      }
+    }
+  </style>
+  <div>
+    1 假的输入框
+  </div>
+  <div class="wrapper">
+    <div class="typing-demo">
+      这里有一堆文字啊
+    </div>
+
+  </div>
+  <style>
+    /* 2 drop-shadow */
+    .drop-shadow {
+      filter: drop-shadow(2px 4px 8px #585858);
+    }
+  </style>
+  <div>
+    2 drop-shadow
+  </div>
+  <div class="img">
+    <img class="drop-shadow" src="https://markodenic.com/man_working.png" alt="Image with drop-shadow">
+  </div>
+  <style>
+    /* 3 截取文本 */
+    .overflow-ellipsis {
+      width: 200px;
+      background-color: #fff;
+      padding: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  </style>
+  <div>
+    3 文字截取
+  </div>
+  <div class="overflow-ellipsis">
+    这里是被截取的文字啊 啊哈哈哈哈
+  </div>
+  <style>
+    /* 4 三行文本截取  */
+    .line-clamp {
+      width: 200px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+  </style>
+  <div>
+    4 多行文字截取
+  </div>
+  <div class="line-clamp">
+    You can use <code>-webkit-line-clamp</code> property to truncate the text to the specific number of lines.
+    An ellipsis will be shown at the point where the text is clamped.
+  </div>
+  <style>
+    /* 5 修改选中颜色 */
+    .custom-highlighting::selection {
+      background-color: red;
+      color: black;
+    }
+  </style>
+  <div>
+    5 修改选中颜色
+  </div>
+  <div class="custom-highlighting">
+    这行文字你如果选中了，就是红色
+  </div>
+  <style>
+    /* 6 div可以调整大小 */
+    .resize {
+      border: 2px solid;
+      padding: 10px 40px;
+      width: 300px;
+      resize: both;
+      overflow: auto;
+    }
+  </style>
+  <div>
+    6 div可以调整大小
+  </div>
+  <div class="resize">
+    这个DIV你可以调整大小
+  </div>
+  <style>
+    /* 7 输入框的标签 */
+    input {
+      caret-color: brown;
+    }
+  </style>
+  <div>
+    7 输入框的光标颜色
+  </div>
+  <div>
+    <input type="text">
+  </div>
+  <style>
+    /* 8 提示 */
+    .tooltip {
+      position: relative;
+      border-bottom: 1px dotted black;
+    }
+
+    /* Tooltip box */
+    .tooltip:before {
+      content: attr(data-tooltip);
+      position: absolute;
+      width: 100px;
+      background-color: #062B45;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      line-height: 1.2;
+      border-radius: 6px;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity .6s;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -60px;
+      font-size: 0.75em;
+      visibility: hidden;
+    }
+
+    /* Tooltip arrow */
+    .tooltip:after {
+      content: "";
+      position: absolute;
+      bottom: 75%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      opacity: 0;
+      transition: opacity .6s;
+      border-color: #062B45 transparent transparent transparent;
+      visibility: hidden;
+    }
+
+    .tooltip:hover:before,
+    .tooltip:hover:after {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+  <div>
+    8 提示
+  </div>
+  <div>
+    <h1>
+      HTML/CSS tooltip
+    </h1>
+
+    <p>
+      Hover <span class="tooltip" data-tooltip="Tooltip Content">Here</span> to see the tooltip.
+    </p>
+
+    <p>
+      You can also hover <span class="tooltip" data-tooltip="This is another Tooltip Content">here</span> to see another
+      example.
+    </p>
+  </div>
+  <style>
+    /* 9 滚动快照  */
+    /* 滚动条样式 */
+    .wrapper1::-webkit-scrollbar-track {
+      border-radius: 3px;
+      background-color: transparent;
+    }
+
+    .wrapper1::-webkit-scrollbar {
+      width: 12px;
+      background-color: #eff1f5;
+    }
+
+    .wrapper1::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #515769;
+      border: 2px solid #eff1f5
+    }
+
+    .wrapper1 {
+      height: 100vh;
+      overflow: auto;
+      scroll-snap-type: y mandatory;
+    }
+
+    .section {
+      scroll-snap-align: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #de5448;
+      color: #fff;
+      font-size: 3em;
+    }
+
+    .bg-blue {
+      background: #4267b2;
+    }
+
+    .bg-green {
+      background: #4CAF50;
+    }
+  </style>
+  <div>
+    9 滚动快照
+  </div>
+  <div class="wrapper1">
+    <div class="section">
+      Content 1
+    </div>
+
+    <div class="section bg-blue">
+      Content 2
+    </div>
+
+    <div class="section bg-green">
+      Content 3
+    </div>
+
+    <div class="section">
+      Content 4
+    </div>
+
+    <div class="section bg-blue">
+      Content 5
+    </div>
+  </div>
+  <style>
+    .section1 {
+      font-size: 1.4em;
+      letter-spacing: 0.05em;
+      line-height: 1.5em;
+    }
+
+    .section1 h2,
+    .section1 h3 {
+      text-align: center;
+      margin: 0;
+      font-weight: normal;
+    }
+
+    .section__header {
+      position: sticky;
+      top: 0;
+      padding: 1em;
+      color: #a99160;
+      background: #171717;
+    }
+
+    .section__content {
+      padding: 1em;
+      display: flex;
+      justify-content: center;
+    }
+
+    .section__content>div {
+      max-width: 992px;
+    }
+  </style>
+  <div>
+    10 吸顶
+  </div>
+  <div>
+    <section class="section1">
+      <div class="section__header">
+        <h2>
+          Section #1 Header
+        </h2>
+      </div>
+
+      <div class="section__content">
+        <div>
+          <h3>
+            Section #1
+          </h3>
+
+          <p>
+            The element is positioned according to the normal flow of the document, and then offset relative to its
+            nearest scrolling ancestor and containing block (nearest block-level ancestor), including table-related
+            elements, based on the values of top, right, bottom, and left. The offset does not affect the position of
+            any other elements.
+          </p>
+
+          <p>
+            This value always creates a new stacking context. Note that a sticky element "sticks" to its nearest
+            ancestor that has a "scrolling mechanism" (created when overflow is hidden, scroll, auto, or overlay), even
+            if that ancestor isn't the nearest actually scrolling ancestor. This effectively inhibits any "sticky"
+            behavior (see the Github issue on W3C CSSWG).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section1">
+      <div class="section__header">
+        <h2>
+          Section #2 Header
+        </h2>
+      </div>
+
+      <div class="section__content">
+        <div>
+          <h3>
+            Section #2
+          </h3>
+
+          <p>
+            The element is positioned according to the normal flow of the document, and then offset relative to its
+            nearest scrolling ancestor and containing block (nearest block-level ancestor), including table-related
+            elements, based on the values of top, right, bottom, and left. The offset does not affect the position of
+            any other elements.
+          </p>
+
+          <p>
+            This value always creates a new stacking context. Note that a sticky element "sticks" to its nearest
+            ancestor that has a "scrolling mechanism" (created when overflow is hidden, scroll, auto, or overlay), even
+            if that ancestor isn't the nearest actually scrolling ancestor. This effectively inhibits any "sticky"
+            behavior (see the Github issue on W3C CSSWG).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section1">
+      <div class="section__header">
+        <h2>
+          Section #3 Header
+        </h2>
+      </div>
+
+      <div class="section__content">
+        <div>
+          <h3>
+            Section #3
+          </h3>
+
+          <p>
+            The element is positioned according to the normal flow of the document, and then offset relative to its
+            nearest scrolling ancestor and containing block (nearest block-level ancestor), including table-related
+            elements, based on the values of top, right, bottom, and left. The offset does not affect the position of
+            any other elements.
+          </p>
+
+          <p>
+            This value always creates a new stacking context. Note that a sticky element "sticks" to its nearest
+            ancestor that has a "scrolling mechanism" (created when overflow is hidden, scroll, auto, or overlay), even
+            if that ancestor isn't the nearest actually scrolling ancestor. This effectively inhibits any "sticky"
+            behavior (see the Github issue on W3C CSSWG).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section1">
+      <div class="section__header">
+        <h2>
+          Section #4 Header
+        </h2>
+      </div>
+
+      <div class="section__content">
+        <div>
+          <h3>
+            Section #4
+          </h3>
+
+          <p>
+            The element is positioned according to the normal flow of the document, and then offset relative to its
+            nearest scrolling ancestor and containing block (nearest block-level ancestor), including table-related
+            elements, based on the values of top, right, bottom, and left. The offset does not affect the position of
+            any other elements.
+          </p>
+
+          <p>
+            This value always creates a new stacking context. Note that a sticky element "sticks" to its nearest
+            ancestor that has a "scrolling mechanism" (created when overflow is hidden, scroll, auto, or overlay), even
+            if that ancestor isn't the nearest actually scrolling ancestor. This effectively inhibits any "sticky"
+            behavior (see the Github issue on W3C CSSWG).
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <style>
+    .h1 {
+      background: blue url('https://picsum.photos/id/1015/200/300');
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-top: 20px;
+      font-size: 120px;
+    }
+  </style>
+  <div>
+    11 图片背景文字
+  </div>
+  <div>
+    <h1 class="h1">CSS IS AWESOME</h1>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="requestFullScreen(this)"> 全屏 </button>
+  <script>
+    /**
+     * 打开全屏
+     * @param {Element} element 全屏的元素
+     */
+    function requestFullScreen(element) {
+      // 判断各种浏览器，找到正确的方法
+      const requestMethod = element.requestFullScreen || // W3C
+        element.webkitRequestFullScreen || // FireFox
+        element.mozRequestFullScreen || // Chrome等
+        element.msRequestFullScreen // IE11
+      if (requestMethod) {
+        requestMethod.call(element)
+      } else if (typeof window.ActiveXObject !== 'undefined') { // for Internet Explorer
+        var wscript = new window.ActiveXObject('WScript.Shell')
+        if (wscript !== null) {
+          wscript.SendKeys('{F11}')
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

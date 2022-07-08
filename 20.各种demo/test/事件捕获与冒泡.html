@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="o">
+    外面的
+    <div id="i">
+      里面的
+    </div>
+  </div>
+  <!-- 捕获 -->
+  <script>
+    document.body.addEventListener("click", () => {
+      console.log("body");
+    }, true)
+    o.addEventListener("click", () => {
+      console.log("o");
+    }, true)
+    i.addEventListener("click", () => {
+      console.log("i");
+    }, true)
+  </script>
+  <!-- 冒泡 -->
+  <script>
+    document.body.addEventListener("click", () => {
+      console.log("body");
+    })
+    o.addEventListener("click", () => {
+      console.log("o");
+    })
+    i.addEventListener("click", () => {
+      console.log("i");
+    })
+  </script>
+</body>
+
+</html>

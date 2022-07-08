@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="progress"></div>
+
+  <script>
+    let i = 1;
+    // 使用settimeout 手动把任务赛道宏任务中去，这样页面不会卡住
+    function count() {
+      // 做繁重的任务的一部分 (*)
+      do {
+        i++;
+        progress.innerHTML = i;
+      } while (i % 1000 != 0);
+      if (i < 100000) {
+        requestAnimationFrame(() => {
+          console.log("111");
+        })
+        setTimeout(count);
+      }
+    }
+    count();
+
+    // 这个会阻塞浏览器加载哦
+    // window.onload = function () {
+    //   function count() {
+    //     for (let i = 0; i < 1000000; i++) {
+    //       i++;
+    //       progress.innerHTML = i;
+    //     }
+    //   }
+    //   阻塞浏览器渲染
+    //   // count();
+    //   // 挂起执行，不会阻塞浏览器渲染，但是会白屏
+    //   setTimeout(count);
+    // }
+  </script>
+</body>
+
+</html>

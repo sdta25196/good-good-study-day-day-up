@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    #elem {
+      user-select: none;
+    }
+  </style>
+  <div>以下文案不可选中 <div id="elem">Unselectable</div>
+  </div>
+  <script>
+    elem.onselectstart = () => false;
+  </script>
+  <!-- 
+    文档
+    https://zh.javascript.info/selection-range
+   -->
+
+
+  <!-- 这个是getSelection -->
+  <!-- <p id="p">Example: <i>italic</i> and <b>bold</b></p>
+
+  <script>
+    let range = new Range();
+
+    range.setStart(p, 0);
+    range.setEnd(p, 2);
+
+    // 范围的 toString 以文本形式返回其内容（不带标签）
+    alert(range); // Example: italic
+
+    // 将此范围应用于文档选择（后文有解释）
+    //清空用户选中
+    // document.getSelection().removeAllRanges();
+    range.setStart(p.firstChild, 2);
+    range.setEnd(p.querySelector('b').firstChild, 3);
+    document.getSelection().addRange(range);
+
+  </script> -->
+
+
+  <!-- Range 操作 -->
+  <!-- <p id="p">Example: <i>italic</i> and <b>bold</b></p>
+
+  <p id="result"></p>
+  <script>
+    let range = new Range();
+
+    // 下面演示了上述的每个方法：
+    let methods = {
+      deleteContents() {
+        range.deleteContents()
+      },
+      extractContents() {
+        let content = range.extractContents();
+        result.innerHTML = "";
+        result.append("extracted: ", content);
+      },
+      cloneContents() {
+        let content = range.cloneContents();
+        result.innerHTML = "";
+        result.append("cloned: ", content);
+      },
+      insertNode() {
+        let newNode = document.createElement('u');
+        newNode.innerHTML = "<br/>NEW NODE";
+        range.insertNode(newNode);
+      },
+      surroundContents() {
+        let newNode = document.createElement('u');
+        try {
+          range.surroundContents(newNode);
+        } catch (e) { alert(e) }
+      },
+      resetExample() {
+        p.innerHTML = `Example: <i>italic</i> and <b>bold</b>`;
+        result.innerHTML = "";
+
+        range.setStart(p.firstChild, 2);
+        range.setEnd(p.querySelector('b').firstChild, 3);
+
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+      }
+    };
+
+    for (let method in methods) {
+      document.write(`<div><button onclick="methods.${method}()">${method}</button></div>`);
+    }
+
+    methods.resetExample();
+  </script> -->
+  <!-- 
+  <p id="p">Select me: <i>italic</i> and <b>bold</b></p>
+
+  From <input id="from" disabled> – To <input id="to" disabled>
+  <script>
+    document.onselectionchange = function () {
+      let { anchorNode, anchorOffset, focusNode, focusOffset } = document.getSelection();
+
+      from.value = `${anchorNode && anchorNode.data}:${anchorOffset}`;
+      to.value = `${focusNode && focusNode.data}:${focusOffset}`;
+    };
+  </script> -->
+  <p id="p">Select me: <i>italic</i> and <b>bold</b></p>
+
+  Cloned: <span id="cloned"></span>
+  <br>
+  As text: <span id="astext"></span>
+
+  <script>
+    document.onselectionchange = function () {
+      let selection = document.getSelection();
+
+      cloned.innerHTML = astext.innerHTML = "";
+
+      // 从范围复制 DOM 节点（这里我们支持多选）
+      for (let i = 0; i < selection.rangeCount; i++) {
+        cloned.append(selection.getRangeAt(i).cloneContents());
+      }
+
+      // 获取为文本形式
+      astext.innerHTML += selection;
+    };
+  </script>
+</body>
+
+</html>

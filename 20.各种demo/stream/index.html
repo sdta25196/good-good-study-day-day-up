@@ -1,0 +1,70 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Simple Stream Pump</title>
+</head>
+
+<body>
+  <h1>Simple Stream Pump</h1>
+  <p>The left tortoise is the original, the right one is created using a custom stream.</p>
+  <img src="tortoise.png" width="150" height="84" alt="Tortoise Original">
+  <img src="" width="150" height="84" alt="Tortoise Copy" id="target">
+  <script>
+    // 整个流程是网络请求数据流转换成为Response对象返回blob 使用URL.createObjectURL(blob) 得到一个url 
+    const image = document.getElementById('target');
+
+    // Fetch the original image
+    // fetch('./tortoise.png')
+    fetch('https://img4.eol.cn/e_images/material/fydd/sy/gkzxh1200.jpg')
+      // Retrieve its body as ReadableStream
+      .then(response => {
+        console.log("加载中...");
+        return response.body
+      })
+      .then(rs => {
+        const reader = rs.getReader();
+
+        return new ReadableStream({
+          async start(controller) {
+            while (true) {
+              const { done, value } = await reader.read();
+
+              console.log(done, value);
+              // When no more data needs to be consumed, break the reading
+              if (done) {
+                break;
+              }
+
+              // Enqueue the next data chunk into our target stream
+              controller.enqueue(value);
+            }
+
+            // Close the stream
+            controller.close();
+            reader.releaseLock();
+          }
+        })
+      })
+      // Create a new response out of the stream
+      .then(rs => new Response(rs))
+      // Create an object URL for the response
+      .then(response => response.blob())
+      .then(blob => {
+        console.log(URL.createObjectURL(blob));
+        return URL.createObjectURL(blob)
+      })
+      // Update image
+      .then(url => image.src = url)
+      .catch((e) => {
+        console.log(e)
+      });
+  </script>
+
+
+</body>
+
+</html>

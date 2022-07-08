@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    console.log(12312312);
+    queueMicrotask(() => {
+      console.log(123)
+    })
+    console.log(12312312);
+  </script>
+  <script>
+    console.log(444412312312);
+    queueMicrotask(() => {
+      console.log(44123)
+    })
+    console.log(444412312312);
+  </script>
+</body>
+
+</html>

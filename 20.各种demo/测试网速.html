@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+  <title>js实现的网速测试方法</title>
+</head>
+
+<body>
+  <script>
+    function networkSpeed(fn) {
+      var startTime, endTime, fileSize;
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 2) {
+          startTime = Date.now();
+        }
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          endTime = Date.now();
+          console.log(xhr);
+          fileSize = xhr.responseText.length;
+          console.log(fileSize);
+          var speed = fileSize / ((endTime - startTime) / 1000) / 1024;
+          fn && fn(Math.floor(speed))
+        }
+      }
+      xhr.open("GET", "https://img4.eol.cn/e_images/material/fydd/sy/zyjd1200.jpg?id=" + Math.random(), true);
+      xhr.send();
+    }
+
+    networkSpeed((speed) => {
+      document.write("<div id='div1'> 当前网速：" + speed + " KB/s</div>");
+      console.log(speed + " KB/s");  //215 KB/sec
+    })
+  </script>
+</body>
+
+</html>
