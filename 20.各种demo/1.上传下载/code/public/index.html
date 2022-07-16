@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function downloadFile() {
+      axios({
+        url: 'http://localhost:9999/download',
+        method: 'get',
+        responseType: 'blob'
+      }).then(function (response) {
+        // 将响应回来的数据下载为文件，固定代码
+        // 将响应数据处理为Blob类型
+        var blob = new Blob([response.data]);
+        // 创建一个URL对象
+        var url = window.URL.createObjectURL(blob);
+        // 创建一个a标签
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "2.png";// 这里指定下载文件的文件名
+        // a.download = "hello.txt";// 这里指定下载文件的文件名
+        a.click();
+        // 释放之前创建的URL对象
+        window.URL.revokeObjectURL(url);
+      }).catch(function (reason) {
+        console.log(reason)
+      })
+    }
+  </script>
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="./xxx.doc">a标签直接下载</a>
+
+  <button onclick="downloadFile()">请求下载</button>
+
+  <form action='http://localhost:9999/download' method="GET">
+    <button type="submit">表单请求行下载</button>
+  </form>
+
+  <button onclick='window.open("http://localhost:9999/download")'>window.open打开下载</button>
+</body>
+
+</html>
