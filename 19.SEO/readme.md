@@ -22,6 +22,7 @@
 
 5. 准备被索引：如果满足所有条件，页面可能有资格被索引并显示在搜索结果中。
 
+
 ## 状态码对SEO的影响
 
 ### 3x
@@ -230,7 +231,7 @@ https://blog.example.com/dresses/green-dresses-are-awesome/3245/（原始博文�
   * 使用favicon
   * 层级尽可能保持在3位以内
   * 不基于参数：使用参数来构建 URL 通常不是一个好主意，尽量使用静态网址，但是在保存语义的时候请选择使用动态网址
-    > ![动态网址和静态网址](https://developers.google.com/search/blog/2008/09/dynamic-urls-vs-static-urls)
+    > [google关于动态网址和静态网址](https://developers.google.com/search/blog/2008/09/dynamic-urls-vs-static-urls)
 
 
 不建议
@@ -238,13 +239,29 @@ https://blog.example.com/dresses/green-dresses-are-awesome/3245/（原始博文�
   * 不要使用下划线 (_)，爬虫不识别下划线作为单词的分隔符 `https://www.example.com/green_dress`
   * 不要把单词链接在一起 `https://www.example.com/greendress`
 
+
+
+[百度的建议如下：](https://ziyuan.baidu.com/college/courseinfo?id=1394&page=2)
+
+url结构很重要
+* url结构规律化：同一个网页有不同url，会造成多个url同时被用户推荐导致权值分散；同时百度最终选择展现的那个url不一定符合你的预期。站点应该尽量不把sessionid和统计代码等不必要的内容放在url，如果一定要这样做可以通过robots禁止百度抓取这些非规范url
+* 最好能让用户从url即可判断出网页内容，便于蜘蛛解析的同时便于用户间传播
+* url尽量短
+  * 蜘蛛喜欢：http://tieba.baidu.com.com/f?kw=百度
+  * 蜘蛛不喜欢：http://tieba.baidu.com/f?ct=&tn=&rn=&ln=&cn=0&kw=百度&rs2=&un=&rs1=&rs5=&sn=&rs6=&nvselectvalue=0&oword=百度&tb=cn
+* 不要添加蜘蛛难以解析的字符，如
+  * http://mp3.XXX.com/albumlist/234254;;;;;;;%B9&CE%EDWF%.html
+  * http://news.xxx.com/1233,242,111,0.shtml
+* 动态参数不要太多太复杂，目前百度对动态url已经有了很好的处理，但是参数过多过复杂的url有可能被蜘蛛认为不重要而抛弃
+
+
 1. 避免使用干扰性插页式广告和对话框
 
 2. 浏览器兼容性
 
 在不兼容的浏览器中需要添加指导性的页面
 
-5. 避免常见重复内容
+4. 避免常见重复内容
 
 重复内容通常是指网域内或网域间与使用同一种语言的其他内容完全匹配或大致类似的有一定体量的内容
 
@@ -253,11 +270,11 @@ https://blog.example.com/dresses/green-dresses-are-awesome/3245/（原始博文�
 
 **联合供稿的解决方案**：如果您以联合供稿方式在其他网站上显示您的内容，那么，在每次相关搜索中，爬虫都会始终显示他认为最适合用户的版本，这有可能是您的首选版本，也有可能不是。不过，建议您确保以联合供稿形式展示内容的每个网站都包含一个指回原始文章的链接。您也可要求其他网站的所有者对包含您的联合供稿内容的网页使用 noindex 标记，从而阻止搜索引擎将他们的内容版本编入索引。
 
-6. 在`<head>`中只使用有效的标签
+5. 在`<head>`中只使用有效的标签
 
 `<head><div>在head中使用div就是不对的</div></head>`
 
-7. a标签
+6. a标签
 
 * 向爬虫说明您的网站与链接页之间的关系
 
@@ -331,9 +348,6 @@ a标签应当使用在内容中，而不是页眉，页脚等地方
 
 
 
-
-
-
 ## 关键词挖掘
 
 * 去网站受众常去的论坛、资讯等地方，收集常出现的术语、话题，这些很可能会成为他们进行搜索的关键词
@@ -359,6 +373,20 @@ a标签应当使用在内容中，而不是页眉，页脚等地方
     > `/school/102`和`/school?id=102`实际上后者招爬虫喜爱，此时无需配合规范标签使用
     > SEO最喜欢的是：在保证语义的情况下尽量简短
     > URL权重：语义>参数>长度。 
+    > 落地页页面示例： https://www.zhihu.com/people/tie-mu-jun-58
+    > 落地页页面示例： https://www.zhihu.com/question/472798741
+    > 落地页页面示例： https://www.36kr.com/p/1858460067485314
+    > 落地页页面示例： https://www.36kr.com/newsflashes/1860674508134021 
+    > 百度搜索示例： https://ziyuan.baidu.com/college/courseinfo?id=1394
+    > 百度统计示例： https://tongji.baidu.com/main/overview/10000058728/overview/index?siteId=15325680
+    > 落地页页面示例： https://detail.tmall.com/item.htm?id=671853630330&ali_refid=a3_430582_1006:1251480150:N:rpE3ZjAG6mphNqXLgvRjiA==:e0487487399a47ff6e317b4fe81cb353&ali_trackid=1_e0487487399a47ff6e317b4fe81cb353&spm=a230r.1.14.6
+    > 落地页页面示例： https://item.jd.com/10031221800227.html
+    > 落地页页面示例： http://product.dangdang.com/29425922.html
+    > 分tab示例： http://fankui.help.sogou.com/index.php/web/web/index?type=5
+    > 筛选条件示例： http://search.dangdang.com/?key3=%BD%AD%CB%D5%B7%EF%BB%CB%CE%C4%D2%D5%B3%F6%B0%E6%C9%E7&medium=01&category_path=01.01.14.00.00.00#J_tab
+    > 筛选条件示例： https://search.jd.com/search?keyword=%E7%AC%94%E8%AE%B0%E6%9C%AC&wq=%E7%AC%94%E8%AE%B0%E6%9C%AC&cid3=1105
+    > 使用伪静态路由，主要是考虑用户体验方面
+
 * 截止2022年，谷歌目前最新的算法总结一句话：您让谷歌的用户越开心，您的排名就越高。
   > 用户体验至上，性能、视觉、交互
   > 自然点击率决定了排名的大部分，研究表明用户更更能点击包含数字的结果，例如`2022年大学生就业数据`，`19条SEO的黄金法则`，`3年后房价预测`。好的标题，好的简介带来更好的点击率
@@ -371,17 +399,19 @@ a标签应当使用在内容中，而不是页眉，页脚等地方
 * 优化排名靠后的页面、优化点击率
 * 设置的关键词需要在内容中多次出现
 * 某些时候：使用h1标签，会被当做标题抓取，h2标签会被当做副标题
-
-
+* [百度爬虫UA](https://ziyuan.baidu.com/college/articleinfo?id=1002)
+* [搜狗站长指南](http://help.sogou.com/guide.html#3)
 # seo核心点
 
 * 重定向方案
 * meta标签
 * a标签
   * 链接
-  * 反链 - 
+  * 反链
 * 国际化
 * 页面内容
+  * 质量
+  * 更新周期
 * robots.txt \ sitemap
 * 运营，推广
 * 排名优化
