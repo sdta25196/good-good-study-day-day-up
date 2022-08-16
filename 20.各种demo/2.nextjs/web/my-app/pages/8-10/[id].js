@@ -1,5 +1,4 @@
 function X(props) {
-  console.log(props)
   return (
     <div>
       sadasdasdasd
