@@ -61,6 +61,8 @@ A：如果您将revalidate时间设置为60，所有访问者将在一分钟内�
 `https://<your-site.com>/api/revalidate?secret=<token>`
 
 
+api下写一个接口revalidate。然后去触发这个接口即可
+
 
 # 备注
 
@@ -70,8 +72,7 @@ getStaticProps不能使用`__dirname`，只能使用`process.cwd()`
 
 Q: 服务器使用打包后的产物
 
-next打包的产物需要用next去跑它 所以需要装一个全局next，这样就能单独跑.next目录
-
+需要源码 + 打包后文件都放到服务器里
 
 Q: SSG生产的文件怎么上CDN？
 
