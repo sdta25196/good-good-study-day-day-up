@@ -23,7 +23,7 @@ export default function Home({ a }) {
         <a>About Us</a>
       </Link>
       <div>
-        试试水
+        试试水{a}
       </div>
 
       <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
