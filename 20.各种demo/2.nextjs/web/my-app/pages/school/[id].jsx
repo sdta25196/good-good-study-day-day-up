@@ -17,7 +17,8 @@ export const getStaticProps = async (
   context
 ) => {
   const { id } = context.params
-  const postData = await (await fetch('http://localhost:9996/' + id)).json()
+  // const postData = await (await fetch('http://localhost:9996/' + id)).json()
+  const postData = { s: id }
   console.log(postData)
   return {
     props: {
@@ -26,8 +27,6 @@ export const getStaticProps = async (
     // revalidate: 10,
   }
 }
-
-
 
 function App({ postData }) {
   return (
