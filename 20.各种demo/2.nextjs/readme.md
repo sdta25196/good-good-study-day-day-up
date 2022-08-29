@@ -60,8 +60,55 @@ A：如果您将revalidate时间设置为60，所有访问者将在一分钟内�
 
 `https://<your-site.com>/api/revalidate?secret=<token>`
 
-
 api下写一个接口revalidate。然后去触发这个接口即可
+
+使用revalidate.js来验证token,触发加载
+
+```js
+// api/revalidate.js
+
+export default async function handler(req, res) {
+  // Check for secret to confirm this is a valid request
+  if (req.query.secret !== process.env.MY_SECRET_TOKEN) {
+    return res.status(401).json({ message: 'Invalid token' })
+  }
+
+  try {
+    // this should be the actual path not a rewritten path
+    // e.g. for "/blog/[slug]" this should be "/blog/post-1"
+    await res.revalidate(req.query.path)
+    return res.json({ revalidated: true })
+  } catch (err) {
+    // If there was an error, Next.js will continue
+    // to show the last successfully generated page
+    return res.status(500).send('Error revalidating')
+  }
+}
+```
+
+调用脚本revalidate.sh即可实现批量按需更新
+
+```sh
+// revalidate.sh
+
+curl "http://localhost:3000/api/revalidate?secret=eol&path=/school/1"
+curl "http://localhost:3000/api/revalidate?secret=eol&path=/school/2"
+curl "http://localhost:3000/api/revalidate?secret=eol&path=/school/3"
+curl "http://localhost:3000/api/revalidate?secret=eol&path=/school/4"
+curl "http://localhost:3000/api/revalidate?secret=eol&path=/school/5"
+
+```
+
+或者写node脚本也行
+
+```js
+// revalidate.js, 需要安装node-fetch, 再加上参数处理即可
+
+for (let i = 1; i < 10; i++) {
+  require('node-fetch')("http://localhost:3000/api/revalidate?secret=eol&path=/school/" + i)
+}
+
+```
 
 
 # 备注
@@ -88,6 +135,7 @@ Q: 如何部署？
 新建`server.js` , 使用 `pm2 start server.js`
 
 ```js
+// server.js
 const cmd=require('node-cmd'); 
 cmd.run('yarn start');
 ```

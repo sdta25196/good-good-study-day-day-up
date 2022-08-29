@@ -17,12 +17,13 @@ export const getStaticProps = async (
   context
 ) => {
   const { id } = context.params
-  const postData = await (await fetch('http://localhost:9996/aa')).json()
+  const postData = await (await fetch('http://localhost:9996/' + id)).json()
+  console.log(postData)
   return {
     props: {
-      postData,
+      postData: postData.s,
     },
-    revalidate: 10,
+    // revalidate: 10,
   }
 }
 
@@ -39,7 +40,7 @@ function App({ postData }) {
         这是第4次更新了
       </div>
       <div>
-        这是第5次更新了
+        这是第5次更新了6666
       </div>
     </div>
   )
