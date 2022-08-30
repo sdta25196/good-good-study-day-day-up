@@ -1,4 +1,4 @@
-
+import Link from 'next/link'
 
 export const getStaticPaths = async () => {
   return {
@@ -31,6 +31,20 @@ export const getStaticProps = async (
 function App({ postData }) {
   return (
     <div>
+      <a href='/school/1'>去1</a>
+      <a href='/school/2'>去2</a>
+      <a href='/school/3'>去3</a>
+      <a href='/school/4'>去4</a>
+      <a href='/school/5'>去5</a>
+      <Link href='/school/1'>
+        <a>link去1</a>
+      </Link>
+      <Link href='/school/2'>
+        <a>link去2</a>
+      </Link>
+      <Link href='/school/3'>
+        <a>link去3</a>
+      </Link>
       哈哈哈哈哈{postData}这个是第二次更新哦
       <div>
         这是第三次更新了
