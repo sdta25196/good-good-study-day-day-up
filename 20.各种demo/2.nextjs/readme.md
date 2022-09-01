@@ -110,6 +110,9 @@ for (let i = 1; i < 10; i++) {
 
 ```
 
+# next添加sitemap和robots
+
+[next添加sitemap和robots](https://linguinecode.com/post/add-robots-txt-file-sitemaps-nextjs)
 
 # 备注
 
