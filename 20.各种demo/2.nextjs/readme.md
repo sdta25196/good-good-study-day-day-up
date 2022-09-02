@@ -6,7 +6,6 @@
 
 使用getServerSideProps   
 
-
 ## SSG
 
 使用getStaticPaths、getStaticProps
