@@ -1,12 +1,12 @@
-# CSR 
+# CSR - client side rendering
 
 使用useEffect
 
-# SSR
+# SSR - server side rendering
 
 使用getServerSideProps   
 
-## SSG
+## SSG - Static Site Generation
 
 使用getStaticPaths、getStaticProps
 
@@ -39,7 +39,7 @@ notFound为true时，将会渲染404页面
   }
 ```
 
-## ISR
+## ISR - Incremental Static Regeneration
 
 > getStaticProps 配合 revalidate(秒) 控制更新静态页面
 
