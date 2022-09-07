@@ -215,7 +215,7 @@ https://blog.example.com/dresses/green-dresses-are-awesome/3245/（原始博文�
 
 `<h1>h1标签被认为是最重要的标签，建议每个页面中都要使用</h1>`
 
-`main`、`nav`、`aside`等等，详情查看![html5语义化标签](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element)
+`main`、`nav`、`aside`等等，详情查看[html5语义化标签](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element)
 
 
 **反链**

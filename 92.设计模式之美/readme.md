@@ -30,9 +30,11 @@ KISS 原则：“Keep It Simple，Stupid”
 
 **思从深而行从简**
 
-## 可复用性
+## 可复用性 （Code Reusability）
 
 DRY（Don’t Repeat Yourself）
+
+DRY中的重复，通常分为逻辑重复、语义重复、代码执行重复，其中要注意的是逻辑重复在语义不重复的情况下，并不能算是违背DRY原则
 
 ## 可测试性
 
@@ -144,4 +146,9 @@ MVC 三层架构中的 M 表示 Model，V 表示 View，C 表示 Controller。�
 
 MVC 三层开发架构是一个比较笼统的分层方式，落实到具体的开发层面，很多项目也并不会 100% 遵从 MVC 固定的分层方式，而是会根据具体的项目需求，做适当的调整。
 
+
+
+## 抽象
+
+函数命名也要抽象，getBaiduMap 和 getMap 后者抽象程度更高，适用的场景也更多
 

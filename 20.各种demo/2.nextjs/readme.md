@@ -1,13 +1,12 @@
-# CSR 
+# CSR - client side rendering
 
 使用useEffect
 
-# SSR
+# SSR - server side rendering
 
 使用getServerSideProps   
 
-
-## SSG
+## SSG - Static Site Generation
 
 使用getStaticPaths、getStaticProps
 
@@ -40,7 +39,7 @@ notFound为true时，将会渲染404页面
   }
 ```
 
-## ISR
+## ISR - Incremental Static Regeneration
 
 > getStaticProps 配合 revalidate(秒) 控制更新静态页面
 
@@ -110,6 +109,9 @@ for (let i = 1; i < 10; i++) {
 
 ```
 
+# next添加sitemap和robots
+
+[next添加sitemap和robots](https://linguinecode.com/post/add-robots-txt-file-sitemaps-nextjs)
 
 # 备注
 
