@@ -1,7 +1,7 @@
 extern crate wasm_bindgen;
-
 mod utils;
 
+use std::fmt;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -10,30 +10,53 @@ use wasm_bindgen::prelude::*;
 pub enum Cell {
     Dead = 0,
     Alive = 1,
-}
+} // 每个格子的生命
 
 #[wasm_bindgen]
 pub struct Universe {
-    width: u32,
-    height: u32,
-    cells: Vec<Cell>,
+    width: u32,       // 宇宙宽
+    height: u32,      // 宇宙高
+    cells: Vec<Cell>, // 每个格子的状态
+}
+
+impl fmt::Display for Universe {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        for line in self.cells.as_slice().chunks(self.width as usize) {
+            for &cell in line {
+                let symbol = if cell == Cell::Dead { '◻' } else { '◼' };
+                write!(f, "{}", symbol)?;
+            }
+            write!(f, "\n")?;
+        }
+
+        Ok(())
+    }
 }
 
 impl Universe {
+    // 把行、列对应的格子，转换成索引，从0行0列开始，宽度从1开始计算
     fn get_index(&self, row: u32, column: u32) -> usize {
+        /*
+        |0|1|2|
+        |3|4|5| // 第二行第一列是3
+        */
         (row * self.width + column) as usize
     }
 
+    // 计算附近活着的邻居
     fn live_neighbor_count(&self, row: u32, column: u32) -> u8 {
         let mut count = 0;
+        // 循环行
         for delta_row in [self.height - 1, 0, 1].iter().cloned() {
+            // 循环列
             for delta_col in [self.width - 1, 0, 1].iter().cloned() {
                 if delta_row == 0 && delta_col == 0 {
-                    continue;
+                    continue; // 过滤掉当前格子，只看八个邻居
                 }
-
+                // （行+高度所在的下标） % 高度 得到上一行。  行 % 高度得到当前行 。 （行+1） %高度得到下一行
                 let neighbor_row = (row + delta_row) % self.height;
                 let neighbor_col = (column + delta_col) % self.width;
+                // 获取邻居们的存活状态
                 let idx = self.get_index(neighbor_row, neighbor_col);
                 count += self.cells[idx] as u8;
             }
@@ -42,9 +65,10 @@ impl Universe {
     }
 }
 
-/// Public methods, exported to JavaScript.
+// 暴漏给JS的方法
 #[wasm_bindgen]
 impl Universe {
+    // 控制下一步计算
     pub fn tick(&mut self) {
         let mut next = self.cells.clone();
 
@@ -70,10 +94,36 @@ impl Universe {
                     // All other cells remain in the same state.
                     (otherwise, _) => otherwise,
                 };
-
                 next[idx] = next_cell;
             }
         }
         self.cells = next;
+    }
+
+    // 创建宇宙
+    pub fn new(x: Vec<u32>) -> Universe {
+        let width = x[0];
+        let height = x[1];
+
+        let cells = (0..width * height)
+            .map(|i| {
+                if i % 2 == 0 || i % 5 == 0 {
+                    Cell::Alive
+                } else {
+                    Cell::Dead
+                }
+            })
+            .collect();
+
+        Universe {
+            width,
+            height,
+            cells,
+        }
+    }
+
+    // 渲染
+    pub fn render(&self) -> String {
+        self.to_string()
     }
 }
