@@ -1,3 +1,4 @@
+extern crate js_sys;
 extern crate wasm_bindgen;
 mod utils;
 
@@ -68,6 +69,18 @@ impl Universe {
 // 暴漏给JS的方法
 #[wasm_bindgen]
 impl Universe {
+    pub fn width(&self) -> u32 {
+        self.width
+    }
+
+    pub fn height(&self) -> u32 {
+        self.height
+    }
+
+    pub fn cells(&self) -> *const Cell {
+        self.cells.as_ptr()
+    }
+
     // 控制下一步计算
     pub fn tick(&mut self) {
         let mut next = self.cells.clone();
@@ -101,13 +114,13 @@ impl Universe {
     }
 
     // 创建宇宙
-    pub fn new(x: Vec<u32>) -> Universe {
-        let width = x[0];
-        let height = x[1];
+    pub unsafe fn new() -> Universe {
+        let width = 32;
+        let height = 32;
 
         let cells = (0..width * height)
-            .map(|i| {
-                if i % 2 == 0 || i % 5 == 0 {
+            .map(|_| {
+                if js_sys::Math::random() < 0.5 {
                     Cell::Alive
                 } else {
                     Cell::Dead
