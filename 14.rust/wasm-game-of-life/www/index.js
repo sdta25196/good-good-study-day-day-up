@@ -20,9 +20,9 @@ const renderLoop = () => {
   setTimeout(() => {
     universe.tick();
     drawGrid();
-    drawCells();
+    // drawCells();
     requestAnimationFrame(renderLoop);
-  }, 300)
+  }, 3000000)
 };
 
 const getIndex = (row, column) => {
@@ -49,7 +49,10 @@ const drawGrid = () => {
 
 const drawCells = () => {
   const cellsPtr = universe.cells();
+
+  console.log(cellsPtr, 666, memory.buffer)
   const cells = new Uint8Array(memory.buffer, cellsPtr, width * height);
+  console.log(cells)
 
   ctx.beginPath();
 

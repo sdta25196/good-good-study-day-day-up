@@ -1,3 +1,6 @@
+# 浏览器
+
+  默认兼容IE11
 # CSR - client side rendering
 
 使用useEffect
