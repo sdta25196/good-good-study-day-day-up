@@ -13,6 +13,15 @@ pub enum Cell {
     Alive = 1,
 } // 每个格子的生命
 
+impl Cell {
+    fn toggle(&mut self) {
+        *self = match *self {
+            Cell::Dead => Cell::Alive,
+            Cell::Alive => Cell::Dead,
+        };
+    }
+}
+
 #[wasm_bindgen]
 pub struct Universe {
     width: u32,       // 宇宙宽
@@ -44,24 +53,70 @@ impl Universe {
         (row * self.width + column) as usize
     }
 
-    // 计算附近活着的邻居
+    // 计算附近活着的邻居 1 循环计算 On2
+    // fn live_neighbor_count(&self, row: u32, column: u32) -> u8 {
+    //     let mut count = 0;
+    //     // 循环行
+    //     for delta_row in [self.height - 1, 0, 1].iter().cloned() {
+    //         // 循环列
+    //         for delta_col in [self.width - 1, 0, 1].iter().cloned() {
+    //             if delta_row == 0 && delta_col == 0 {
+    //                 continue; // 过滤掉当前格子，只看八个邻居
+    //             }
+    //             // （行+高度所在的下标） % 高度 得到上一行。  行 % 高度得到当前行 。 （行+1） %高度得到下一行
+    //             let neighbor_row = (row + delta_row) % self.height;
+    //             let neighbor_col = (column + delta_col) % self.width;
+    //             // 获取邻居们的存活状态
+    //             let idx = self.get_index(neighbor_row, neighbor_col);
+    //             count += self.cells[idx] as u8;
+    //         }
+    //     }
+    //     count
+    // }
+    // 计算附近活着的邻居 2 直接计算 O1
     fn live_neighbor_count(&self, row: u32, column: u32) -> u8 {
         let mut count = 0;
-        // 循环行
-        for delta_row in [self.height - 1, 0, 1].iter().cloned() {
-            // 循环列
-            for delta_col in [self.width - 1, 0, 1].iter().cloned() {
-                if delta_row == 0 && delta_col == 0 {
-                    continue; // 过滤掉当前格子，只看八个邻居
-                }
-                // （行+高度所在的下标） % 高度 得到上一行。  行 % 高度得到当前行 。 （行+1） %高度得到下一行
-                let neighbor_row = (row + delta_row) % self.height;
-                let neighbor_col = (column + delta_col) % self.width;
-                // 获取邻居们的存活状态
-                let idx = self.get_index(neighbor_row, neighbor_col);
-                count += self.cells[idx] as u8;
-            }
-        }
+
+        let north = if row == 0 { self.height - 1 } else { row - 1 };
+
+        let south = if row == self.height - 1 { 0 } else { row + 1 };
+
+        let west = if column == 0 {
+            self.width - 1
+        } else {
+            column - 1
+        };
+
+        let east = if column == self.width - 1 {
+            0
+        } else {
+            column + 1
+        };
+
+        let nw = self.get_index(north, west);
+        count += self.cells[nw] as u8;
+
+        let n = self.get_index(north, column);
+        count += self.cells[n] as u8;
+
+        let ne = self.get_index(north, east);
+        count += self.cells[ne] as u8;
+
+        let w = self.get_index(row, west);
+        count += self.cells[w] as u8;
+
+        let e = self.get_index(row, east);
+        count += self.cells[e] as u8;
+
+        let sw = self.get_index(south, west);
+        count += self.cells[sw] as u8;
+
+        let s = self.get_index(south, column);
+        count += self.cells[s] as u8;
+
+        let se = self.get_index(south, east);
+        count += self.cells[se] as u8;
+
         count
     }
 }
@@ -114,10 +169,7 @@ impl Universe {
     }
 
     // 创建宇宙
-    pub unsafe fn new() -> Universe {
-        let width = 32;
-        let height = 32;
-
+    pub unsafe fn new(width: u32, height: u32) -> Universe {
         let cells = (0..width * height)
             .map(|_| {
                 if js_sys::Math::random() < 0.5 {
@@ -135,8 +187,28 @@ impl Universe {
         }
     }
 
+    pub unsafe fn random_cell(&mut self) {
+        let cells = (0..self.width * self.height)
+            .map(|_| {
+                if js_sys::Math::random() < 0.5 {
+                    Cell::Alive
+                } else {
+                    Cell::Dead
+                }
+            })
+            .collect();
+
+        self.cells = cells
+    }
+
     // 渲染
     pub fn render(&self) -> String {
         self.to_string()
+    }
+
+    // 切换宇宙格子生命状态
+    pub fn toggle_cell(&mut self, row: u32, column: u32) {
+        let idx = self.get_index(row, column);
+        self.cells[idx].toggle();
     }
 }
