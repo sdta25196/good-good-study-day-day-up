@@ -1,9 +1,6 @@
-extern crate base64ct;
-extern crate sha2;
+extern crate md5;
 extern crate wasm_bindgen;
 
-use base64ct::Base64;
-use sha2::{Digest, Sha256};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -17,19 +14,13 @@ pub unsafe fn greet(name: &str) {
 }
 
 #[wasm_bindgen]
-pub fn encrypt(str: &str) -> String {
-    let mut hasher = Sha256::new();
-    hasher.update(str);
-    // Note that calling `finalize()` consumes hasher
-    let hash = hasher.finalize();
-
-    // write input message
-    hasher.update(str);
-
-    // read hash digest and consume hasher
-    let result = hasher.finalize();
-    // #[cfg(feature = "alloc")]
-    let base64_hash = Base64::encode_string(&result);
-
-    return base64_hash;
+pub fn kaka(str: &str) -> String {
+    let digest = md5::compute(str);
+    return format!("{:x}", digest);
 }
+
+// rust-crypto = "0.2.36"
+// sha2 = "0.10.6"
+// base64ct = "1.5.3"
+// base16ct = "0.1.1"
+// md5 = "0.7.0"

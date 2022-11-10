@@ -3,7 +3,8 @@
     "serve": "webpack-dev-server"
   },
   "dependencies": {
-    "@ty_valor/eee-wasm": "^0.1.0"
+    "@ty_valor/eee-wasm": "^0.1.0",
+    "md5": "^2.3.0"
   },
   "devDependencies": {
     "webpack": "^4.25.1",
