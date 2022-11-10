@@ -1,4 +1,4 @@
-const js = import("./node_modules/@ty_valor/eee-wasm/eee_wasm.js");
+const js = import("jia-mi-vaolor");
 js.then(js => {
-  js.greet("WebAssembly");
+  js.greet("66");
 })

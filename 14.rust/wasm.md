@@ -25,6 +25,14 @@ pub unsafe fn greet(name: &str) {
 
 ```
 
+## 打包wasm 
+
+需要在Cargo.toml中添加lib标签
+
+```rust
+[lib]
+crate-type = ["cdylib", "rlib"]
+```
 ## 测试wasm
 
 1. `wasm-pack build`
