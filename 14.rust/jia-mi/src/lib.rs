@@ -14,7 +14,7 @@ pub unsafe fn greet(name: &str) {
 }
 
 #[wasm_bindgen]
-pub fn kaka(str: &str) -> String {
+pub fn md5_encrypt(str: &str) -> String {
     let digest = md5::compute(str);
     return format!("{:x}", digest);
 }

@@ -6,7 +6,7 @@ js.then(js => {
   // js.greet("66");
   let a = `很溜啊，6666666666666666666666666`
   console.time('rust')
-  console.log(js.kaka(a))
+  console.log(js.md5_encrypt(a))
   console.timeEnd('rust')
   console.time('js')
   console.log(md5(a));
