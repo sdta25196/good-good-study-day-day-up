@@ -1,12 +1,14 @@
-# 浏览器
+# nextJs介绍
 
-  默认兼容IE11，最新版不兼容IE了。
+next是一个react框架，目前已经与react官方团队深度合作。
 
-# CSR - client side rendering
+此框架目前有四种渲染方式，csr、ssr、ssg、isr。
 
-使用useEffect
+## CSR - client side rendering
 
-# SSR - server side rendering
+在组件中直接使用useEffect即可
+
+## SSR - server side rendering
 
 使用getServerSideProps   
 
@@ -113,13 +115,44 @@ for (let i = 1; i < 10; i++) {
 
 ```
 
-# next添加sitemap和robots
+## next添加sitemap和robots
 
 [next添加sitemap和robots](https://linguinecode.com/post/add-robots-txt-file-sitemaps-nextjs)
 
+## 中间件
+
+与pages平级新建middleware.js, 导出middleware函数与config配置。此处示例为判断引擎为ie的时候，就跳转到ie路由下。以提示Ie的信息
+
+```js
+import { userAgent, NextResponse } from 'next/server'
+
+export function middleware(request) {
+  const url = request.nextUrl
+  const { device, engine } = userAgent(request)
+  const viewport = device.type === 'mobile' ? 'mobile' : 'desktop'
+  url.searchParams.set('viewport', viewport)
+  if (engine.name === 'Trident') {
+    return NextResponse.rewrite(new URL('/ie', request.url))
+  }
+  return NextResponse.rewrite(url)
+
+}
+
+// See "Matching Paths" below to learn more
+export const config = {
+  matcher: [
+    '/((?!api|_next/static|favicon.ico).*)',
+  ],
+}
+```
+
 # 备注
 
-getStaticProps不能使用`__dirname`，只能使用`process.cwd()`
+* getStaticProps不能使用`__dirname`，只能使用`process.cwd()`
+
+* 使用export导出静态文件的时候，不能使用Image组件。
+
+* 浏览器兼容性，目前之兼容高级浏览器了，不再兼容IE11
 
 # TodoList
 
