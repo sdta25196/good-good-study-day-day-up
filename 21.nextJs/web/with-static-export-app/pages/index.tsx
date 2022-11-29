@@ -3,7 +3,7 @@ import { GetStaticProps, NextPage } from 'next'
 import Post from '../components/post'
 import { PostData, PostDataListProps } from '../types/postdata'
 import { GetPosts } from '../lib/postdata_api'
-import Image from 'next/image'
+// import Image from 'next/image'
 
 export const getStaticProps: GetStaticProps = async (_context) => {
   // fetch list of posts
@@ -25,7 +25,7 @@ const IndexPage: NextPage<PostDataListProps> = ({
       </Head>
 
       <h1>List of posts</h1>
-      <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+      {/* <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} /> */}
 
       <section>
         {postDataList.map((post: PostData) => (

@@ -48,7 +48,7 @@ const Post: NextPage<PostDataProps> = ({ postData }: PostDataProps) => {
       <p>{postData.body}</p>
 
       <Link href="/">
-        <a>Go back to home</a>
+       Go back to home
       </Link>
     </main>
   )
