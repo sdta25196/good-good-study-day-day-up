@@ -1,6 +1,7 @@
 # 浏览器
 
-  默认兼容IE11
+  默认兼容IE11，最新版不兼容IE了。
+
 # CSR - client side rendering
 
 使用useEffect
@@ -149,8 +150,3 @@ cmd.run('yarn start');
 Q: 部署后如何不停机更新版本？
 
 * pm2守护进程，在build脚本完成之后，直接进行重启`pm2 reload [id]`
-
-
-
-
-
