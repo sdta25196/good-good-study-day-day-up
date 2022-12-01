@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
+import { useEffect } from 'react'
 
 
 export async function getStaticProps(context) {
@@ -11,6 +12,13 @@ export async function getStaticProps(context) {
 }
 
 export default function Home({ a }) {
+  useEffect(() => {
+    const myCity = new window.BMap.LocalCity();
+    myCity.get(function (result) {
+      console.log(result)
+      document.querySelector(".local").innerHTML = result.name
+    });
+  }, [])
   return (
     <div className={styles.container}>
       <Head>
@@ -24,6 +32,7 @@ export default function Home({ a }) {
       </Link>
       <div>
         试试水{a}
+        <div className="local"></div>
       </div>
 
       <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
