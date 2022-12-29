@@ -6,16 +6,938 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script type="text/javascript" src="node_modules/accessibility/dist/main.bundle.js"></script>
-  <script>
-    window.addEventListener('load', function () { new Accessibility(); }, false);
-  </script>
+  <style>
+    #BigText {
+      position: fixed;
+      top: 0;
+      height: 100px;
+      background-color: red;
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body>
   <div>
     45456
   </div>
+  <div id="root">
+    <div class="container">
+      <div class="container">
+        <div class="container">
+          <div class="container">
+            <div class="home_index_wrap">
+              <div class="top_image_header_wrap"></div>
+              <div class="header_wrap clearfix">
+                <div class="lmzHeader">
+                  <div class="zyxheard">
+                    <div class="float_l"><img class="head_logo head_logo1" src="/static/media/head_logo1.133254dc.png"
+                        alt=""><span class="logo_line"></span><img class="head_logo head_logo2"
+                        src="data:image/jpeg;base64,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"
+                        alt=""></div>
+                    <div class="head_searchIpt_wrap clearfix float_l">
+                      <div class="search_box"><input id="headsearch" class="search_ipt head_h_search"
+                          placeholder="查大学、查专业、查资讯" maxlength="100" autocomplete="off" value=""><button
+                          class="search_icon">搜索</button></div>
+                    </div>
+                    <div class="nologin float_r cancle_select_bg">登录/注册</div>
+                    <div class="changecity float_r">
+                      <p class="changecity am_l set_hoverl"
+                        style="float: right; font-size: 16px; font-weight: normal; margin-left: 14px; color: rgb(153, 153, 153); cursor: pointer;">
+                        [切换]</p>
+                      <div class="sf">济南市</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="zyx-main-nav">
+                  <div class="center mainnav_center">
+                    <ul class="mainnav-ul clearfix">
+                      <li class="nav-li navUrlActive" style="margin: 0px 26px;">首页</li>
+                      <li class="nav-li set_hoverl" style="margin: 0px 30px;"><span class="bzy_item">模拟报志愿</span></li>
+                      <li class="nav-li set_hoverl" style="margin: 0px 26px;">查学校</li>
+                      <li class="nav-li set_hoverl" style="margin: 0px 26px;">查专业</li>
+                      <li class="nav-li set_hoverl" style="margin: 0px 26px;">智能选大学</li>
+                      <li class="nav-li set_hoverl" style="margin: 0px 26px;">高职单招</li>
+                      <li class="nav-li set_hoverl" style="margin: 0px 26px;">高考知道</li>
+                      <li class="nav-li set_hoverl" style="margin: 0px 26px;">高考工具箱</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="dialog_package" id="dialog_package">
+                  <div>
+                    <div>
+                      <div class="ant-modal-mask ant-modal-mask-hidden"></div>
+                      <div tabindex="-1" class="ant-modal-wrap ant-modal-centered cus-modal-wrapper" role="dialog"
+                        style="display: none;"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <div class="ant-modal-mask ant-modal-mask-hidden"></div>
+                      <div tabindex="-1" class="ant-modal-wrap ant-modal-centered cus-modal-wrapper" role="dialog"
+                        style="display: none;"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <div class="ant-modal-mask ant-modal-mask-hidden"></div>
+                      <div tabindex="-1" class="ant-modal-wrap ant-modal-centered" role="dialog" style="display: none;">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dialog_package" id="dialog_package"></div>
+                <div class="dialog_package" id="dialog_package"></div>
+              </div>
+              <div class="main home_wrap">
+                <div class="header_swiper">
+                  <div id="certify">
+                    <div class="swiper-container swiper-container-horizontal">
+                      <div class="swiper-wrapper"
+                        style="transition-duration: 0ms; transform: translate3d(-6000px, 0px, 0px);">
+                        <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="0"
+                          style="width: 1200px;"><a href="https://gaokao.eol.cn/e_html/gk/2022/2023xkzbz/index-pc.html"
+                            target="_blank"><img src="https://img.eol.cn/e_images/gk/2022/zyps1.jpg"
+                              data-growing-title="首页-A2首屏轮播图-1" data-growing-container=""></a></div>
+                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev"
+                          data-swiper-slide-index="1" style="width: 1200px;"><a
+                            href="https://gaokao.eol.cn/e_gx/df/shandong/html/2023zhibo/index.html" target="_blank"><img
+                              src="https://img.eol.cn/e_images/gk/2022/sgzps.jpg" data-growing-title="首页-A2首屏轮播图-2"
+                              data-growing-container=""></a></div>
+                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active"
+                          data-swiper-slide-index="2" style="width: 1200px;"><a
+                            href="https://gaokao.eol.cn/e_html/gk/2022/22byll/index.html" target="_blank"><img
+                              src="https://img.eol.cn/e_images/gk/2022/pxpc.png" data-growing-title="首页-A2首屏轮播图-3"
+                              data-growing-container=""></a></div>
+                        <div class="swiper-slide swiper-slide-duplicate-next" data-swiper-slide-index="0"
+                          style="width: 1200px;"><a href="https://gaokao.eol.cn/e_html/gk/2022/2023xkzbz/index-pc.html"
+                            target="_blank"><img src="https://img.eol.cn/e_images/gk/2022/zyps1.jpg"
+                              data-growing-title="首页-A2首屏轮播图-1" data-growing-container=""></a></div>
+                        <div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="1" style="width: 1200px;">
+                          <a href="https://gaokao.eol.cn/e_gx/df/shandong/html/2023zhibo/index.html"
+                            target="_blank"><img src="https://img.eol.cn/e_images/gk/2022/sgzps.jpg"
+                              data-growing-title="首页-A2首屏轮播图-2" data-growing-container=""></a>
+                        </div>
+                        <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="2"
+                          style="width: 1200px;"><a href="https://gaokao.eol.cn/e_html/gk/2022/22byll/index.html"
+                            target="_blank"><img src="https://img.eol.cn/e_images/gk/2022/pxpc.png"
+                              data-growing-title="首页-A2首屏轮播图-3" data-growing-container=""></a></div>
+                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-next" data-swiper-slide-index="0"
+                          style="width: 1200px;"><a href="https://gaokao.eol.cn/e_html/gk/2022/2023xkzbz/index-pc.html"
+                            target="_blank"><img src="https://img.eol.cn/e_images/gk/2022/zyps1.jpg"
+                              data-growing-title="首页-A2首屏轮播图-1" data-growing-container=""></a></div>
+                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev"
+                          data-swiper-slide-index="1" style="width: 1200px;"><a
+                            href="https://gaokao.eol.cn/e_gx/df/shandong/html/2023zhibo/index.html" target="_blank"><img
+                              src="https://img.eol.cn/e_images/gk/2022/sgzps.jpg" data-growing-title="首页-A2首屏轮播图-2"
+                              data-growing-container=""></a></div>
+                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active"
+                          data-swiper-slide-index="2" style="width: 1200px;"><a
+                            href="https://gaokao.eol.cn/e_html/gk/2022/22byll/index.html" target="_blank"><img
+                              src="https://img.eol.cn/e_images/gk/2022/pxpc.png" data-growing-title="首页-A2首屏轮播图-3"
+                              data-growing-container=""></a></div>
+                      </div>
+                      <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"><span
+                          class="swiper-pagination-bullet" tabindex="0" role="button"
+                          aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0"
+                          role="button" aria-label="Go to slide 2"></span><span
+                          class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button"
+                          aria-label="Go to slide 3"></span></div><span class="swiper-notification"
+                        aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                    <div class="swiper-button-prev " tabindex="0" role="button" aria-label="Previous slide"></div>
+                    <div class="swiper-button-next " tabindex="0" role="button" aria-label="Next slide"></div>
+                  </div>
+                  <div class="banner-right">
+                    <div class="ant-spin-nested-loading">
+                      <div class="ant-spin-container">
+                        <div class="banner-date">
+                          <div class="gk-date" style="border: none;"><a href="https://www.gaokao.cn/Videolist/1008"
+                              target="_blank" style="display: block;"><img
+                                src="https://static-gkcx.gaokao.cn//upload/operate_img/gkcx_1655433548_9911_thumb.png"
+                                alt="" style="width: 100%;"></a></div>
+                          <div class="gk_guanzhu">
+                            <h3 class="guanzhu_title">考生关注</h3>
+                            <div id="silde-vertical">
+                              <div class="yearGrid yearGrid1">
+                                <div class="year">1月</div>
+                                <div class="year_list"><a class="short"
+                                    style="width: 50%; cursor: default;">特殊类型招生</a><a class="short"
+                                    style="width: 50%; cursor: default;">港澳高校内地招生</a></div>
+                              </div>
+                              <div class="yearGrid yearGrid2">
+                                <div class="year">2月</div>
+                                <div class="year_list"><a href="https://yikao.eol.cn/" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">艺考校考</a><a class="short"
+                                    style="width: 50%; cursor: default;">高水平艺术团简章</a><a class="short"
+                                    style="width: 50%; cursor: default;">高水平运动队简章</a></div>
+                              </div>
+                              <div class="yearGrid yearGrid3">
+                                <div class="year">3月</div>
+                                <div class="year_list"><a class="short"
+                                    style="width: 50%; cursor: default;">保送生资格名单公示</a><a
+                                    href="https://www.eol.cn/e_html/gk/gkzcqzd/" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">各省招生规定</a><a class="short"
+                                    style="width: 50%; cursor: default;">高考体检</a><a
+                                    href="https://www.gaokao.cn/category/sd" target="_blank" class="short set_hoverl"
+                                    style="width: 50%;">高职单招</a></div>
+                              </div>
+                              <div class="yearGrid yearGrid4">
+                                <div class="year">4月</div>
+                                <div class="year_list"><a href="https://www.eol.cn/e_html/gk/zszc/index.shtml"
+                                    target="_blank" class="short set_hoverl" style="width: 50%;">招生简章</a><a
+                                    href="https://www.eol.cn/e_html/gk/gkzcqzd/" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">招生工作办法</a><a
+                                    href="https://www.eol.cn/e_html/gk/zhuanxiang/index.shtml" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">高校专项计划</a><a
+                                    href="https://www.gaokao.cn/category/sd" target="_blank" class="short set_hoverl"
+                                    style="width: 50%;">高职单招</a><a
+                                    href="https://www.eol.cn/e_html/gk/qjjhjz/index.shtml" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">强基计划</a></div>
+                              </div>
+                              <div class="yearGrid yearGrid5">
+                                <div class="year">5月</div>
+                                <div class="year_list"><a href="https://www.eol.cn/e_html/gk/zhuanxiang/index.shtml"
+                                    target="_blank" class="short set_hoverl" style="width: 50%;">高校专项计划</a><a
+                                    href="https://www.eol.cn/e_html/gk/gkzcqzd/" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">招生工作办法</a><a
+                                    href="https://www.eol.cn/e_html/gk/qjjhjz/index.shtml" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">强基计划</a><a class="short"
+                                    style="width: 50%; cursor: default;">志愿填报政策</a></div>
+                              </div>
+                              <div class="yearGrid yearGrid6">
+                                <div class="year">6月</div>
+                                <div class="year_list"><a class="short" style="width: 50%; cursor: default;">高考进行</a><a
+                                    href="https://www.eol.cn/e_html/gk/chafen/index.shtml" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">高考查分</a><a
+                                    href="https://www.eol.cn/e_html/gk/fsx/index.shtml" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">分数线</a><a
+                                    href="https://www.eol.cn/e_html/gk/zytbsj/index.shtml" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">志愿填报</a><a class="short"
+                                    style="width: 100%; cursor: default;">综合评价、强基计划、高校专项计划校考</a></div>
+                              </div>
+                              <div class="yearGrid yearGrid7">
+                                <div class="year">7月</div>
+                                <div class="year_list"><a href="https://gaokao.eol.cn/e_html/gk/zwhzbx/" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">中外合作办学科普</a><a
+                                    href="https://www.eol.cn/e_html/gk/zytbsj/index.shtml" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">志愿填报</a><a
+                                    href="https://www.eol.cn/e_html/gk/luqu/index.shtml" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">高考录取</a><a
+                                    href="https://www.eol.cn/e_html/gk/luqu/index.shtml?province=bj#bj" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">征集志愿</a><a
+                                    href="https://www.eol.cn/html/g/gkfzp/index.shtml" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">高招防骗</a></div>
+                              </div>
+                              <div class="yearGrid yearGrid8">
+                                <div class="year">8月</div>
+                                <div class="year_list"><a href="https://www.eol.cn/e_html/gk/zytbsj/index.shtml"
+                                    target="_blank" class="short set_hoverl" style="width: 50%;">高职填志愿</a><a
+                                    href="https://www.eol.cn/e_html/gk/luqu/index.shtml" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">录取查询</a><a class="short"
+                                    style="width: 50%; cursor: default;">录取通知书查询</a><a class="short"
+                                    style="width: 50%; cursor: default;">新生资助政策</a></div>
+                              </div>
+                              <div class="yearGrid yearGrid9">
+                                <div class="year">9月</div>
+                                <div class="year_list"><a class="short" style="width: 50%; cursor: default;">新生入学</a><a
+                                    href="https://gaokao.eol.cn/zhaofei/" target="_blank" class="short set_hoverl"
+                                    style="width: 50%;">空军招飞</a><a href="https://gaokao.eol.cn/zhaofei/" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">海军招飞</a><a
+                                    href="https://gaokao.eol.cn/zhaofei/" target="_blank" class="short set_hoverl"
+                                    style="width: 50%;">民航招飞</a></div>
+                              </div>
+                              <div class="yearGrid yearGrid10">
+                                <div class="year">10月</div>
+                                <div class="year_list"><a href="https://gaokao.eol.cn/zhaofei/" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">招飞体检</a><a class="short"
+                                    style="width: 50%; cursor: default;">特殊类型招生</a></div>
+                              </div>
+                              <div class="yearGrid yearGrid11">
+                                <div class="year">11月</div>
+                                <div class="year_list"><a href="https://gaokao.eol.cn/e_html/gk/gkbm/" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">高考报名</a><a href="https://yikao.eol.cn/"
+                                    target="_blank" class="short set_hoverl" style="width: 50%;">艺考报名</a><a
+                                    href="https://gaokao.eol.cn/zhaofei/" target="_blank" class="short set_hoverl"
+                                    style="width: 50%;">民航招飞</a><a class="short"
+                                    style="width: 50%; cursor: default;">高中学考报名</a></div>
+                              </div>
+                              <div class="yearGrid yearGrid12">
+                                <div class="year">12月</div>
+                                <div class="year_list"><a href="https://gaokao.eol.cn/e_html/gk/gkbm/" target="_blank"
+                                    class="short set_hoverl" style="width: 50%;">高考报名</a><a href="https://yikao.eol.cn/"
+                                    target="_blank" class="short set_hoverl" style="width: 50%;">艺考统考</a><a
+                                    class="short" style="width: 50%; cursor: default;">高中学考安排</a></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="home_toutiao clearfix">
+                  <div class="left">
+                    <div class="tuijian">
+                      <p><a href="https://gaokao.eol.cn/shan_dong/dongtai/202211/t20221122_2256850.shtml?proId=37"
+                          target="_blank" class="am_l set_hoverl"><span>头条</span>山东：2023年度军队招飞相关事项安排</a></p>
+                    </div>
+                    <div class="home_tt_list clearfix">
+                      <div class="item"><a
+                          href="https://gaokao.eol.cn/shan_dong/dongtai/202211/t20221117_2256036.shtml?proId=37"
+                          target="_blank" class="am_l set_hoverl">山东2023高职“单招”“综招”共招114808人</a></div>
+                      <div class="item"><a
+                          href="https://gaokao.eol.cn/shan_dong/dongtai/202210/t20221028_2252648.shtml?proId=37"
+                          target="_blank" class="am_l set_hoverl">山东：2023年高招报名11月9日开始启动（含报名流程）</a></div>
+                      <div class="item"><a
+                          href="https://gaokao.eol.cn/shan_dong/dongtai/202209/t20220930_2248625.shtml?proId=37"
+                          target="_blank" class="am_l set_hoverl">山东：2022年冬季学业水平考试12月16日开始</a></div>
+                      <div class="item"><a
+                          href="https://gaokao.eol.cn/shan_dong/dongtai/202209/t20220919_2246648.shtml?proId=37"
+                          target="_blank" class="am_l set_hoverl">山东：2022年高职（专科）注册入学招生计划</a></div>
+                      <div class="item"><a
+                          href="https://gaokao.eol.cn/shan_dong/dongtai/202208/t20220823_2242493.shtml?proId=37"
+                          target="_blank" class="am_l set_hoverl">山东：2022年高职（专科）注册入学9月21日填报志愿</a></div>
+                      <div class="item"><a
+                          href="https://gaokao.eol.cn/shan_dong/dongtai/202208/t20220815_2241623.shtml?proId=37"
+                          target="_blank" class="am_l set_hoverl">山东：2022年夏季合格性考试成绩17日可查</a></div>
+                    </div>
+                  </div>
+                  <div class="right clearfix">
+                    <div class="item_part clearfix"><a href="https://www.gaokao.cn/guide" target="_blank">
+                        <div class="left_part">
+                          <h3>掌上高考APP</h3>
+                          <p>点击进入<i></i></p>
+                        </div><img
+                          src="https://static-gkcx.gaokao.cn//upload/operate_img/gkcx_1610175818_5733_thumb.png" alt="">
+                      </a></div>
+                    <div class="item_part clearfix"><a href="https://gaokao.eol.cn/e_html/gk/zsgkapp/xc.html"
+                        target="_blank">
+                        <div class="left_part">
+                          <h3>掌上高考公众号</h3>
+                          <p>点击进入<i></i></p>
+                        </div><img
+                          src="https://static-gkcx.gaokao.cn//upload/operate_img/gkcx_1623737212_8967_thumb.png" alt="">
+                      </a></div>
+                    <div class="item_part clearfix"><a href="https://gaokao.eol.cn/shan_dong/" target="_blank">
+                        <div class="left_part">
+                          <h3>山东志愿填报</h3>
+                          <p>点击进入<i></i></p>
+                        </div><img
+                          src="https://static-gkcx.gaokao.cn//upload/operate_img/gkcx_1610516621_3933_thumb.png" alt="">
+                      </a></div>
+                    <div class="item_part clearfix"><a href="https://www.gaokao.cn/hot-news" target="_blank">
+                        <div class="left_part">
+                          <h3>付费资讯</h3>
+                          <p>点击进入<i></i></p>
+                        </div><img
+                          src="https://static-gkcx.gaokao.cn//upload/operate_img/gkcx_1667785742_4505_thumb.png" alt="">
+                      </a></div>
+                  </div>
+                </div>
+                <div class="hot_school">
+                  <div class="l_title clearfix">
+                    <div class="left_title">热门院校</div>
+                    <div class="right_tab clearfix">
+                      <div class="hot_school_tab am_l set_hoverl active">山东本科院校</div>
+                      <div class="hot_school_tab am_l set_hoverl">山东专科院校</div>
+                      <div class="hot_school_tab am_l set_hoverl">省外本科院校</div>
+                      <div class="hot_school_tab am_l set_hoverl">省外专科院校</div>
+                      <div class="change_group">换一换<i></i></div>
+                    </div>
+                  </div>
+                  <div class="hot_school_box clearfix">
+                    <div class="left" data-growing-title="首页-A3-二屏推荐院校大图-山东现代学院" data-growing-container=""
+                      style="background: rgb(255, 141, 66);"><a href="/school/2150" target="_blank">
+                        <h3>山东现代学院</h3>
+                        <p class="tag"><span>综合类</span><span>民办</span></p>
+                        <div class="tuijian">
+                          <div class="school_tuijian">
+                            <div class="school_img"><img src="https://static-data.gaokao.cn/upload/logo/2150.jpg"
+                                alt=""></div>
+                          </div>
+                        </div>
+                      </a></div>
+                    <div class="right">
+                      <div class="school_item" title="齐鲁医药学院" data-growing-title="首页-A4-二屏推荐院校小图-齐鲁医药学院"
+                        data-growing-container=""><a href="/school/2135" target="_blank"><img
+                            src="https://static-data.gaokao.cn/upload/logo/2135.jpg" alt="">
+                          <div class="school_msg">
+                            <h3>齐鲁医药学院</h3>
+                            <div class="clearfix check_btn"><span
+                                class="school_class">医药类</span><span>查看院校<i></i></span></div>
+                          </div>
+                        </a></div>
+                      <div class="school_item" title="烟台理工学院" data-growing-title="首页-A4-二屏推荐院校小图-烟台理工学院"
+                        data-growing-container=""><a href="/school/1446" target="_blank"><img
+                            src="https://static-data.gaokao.cn/upload/logo/1446.jpg" alt="">
+                          <div class="school_msg">
+                            <h3>烟台理工学院</h3>
+                            <div class="clearfix check_btn"><span
+                                class="school_class">综合类</span><span>查看院校<i></i></span></div>
+                          </div>
+                        </a></div>
+                      <div class="school_item" title="泰山学院" data-growing-title="首页-A4-二屏推荐院校小图-泰山学院"
+                        data-growing-container=""><a href="/school/550" target="_blank"><img
+                            src="https://static-data.gaokao.cn/upload/logo/550.jpg" alt="">
+                          <div class="school_msg">
+                            <h3>泰山学院</h3>
+                            <div class="clearfix check_btn"><span
+                                class="school_class">综合类</span><span>查看院校<i></i></span></div>
+                          </div>
+                        </a></div>
+                      <div class="school_item" title="山东管理学院" data-growing-title="首页-A4-二屏推荐院校小图-山东管理学院"
+                        data-growing-container=""><a href="/school/3004" target="_blank"><img
+                            src="https://static-data.gaokao.cn/upload/logo/3004.jpg" alt="">
+                          <div class="school_msg">
+                            <h3>山东管理学院</h3>
+                            <div class="clearfix check_btn"><span
+                                class="school_class">综合类</span><span>查看院校<i></i></span></div>
+                          </div>
+                        </a></div>
+                      <div class="school_item" title="青岛农业大学海都学院" data-growing-title="首页-A4-二屏推荐院校小图-青岛农业大学海都学院"
+                        data-growing-container=""><a href="/school/2516" target="_blank"><img
+                            src="https://static-data.gaokao.cn/upload/logo/2516.jpg" alt="">
+                          <div class="school_msg">
+                            <h3>青岛农业大学海都学院</h3>
+                            <div class="clearfix check_btn"><span
+                                class="school_class">综合类</span><span>查看院校<i></i></span></div>
+                          </div>
+                        </a></div>
+                      <div class="school_item" title="山东财经大学燕山学院" data-growing-title="首页-A4-二屏推荐院校小图-山东财经大学燕山学院"
+                        data-growing-container=""><a href="/school/2966" target="_blank"><img
+                            src="https://static-data.gaokao.cn/upload/logo/2966.jpg" alt="">
+                          <div class="school_msg">
+                            <h3>山东财经大学燕山学院</h3>
+                            <div class="clearfix check_btn"><span
+                                class="school_class">财经类</span><span>查看院校<i></i></span></div>
+                          </div>
+                        </a></div>
+                      <div class="school_item" title="潍坊学院" data-growing-title="首页-A4-二屏推荐院校小图-潍坊学院"
+                        data-growing-container=""><a href="/school/552" target="_blank"><img
+                            src="https://static-data.gaokao.cn/upload/logo/552.jpg" alt="">
+                          <div class="school_msg">
+                            <h3>潍坊学院</h3>
+                            <div class="clearfix check_btn"><span
+                                class="school_class">综合类</span><span>查看院校<i></i></span></div>
+                          </div>
+                        </a></div>
+                      <div class="school_item" title="山东农业工程学院" data-growing-title="首页-A4-二屏推荐院校小图-山东农业工程学院"
+                        data-growing-container=""><a href="/school/3005" target="_blank"><img
+                            src="https://static-data.gaokao.cn/upload/logo/3005.jpg" alt="">
+                          <div class="school_msg">
+                            <h3>山东农业工程学院</h3>
+                            <div class="clearfix check_btn"><span
+                                class="school_class">农林类</span><span>查看院校<i></i></span></div>
+                          </div>
+                        </a></div>
+                      <div class="school_item" title="齐鲁理工学院" data-growing-title="首页-A4-二屏推荐院校小图-齐鲁理工学院"
+                        data-growing-container=""><a href="/school/2517" target="_blank"><img
+                            src="https://static-data.gaokao.cn/upload/logo/2517.jpg" alt="">
+                          <div class="school_msg">
+                            <h3>齐鲁理工学院</h3>
+                            <div class="clearfix check_btn"><span
+                                class="school_class">综合类</span><span>查看院校<i></i></span></div>
+                          </div>
+                        </a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hot_major">
+                  <div class="hot_major_box clearfix">
+                    <div class="left_major">
+                      <div class="major_title clearfix">
+                        <div class="l_title">热门专业</div>
+                        <div class="major_tab clearfix">
+                          <div class="hot_major_tab am_l set_hoverl active">本科</div>
+                          <div class="hot_major_tab am_l set_hoverl">专科</div><span
+                            class="l_more am_l set_hoverl">更多<i></i></span>
+                        </div>
+                      </div>
+                      <div class="major_content clearfix">
+                        <div class="tuijian" data-growing-title="首页-A5-二屏热门专业大图-计算机专业" data-growing-container=""><a
+                            href="https://gkcx.eol.cn/school/661/professional" target="_blank">
+                            <h3>计算机专业</h3>
+                            <p>电子科技大学</p><img src="https://img1.eol.cn/e_images/gk/2019/PC/rmzydb101.png" alt="">
+                          </a></div>
+                        <div class="major_grid clearfix">
+                          <div class="major_item" data-growing-title="首页-A6-二屏热门专业小图-金融学专业" data-growing-container=""><a
+                              href="https://gkcx.eol.cn/school/566/professional" target="_blank">
+                              <h3>金融学专业</h3>
+                              <p style="-webkit-box-orient: vertical;">中央财经大学</p><img
+                                src="https://img3.eol.cn/e_images/gk/2019/PC/rmzyxb101.png" alt="">
+                            </a></div>
+                          <div class="major_item" data-growing-title="首页-A6-二屏热门专业小图-软件专业" data-growing-container=""><a
+                              href="https://gkcx.eol.cn/school/125/professional" target="_blank">
+                              <h3>软件专业</h3>
+                              <p style="-webkit-box-orient: vertical;">上海交通大学</p><img
+                                src="https://img4.eol.cn/e_images/gk/2019/PC/rmzyxb201.png" alt="">
+                            </a></div>
+                          <div class="major_item" data-growing-title="首页-A6-二屏热门专业小图-医学类专业" data-growing-container=""><a
+                              href="https://gkcx.eol.cn/school/132/professional" target="_blank">
+                              <h3>医学类专业</h3>
+                              <p style="-webkit-box-orient: vertical;">复旦大学</p><img
+                                src="https://img3.eol.cn/e_images/gk/2019/PC/rmzyxb301.png" alt="">
+                            </a></div>
+                          <div class="major_item" data-growing-title="首页-A6-二屏热门专业小图-师范类专业" data-growing-container=""><a
+                              href="https://gkcx.eol.cn/school/52/professional" target="_blank">
+                              <h3>师范类专业</h3>
+                              <p style="-webkit-box-orient: vertical;">北京师范大学</p><img
+                                src="https://img4.eol.cn/e_images/gk/2019/PC/rmzyxb401.png" alt="">
+                            </a></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="right_major">
+                      <div class="major_title clearfix">
+                        <div class="l_title">报考专题</div>
+                        <div class="major_tab clearfix"><span class="l_more am_l set_hoverl">更多<i></i></span></div>
+                      </div>
+                      <div class="major_content clearfix">
+                        <div class="major_grid clearfix">
+                          <div class="major_item"><a href="https://www.gaokao.cn/QuanZhiDao/regulations"
+                              target="_blank">
+                              <div class="position_bottom"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/zhuanti/gkcx_1654763931_5377_thumb.png">
+                              </div>
+                            </a></div>
+                          <div class="major_item"><a href="https://www.gaokao.cn/QuanZhiDao/voluntary" target="_blank">
+                              <div class="position_bottom"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/zhuanti/gkcx_1654763636_4682_thumb.png">
+                              </div>
+                            </a></div>
+                          <div class="major_item"><a href="https://www.gaokao.cn/QuanZhiDao/doubleclass"
+                              target="_blank">
+                              <div class="position_bottom"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/zhuanti/gkcx_1654763888_5062_thumb.png">
+                              </div>
+                            </a></div>
+                          <div class="major_item"><a href="https://www.gaokao.cn/QuanZhiDao/entrance" target="_blank">
+                              <div class="position_bottom"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/zhuanti/gkcx_1654763808_2425_thumb.png">
+                              </div>
+                            </a></div>
+                          <div class="major_item"><a href="https://www.gaokao.cn/QuanZhiDao/admission" target="_blank">
+                              <div class="position_bottom"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/zhuanti/gkcx_1654763857_4581_thumb.png">
+                              </div>
+                            </a></div>
+                          <div class="major_item"><a href="https://www.zhijiao.cn/gaozhi" target="_blank">
+                              <div class="position_bottom"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/zhuanti/gkcx_1641967840_5440_thumb.png">
+                              </div>
+                            </a></div>
+                          <div class="major_item"><a href="https://www.eol.cn/e_html/gk/zhuanxiang/index.shtml"
+                              target="_blank">
+                              <div class="position_bottom"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/zhuanti/gkcx_1641968066_1702_thumb.png">
+                              </div>
+                            </a></div>
+                          <div class="major_item"><a href="https://gaokao.eol.cn/ystc/tytcs/" target="_blank">
+                              <div class="position_bottom"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/zhuanti/gkcx_1641968054_3988_thumb.png">
+                              </div>
+                            </a></div>
+                          <div class="major_item"><a href="https://gaokao.eol.cn/ystc/ystcs/" target="_blank">
+                              <div class="position_bottom"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/zhuanti/gkcx_1641968001_5388_thumb.png">
+                              </div>
+                            </a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="school_view">
+                  <div class="l_title">校园风光</div>
+                  <div class="school_view_content clearfix">
+                    <div class="school_view_box"><a href="https://gkcx.eol.cn/school/131" target="_blank"><img
+                          src="https://img9.eol.cn/e_images/gk/2019/PC/xyfg101.png" alt="">
+                        <p class="l_cursor l_hover_style">华东师范大学</p>
+                      </a></div>
+                    <div class="school_view_box"><a href="https://gkcx.eol.cn/school/102" target="_blank"><img
+                          src="https://img1.eol.cn/e_images/gk/2019/PC/xyfg201.png" alt="">
+                        <p class="l_cursor l_hover_style">厦门大学</p>
+                      </a></div>
+                    <div class="school_view_box"><a href="https://gkcx.eol.cn/school/111" target="_blank"><img
+                          src="https://img2.eol.cn/e_images/gk/2019/PC/xyfg301.png" alt="">
+                        <p class="l_cursor l_hover_style">南京大学</p>
+                      </a></div>
+                    <div class="school_view_box"><a href="https://gkcx.eol.cn/school/126" target="_blank"><img
+                          src="https://img3.eol.cn/e_images/gk/2019/PC/xyfg401.png" alt="">
+                        <p class="l_cursor l_hover_style">山东大学</p>
+                      </a></div>
+                    <div class="school_view_box"><a href="https://gkcx.eol.cn/school/114" target="_blank"><img
+                          src="https://img4.eol.cn/e_images/gk/2019/PC/xyfg501.png" alt="">
+                        <p class="l_cursor l_hover_style">浙江大学</p>
+                      </a></div>
+                    <div class="school_view_box"><a href="https://gkcx.eol.cn/school/97" target="_blank"><img
+                          src="https://img5.eol.cn/e_images/gk/2019/PC/xyfg601.png" alt="">
+                        <p class="l_cursor l_hover_style">兰州大学</p>
+                      </a></div>
+                    <div class="school_view_box"><a href="https://gkcx.eol.cn/school/66" target="_blank"><img
+                          src="https://img6.eol.cn/e_images/gk/2019/PC/xyfg701.png" alt="">
+                        <p class="l_cursor l_hover_style">中国科学技术大学</p>
+                      </a></div>
+                    <div class="school_view_box"><a href="https://gkcx.eol.cn/school/109" target="_blank"><img
+                          src="https://img7.eol.cn/e_images/gk/2019/PC/xyfg801.png" alt="">
+                        <p class="l_cursor l_hover_style">东南大学</p>
+                      </a></div>
+                  </div>
+                </div>
+                <div class="message_hot clearfix">
+                  <div class="left_message">
+                    <div>
+                      <ul class="new_msg_tab clearfix">
+                        <li class="newtab_btn am_l set_hoverl active">山东</li>
+                        <li class="newtab_btn am_l set_hoverl">高考推荐</li>
+                        <li class="newtab_btn am_l set_hoverl">高校资讯</li>
+                        <li class="newtab_btn am_l set_hoverl">专业解读</li>
+                        <li class="newtab_btn am_l set_hoverl">志愿填报</li>
+                        <li>更换一批<i></i></li>
+                      </ul>
+                      <div class="msg_content">
+                        <div class="news_tab_list">
+                          <div class="news_grid"><a
+                              href="https://gaokao.eol.cn/shan_dong/dongtai/202212/t20221212_2260766.shtml?proId=37"
+                              target="_blank"><i></i>
+                              <div class="news_title">山东：2023年春季高考、夏季高考补报名工作12月19号开始！</div>
+                              <div class="source"><span>山东省教育招生考试院</span><span>2022-12-12</span></div>
+                            </a></div>
+                          <div class="news_grid"><a
+                              href="https://gaokao.eol.cn/shan_dong/dongtai/202212/t20221212_2260703.shtml?proId=37"
+                              target="_blank"><i></i>
+                              <div class="news_title">山东：2023年艺术类专业统考考前调度会议召开</div>
+                              <div class="source"><span>山东省教育招生考试院</span><span>2022-12-12</span></div>
+                            </a></div>
+                          <div class="news_grid"><a
+                              href="https://gaokao.eol.cn/shan_dong/dongtai/202212/t20221212_2260633.shtml?proId=37"
+                              target="_blank"><i></i>
+                              <div class="news_title">山东2023年艺术类统考试题</div>
+                              <div class="source"><span>山东教育发布</span><span>2022-12-12</span></div>
+                            </a></div>
+                          <div class="news_grid"><a
+                              href="https://gaokao.eol.cn/shan_dong/dongtai/202212/t20221209_2260395.shtml?proId=37"
+                              target="_blank"><i></i>
+                              <div class="news_title">山东省普通高中学业水平合格考试准考证打印平台：https://xysp.sdzk.cn/</div>
+                              <div class="source"><span>山东省教育招生考试院</span><span>2022-12-09</span></div>
+                            </a></div>
+                          <div class="news_grid"><a
+                              href="https://gaokao.eol.cn/shan_dong/dongtai/202212/t20221208_2260186.shtml?proId=37"
+                              target="_blank"><i></i>
+                              <div class="news_title">山东省2023年普通高校招生艺术类专业统考准考证打印平台：https://wsbm.sdzk.cn/</div>
+                              <div class="source"><span>山东省教育招生考试院</span><span>2022-12-09</span></div>
+                            </a></div>
+                        </div>
+                        <div class="more_news_btn"><a href="https://gaokao.eol.cn/shan_dong/dongtai/?proId=37"
+                            target="_blank" class="am_l set_hoverl">查看更多</a></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="school_hot">
+                    <div class="l_title clearfix">
+                      <p class="title_left">院校热度</p>
+                      <div class="tab_right"><span class="tab_new_btn active">本科</span><span
+                          class="tab_new_btn ">专科</span></div>
+                    </div>
+                    <div class="hot_school_content">
+                      <div class="lset academy_item_box clearfix"><a href="/school/102" target="_blank">
+                          <div class="academy_item_title clearfix">
+                            <p class="academy_num academy_hot_num">1</p>
+                            <p class="ellipsis cursor">厦门大学</p>
+                          </div>
+                          <div class="academy_num_right cursor">38869583</div>
+                        </a></div>
+                      <div class="lset academy_item_box clearfix"><a href="/school/99" target="_blank">
+                          <div class="academy_item_title clearfix">
+                            <p class="academy_num academy_hot_num">2</p>
+                            <p class="ellipsis cursor">四川大学</p>
+                          </div>
+                          <div class="academy_num_right cursor">31078607</div>
+                        </a></div>
+                      <div class="lset academy_item_box clearfix"><a href="/school/42" target="_blank">
+                          <div class="academy_item_title clearfix">
+                            <p class="academy_num academy_hot_num">3</p>
+                            <p class="ellipsis cursor">武汉大学</p>
+                          </div>
+                          <div class="academy_num_right cursor">25144525</div>
+                        </a></div>
+                      <div class="lset academy_item_box clearfix"><a href="/school/104" target="_blank">
+                          <div class="academy_item_title clearfix">
+                            <p class="academy_num ">4</p>
+                            <p class="ellipsis cursor">中山大学</p>
+                          </div>
+                          <div class="academy_num_right cursor">23539002</div>
+                        </a></div>
+                      <div class="lset academy_item_box clearfix"><a href="/school/140" target="_blank">
+                          <div class="academy_item_title clearfix">
+                            <p class="academy_num ">5</p>
+                            <p class="ellipsis cursor">清华大学</p>
+                          </div>
+                          <div class="academy_num_right cursor">22801459</div>
+                        </a></div>
+                      <div class="lset academy_item_box clearfix"><a href="/school/31" target="_blank">
+                          <div class="academy_item_title clearfix">
+                            <p class="academy_num ">6</p>
+                            <p class="ellipsis cursor">北京大学</p>
+                          </div>
+                          <div class="academy_num_right cursor">22704567</div>
+                        </a></div>
+                      <div class="lset academy_item_box clearfix"><a href="/school/123" target="_blank">
+                          <div class="academy_item_title clearfix">
+                            <p class="academy_num ">7</p>
+                            <p class="ellipsis cursor">中南大学</p>
+                          </div>
+                          <div class="academy_num_right cursor">21356423</div>
+                        </a></div>
+                      <div class="lset academy_item_box clearfix"><a href="/school/934" target="_blank">
+                          <div class="academy_item_title clearfix">
+                            <p class="academy_num ">8</p>
+                            <p class="ellipsis cursor">西南大学</p>
+                          </div>
+                          <div class="academy_num_right cursor">20792728</div>
+                        </a></div>
+                      <div class="lset academy_item_box clearfix"><a href="/school/111" target="_blank">
+                          <div class="academy_item_title clearfix">
+                            <p class="academy_num ">9</p>
+                            <p class="ellipsis cursor">南京大学</p>
+                          </div>
+                          <div class="academy_num_right cursor">20664684</div>
+                        </a></div>
+                      <div class="lset academy_item_box clearfix"><a href="/school/661" target="_blank">
+                          <div class="academy_item_title clearfix">
+                            <p class="academy_num ">10</p>
+                            <p class="ellipsis cursor">电子科技大学</p>
+                          </div>
+                          <div class="academy_num_right cursor">19826503</div>
+                        </a></div>
+                      <div class="check_more cursor am_l hover_style">查看更多</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="major_read">
+                  <div class="l_title clearfix">
+                    <div class="major_big_title">推荐视频</div>
+                    <div class="major_read_tab clearfix">
+                      <div class="major_school_tab am_l set_hoverl active">志愿填报</div>
+                      <div class="major_school_tab am_l set_hoverl">新高考解读</div>
+                      <div class="major_school_tab am_l set_hoverl">升学之路</div>
+                      <div class="major_school_tab am_l set_hoverl">生涯课堂</div>
+                      <div class="major_school_tab am_l set_hoverl">专业探秘</div>
+                      <div class="major_school_tab am_l set_hoverl">强基计划</div>
+                    </div>
+                    <div class="more_read_btn"><a href="/Videolist/1008" target="_blank">更多<i></i></a></div>
+                  </div>
+                  <div class="major_read_content clearfix">
+                    <div id="marquee">
+                      <dl>
+                        <dt>
+                          <div class="slide_grid cursor"><a href="/Video/1008_424" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356788_3133_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值31.1万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">志愿填报的三个原则问题（上）</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_423" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356833_9533_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值31.7万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">志愿填报的三个原则问题（下）</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_422" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356564_2933_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值31.1万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">不同分数段考生如何选专业（上）</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_421" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356603_2516_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值30.6万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">不同分数段考生如何选专业（下）</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_420" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356957_3846_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值30.7万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">各省市高校盘点——湖北篇</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_419" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356882_7662_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值31.4万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">各省市高校盘点——湖南篇</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_418" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356991_7461_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值30.5万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">各省市高校盘点——辽宁篇</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_417" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356919_3714_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值30.5万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">各省市高校盘点——陕西篇</p>
+                            </a></div>
+                        </dt>
+                        <dd>
+                          <div class="slide_grid cursor"><a href="/Video/1008_424" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356788_3133_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值31.1万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">志愿填报的三个原则问题（上）</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_423" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356833_9533_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值31.7万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">志愿填报的三个原则问题（下）</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_422" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356564_2933_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值31.1万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">不同分数段考生如何选专业（上）</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_421" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356603_2516_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值30.6万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">不同分数段考生如何选专业（下）</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_420" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356957_3846_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值30.7万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">各省市高校盘点——湖北篇</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_419" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356882_7662_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值31.4万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">各省市高校盘点——湖南篇</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_418" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356991_7461_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值30.5万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">各省市高校盘点——辽宁篇</p>
+                            </a></div>
+                          <div class="slide_grid cursor"><a href="/Video/1008_417" target="_blank">
+                              <div class="cover_img"><img
+                                  src="https://static-gkcx.gaokao.cn/upload/video/gkcx_1667356919_3714_thumb.jpg"
+                                  alt="">
+                                <div class="renqi_num"><i></i>人气值30.5万</div><i class="play_icon"></i><span
+                                  class="vip-connor">VIP</span>
+                              </div>
+                              <p class="big_title">各省市高校盘点——陕西篇</p>
+                            </a></div>
+                        </dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+                <div class="ad_home"><a href="https://www.zhijiao.cn/beijing" target="_blank"><img
+                      src="https://img.eol.cn/e_images/gk/2020/zjw2400.png" alt=""></a></div>
+                <div class="air_ani">
+                  <div></div>
+                </div>
+              </div>
+              <div class="public_footer clearfix">
+                <div class="left_introduce">
+                  <h3>系统使用说明</h3>
+                  <p>1、本查询系统的信息仅供参考，具体数据请以学校官网或考试院公布为准。</p>
+                  <p>2、本站数据未经授权严禁转载，违者将依法追究责任。</p>
+                  <p>3、如对本系统或相关服务有任何疑问，可发送邮件至：<a href="mailto:lijin@eol.cn"
+                      class="hover_style">lijin@eol.cn</a>，或拨打电话400-666-9766，也可<br>点击<span
+                      style="color: rgb(255, 102, 0); cursor: pointer;">【意见反馈】</span>反馈于我们。</p>
+                </div>
+                <div class="right_code clearfix">
+                  <div class="code_item margin_code_item"><img src="/static/media/gzh.ab190311.jpg">
+                    <p>掌上高考公众号</p>
+                  </div>
+                  <div class="code_item"><img src="/static/media/app.dcdcbcbc.png">
+                    <p>掌上高考APP</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="iframebox" style="display: none;"><iframe id="iframepage1" src="" width="100%" height="100%"
+                    title="iframepage1"></iframe></div>
+                <div class="copyright" style="display: block; position: relative;">
+                  <div class="copyright-con">
+                    <p class="copy-first"><span class="span"><a
+                          href="https://www.zhijiao.cn/static/media/zhengshu.a82cc2ae.jpeg"
+                          target="_Blank">京B2-20213236</a></span> <span><a href="https://beian.miit.gov.cn/"
+                          target="_Blank">|<i>京ICP备2020046552号</i> |</a></span><span class="span"><a
+                          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802037859"
+                          target="_Blank"><img src="/static/media/record.0c577066.png" class="record">京公网安备
+                          11010802037859号</a></span></p>
+                    <p class="copy-first"><span>版权所有: 中教智网（北京）信息技术有限公司</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="rightfix_box">
+              <div class="inner"><a class="right_pt_public"><img
+                    src="https://static-gkcx.gaokao.cn//upload/live/gkcx_1670310437_5399_thumb.png" alt=""></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div></div>
+    </div>
+  </div>
+
+
+  <div id="BigText"></div>
+  <script type="text/javascript" src="bigText.js"></script>
 </body>
 
 </html>
