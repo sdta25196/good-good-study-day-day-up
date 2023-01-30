@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rrweb@latest/dist/rrweb.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/rrweb@latest/dist/rrweb.min.js"></script>
+  <script>
+    let events = [];
+
+    rrweb.record({
+      emit(event) {
+        // 将 event 存入 events 数组中
+        events.push(event);
+      },
+    });
+
+    // // save 函数用于将 events 发送至后端存入，并重置 events 数组
+    function p() {
+      const replayer = new rrweb.Replayer(events, {
+        root: document.querySelector('#aa')
+      });
+      replayer.play();
+    }
+
+    // // 每 10 秒调用一次 save 方法，避免请求过多
+    // setInterval(save, 10 * 1000);
+  </script>
+</head>
+
+<body>
+
+
+  <div>
+    awdasd asd asd asd a das asd
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+
+    <button onclick="p()">asdasd</button>
+  </div>
+
+  <div id="aa"></div>
+
+</body>
+
+</html>
