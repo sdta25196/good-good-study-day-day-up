@@ -1,0 +1,17 @@
+{
+  "name": "parse5",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "[parse5官网](https://parse5.js.org/modules/parse5.html)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsdom": "^21.1.0",
+    "parse5": "^7.1.2"
+  }
+}
