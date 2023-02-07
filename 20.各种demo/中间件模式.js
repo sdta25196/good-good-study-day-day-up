@@ -59,5 +59,7 @@ const f2 = (ctx) => {
 //  使用真实的getctx之前，可以使用m.use自定义扩展ctx
 m.use(f1)
 m.use(f2)
+// 或者
+// m.use(f1, f2)
 
 console.log(m.getCtx()) 
