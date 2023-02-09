@@ -5,20 +5,32 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 
 
-export async function getStaticProps(context) {
+// export async function getStaticProps(context) {
+//   console.log(context)
+//   return {
+//     props: { a: 222 }, // will be passed to the page component as props
+//   }
+// }
+
+export async function getServerSideProps(context) {
+  console.log(context.query.viewport) // 判断是否是移动端
   return {
-    props: { a: 222 }, // will be passed to the page component as props
+    props: { a: 22233, isModile: context.query.viewport === 'mobile' }, // will be passed to the page component as props
   }
 }
 
-export default function Home({ a }) {
+export default function Home({ a, isModile }) {
+
   useEffect(() => {
+    isModile && (document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px')
+
     const myCity = new window.BMap.LocalCity();
     myCity.get(function (result) {
       console.log(result)
       document.querySelector(".local").innerHTML = result.name
     });
   }, [])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -32,6 +44,8 @@ export default function Home({ a }) {
       </Link>
       <div>
         试试水{a}
+        <p className={styles.a}>a打打啥aa</p>
+        {isModile ? '这个是移动端的' : '这个是PC端的'}
         <div className="local"></div>
       </div>
 
