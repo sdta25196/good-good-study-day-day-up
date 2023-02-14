@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
-import { record, Replayer } from 'rrweb'
+import { record } from 'rrweb'
+import rrwebPlayer from 'rrweb-player';
+import 'rrweb-player/dist/style.css';
 
 function App() {
   const [start, setStart] = useState(false)
@@ -22,8 +24,12 @@ function App() {
 
   const replay = () => {
     console.log(events)
-    const replayer = new Replayer(events, {
-      root: document.querySelector('#replayBox')
+    const replayer = new rrwebPlayer({
+      target: document.querySelector('#replayBox'), // 可以自定义 DOM 元素
+      // 配置项
+      props: {
+        events,
+      },
     });
     replayer.play();
   }
