@@ -4,8 +4,6 @@ husky🐶，哈士奇。现代原生git钩子，支持linux、mac、windows
 
 进行git提交或推送时，可以使用它来整理**提交消息、运行测试、lint 代码**等
 
-## 使用
-
 ### 1.安装
 
 npm：`npm install husky --save-dev`
@@ -50,7 +48,7 @@ yarn：`yarn add husky -D`
 
 > yarn2 的安装方式与上述不一样。可参考官方文档[husky的yarn2安装方式](https://typicode.github.io/husky/#/?id=yarn-2)
 
-## 绕开钩子
+### 绕开钩子
 
 可以使用Git选项`-n/--no-verify`绕过`pre-commit`
 
@@ -60,7 +58,7 @@ yarn：`yarn add husky -D`
 
 `HUSKY=0 git push`
 
-## windows上的问题
+### windows上的问题
 
 在 Windows 上将 Yarn 与 Git Bash结合使用时，Git 挂钩可能会失败`stdin is not a tty`。
 
@@ -90,6 +88,36 @@ yarn：`yarn add husky -D`
 
 yarn ...
 ```
+
+## commitlint
+
+`commitlint` 限制遵守提交约定。
+
+### 安装并配置
+
+yarn 安装命令：`yarn add commitlint @commitlint/cli @commitlint/config-conventional -D`
+
+
+安装成功后在根目录添加`.commitlintrc.js`文件，添加配置如下：
+
+```js
+  module.exports = {
+    extends: ["@commitlint/config-conventional"] // 使用conventional规范集
+  }; 
+```
+
+此处使用`conventional`规范集意义：
+
+提交的类型: 摘要信息 `<type>: <subject>`**请注意冒号后面有一个空格**，常用的type值包括如下:
+  *  feat: 添加新功能
+  *  fix: 修复 Bug
+  *  chore: 一些不影响功能的更改
+  *  docs: 专指文档的修改
+  *  perf: 性能方面的优化
+  *  refactor: 代码重构
+  *  test: 添加一些测试代码等等
+
+最后将commitlint集成到husky: `npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAMS"`
 
 ## 更多
 
