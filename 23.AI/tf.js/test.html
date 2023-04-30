@@ -1,0 +1,140 @@
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.7.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl@3.7.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-cpu@3.7.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter@3.7.0"></script>
+
+  <script>
+    // async function generateText() {
+    //   const text = 'text';
+
+    //   // 创建字符映射表
+    //   const char2idx = {};
+    //   const idx2char = [];
+    //   for (let i = 0; i < text.length; i++) {
+    //     const char = text[i];
+    //     if (!(char in char2idx)) {
+    //       idx2char.push(char);
+    //       char2idx[char] = idx2char.length - 1;
+    //     }
+    //   }
+
+    //   // 将文本转换为数字序列
+    //   const textAsInt = new Int32Array(text.length);
+    //   for (let i = 0; i < text.length; i++) {
+    //     textAsInt[i] = char2idx[text[i]];
+    //   }
+
+    //   // 定义模型
+    //   const model = await tf.loadLayersModel('model.json');
+
+    //   // 生成文本
+    //   let startString = 'Hello';
+    //   const numGenerate = 1000;
+
+    //   let inputEval = new Int32Array(startString.length);
+    //   for (let i = 0; i < startString.length; i++) {
+    //     inputEval[i] = char2idx[startString[i]];
+    //   }
+    //   inputEval = tf.expandDims(inputEval, 0);
+
+    //   const textGenerated = [];
+
+    //   model.resetStates();
+    //   for (let i = 0; i < numGenerate; i++) {
+    //     const predictions = model.predict(inputEval);
+    //     const predictedId = tf.squeeze(tf.multinomial(predictions, 1, null, true).arraySync());
+
+    //     inputEval = tf.expandDims([predictedId], 0);
+
+    //     textGenerated.push(idx2char[predictedId]);
+    //   }
+
+    //   console.log(startString + textGenerated.join(''));
+    // }
+
+    // generateText();
+
+    // 导入模型
+    const model = await tf.loadLayersModel('model.json');
+
+    // 获取标题输入元素
+    const inputElement = document.getElementById('input');
+
+    // 获取生成文本的输出元素
+    const outputElement = document.getElementById('output');
+
+    // 监听输入框的键盘事件
+    inputElement.addEventListener('keyup', () => {
+      // 获取标题
+      const title = inputElement.value;
+
+      // 生成一段文本
+      const generatedText = generateText(model, title);
+
+      // 将生成的文本显示在输出框中
+      outputElement.innerText = generatedText;
+    });
+
+    // 生成文本的函数
+    function generateText(model, title) {
+      // 定义起始文本
+      let text = title;
+
+      // 定义生成的最大长度
+      const maxLength = 100;
+
+      // 循环生成文本
+      for (let i = 0; i < maxLength; i++) {
+        // 将文本编码为数值张量
+        const input = tf.tensor2d([textToSequence(text)], [1, text.length]);
+
+        // 进行预测
+        const output = model.predict(input);
+
+        // 将预测结果转换为概率分布
+        const probs = Array.from(output.dataSync());
+
+        // 根据概率分布随机选择下一个字符
+        const nextChar = sample(probs);
+
+        // 如果选择了停止字符，则停止生成
+        if (nextChar === '<EOS>') {
+          break;
+        }
+
+        // 将下一个字符添加到生成的文本中
+        text += nextChar;
+      }
+
+      // 返回生成的文本
+      return text;
+    }
+
+    // 将文本转换为数值序列的函数
+    function textToSequence(text) {
+      const vocab = ['<PAD>', '<UNK>', '<EOS>', ...'abcdefghijklmnopqrstuvwxyz'];
+      return Array.from(text.toLowerCase())
+        .map(c => vocab.indexOf(c) === -1 ? vocab.indexOf('<UNK>') : vocab.indexOf(c));
+    }
+
+    // 根据概率分布随机选择下一个字符的函数
+    function sample(probs) {
+      const rnd = Math.random();
+      let acc = 0;
+      for (let i = 0; i < probs.length; i++) {
+        acc += probs[i];
+        if (acc >= rnd) {
+          return i === probs.length - 1 ? '<EOS>' : String.fromCharCode(97 + i);
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
