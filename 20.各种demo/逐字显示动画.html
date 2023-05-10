@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-color: #333
+    }
+
+    span {
+      color: #fff;
+      font-size: 30px;
+      display: inline-block;
+    }
+
+    .animation {
+      animation: text 1s 1;
+    }
+
+    @keyframes text {
+      0% {
+        color: transparent;
+      }
+
+      100% {
+        color: #fff;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="text"></div>
+  <div id="text1"></div>
+  <div id="text2"></div>
+  <script>
+    let str = '我们这一路被带去；我们这一路被带asdsdasdasdasdas'
+    function animation(str, contatiner) {
+      let arr = str.split('')
+      let index = 0
+      let time = setInterval(() => {
+        let span = document.createElement('span')
+        span.innerText = arr[index]
+        span.className = 'animation'
+        document.querySelector(contatiner).appendChild(span)
+        index++
+        if (index === arr.length) {
+          clearInterval(time)
+        }
+      }, 100)
+    }
+
+    animation(str, "#text")
+
+    setTimeout(() => {
+      animation(str, "#text1")
+    }, 1000)
+
+    setTimeout(() => {
+      animation(str, "#text2")
+    }, 2000)
+
+  </script>
+</body>
+
+</html>
