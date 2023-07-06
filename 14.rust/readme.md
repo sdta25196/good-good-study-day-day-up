@@ -1,3 +1,62 @@
+
+# 基础问题
+
+## 如何安装
+
+  linux 或者 macos 执行如下代码：
+
+  `curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh`
+
+  windos安装：[https://www.rust-lang.org/install.html](https://www.rust-lang.org/install.html)
+
+## 如何创建、编译、运行项目
+
+**rust hello word**
+
+  * 新建文件`main.rs`;
+    ```rust
+      fn main() { println!("hello word");}
+    ```
+  * `rustc` 编译rust文件main.rs - `rustc main.rs`
+
+  * 执行编译后产物 `.\main.exe` 
+
+**使用cargo**
+
+  * `cargo new my_rust` 新建一个项目
+  * `cargo build`  \ `cargo build --release`打包
+  * `cargo run` \ `cargo run --release`运行
+
+## cargo \ rustup \ rustc
+
+rustc 编译器，类似于前端的node
+
+rustup 编译器管理工具，类似于前端的nvm
+
+cargo 包管理+工程管理工具，类似于前端的npm
+
+## 版本检查、控制
+
+版本检查 `rustc --version`
+
+更新 `rustup update`
+
+## 切换源
+
+先找到cargo所在位置 `where cargo`
+
+进入`.cargo`文件夹中，创建`config`文件。粘贴内容：
+
+```js
+  [source.crates-io]
+  registry = "https://github.com/rust-lang/crates.io-index"
+  replace-with = 'ustc'
+  [source.ustc]
+  registry = "git://mirrors.ustc.edu.cn/crates.io-index"
+```
+
+# 进阶
+
 Rust好像是把有可能出问题的地方直接禁止使用，然后创建一套新的规则来规避原本容易出错的问题。例如GC、数据竞争
 
 
@@ -37,15 +96,3 @@ fn aa(s: &mut String){
   * 字符串的字面值本身就是个切片
   * 字符串切片的类型是`&str`
 
-
-## 切换源
-`where cargo`
-
-进入`.cargo`文件夹中，创建`config`文件。粘贴内容：
-```json
-  [source.crates-io]
-  registry = "https://github.com/rust-lang/crates.io-index"
-  replace-with = 'ustc'
-  [source.ustc]
-  registry = "git://mirrors.ustc.edu.cn/crates.io-index"
-```
