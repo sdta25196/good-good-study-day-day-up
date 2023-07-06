@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <title>Demo</title>
+</head>
+
+<body>
+<div>
+    <video autoplay id="player"></video>
+    <video id="recordPlayer"></video>
+</div>
+<div>
+    <button id="startScreenBtn">Start</button>
+    <button id="startCameraBtn">Camera</button>
+    <button id="replyBtn">Reply</button>
+    <button id="downloadBtn">Download</button>
+</div>
+
+<script>
+    let blobs = [],
+        mediaRecorder;
+
+    async function record(recordType) {
+        const getMediaMethod = recordType === 'screen' ? 'getDisplayMedia' : 'getUserMedia';
+        const stream = await navigator.mediaDevices[getMediaMethod]({
+            video: {
+                width: 500,
+                height: 300,
+                frameRate: 20
+            }
+        });
+        player.srcObject = stream;
+
+        mediaRecorder = new MediaRecorder(stream, {
+            mimeType: 'video/webm'
+        });
+        mediaRecorder.ondataavailable = (e) => {
+            blobs.push(e.data);
+        };
+        mediaRecorder.start(100);
+    }
+
+    startScreenBtn.addEventListener('click', () => {
+        record('screen');
+    });
+
+    startCameraBtn.addEventListener('click', () => {
+        record('camera');
+    });
+
+    replyBtn.addEventListener('click', () => {
+        const blob = new Blob(blobs, {
+            type: 'video/webm'
+        });
+        recordPlayer.src = URL.createObjectURL(blob);
+        recordPlayer.play();
+    });
+
+    downloadBtn.addEventListener('click', () => {
+        const blob = new Blob(blobs, {
+            type: 'video/webm'
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'record.webm';
+        a.style.display = 'none';
+        a.click();
+    });
+</script>
+</body>
+
+</html>
