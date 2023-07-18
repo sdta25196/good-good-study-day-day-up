@@ -88,6 +88,16 @@ fn main() {
 fn aa(s: &mut String){
   println!("{}",s)
 }
+// --------------------------
+fn a(s:&mut u32){
+    *s=44;
+    println!("{s}")
+}
+fn main() {
+    let mut s1 = 10u32;
+    a(&mut s1);
+    println!("{}",s1);
+}
 ```
   * rust保证永远不会出现悬空引用，如果引用无效，rust在编译期间就会给出一个生命周期的错误
 
