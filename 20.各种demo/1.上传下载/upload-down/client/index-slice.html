@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>切片上传、切片下载</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <input type="file" id="file" />
+  <button onclick="upload()">提交上传</button>
+  <br />
+  <br />
+  <br />
+  <br />
+  <input type="text" id="text" />
+  <button onclick="urlDownload()">url下载</button>
+  <button onclick="fetchDownload()">fetch下载</button>
+
+  <script>
+    // 上传
+    function upload() {
+      const dom = document.querySelector("#file")
+      const fd = new FormData()
+      const file = dom.files[0]
+      fd.append('file', file)
+      fd.append('fileName', file.name)
+      fetch('http://localhost:9997/upload', {
+        method: "post",
+        body: fd
+      }).then(res => res.json()).then(res => {
+        console.log(res)
+      })
+    }
+
+    //下载文件的请求方法
+    function urlDownload(filename) {
+      // 服务端设置响应头即可使浏览器执行下载
+      window.location.href = `http://localhost:9997/download`
+    }
+
+    // fetch下载 - 后台给的响应头不是流，也不会影响下载
+    function fetchDownload() {
+      axios({
+        url: 'http://localhost:9997/download',
+        method: 'get',
+        responseType: 'blob'
+      }).then(function (response) {
+        // 将响应回来的数据下载为文件，固定代码
+        // 将响应数据处理为Blob类型
+        var blob = new Blob([response.data]);
+        // 创建一个URL对象
+        var url = window.URL.createObjectURL(blob);
+        // 创建一个a标签
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "2.png";// 这里指定下载文件的文件名
+        a.click();
+        // 释放之前创建的URL对象
+        window.URL.revokeObjectURL(url);
+      }).catch(function (reason) {
+        console.log(reason)
+      })
+    }
+  </script>
+</body>
+
+</html>
