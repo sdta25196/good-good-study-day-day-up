@@ -21,20 +21,59 @@
   <button onclick="fetchDownload()">fetch下载</button>
 
   <script>
+
+    // 读取文件内容到ArrayBuffer
+    function readFileToArrayBuffer(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+
+        // 注册文件读取完成后的回调函数
+        reader.onload = function (event) {
+          const arrayBuffer = event.target.result;
+          resolve(arrayBuffer);
+        };
+
+        // 读取文件内容到ArrayBuffer
+        reader.readAsArrayBuffer(file);
+      });
+    }
+
+    // 将ArrayBuffer转为十六进制字符串
+    function arrayBufferToHexString(arrayBuffer) {
+      const uint8Array = new Uint8Array(arrayBuffer);
+      let hexString = '';
+      for (let i = 0; i < uint8Array.length; i++) {
+        const hex = uint8Array[i].toString(16).padStart(2, '0');
+        hexString += hex;
+      }
+      return hexString;
+    }
+
+
     // 上传
     function upload() {
       const dom = document.querySelector("#file")
-      const fd = new FormData()
       const file = dom.files[0]
-      fd.append('file', file)
-      fd.append('fileName', file.name)
-      fetch('http://localhost:9997/upload', {
-        method: "post",
-        body: fd
-      }).then(res => res.json()).then(res => {
-        console.log(res)
-      })
+      readFileToArrayBuffer(file)
+        .then(arrayBuffer => {
+          const hexString = arrayBufferToHexString(arrayBuffer);
+          console.log(hexString);
+        })
+        .catch(error => {
+          console.error('文件读取失败:', error);
+        });
+      // const fd = new FormData()
+      // const file = dom.files[0]
+      // fd.append('file', file)
+      // fd.append('fileName', file.name)
+      // fetch('http://localhost:9997/upload', {
+      //   method: "post",
+      //   body: fd
+      // }).then(res => res.json()).then(res => {
+      //   console.log(res)
+      // })
     }
+
 
     //下载文件的请求方法
     function urlDownload(filename) {
