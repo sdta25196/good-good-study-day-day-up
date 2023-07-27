@@ -15,7 +15,7 @@
   <br />
   <br />
   <br />
-  <button onclick="fetchDownload()">切片下载</button>
+  <button onclick="downloadFile()">切片下载</button>
 
   <script>
     // 上传
@@ -83,9 +83,10 @@
       })
     }
 
+    // ! 切片下载需要使用 Range
     function downloadFile() {
       // 发起文件下载请求
-      fetch('http://localhost:9997/download-slice', {
+      fetch('http://localhost:9997/download-slice?chunk=chun', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -93,6 +94,7 @@
       })
         .then(response => response.json())
         .then(data => {
+          console.log(data)
           const totalSize = data.totalSize;
           const totalChunks = data.totalChunks;
 
@@ -101,32 +103,32 @@
 
           // 下载每个切片
           for (let chunkNumber = 0; chunkNumber < totalChunks; chunkNumber++) {
-            fetch(`/download-slice?chunk=chunk-${chunkNumber}`, {
-              method: 'GET',
-            })
-              .then(response => response.blob())
-              .then(chunk => {
-                downloadedChunks++;
-                chunks.push(chunk);
+            // fetch(`/download-slice?chunk=chunk-${chunkNumber}`, {
+            //   method: 'GET',
+            // })
+            //   .then(response => response.blob())
+            //   .then(chunk => {
+            //     downloadedChunks++;
+            //     chunks.push(chunk);
 
-                // 当所有切片都下载完成时
-                if (downloadedChunks === totalChunks) {
-                  // 合并切片
-                  const mergedBlob = new Blob(chunks);
+            //     // 当所有切片都下载完成时
+            //     if (downloadedChunks === totalChunks) {
+            //       // 合并切片
+            //       const mergedBlob = new Blob(chunks);
 
-                  // 创建对象 URL，生成下载链接
-                  const downloadUrl = window.URL.createObjectURL(mergedBlob);
+            //       // 创建对象 URL，生成下载链接
+            //       const downloadUrl = window.URL.createObjectURL(mergedBlob);
 
-                  // 创建一个a标签
-                  var a = document.createElement("a");
-                  a.href = downloadUrl;
-                  a.download = "";// 这里指定下载文件的文件名
-                  a.click();
+            //       // 创建一个a标签
+            //       var a = document.createElement("a");
+            //       a.href = downloadUrl;
+            //       a.download = "";// 这里指定下载文件的文件名
+            //       a.click();
 
-                  // 释放资源
-                  window.URL.revokeObjectURL(downloadUrl);
-                }
-              });
+            //       // 释放资源
+            //       window.URL.revokeObjectURL(downloadUrl);
+            //     }
+            //   });
           }
         })
         .catch(error => {

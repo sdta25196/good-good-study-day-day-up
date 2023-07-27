@@ -78,27 +78,44 @@ app.post('/upload-slice-merge', function (req, res) {
 })
 
 // 文件下载切片版
-app.post('/download-slice', multer({ dest: staticPath }).any(), function (req, res) {
-    const name = '新建文本文档.txt'
-    // 判断该文件是否存在
+app.get('/download-slice', function (req, res) {
+    // ! 切片下载需要使用 Range
+    console.log(req.query)
+    if (req.query.chunk) {
+
+    }
+    const name = 'a.txt'
     const filePath = path.resolve(staticPath, name)
-    fs.access(filePath, function (err) {
-        if (!err) {
-            res.set({
-                // 告诉浏览器这是一个二进制文件 、 也可以使用明确的文件类型
-                "Content-Type": "application/octet-stream",
-                // attachment 是告诉浏览器这是一个需要下载的文件，
-                // filename 是建议的文件命名，使用encodeURI方法，是为了避免中文名称下载时出问题
-                "Content-Disposition": encodeURI(`attachment;filename=${name}`)
-            })
-            // ! 使用 res.download 响应给客户端
-            res.download(filePath);
-            // ! 使用流读取文件，并响应给客户端
-            // fs.createReadStream(filePath).pipe(res)
-        } else {
-            console.log(err)
-        }
-    })
+    const file = fs.statSync(filePath)
+    // ! 计算分片
+    const fileSize = file.size;
+    const chunkSize = 1024 * 1024; // 设置切片大小为1MB 1024 * 1024
+    const totalChunks = Math.ceil(fileSize / chunkSize);
+
+    res.send({ code: 0, data: { totalChunks, totalSize: fileSize }, message: "成功" })
+
+    // ! 直接按照开始和结束位置读取流
+    // fs.createReadStream(file, { start, end }).pipe(res);
+
+
+    // 判断该文件是否存在
+    // fs.access(filePath, function (err) {
+    //     if (!err) {
+    //         res.set({
+    //             // 告诉浏览器这是一个二进制文件 、 也可以使用明确的文件类型
+    //             "Content-Type": "application/octet-stream",
+    //             // attachment 是告诉浏览器这是一个需要下载的文件，
+    //             // filename 是建议的文件命名，使用encodeURI方法，是为了避免中文名称下载时出问题
+    //             "Content-Disposition": encodeURI(`attachment;filename=${name}`)
+    //         })
+    //         // ! 使用 res.download 响应给客户端
+    //         res.download(filePath);
+    //         // ! 使用流读取文件，并响应给客户端
+    //         // fs.createReadStream(filePath).pipe(res)
+    //     } else {
+    //         res.send({ code: 1, message: err })
+    //     }
+    // })
 })
 
 
