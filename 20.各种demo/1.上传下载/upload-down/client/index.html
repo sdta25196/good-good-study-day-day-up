@@ -55,7 +55,7 @@
         // 创建一个a标签
         var a = document.createElement("a");
         a.href = url;
-        a.download = "2.png";// 这里指定下载文件的文件名
+        a.download = "";// 这里指定下载文件的文件名
         a.click();
         // 释放之前创建的URL对象
         window.URL.revokeObjectURL(url);

@@ -31,20 +31,25 @@ app.post('/upload', multer({ dest: staticPath }).any(), function (req, res) {
 
 // 文件下载
 app.get('/download', function (req, res) {
-    // 如果参数中有中文，需要解码
+    const name = '新建文本文档.txt'
     // 判断该文件是否存在
-    const filePath = path.resolve(staticPath, '2.png')
+    const filePath = path.resolve(staticPath, name)
     fs.access(filePath, function (err) {
         if (!err) {
+            // 设置响应头
             res.set({
                 // 告诉浏览器这是一个二进制文件 、 也可以使用明确的文件类型
                 "Content-Type": "application/octet-stream",
                 // attachment 是告诉浏览器这是一个需要下载的文件，
                 // filename 是建议的文件命名，使用encodeURI方法，是为了避免中文名称下载时出问题
-                "Content-Disposition": encodeURI(`attachment;filename=2.png`)
+                "Content-Disposition": encodeURI(`attachment;filename=${name}`)
             })
-            // 使用流读取文件，并响应给客户端
-            fs.createReadStream(filePath).pipe(res)
+            // ! 使用 res.download 响应给客户端
+            res.download(filePath);
+            // ! 使用流读取文件，并响应给客户端
+            // fs.createReadStream(filePath).pipe(res)
+        } else {
+            res.send({ code: 1, message: err })
         }
     })
 
@@ -70,6 +75,30 @@ app.post('/upload-slice-merge', function (req, res) {
     const fileName = decodeURI(req.body.fileName)
     streamMerge(staticPath, path.resolve(staticPath, fileName))
     res.send({ code: 0, message: "成功" })
+})
+
+// 文件下载切片版
+app.post('/download-slice', multer({ dest: staticPath }).any(), function (req, res) {
+    const name = '新建文本文档.txt'
+    // 判断该文件是否存在
+    const filePath = path.resolve(staticPath, name)
+    fs.access(filePath, function (err) {
+        if (!err) {
+            res.set({
+                // 告诉浏览器这是一个二进制文件 、 也可以使用明确的文件类型
+                "Content-Type": "application/octet-stream",
+                // attachment 是告诉浏览器这是一个需要下载的文件，
+                // filename 是建议的文件命名，使用encodeURI方法，是为了避免中文名称下载时出问题
+                "Content-Disposition": encodeURI(`attachment;filename=${name}`)
+            })
+            // ! 使用 res.download 响应给客户端
+            res.download(filePath);
+            // ! 使用流读取文件，并响应给客户端
+            // fs.createReadStream(filePath).pipe(res)
+        } else {
+            console.log(err)
+        }
+    })
 })
 
 

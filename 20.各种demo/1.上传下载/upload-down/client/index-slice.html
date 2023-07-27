@@ -6,19 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>切片上传、切片下载</title>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
   <input type="file" id="file" />
-  <button onclick="upload()">提交上传</button>
+  <button onclick="upload()">切片上传</button>
   <br />
   <br />
   <br />
   <br />
-  <input type="text" id="text" />
-  <button onclick="urlDownload()">url下载</button>
-  <button onclick="fetchDownload()">fetch下载</button>
+  <button onclick="fetchDownload()">切片下载</button>
 
   <script>
     // 上传
@@ -31,16 +28,13 @@
       const chunkSize = 1024 * 1024; // 设置切片大小为1MB 1024 * 1024
       const totalChunks = Math.ceil(fileSize / chunkSize);
 
-      // 创建FormData对象，并添加文件信息
-      // formData.append('file', file);
-      // formData.append('fileName', file.name);
-      // formData.append('totalChunks', totalChunks);
       let doneReqCount = 0
       // 循环上传切片
       for (let chunkNumber = 0; chunkNumber < totalChunks; chunkNumber++) {
         const start = chunkNumber * chunkSize;
         const end = Math.min(start + chunkSize, fileSize);
         const chunk = file.slice(start, end);
+        // 创建FormData对象，并添加切片信息
         const formData = new FormData();
         // ！ 此处需要处理文件 hash 值
         formData.append(`chunk-${chunkNumber}`, chunk, encodeURI(file.name));
@@ -66,34 +60,78 @@
     }
 
 
-    //下载文件的请求方法
-    function urlDownload(filename) {
-      // 服务端设置响应头即可使浏览器执行下载
-      window.location.href = `http://localhost:9997/download`
-    }
-
     // fetch下载 - 后台给的响应头不是流，也不会影响下载
     function fetchDownload() {
-      axios({
-        url: 'http://localhost:9997/download',
-        method: 'get',
+      fetch('http://localhost:9997/download', {
+        method: "get",
         responseType: 'blob'
-      }).then(function (response) {
+      }).then(res => res.blob()).then(res => {
         // 将响应回来的数据下载为文件，固定代码
         // 将响应数据处理为Blob类型
-        var blob = new Blob([response.data]);
+        var blob = new Blob([res]);
         // 创建一个URL对象
         var url = window.URL.createObjectURL(blob);
         // 创建一个a标签
         var a = document.createElement("a");
         a.href = url;
-        a.download = "2.png";// 这里指定下载文件的文件名
+        a.download = "";// 这里指定下载文件的文件名
         a.click();
         // 释放之前创建的URL对象
         window.URL.revokeObjectURL(url);
-      }).catch(function (reason) {
-        console.log(reason)
+      }).catch(function (err) {
+        console.log(err)
       })
+    }
+
+    function downloadFile() {
+      // 发起文件下载请求
+      fetch('http://localhost:9997/download-slice', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          const totalSize = data.totalSize;
+          const totalChunks = data.totalChunks;
+
+          let downloadedChunks = 0;
+          let chunks = [];
+
+          // 下载每个切片
+          for (let chunkNumber = 0; chunkNumber < totalChunks; chunkNumber++) {
+            fetch(`/download-slice?chunk=chunk-${chunkNumber}`, {
+              method: 'GET',
+            })
+              .then(response => response.blob())
+              .then(chunk => {
+                downloadedChunks++;
+                chunks.push(chunk);
+
+                // 当所有切片都下载完成时
+                if (downloadedChunks === totalChunks) {
+                  // 合并切片
+                  const mergedBlob = new Blob(chunks);
+
+                  // 创建对象 URL，生成下载链接
+                  const downloadUrl = window.URL.createObjectURL(mergedBlob);
+
+                  // 创建一个a标签
+                  var a = document.createElement("a");
+                  a.href = downloadUrl;
+                  a.download = "";// 这里指定下载文件的文件名
+                  a.click();
+
+                  // 释放资源
+                  window.URL.revokeObjectURL(downloadUrl);
+                }
+              });
+          }
+        })
+        .catch(error => {
+          console.error('文件下载失败:', error);
+        });
     }
   </script>
 </body>
