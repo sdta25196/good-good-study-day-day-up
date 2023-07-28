@@ -56,37 +56,12 @@
           }
         })
       }
-
-    }
-
-
-    // fetch下载 - 后台给的响应头不是流，也不会影响下载
-    function fetchDownload() {
-      fetch('http://localhost:9997/download', {
-        method: "get",
-        responseType: 'blob'
-      }).then(res => res.blob()).then(res => {
-        // 将响应回来的数据下载为文件，固定代码
-        // 将响应数据处理为Blob类型
-        var blob = new Blob([res]);
-        // 创建一个URL对象
-        var url = window.URL.createObjectURL(blob);
-        // 创建一个a标签
-        var a = document.createElement("a");
-        a.href = url;
-        a.download = "";// 这里指定下载文件的文件名
-        a.click();
-        // 释放之前创建的URL对象
-        window.URL.revokeObjectURL(url);
-      }).catch(function (err) {
-        console.log(err)
-      })
     }
 
     // ! 切片下载需要使用 Range
     function downloadFile() {
       // 发起文件下载请求
-      fetch('http://localhost:9997/download-slice?chunk=chun', {
+      fetch('http://localhost:9997/download-slice', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -94,41 +69,45 @@
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data)
-          const totalSize = data.totalSize;
-          const totalChunks = data.totalChunks;
+          const totalSize = data.data.totalSize;
+          const totalChunks = data.data.totalChunks;
 
           let downloadedChunks = 0;
           let chunks = [];
 
           // 下载每个切片
           for (let chunkNumber = 0; chunkNumber < totalChunks; chunkNumber++) {
-            // fetch(`/download-slice?chunk=chunk-${chunkNumber}`, {
-            //   method: 'GET',
-            // })
-            //   .then(response => response.blob())
-            //   .then(chunk => {
-            //     downloadedChunks++;
-            //     chunks.push(chunk);
+            const chunkSize = 1024 * 1024; // 设置切片大小为1MB 1024 * 1024
+            const start = chunkNumber * chunkSize;
+            const end = Math.min(start + chunkSize, totalSize);
+            fetch(`/download-slice`, {
+              method: 'GET',
+              headers: { Range: `bytes=${start}-${end}` },
+              responseType: "blob",
+            })
+              .then(response => response.blob())
+              .then(chunk => {
+                downloadedChunks++;
+                chunks.push(chunk);
 
-            //     // 当所有切片都下载完成时
-            //     if (downloadedChunks === totalChunks) {
-            //       // 合并切片
-            //       const mergedBlob = new Blob(chunks);
+                // 当所有切片都下载完成时
+                if (downloadedChunks === totalChunks) {
+                  // 合并切片
+                  const mergedBlob = new Blob(chunks);
 
-            //       // 创建对象 URL，生成下载链接
-            //       const downloadUrl = window.URL.createObjectURL(mergedBlob);
+                  // 创建对象 URL，生成下载链接
+                  const downloadUrl = window.URL.createObjectURL(mergedBlob);
 
-            //       // 创建一个a标签
-            //       var a = document.createElement("a");
-            //       a.href = downloadUrl;
-            //       a.download = "";// 这里指定下载文件的文件名
-            //       a.click();
+                  // 创建一个a标签
+                  var a = document.createElement("a");
+                  a.href = downloadUrl;
+                  a.download = "";// 这里指定下载文件的文件名
+                  a.click();
 
-            //       // 释放资源
-            //       window.URL.revokeObjectURL(downloadUrl);
-            //     }
-            //   });
+                  // 释放资源
+                  window.URL.revokeObjectURL(downloadUrl);
+                }
+              });
           }
         })
         .catch(error => {
