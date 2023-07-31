@@ -1,0 +1,19 @@
+{
+  "name": "express-example",
+  "license": "ISC",
+  "bin": "index.js",
+  "dependencies": {
+    "express": "4.15.2"
+  },
+  "scripts": {
+    "pkg": "pkg . -t win -o dist/test"
+  },
+  "pkg": {
+    "assets": [
+      "views/**/*"
+    ],
+    "targets": [
+      "node16"
+    ]
+  }
+}
