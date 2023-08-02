@@ -1,0 +1,21 @@
+{
+  "pkg": {
+    "targets": [
+      "node14-win-x64"
+    ],
+    "outputPath": "dist",
+    "assets": [
+      "node_modules/printer/lib/node_printer.node"
+    ]
+  },
+  "pkg_fetch_version": "3.2",
+  "node_version": "14.17.2",
+  "pkg_cache_path": ".pkg-cache",
+  "icon": "icon.ico",
+  "name": "myapp",
+  "description": "myapp description",
+  "company": "mycompany",
+  "version": "1.0.0",
+  "copyright": "mycopyright Ltd",
+  "file": "index.js"
+}
