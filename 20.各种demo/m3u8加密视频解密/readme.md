@@ -48,3 +48,8 @@ fetch(c).then(res => res.buffer()).then(res => {
   fs.writeFileSync('12_2_10.ts', res)
 })
 ```
+
+
+## 方法二
+
+使用ffmpeg，参阅[我的博客](https://www.900t.cn) -> ffmpeg 文章
