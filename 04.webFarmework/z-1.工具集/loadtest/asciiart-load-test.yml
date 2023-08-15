@@ -1,0 +1,25 @@
+config:
+  target: http://asciiart.artillery.io:8080 # 访问目标
+  phases: # 负载阶段
+    - duration: 60 # 阶段一：持续时间60s
+      arrivalRate: 1 # 每秒1个用户
+      rampTo: 5 # 逐渐增加到每秒5个用户
+      name: Warm up phase
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 10
+      name: Ramp up load
+    - duration: 30
+      arrivalRate: 10
+      rampTo: 30
+      name: Spike phase
+scenarios: # 测试场景
+  - flow:
+      - loop: # 每个用户将循环访问此处链接100次
+          - get:
+              url: "/dino"
+          - get:
+              url: "/pony"
+          - get:
+              url: "/armadillo"
+        count: 100
