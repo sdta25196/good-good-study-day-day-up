@@ -1,0 +1,23 @@
+.page-main{
+  text-align: center;
+}
+#input_text{
+  padding: 8px;
+  width: 400px;
+  height: 100px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 13px;
+  line-height: 1.5;
+}
+button{
+  margin-top: 10px;
+  width: 100px;
+  height: 36px;
+  background-color: #187cff;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+}
