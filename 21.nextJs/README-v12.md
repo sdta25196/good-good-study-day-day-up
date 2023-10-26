@@ -1,4 +1,4 @@
-# nextJs介绍
+# nextJs介绍 - V12
 
 next是一个react框架，目前已经与react官方团队深度合作。
 
