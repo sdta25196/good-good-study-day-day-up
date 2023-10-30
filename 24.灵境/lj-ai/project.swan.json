@@ -1,0 +1,23 @@
+{
+    "appid": "HbZmq7Xo7XdLizB7klyeqjCvGej2ePyD",
+    "setting": {
+        "urlCheck": true
+    },
+    "compilation-args": {
+        "common": {
+            "enhance": true,
+            "quickPreview": true,
+            "useNewCompileUpload": true
+        },
+        "useOldCompiler": false,
+        "forceChanged": {}
+    },
+    "projectname": "测试自主开发",
+    "host": "baiduboxapp",
+    "swan": {
+        "baiduboxapp": {
+            "swanJsVersion": "11.110.2",
+            "extensionJsVersion": ""
+        }
+    }
+}
