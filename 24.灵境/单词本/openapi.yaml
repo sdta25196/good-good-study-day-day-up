@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+    title: 单词本
+    description: 个性化的英文单词本，可以增加、删除和浏览单词本中的单词，背单词时从已有单词本中随机抽取单词生成句子或者段落。
+    version: "v1"
+servers:
+    - url: https://autumnfish.cn
+paths:
+    /api/joke/list:
+        get:
+            operationId: getWordbook
+            summary: 展示单词列表
+            responses:
+                "200":
+                    description: 列表展示完成
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    msg:
+                                        description: 单词本单词列表
+                                        type: string
+            x-return-raw:
+                description: 标记当前 API 请求的结果是否经过大模型，当 name 的值不空时，从插件结果中获取具体字段，类型必须 String，直接返回，而不经过大模型。
+                mediaType: application/json
+                name: msg
+                type: string
+# components:
+#     schemas:
+#         aaa:
+#             type: object
+#             required: [msg]
+#             properties:
+#                 msg:
+#                     type: string
+#                     description: 单词本单词列表

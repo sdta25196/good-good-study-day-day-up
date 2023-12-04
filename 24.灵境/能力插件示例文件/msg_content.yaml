@@ -1,0 +1,31 @@
+# yaml文件中定义的operationId
+create:
+  # 标识插件调用失败的错误码和文案
+  error:
+    - errCode: failed
+      actionName: 生成视频
+      actionContent: 画面生成失败，建议您换一个话题，更新描述后可再次尝试
+    - errCode: STG.aft.person_refused
+      actionName: 生成视频失败
+      actionContent: 我没有学习过指定人物的视频生成能力，请更新描述后可再次尝试
+    - errCode: STG.qft.person_refused
+      actionName: 生成视频失败
+      actionContent: 我没有学习过指定人物的视频生成能力，请更新描述后可再次尝试
+    - errCode: STG.aft.event_refused
+      actionName: 生成视频失败
+      actionContent: 我没有学习过指定事件的视频生成能力，请更新描述后可再次尝试
+    - errCode: STG.qft.event_refused
+      actionName: 生成视频失败
+      actionContent: 我没有学习过指定事件的视频生成能力，请更新描述后可再次尝试
+    - errCode: STG.ack.empty_session
+      actionName: 生成视频失败
+      actionContent: 您指定的视频脚本内容我无法使用，更新描述后可再次尝试。
+# 可定义通用的错误码和文案，将为每一个api追加common中的内容
+# common为保留字，如果将一个api的operationId定义为了common，此处定义的错误码仍会生效到每一个api上
+common:
+  # 同上
+  error:
+    # 如果错误码与其他operationId中定义的相同，以其他operationId为准
+    - errCode: -1
+      actionName: 鉴权失败
+      actionContent: 鉴权信息已过期，请重新登录
