@@ -22,7 +22,7 @@ let wordbook = [
 ]
 
 app.all('/get_wordbook', (req, res) => {
-  log('展示单词本')
+  log('展示单词本', req.get('Authorization'))
   res.send({
     wordbook: wordbook,
     prompt: "使用markdown语法，以表格的形式显示所有单词"
