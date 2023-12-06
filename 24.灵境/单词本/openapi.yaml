@@ -6,6 +6,17 @@ info:
 servers:
     - url: http://api.900t.cn
 paths:
+    /generate_word: # 这个是 SSE 接口测试
+        get:
+            operationId: generateword
+            summary: 生成一个新单词
+            responses:
+                "200":
+                    description: 新单词生成完成
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/generateword"
     /get_wordbook:
         get:
             operationId: getWordbook
@@ -58,6 +69,13 @@ paths:
                                 $ref: "#/components/schemas/messageResponse"
 components:
     schemas:
+        generateword:
+            type: object
+            required: [word]
+            properties:
+                word:
+                    type: string
+                    description: 新生成的单词
         getWordbook:
             type: object
             required: [wordbook]

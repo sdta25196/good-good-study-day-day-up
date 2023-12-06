@@ -24,7 +24,23 @@
       };
     }
 
-    linkServer()
+    // linkServer()
+  </script>
+  <script>
+    function generate_word() {
+      // 创建一个新的EventSource实例，并连接到服务器端点
+      var source = new EventSource("http://localhost:9996/generate_word");
+
+      // 在接收到消息时更新页面
+      source.onmessage = function (event) {
+        // 解析收到的JSON数据
+        var data = JSON.parse(event.data);
+        // 将数据显示在页面上
+        document.getElementById("result").innerHTML = data.word;
+      };
+    }
+
+    generate_word()
   </script>
 </body>
 
