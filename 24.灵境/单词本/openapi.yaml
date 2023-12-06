@@ -34,8 +34,13 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/messageResponse"
+            x-return-raw:
+                description: 标记当前 API 请求的结果是否经过大模型，当 name 的值不空时，从插件结果中获取具体字段，类型必须 String，直接返回，而不经过大模型。
+                mediaType: application/json
+                name: message
+                type: string
     /delete_word:
-        delete:
+        post:
             operationId: deleteWord
             summary: 从单词本中删除一个单词
             requestBody:
@@ -51,7 +56,6 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/messageResponse"
-
 components:
     schemas:
         getWordbook:
@@ -76,7 +80,7 @@ components:
             properties:
                 word:
                     type: string
-                    description: 需要删除的单词
+                    description: 删除单词本中的这个单词
         messageResponse:
             type: object
             required: [message]

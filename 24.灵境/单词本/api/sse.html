@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <h2>服务器时间</h2><button onclick="linkServer()">重连</button>
+  <div id="result"></div>
+
+  <script>
+    function linkServer() {
+      // 创建一个新的EventSource实例，并连接到服务器端点
+      var source = new EventSource("http://localhost:9996/stream");
+
+      // 在接收到消息时更新页面
+      source.onmessage = function (event) {
+        // 解析收到的JSON数据
+        var data = JSON.parse(event.data);
+        // 将数据显示在页面上
+        document.getElementById("result").innerHTML = data.time;
+
+        // 碰到 n9 秒, 就中断连接
+        if (data.time.endsWith('9')) {
+          source.close();
+        }
+      };
+    }
+
+    linkServer()
+  </script>
+</body>
+
+</html>

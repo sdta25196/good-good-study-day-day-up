@@ -49,6 +49,35 @@ app.all('/delete_word', (req, res) => {
   })
 })
 
+app.get('/stream', function (req, res) {
+  // 设置HTTP响应头信息
+  // 设置MIME类型为event-stream
+  res.setHeader('Content-Type', 'text/event-stream');
+  // 设置连接方式为keep-alive
+  res.setHeader('Connection', 'keep-alive');
+  res.setHeader('Cache-Control', 'no-cache');
+
+  function sendEvents() {
+    // 定义事件数据
+    const data = {
+      time: new Date().toLocaleString(),
+    };
+
+    // 使用SSE格式发送事件数据
+    // "data: "为固定前缀，后接JSON格式的事件数据
+    res.write(`data: ${JSON.stringify(data)}\n\n`);
+
+    // 收到请求关闭连接的情况处理
+    req.on('close', () => {
+      clearInterval(timer); // 清除定时器
+      res.end(); // 关闭连接
+    });
+  }
+
+  // 每秒发送一次事件
+  let timer = setInterval(sendEvents, 1000);
+});
+
 const port = process.env.PORT || 9996
 
 app.listen(port, () => {
