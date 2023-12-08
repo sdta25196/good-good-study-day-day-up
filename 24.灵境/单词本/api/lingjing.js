@@ -1,7 +1,36 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser');
+const path = require('path');
 const fs = require('fs')
+
+const html = `<body class="body">
+<style>
+  .body { width: 500px;}
+  .div {background-color: red;}
+  .div1 {background-color: blue;}
+  .box {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0;
+    background: burlywood;
+  }
+</style>
+<div class="div">
+  66666666
+</div>
+<div class="div1">
+  777777777
+</div>
+<div class="box">
+  <div> a</div>
+  <div> b</div>
+</div>
+<img src="https://img6.eol.cn/e_images/gk/2023/gzdz1200.png" width="300" />
+<div>
+  <a href="https://www.gaokao.cn/" target="_blank" class="chat-markdown-link">掌上高考</a>
+</div>
+</body>`
 
 const app = express()
 app.use(bodyParser.json())
@@ -20,6 +49,29 @@ const log = (str) => {
 let wordbook = [
   "is", "who", "what", "how"
 ]
+
+app.all('/get_imgage', function (req, res) {
+  // res.setHeader('Content-Type', 'image/jpg');
+  // res.sendFile(path.join(__dirname, 'test.jpg'));
+  log('获取图片' + req.get('Authorization'))
+  res.send({
+    // ! 让大模型生成一个超链接
+    // imgurl: 'https://www.gaokao.cn/',
+    // prompt: "把imgurl字段的值，放到超链接中，文案为《掌上高考》"
+    // ! 返回一个a标签
+    // imgurl: '<a href="https://www.gaokao.cn/" target="_blank">掌上高考</a>',
+    // ! 直接返回一个红色。配合 x-return-raw 使用
+    // imgurl: '<div style="width:100px;height:100px;background:red"></div>',
+    // ! 直接返回图片
+    // imgurl: '<img src="https://img6.eol.cn/e_images/gk/2023/gzdz1200.png" width="300" />',
+    // ! 返回html页面
+    // imgurl: html
+    // ! 返回markdown 超链接
+    imgurl: "<span style='background:red'>这里是一个span</span>[掌上高考](https://www.gaokao.cn/)"
+    // ! 返回markdown 图片
+    // imgurl: "![掌上高考](https://img6.eol.cn/e_images/gk/2023/gzdz1200.png){:height="100px" width="400px"}"
+  })
+});
 
 app.all('/get_wordbook', (req, res) => {
   log('展示单词本，' + req.get('Authorization'))

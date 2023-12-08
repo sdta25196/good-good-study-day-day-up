@@ -17,6 +17,22 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/generateword"
+    /get_imgage:
+        get:
+            operationId: getImgage
+            summary: 获取图片
+            responses:
+                "200":
+                    description: 获取图片完成
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/getImgage"
+            x-return-raw:
+                description: 标记当前 API 请求的结果是否经过大模型，当 name 的值不空时，从插件结果中获取具体字段，类型必须 String，直接返回，而不经过大模型。
+                mediaType: application/json
+                name: imgurl
+                type: string
     /get_wordbook:
         get:
             operationId: getWordbook
@@ -76,6 +92,13 @@ components:
                 word:
                     type: string
                     description: 新生成的单词
+        getImgage:
+            type: object
+            required: [imgurl]
+            properties:
+                imgurl:
+                    type: string
+                    description: 图片的网络地址
         getWordbook:
             type: object
             required: [wordbook]
