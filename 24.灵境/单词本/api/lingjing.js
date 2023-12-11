@@ -101,7 +101,47 @@ app.all('/delete_word', (req, res) => {
   })
 })
 
+// ! 不使用msg_content.yaml 的SSE
+// app.get('/generate_word', function (req, res) {
+//   log('生成新单词，' + req.get('Authorization'))
+//   // 设置HTTP响应头信息
+//   // 设置MIME类型为event-stream
+//   res.setHeader('Content-Type', 'text/event-stream');
+//   // 设置连接方式为keep-alive
+//   res.setHeader('Connection', 'keep-alive');
+//   res.setHeader('Cache-Control', 'no-cache');
 
+//   let word = "xioswa"
+//   let wordArray = word.split("")
+//   let sendEndWord = ""
+//   let i = 0
+
+//   function sendEvents() {
+//     // 定义事件数据
+//     const data = {
+//       word: sendEndWord + wordArray[i],
+//       prompt: "请基于工具返回的word字段，提示给用户新生成的单词"
+//     };
+
+//     sendEndWord = data.word;
+//     i++;
+
+//     if (sendEndWord == word) {
+//       clearInterval(timer); // 清除定时器
+//       res.end(); // 关闭连接
+//     } else {
+//       // 使用SSE格式发送事件数据
+//       // "data: "为固定前缀，后接JSON格式的事件数据
+//       res.write(`data: ${JSON.stringify(data)}\n\n`);
+//     }
+//   }
+
+//   // 每秒发送一次事件
+//   let timer = setInterval(sendEvents, 1000);
+// });
+
+
+// ! 使用msg_content.yaml 的SSE
 app.get('/generate_word', function (req, res) {
   log('生成新单词，' + req.get('Authorization'))
   // 设置HTTP响应头信息
@@ -111,22 +151,33 @@ app.get('/generate_word', function (req, res) {
   res.setHeader('Connection', 'keep-alive');
   res.setHeader('Cache-Control', 'no-cache');
 
-  let word = "xioswa"
-  let wordArray = word.split("")
-  let sendEndWord = ""
   let i = 0
-
   function sendEvents() {
     // 定义事件数据
-    const data = {
-      word: sendEndWord + wordArray[i],
-      prompt: "请基于工具返回的word字段，提示给用户新生成的单词"
-    };
-
-    sendEndWord = data.word;
+    let data = {}
+    if (i == 0) {
+      data = {
+        errCode: "doing",
+        actionName: "开始执行",
+        actionContent: "开始执行单词生成"
+      };
+    }
+    if (i == 1) {
+      data = {
+        errCode: "complete",
+        actionName: "执行完成",
+        actionContent: "单词生成完成",
+      };
+    }
+    if (i == 2) {
+      data = {
+        word: 'hello',
+        prompt: "请基于工具返回的word字段，提示给用户新生成的单词"
+      };
+    }
     i++;
 
-    if (sendEndWord == word) {
+    if (i > 2) {
       clearInterval(timer); // 清除定时器
       res.end(); // 关闭连接
     } else {
@@ -137,9 +188,8 @@ app.get('/generate_word', function (req, res) {
   }
 
   // 每秒发送一次事件
-  let timer = setInterval(sendEvents, 1000);
+  let timer = setInterval(sendEvents, 400);
 });
-
 
 // ! SSE 示例
 app.get('/stream', function (req, res) {
