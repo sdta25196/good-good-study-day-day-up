@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>问答交互界面</title>
+  <style>
+    .loading,
+    .loading>div {
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .loading {
+      display: block;
+      font-size: 0;
+      color: #ff6600;
+    }
+
+    .loading.la-dark {
+      color: #ff6600;
+    }
+
+    .loading>div {
+      display: inline-block;
+      float: none;
+      background-color: currentColor;
+      border: 0 solid currentColor;
+    }
+
+    .loading {
+      width: 54px;
+      height: 18px;
+    }
+
+    .loading>div {
+      width: 10px;
+      height: 10px;
+      margin: 4px;
+      border-radius: 100%;
+      animation: ball-beat 0.7s -0.15s infinite linear;
+    }
+
+    .loading>div:nth-child(2n-1) {
+      animation-delay: -0.5s;
+    }
+
+    @keyframes ball-beat {
+      50% {
+        opacity: 0.2;
+        transform: scale(0.75);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+  <style>
+    body {
+      background-color: #F5F5F5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .displayArea {
+      width: 45%;
+      height: calc(100vh - 260px);
+      margin: 0 2%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #555;
+      float: left;
+      background-color: #e3e3e3;
+      overflow: auto;
+      overflow-x: hidden;
+    }
+
+    #inputArea {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #bbb;
+      color: #fff;
+      padding: 20px;
+      height: 110px;
+    }
+
+    #inputQuestion {
+      width: 70%;
+      border: none;
+      /* padding: 2% 1%; */
+      font-size: 1.2em;
+      height: 80px;
+    }
+
+    button {
+      width: 20%;
+      border: none;
+      padding: 2% 1%;
+      background-color: #888;
+      color: #fff;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    .clear {
+      clear: both;
+    }
+
+    .question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      background: url('https://static-gkcx.gaokao.cn//upload/operate_img/gkcx_1702887562_2133_thumb.png') no-repeat center center;
+      background-size: 30px;
+      order: 2;
+      align-self: flex-start;
+    }
+
+    .content {
+      order: 1;
+      background-color: #ff6600;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .answer {
+      font-size: 1.2em;
+      color: #000;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      margin-left: 15%;
+      justify-content: flex-end;
+      background-color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .answer p {
+      margin: 0;
+      flex: 1;
+      white-space: normal;
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+
+    .btn {
+      width: 100px;
+      height: 100px;
+      padding: 0;
+      border-radius: 50%;
+      float: right;
+      position: fixed;
+      right: 20px;
+      top: 10px;
+      background-color: #ff6600;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="btn" onclick="clearContent()">清除</button>
+  <div style="display: flex;align-items: center;justify-content: space-around;">
+    <h1>unit + 知识库</h1>
+    <h1>unit + 大模型</h1>
+  </div>
+  <div class="displayArea">
+    <div id="displayArea1"></div>
+  </div>
+  <div class="displayArea">
+    <div id="displayArea2"></div>
+  </div>
+  <div class="clear"></div>
+
+  <div id="inputArea">
+    <input type="text" id="inputQuestion" placeholder="输入问题..." />
+    <button onclick="submitQuestion()">提交问题</button>
+  </div>
+
+  <script>
+    let session_id = ''
+
+    document.getElementById('inputQuestion').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        submitQuestion();
+      }
+    });
+
+    function clearContent() {
+      document.getElementById('displayArea1').innerHTML = "";
+      document.getElementById('displayArea2').innerHTML = "";
+    }
+
+    function submitQuestion() {
+      const question = document.getElementById('inputQuestion').value;
+      document.getElementById('inputQuestion').value = '';
+
+      // Create avatar and question
+      let avatar = document.createElement('div');
+      avatar.className = "avatar";
+      let questionDiv = document.createElement('div');
+      questionDiv.innerText = "Q: " + question;
+      questionDiv.className = "content";
+
+      //  问题div
+      let message = document.createElement('div');
+      message.className = "question";
+      message.appendChild(questionDiv);
+
+      // 加载中div
+      let loadingdiv = document.createElement('div');
+      loadingdiv.className = "loading";
+      loadingdiv.innerHTML = '<div></div><div></div><div></div>'
+
+      let timeend = false
+      // 450毫秒后问题显示在展示区域
+      let nT1 = setTimeout(() => {
+        document.getElementById('displayArea1').appendChild(message);
+        scroller[0].scrollTo({ top: scroller[0].scrollHeight, behavior: 'smooth' })
+        timeend = true
+      }, 450)
+      let nT2 = setTimeout(() => {
+        document.getElementById('displayArea2').appendChild(message.cloneNode(true));
+        scroller[1].scrollTo({ top: scroller[1].scrollHeight, behavior: 'smooth' })
+        timeend = true
+      }, 450)
+      let lT1 = setTimeout(() => {
+        document.getElementById('displayArea1').appendChild(loadingdiv);
+        scroller[0].scrollTo({ top: scroller[0].scrollHeight, behavior: 'smooth' })
+      }, 800)
+      let lT2 = setTimeout(() => {
+        document.getElementById('displayArea2').appendChild(loadingdiv.cloneNode(true));
+        scroller[1].scrollTo({ top: scroller[1].scrollHeight, behavior: 'smooth' })
+      }, 800)
+
+      let scroller = document.querySelectorAll(".displayArea")
+      // 走知识库
+      fetch('http://api-chat.dev.zjzw.cn/api/gkv1/chat/conversation?keyword=' + question + '&tourist=19952061', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ keyword: question, tourist: 19952061, session_id: session_id })
+      })
+        .then(response => response.json())
+        .then(data => {
+          // 清除定时器，并且加入内容
+          clearTimeout(nT1)
+          clearTimeout(lT1)
+          if (!timeend) {
+            document.getElementById('displayArea1').appendChild(message);
+          }
+          session_id = data.data.session_id
+          let answer = document.createElement('div');
+          answer.className = "answer";
+          let answerP = document.createElement('p');
+
+
+          try {
+            answerP.innerText = data.data.data.answer; // Modify this as per your data structure
+          } catch (error) {
+            answerP.innerText = '出错了.......'; // Modify this as per your data structure
+          } finally {
+            answer.appendChild(answerP);
+            answer.appendChild(avatar);
+            document.querySelector('#displayArea1 .loading')?.remove()
+            document.getElementById('displayArea1').appendChild(answer.cloneNode(true));
+            scroller[0].scrollTo({ top: scroller[0].scrollHeight, behavior: 'smooth' })
+          }
+        });
+
+
+      setTimeout(() => {
+        // 走大模型
+        fetch('http://api-chat.dev.zjzw.cn/api/gkv1/chat/conversation_eb?keyword=' + question + '&tourist=19952061', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ keyword: question, tourist: 19952061, session_id: session_id })
+        })
+          .then(response => response.json())
+          .then(data => {
+            // 清除定时器，并且加入内容
+            clearTimeout(nT2)
+            clearTimeout(lT2)
+            if (!timeend) {
+              document.getElementById('displayArea2').appendChild(message.cloneNode(true));
+            }
+            session_id = data.data.session_id
+            let answer = document.createElement('div');
+            answer.className = "answer";
+            let answerP = document.createElement('p');
+
+            try {
+              answerP.innerText = data.data.data.answer; // Modify this as per your data structure
+            } catch (error) {
+              answerP.innerText = '出错了.......'; // Modify this as per your data structure
+            } finally {
+              answer.appendChild(answerP);
+              answer.appendChild(avatar);
+              document.querySelector('#displayArea2 .loading')?.remove()
+              document.getElementById('displayArea2').appendChild(answer.cloneNode(true));
+              scroller[1].scrollTo({ top: scroller[1].scrollHeight, behavior: 'smooth' })
+            }
+          });
+      }, 1500)
+    }
+  </script>
+</body>
+
+</html>
