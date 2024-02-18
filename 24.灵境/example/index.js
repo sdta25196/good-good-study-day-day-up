@@ -1,49 +1,65 @@
-const request = require('request')
-const AK = "应用ak"
-const SK = "应用sk"
+import request from 'request'
+import fs from 'fs'
+import data from './2.js'
 
-async function main() {
+const AK = ""
+const SK = ""
+
+async function main(aricle, index) {
+    console.log('1-' + index + '开始')
     var options = {
         'method': 'POST',
-        // EB 3.5
-        'url': 'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/e9misyl0_aaa?access_token=' + await getAccessToken(),
+        // EB 4.0
+        'url': 'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions_pro?access_token=' + await getAccessToken(),
         'headers': {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            "system": "你是一个由中国教育在线-掌上高考研发的高考类知识AI大语言模型，你的名字叫小掌，你是一个理性、外向的人，并且是一个教育领域的专家，乐于帮助其他人解答高考相关问题。",
-            // "stream": true,
             "messages": [
-                // {
-                //     "role": "user",
-                //     "content": "你是谁？"
-                // },
-                // {
-                //     "role": "assistant",
-                //     "content": "我不是文心一言，我是小智"
-                // },
                 {
                     "role": "user",
-                    "content": "对下面'''中的文案进行润色改写，严格遵守以下几点要求：1.改写为陈述句、简洁的文案。2. 保留文案原意和文案中的真实数据。3. 只需要返回改写以后的文案内容，避免出现无关话术，如'【改写的文案如下】【以下是改写后的文案】...'。\n'''山东大学的地址是多少\n校本部：山东省济南市历城区山大南路27号,青岛校区：山东省青岛市即墨滨海路72号,威海校区：山东省威海市文化西路180号'''"
+                    "content": `${aricle}
+                    阅读并提炼上面文章中的信息：
+                    1.主要关键词；
+                    2.内容框架：要求列出文章内容框架, 以字符串的形式返回；
+                    3.简单概要：要求包含会议时间、会议地点、参会人物、重要事件等重要信息；
+
+                    把以上三点提炼的结果放到json中返回，json格式要求如下：{keyword:【主要关键词】,gaiyao:【简单概要】,kuangjia:【内容框架】}`
                 },
-                // {
-                //     "role": "user",
-                //     "content": "对下面'''中的文案进行润色改写，要求使用陈述句、简洁的、口语化的文案，并且保留文案原意和文案中的真实数据。【只能返回润色后的文案】，文案如下：'''湖南外国语职业学院2023年河北地区录取信息如下：专科批（普通类，河北）：最低分 205，位次 332853。注意：以上信息仅供参考，存在缺失或变更的可能，具体以官方信息为准。'''"
-                // },
-                // {
-                //     "role": "assistant",
-                //     "content": "湖南外国语职业学院2023年河北地区录取信息如下：\n\n\n\n* 专科批（普通类，河北）：最低分 205，位次 332853。\n\n\n\n注意：以上信息仅供参考，存在缺失或变更的可能，具体以官方信息为准。"
-                // }
             ]
         })
-
     };
+    return new Promise((resolve, reject) => {
+        request(options, function (error, response) {
+            if (error) throw new Error(error);
+            let res = JSON.parse(response.body)
+            try {
+                let { keyword, gaiyao, kuangjia } = JSON.parse(res.result.replace(/```(json)?/g, ''))
+                let prompt = `
+主要关键词:
+${keyword}
+简单概要:
+${gaiyao}
+内容框架:
+${kuangjia}
 
-    request(options, function (error, response) {
-        if (error) throw new Error(error);
-        console.log(response.body);
-        console.timeEnd()
-    });
+结合以上信息，生成一篇高校对外发布的新闻稿。生成结果如下：\n
+`
+
+                const obj = {
+                    'prompt': prompt,
+                    'response': aricle // 这里是原文
+                }
+                fs.appendFileSync('./data/xwgData.js', JSON.stringify(obj, null, 2) + ',\n')
+                console.log('1-' + index + '完成')
+                resolve()
+            } catch (error) {
+                // fs.appendFileSync('./data/xwgData.js', JSON.stringify({ index: "1-" + index }, null, 2) + ',\n')
+                console.log('1-' + index + '出错并完成')
+                resolve()
+            }
+        });
+    })
 }
 
 /**
@@ -63,5 +79,7 @@ function getAccessToken() {
         })
     })
 }
-console.time()
-main();
+
+for (let i = 188; i < data.length; i++) {
+    await main(data[i].response, i);
+}

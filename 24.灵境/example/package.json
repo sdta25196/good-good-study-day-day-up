@@ -1,6 +1,7 @@
 {
   "name": "example",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.4",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "xlsx": "^0.18.5"
   }
 }
