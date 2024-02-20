@@ -1,0 +1,21 @@
+{
+    "schema": 1,
+    "type": "completion",
+    "description": "将用户的指令转换成 Linux 命令",
+    "completion": {
+        "max_tokens": 256,
+        "temperature": 0,
+        "top_p": 0,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+    },
+    "input": {
+        "parameters": [
+            {
+                "name": "input",
+                "description": "用户的指令",
+                "defaultValue": ""
+            }
+        ]
+    }
+}

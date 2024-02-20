@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@types/dotenv": "^8.2.0",
+    "dotenv": "^16.3.1",
+    "langchain": "^0.0.117"
+  }
+}
