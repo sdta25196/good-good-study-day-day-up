@@ -4,8 +4,8 @@ import fs from 'fs'
 // ! 单独的提示词任务
 // ! 1.js  519 543 563 760 858 814 973  967 942,这些没进训练数据
 
-const AK = ""
-const SK = ""
+const AK = "Valorzu71TBGtiXBtK3maPNdTtPsp"
+const SK = "Z9aWuSxTcsMU6eU57BziT5QXoDMKr6Yn"
 
 async function main(aricle, index) {
     console.log('1-' + index + '开始')

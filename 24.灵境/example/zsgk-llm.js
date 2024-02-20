@@ -1,8 +1,8 @@
 import request from 'request'
 import axios from 'axios'
 
-const AK = ""
-const SK = ""
+const AK = "ValorZdwc6EBQd1xaimWhQZNyc3Wi"
+const SK = "eNFwdAXM4DSg26I5GDWuBqU4OYaTnSSv"
 
 /**
  * 使用 AK，SK 生成鉴权签名（Access Token）
