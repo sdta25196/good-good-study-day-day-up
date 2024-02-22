@@ -255,6 +255,109 @@ def get_chat_completion(session, user_prompt, model="gpt-3.5-turbo"):
 ## function calling
 
 
+首先需要确定场景（很重要），1. **能接受bad case** 2. **有人工复审**
+
+多function calling 调用的方式：
+
+1. 先做意图识别，让大模型识别用户意图
+2. 根据识别的意图，提供相关的function calling提示词，让大模型尝试匹配函数
+3. 大模型返回我们调用哪个函数，我们去调用函数
+4. 把函数调用结果给大模型。大模型生成自然语言
+5. 把结果返回给用户
+
+----------------------------------------------------------------
+
+
+UI 进化的趋势是：越来越适应人的习惯，越来越自然
+
+* 命令行，Command Line Interface，简称 CLI（DOS、Unix/Linux shell, Windows Power Shell）
+* 图形界面，Graphical User Interface，简称 GUI（Windows、MacOS、iOS、Android）
+* 语言界面，Conversational User Interface，简称 CUI，或 Natural-Language User Interface，简称 LUI ← 我们在这里
+* 脑机接口，Brain–Computer Interface，简称 BCI
+
+----------------------------------------------------------------
+
+openAI使用actions链接外部世界。[actions开发文档](https://platform.openai.com/docs/actions)
+
+GPT把用户的prompt转换成参数，然后去调用API。
+
+coze.cn 也是个好东西
+
+----------------------------------------------------------------
+
+有这类无需开发的工具，为什么还要学大模型开发技术呢？
+
+它们都无法针对业务需求做极致调优
+它们和其它业务系统的集成不是特别方便
+
+Function Calling 技术可以把大模型和业务系统连接，实现更丰富的功能。
+
+----------------------------------------------------------------
+
+Function Calling 完整的官方接口文档：https://platform.openai.com/docs/guides/function-calling
+
+
+![Function Calling](./lecture-notes/03-func-call/func.png)
+
+
+* Function Calling 中的函数与参数的描述也是一种 Prompt
+* 大模型可能会让我们调用多个函数。
+* 这种 Prompt 也需要调优，否则会影响函数的召回、参数的准确性，甚至让 GPT 产生幻觉
+
+----------------------------------------------------------------
+
+**看一下多function调用示例**
+
+**小trick**
+
+给大模型一个函数，让他找到函数中的参数，而实际上我们要的只是一个格式化的参数。利用function calling来找到这些参数。但是不执行函数
+
+
+----------------------------------------------------------------
+
+支持 Function Calling 的国产大模型：
+
+- 百度文心大模型
+官方文档：https://cloud.baidu.com/doc/WENXINWORKSHOP/index.html
+
+百度文心系列大模型有四个。按发布时间从早到晚是：
+
+ERNIE-Bot - 支持 Function Calling
+ERNIE-Bot-turbo
+ERNIE-Bot 4.0
+ERNIE-Bot 3.5 - 支持 Function Calling
+参数大体和 OpenAI 一致。
+
+- MiniMax
+官方文档：https://api.minimax.chat/document/guides/chat-pro?id=64b79fa3e74cddc5215939f4
+
+这是个公众不大知道，但其实挺强的大模型，尤其角色扮演能力
+如果你曾经在一个叫 Glow 的 app 流连忘返，那么你已经用过它了
+应该是最早支持 Function Calling 的国产大模型
+Function Calling 的 API 和 OpenAI 1106 版之前完全一样，但其它 API 有很大的特色
+
+- ChatGLM3-6B
+官方文档：https://github.com/THUDM/ChatGLM3/tree/main/tools_using_demo
+
+最著名的国产开源大模型，生态最好
+早就使用 tools 而不是 function 来做参数，其它和 OpenAI 1106 版之前完全一样
+
+- 讯飞星火 3.0
+官方文档：https://www.xfyun.cn/doc/spark/Web.html#_2-function-call%E8%AF%B4%E6%98%8E
+
+和 OpenAI 1106 版之前完全一样
+
+----------------------------------------------------------------
+
+NLP 算法工程师视角：
+
+1. 模型砍大面，规则修细节
+2. 一个模型搞不定的问题，拆成多个解决
+3. 评估算法的准确率（所以要先有测试集，否则别问「能不能做」）
+4. 评估 bad case 的影响面
+5. 算法的结果永远不是100%正确的，建立在这个假设基础上推敲产品的可行性
+
+----------------------------------------------------------------
 
 ## Q&A
 
