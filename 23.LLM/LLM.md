@@ -266,4 +266,3 @@ def get_chat_completion(session, user_prompt, model="gpt-3.5-turbo"):
 
 不是的，提示词在不同模型上有不同的作用，所有有时候我们需要确定是我们提示词写的不好还是模型的基础能力不好
 
-
