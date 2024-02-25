@@ -13,7 +13,7 @@ response = client.chat.completions.create(
     messages=[
         {
             "role": "user",
-            "content": "给我一个中文二义性的示例",
+            "content": "react发布的21版本有一个叫做沃夫的特性么？\n 如果你不知道，或者在你的知识中没有，就回答你不知道",
         }
     ],
     model="gpt-3.5-turbo",
