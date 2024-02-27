@@ -1,6 +1,8 @@
-import os
 from openai import OpenAI
+import json
 import tools
+
+# 计算器
 
 # 加载 .env 到环境变量
 from dotenv import load_dotenv, find_dotenv
@@ -10,57 +12,63 @@ _ = load_dotenv(find_dotenv())
 
 client = OpenAI()
 
-prompt = '''
-
-判断用户的意图，然后根据用户的意图和下方的functions中description的解释。
-返回给我json，json要求包含函数名(name)、参数(parameters)，key用英文，value默认为字符串，参数字段使用数组。
-如果不需要调用函数，函数名(name)的value就是none。
-
-functions:
-    description:"当用户需要计算加法时，调用这个函数，并且提供需要计算的数字"
-    name: sum
-    parameters:[a,b,...]
-functions:
-    description:"当用户需要计算乘法时，调用这个函数，并且提供需要计算的数字"
-    name: multiply
-    parameters:[a,b,...]
-
-问题如下：\n
-'''
-
 response = client.chat.completions.create(
+    model="gpt-3.5-turbo",
     messages=[
         {
             "role": "user",
-            "content": prompt + "1+2+3+4+5+6+7+8+9,然后再加个10",
-        }
+            "content": "山东大学招生老师的手机",
+        },
     ],
-    model="gpt-3.5-turbo",
+    tools=[
+        {
+            "type": "function",
+            "function": {
+                "name": "school",
+                "description": "提供【大学】、【院校】的基本信息",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "school_name": {
+                            "type": "string",
+                            "description": "用户问题中的大学名称"
+                        },
+                        "info": {
+                            "type": "string",
+                            "description": "用户想要询问的信息有以下几种，返回英文部分：电话【phone】、邮箱【emil】、位置【position】、招生网站【weburl】"
+                        }
+                    }
+                }
+            }
+        },
+    ]
 )
 
-# print(response)
-
-# 更具体的的打印
-print(response.choices[0].message.content)
+# 打印 message
+print(response.choices[0].message)
 
 # 测试function calling
 
-
-# def sum(param):
-#     total = 0
-#     for num in param:
-#         total += int(num)
-#     return total
+def school(param):
+    return '查院校意图：' + json.dumps(param, ensure_ascii=False)
 
 
-# def multiply(param):
-#     product = 1
-#     for num in param:
-#         product *= int(num)
-#     return product
+def special(param):
+    return '查专业意图：' + json.dumps(param, ensure_ascii=False)
+
+# 可支持多函数调用，但是目前对于有关联性的函数调用效果不好
 
 
-# obj = {"sum": sum, "multiply": multiply}
-
-# res = tools.str_to_json(response.choices[0].message.content)
-# print(obj[res['name']](res['parameters']))
+if (response.choices[0].message.tool_calls is not None):
+    for tool_call in response.choices[0].message.tool_calls:
+        args = tools.str_to_json(tool_call.function.arguments)
+        if (tool_call.function.name == "school"):
+            args = tools.str_to_json(tool_call.function.arguments)
+            result = school(args)
+            print(result)
+        if (tool_call.function.name == "special"):
+            args = tools.str_to_json(tool_call.function.arguments)
+            result = special(args)
+            print(result)
+else:
+    print(response.choices[0].message.content)

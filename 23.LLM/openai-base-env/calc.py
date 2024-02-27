@@ -11,6 +11,9 @@ _ = load_dotenv(find_dotenv())
 
 client = OpenAI()
 
+
+# 使用tools参数之后，提示词这种形式就不需要了。
+
 prompt = '''
 
 判断用户的意图，然后根据用户的意图和下方的functions中description的解释。
@@ -30,19 +33,55 @@ functions:
 '''
 
 response = client.chat.completions.create(
+    model="gpt-3.5-turbo",
     messages=[
         {
             "role": "user",
-            "content": prompt + "1+2+3+4+5+6+7+8+9,然后再加个10",
-        }
+            "content": "1+1 的结果乘2",
+        },
     ],
-    model="gpt-3.5-turbo",
+    tools=[
+        {  # 用 JSON 描述函数。可以定义多个。由大模型决定调用谁。也可能都不调用
+           "type": "function",
+           "function": {
+               "name": "sum",
+               "description": "加法器，计算一组数的和",
+               "parameters": {
+                   "type": "object",
+                   "properties": {
+                       "numbers": {
+                           "type": "array",
+                           "items": {
+                               "type": "number"
+                           }
+                       }
+                   }
+               }
+           }
+        },
+        {  # 乘法函数
+           "type": "function",
+           "function": {
+               "name": "multiply",
+               "description": "乘法器，计算一组数的积",
+               "parameters": {
+                   "type": "object",
+                   "properties": {
+                       "numbers": {
+                           "type": "array",
+                           "items": {
+                               "type": "number"
+                           }
+                       }
+                   }
+               }
+           }
+        }
+    ]
 )
 
-# print(response)
-
-# 更具体的的打印
-print(response.choices[0].message.content)
+# 打印 message
+print(response.choices[0].message)
 
 # 测试function calling
 
@@ -60,8 +99,25 @@ def multiply(param):
         product *= int(num)
     return product
 
+# 可支持多函数调用，但是目前对于有关联性的函数调用效果不好
 
-obj = {"sum": sum, "multiply": multiply}
+if (response.choices[0].message.tool_calls is not None):
+    for tool_call in response.choices[0].message.tool_calls:
+        args = tools.str_to_json(tool_call.function.arguments)
+        print("函数参数展开：")
+        tools.print_json(args)
 
-res = tools.str_to_json(response.choices[0].message.content)
-print(obj[res['name']](res['parameters']))
+        if (tool_call.function.name == "sum"):
+            # 调用 sum
+            args = tools.str_to_json(tool_call.function.arguments)
+            result = sum(args["numbers"])
+            print("=====加法函数返回=====")
+            print(result)
+        if (tool_call.function.name == "multiply"):
+            # 调用 sum
+            args = tools.str_to_json(tool_call.function.arguments)
+            result = multiply(args["numbers"])
+            print("=====乘法函数返回=====")
+            print(result)
+else:
+    print(response.choices[0].message.content)
