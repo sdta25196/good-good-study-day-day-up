@@ -282,7 +282,7 @@ Function Calling 技术可以把大模型和业务系统连接，实现更丰富
 * 这种 Prompt 也需要调优，否则会影响函数的召回、参数的准确性，甚至让 GPT 产生幻觉
 * 可以让大模型配合我们调用多个函数。
 
-----------------------------------------------------------------
+### 应用场景
 
 首先需要确定场景（很重要）,只有应用场景符合以下两点时，才能应用此技术：
 
@@ -304,7 +304,6 @@ Function Calling 技术可以把大模型和业务系统连接，实现更丰富
 3. 评估业务的容忍度、评估 bad case 的影响面
 5. 算法的结果永远不是100%正确的，建立在这个假设基础上推敲产品的可行性
 
-**看一下多function调用示例**
 
 > trick：给大模型一个函数，让他找到函数中的参数，而实际上我们要的只是一个格式化的参数。利用function calling来找到这些参数。但是我们可以不执行函数
 
@@ -316,6 +315,10 @@ Function Calling 技术可以把大模型和业务系统连接，实现更丰富
 * [MiniMax](https://api.minimax.chat/document/guides/chat-pro?id=64b79fa3e74cddc5215939f4)
 * [ChatGLM3-6B](https://github.com/THUDM/ChatGLM3/tree/main/tools_using_demo)
 * [讯飞星火3.0](https://www.xfyun.cn/doc/spark/Web.html#_2-function-call%E8%AF%B4%E6%98%8E)
+
+
+## RAG
+
 
 ## Q&A
 

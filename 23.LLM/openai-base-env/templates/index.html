@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>API服务前端</title>
+    <style>
+        .input {
+            width: 404px;
+            height: 50px
+        }
+        button{
+            height: 50px;width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>支持意图：</h1>
+    <p class="tip">查院校信息（电话、邮箱、网址、位置）</p>
+    <p class="tip">高考志愿填报（省份、选科、分数）</p>
+    <p class="tip">查学校录取分（大学名称、省份）</p>
+    <p class="tip">查学校名单（省份、类型、层次、大学名称）</p>
+    <p class="tip">查学校招生计划（大学名称、省份）</p>
+    <p class="tip">查学校开设专业（大学名称）</p>
+    <p class="tip">查专业简介（专业名称）</p>
+    <input type="text" class="input">
+    <button onclick="send()">发送</button>
+    <p>意图识别:</p>
+    <div id="data-container">
+    </div>
+
+    <script>
+        function send() {
+            let q = document.querySelector('.input').value
+            // document.querySelector('.input').value=''
+            document.getElementById('data-container').innerHTML=''
+            fetch('/test?q=' + q)
+                .then(response => response.text())
+                .then(data => {
+                    // document.getElementById('data-container').innerHTML = JSON.stringify(data, null, 2);
+                    document.getElementById('data-container').innerHTML = data;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    document.getElementById('data-container').innerHTML = '加载数据失败';
+                });
+        }
+    </script>
+</body>
+
+</html>
