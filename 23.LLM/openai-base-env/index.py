@@ -5,6 +5,8 @@ from openai import OpenAI
 from dotenv import load_dotenv, find_dotenv
 _ = load_dotenv(find_dotenv())
 
+# pip install python-dotenv openai
+
 # 配置 OpenAI 服务
 
 client = OpenAI()
