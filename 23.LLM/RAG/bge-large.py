@@ -6,11 +6,14 @@ from sentence_transformers import SentenceTransformer
 # pip install sentence_transformers
 # sentence_transformers会自动下载模型到本地
 
+
 def cos_sim(a, b):
     '''余弦距离 -- 越大越相似'''
     return dot(a, b)/(norm(a)*norm(b))
 
-model_name = 'BAAI/bge-large-zh-v1.5' #中文
+
+model_name = 'D:/05-rag-embeddings/bge-large-zh-v1.5'  # 中文
+# model_name = 'BAAI/bge-large-zh-v1.5' #中文
 # model_name = 'moka-ai/m3e-base'  # 中英双语，但效果一般
 
 model = SentenceTransformer(model_name)
