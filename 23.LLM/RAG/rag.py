@@ -85,7 +85,7 @@ class RAG_Bot:
         response = self.llm_api(prompt)
         return response
 
-
+# 封装了chromadb
 class MyVectorDBConnector:
     def __init__(self, collection_name, embedding_fn):
         chroma_client = chromadb.Client(Settings(allow_reset=True))
@@ -115,8 +115,6 @@ class MyVectorDBConnector:
         return results
 
 # 通过鉴权接口获取 access token
-
-
 def get_access_token():
     """
     使用 AK，SK 生成鉴权签名（Access Token）
@@ -125,15 +123,14 @@ def get_access_token():
     url = "https://aip.baidubce.com/oauth/2.0/token"
     params = {
         "grant_type": "client_credentials",
-        "client_id": os.getenv('ERNIE_CLIENT_ID'),
-        "client_secret": os.getenv('ERNIE_CLIENT_SECRET')
+        "client_id": 'zu71TBGtiXBtK3maPNdTtPsp',
+        "client_secret": 'Z9aWuSxTcsMU6eU57BziT5QXoDMKr6Yn'
     }
 
     return str(requests.post(url, params=params).json().get("access_token"))
 
+
 # 调用文心千帆 调用 BGE Embedding 接口
-
-
 def get_embeddings_bge(prompts):
     url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/embeddings/bge_large_en?access_token=" + get_access_token()
     payload = json.dumps({
@@ -143,7 +140,6 @@ def get_embeddings_bge(prompts):
 
     response = requests.request(
         "POST", url, headers=headers, data=payload).json()
-    print(json.dumps(response))
     data = response["data"]
     return [x["embedding"] for x in data]
 
