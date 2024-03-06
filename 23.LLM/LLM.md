@@ -402,6 +402,70 @@ RAG 检索增强生成， 就是字面意思：用检索来增强（LLM的）生
 
 * [向量数据库资料网站](sbert.net)
 
+
+## Assistants API
+
+GPTs 和 Assistants API 本质是降低开发门槛，目前国内大模型还不支持此功能
+
+Assistants API 目前支持RAG、function calling、无限上下文等功能。
+
+使用 assistant 的意义之一，是可以隔离不同角色的 instruction 和 function 能力。
+
+**技术选型**
+
+在可操控性和易用性之间的权衡与折中：
+* 更多技术路线选择：原生 API、GPTs 和 Assistants API
+* GPTs 的示范，起到教育客户的作用，有助于打开市场
+* 要更大自由度，需要用 Assistants API 开发
+* 想极致调优，还得原生 API + RAG
+* 国内大模型的 Assistants API，还得等，现在只能原生 API + RAG
+
+**GPTs 的限制：**
+
+1. 界面不可定制，不能集成进自己的产品
+2. 最多传 10 个文件
+3. 只有 ChatGPT Plus 用户才能访问
+
+**适合使用 Assistants API 的场景：**
+
+1. 定制界面，或和自己的产品集成
+2. 需要传大量文件
+3. 服务国外用户，或国内 B 端客户
+4. 数据保密性要求不高
+5. 不差钱
+
+**适合使用原生 API 的场景：**
+
+1. 需要极致调优
+2. 追求性价比
+3. 服务国外用户，或国内 B 端客户
+4. 数据保密性要求不高
+
+**适合使用国产或开源大模型的场景：**
+
+1. 服务国内用户
+2. 数据保密性要求高
+3. 压缩长期成本
+4. 需要极致调优
+
+### 费用
+- 按 token 收费。无论多轮对话，还是 RAG，所有都按实际消耗的 token 收费
+- 如果对话历史过多超过大模型上下文窗口，会自动放弃最老的对话消息
+- 文件按大小和存放时长收费。1 GB 文件一天收费 0.20 美元
+- Code interpreter 跑一次 $0.03
+
+### 资料
+
+小知识点：
+1. [Annotations 获取参考资料地址](https://platform.openai.com/docs/assistants/how-it-works/managing-threads-and-messages)
+2. [文件管理 API](https://platform.openai.com/docs/api-reference/assistants/file-object)
+3. [创建 thread 时立即执行](https://platform.openai.com/docs/api-reference/runs/createThreadAndRun)
+
+官方文档：
+1. [Guide](https://platform.openai.com/docs/assistants/overview)
+2. [Cookbook](https://cookbook.openai.com/examples/assistants_api_overview_python)
+3. [API Reference](https://platform.openai.com/docs/api-reference/assistants)
+
 ## 概念和Q&A
 
 * 小模型能通过提示词做到大模型使用提示词一样的能力么？
