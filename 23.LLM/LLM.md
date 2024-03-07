@@ -466,6 +466,119 @@ Assistants API 目前支持RAG、function calling、无限上下文等功能。
 2. [Cookbook](https://cookbook.openai.com/examples/assistants_api_overview_python)
 3. [API Reference](https://platform.openai.com/docs/api-reference/assistants)
 
+## SK（semantic-kernel）
+
+**说明：** Sematic Kernel 通过 **Kernel** 链接 LLM 与 **Functions**（功能）:
+
+- Semantic Functions：通过 Prompt 实现的 LLM 能力
+- Native Functions: 编程语言原生的函数功能
+
+在 SK 中，一组 Function 组成一个技能（Skill/Plugin）。要运行 Skill/Plugin，需要有一个配置和管理的单元，这个组织管理单元就是 Kernel。
+
+Kernel 负责管理底层接口与调用顺序，例如：OpenAI/Azure OpenAI 的授权信息、默认的 LLM 模型选择、对话上下文、技能参数的传递等等。
+
+--------
+
+1. 安装 Python 3.x：https://www.python.org/downloads/
+2. 安装 SK 包：`pip install semantic-kernel`
+3. 在项目目录创建 .env 文件，添加以下内容：
+
+```bash
+# .env
+OPENAI_API_KEY=""
+OPENAI_BASE_URL=""
+```
+
+用我们熟悉的操作系统来类比，可以更好地理解 SK。
+
+- 启动操作系统：kernel = sk.Kernel()
+- 安装驱动程序：kernel.add_xxx_service()
+- 安装应用程序：func = kernel.create_semantic_function()
+- 运行应用程序：kernel.invoke(func...)
+
+---
+
+### Semantic Functions
+
+Semantic Functions 是纯用数据（Prompt + 配置文件）定义的，不需要编写任何代码。所以它与编程语言无关，可以被任何编程语言调用。
+
+一个典型的 semantic function 包含两个文件：
+- skprompt.txt: 存放 prompt，可以包含参数，还可以调用其它函数
+- config.json: 存放配置，包括函数功能，参数的数据类型，以及调用大模型时的参数
+
+举例：根据用户的自然语言指示，生成 Linux 命令
+
+**skprompt.txt**
+```json
+已知数据库结构为：
+```
+CREATE TABLE Courses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    course_date DATE NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    course_name VARCHAR(255) NOT NULL,
+    instructor VARCHAR(255) NOT NULL
+);
+```
+请将下述用户输入转为SQL表达式
+用户输入：{{$input}}
+
+直接输出SQL语句，不要评论，不要分析，不要Markdown标识!
+```
+
+**config.json**
+
+```json
+{
+    "schema": 1,
+    "type": "completion",
+    "description": "将用户的输入转换成 SQL 语句",
+    "completion": {
+        "max_tokens": 256,
+        "temperature": 0,
+        "top_p": 0,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+    },
+    "input": {
+        "parameters": [
+            {
+                "name": "input",
+                "description": "用户的输入",
+                "defaultValue": ""
+            }
+        ]
+    }
+}
+```
+
+> 说明：type 只有 "completion" 和 "embedding" 两种
+
+**调用**
+
+上面两个文件都在 demo/MyPlugins/Text2SQL/ 目录下。
+
+```python
+# 加载 semantic function。注意目录结构, demo/MyPlugins
+my_plugins = kernel.import_semantic_skill_from_directory(
+    "./demo", "MyPlugins")
+
+func = my_plugins["Text2SQL"] # 取 demo/MyPlugins 下的 Text2SQL，是个目录名
+
+# 运行
+result = await kernel.run_async(
+    func,
+    input_str="2024年4月有哪些课",
+)
+print(result)
+```
+
+### Native Functions
+
+最新版本不稳定，等6期再重新看一遍
+
+
 ## 概念和Q&A
 
 * 小模型能通过提示词做到大模型使用提示词一样的能力么？
