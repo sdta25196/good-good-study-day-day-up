@@ -15,9 +15,11 @@ response = client.chat.completions.create(
     messages=[
         {
             "role": "user",
-            "content": "我在python3.8.8环境中安装了markupsafe 2.1.5，使用 Flask启动服务时，提示cannot import name 'soft_unicode' from 'markupsafe'。",
+            "content": "给金砖会议的新闻稿生成十个活泼风格的标题，要十个字以内。",
         }
     ],
+    temperature=0.1,
+    frequency_penalty=2,
     model="gpt-3.5-turbo",
 )
 
