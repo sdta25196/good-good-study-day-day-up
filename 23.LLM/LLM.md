@@ -579,6 +579,9 @@ print(result)
 
 最新版本不稳定，等6期再重新看一遍
 
+## langchain
+
+
 
 ## Fine-tuning
 
