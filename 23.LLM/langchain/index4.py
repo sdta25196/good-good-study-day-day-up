@@ -1,8 +1,8 @@
-from langchain.prompts import PromptTemplate, ChatPromptTemplate, HumanMessagePromptTemplate
+from langchain.prompts import PromptTemplate
+from langchain.output_parsers import OutputFixingParser
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_openai import ChatOpenAI
 from langchain_core.pydantic_v1 import BaseModel, Field, validator
-from typing import List, Dict
 
 # 加载 .env 到环境变量
 from dotenv import load_dotenv, find_dotenv
@@ -11,11 +11,14 @@ _ = load_dotenv(find_dotenv())
 # ! 输出封装器OutputParser
 
 # 定义你的输出对象
+
+
 class Date(BaseModel):
     year: int = Field(description="Year")
     month: int = Field(description="Month")
     day: int = Field(description="Day")
     era: str = Field(description="BC or AD")
+    haha: int = Field(description="固定值: 1")
 
     # ----- 可选机制 --------
     # 你可以添加自定义的校验机制
@@ -58,12 +61,15 @@ class Date(BaseModel):
         return False
 
 
-model_name = 'gpt-4'
 temperature = 0
-model = ChatOpenAI(model_name=model_name, temperature=temperature)
+model = ChatOpenAI(model='gpt-4', temperature=temperature)
 
 # 根据Pydantic对象的定义，构造一个OutputParser
 parser = PydanticOutputParser(pydantic_object=Date)
+
+# ! new_parser 可以处理解析数据出错的问题
+new_parser = OutputFixingParser.from_llm(
+    parser=parser, llm=ChatOpenAI(model="gpt-4"))
 
 template = """提取用户输入中的日期。
 {format_instructions}
@@ -86,6 +92,7 @@ model_input = prompt.format_prompt(query=query)
 
 print("====Prompt=====")
 print(model_input.to_string())
+print(model_input.to_messages())
 
 output = model.invoke(model_input.to_messages())
 print("====模型原始输出=====")
@@ -93,3 +100,20 @@ print(output.content)
 print("====Parse后的输出=====")
 date = parser.parse(output.content)
 print(date)
+
+
+#! 把之前output的格式改错
+output = output.content.replace("4", "四月")
+print("===格式错误的Output===")
+print(output)
+# ! parser解析不正确的格式出现异常
+try:
+    date = parser.parse(output)
+except Exception as e:
+    print("===出现异常===")
+    print(e)
+
+# ! 用OutputFixingParser自动修复并解析
+date = new_parser.parse(output)
+print("===重新解析结果===")
+print(date.json())
