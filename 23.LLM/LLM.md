@@ -602,6 +602,129 @@ print(result)
      - Tools：调用外部功能的函数，例如：调 google 搜索、文件 I/O、Linux Shell 等等
      - Toolkits：操作某软件的一组工具集，例如：操作 DB、操作 Gmail 等等
 
+基础demo位于[langchain_demo](./langchain/readme.md)
+
+### 实现RAG
+
+- 加载pdf库
+
+`pip install pypdf`
+
+- 加载文档处理器
+
+`pip install --upgrade langchain-text-splitters`
+
+- 加载向量数据库
+
+`pip install chromadb`
+
+- 向量化模型使用`OpenAIEmbeddings`
+
+代码如下：
+
+```py
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_openai import ChatOpenAI
+
+# 加载文档
+loader = PyPDFLoader("llama2.pdf")
+pages = loader.load_and_split()
+
+# 文档切分
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=300, 
+    chunk_overlap=100,
+    length_function=len,
+    add_start_index=True,
+)
+
+texts = text_splitter.create_documents([pages[2].page_content,pages[3].page_content])
+
+# 灌库
+embeddings = OpenAIEmbeddings()
+db = Chroma.from_documents(texts, embeddings)
+
+# 检索 top-1 结果
+retriever = db.as_retriever(search_kwargs={"k": 1})
+
+docs = retriever.get_relevant_documents("llama 2有多少参数？")
+
+print(docs[0].page_content)
+```
+
+[其他三方检索组件](https://python.langchain.com/docs/integrations/vectorstores)
+
+
+### Memory
+
+`ConversationBufferWindowMemory` 窗口上下文，可以控制最大轮次
+
+基础demo如下：
+
+```py
+from langchain.memory import ConversationBufferMemory, ConversationBufferWindowMemory
+
+history = ConversationBufferMemory()
+history.save_context({"input": "你好啊"}, {"output": "你也好啊"})
+
+print(history.load_memory_variables({}))
+
+history.save_context({"input": "你再好啊"}, {"output": "你又好啊"})
+
+print(history.load_memory_variables({}))
+
+# ! 控制直线制2轮上下文
+
+window = ConversationBufferWindowMemory(k=2)
+window.save_context({"input": "第一轮问"}, {"output": "第一轮答"})
+window.save_context({"input": "第二轮问"}, {"output": "第二轮答"})
+window.save_context({"input": "第三轮问"}, {"output": "第三轮答"})
+print(window.load_memory_variables({})) # {'history': 'Human: 第二轮问\nAI: 第二轮答\nHuman: 第三轮问\nAI: 第三轮答'}
+
+```
+
+ConversationTokenBufferMemory可以通过 Token 数控制上下文长度：
+
+```py
+from langchain.memory import ConversationTokenBufferMemory
+from langchain_openai import ChatOpenAI
+
+memory = ConversationTokenBufferMemory(
+    llm=ChatOpenAI(),
+    max_token_limit=40  # 限制最多40个字
+)
+memory.save_context(
+    {"input": "你好啊"}, {"output": "你好，我是你的AI助手。"})
+memory.save_context(
+    {"input": "你会干什么"}, {"output": "我什么都会"})
+
+print(memory.load_memory_variables({}))  # {'history': 'AI: 你好，我是你的AI助手。\nHuman: 你会干什么\nAI: 我什么都会'}
+
+```
+
+- [ConversationSummaryMemory: 对上下文做摘要](https://python.langchain.com/docs/modules/memory/types/summary)
+
+- [ConversationSummaryBufferMemory: 保存 Token 数限制内的上下文，对更早的做摘要](https://python.langchain.com/docs/modules/memory/types/summary_buffer)
+
+- [VectorStoreRetrieverMemory: 将 Memory 存储在向量数据库中，根据用户输入检索回最相关的部分](https://python.langchain.com/docs/modules/memory/types/vectorstore_retriever_memory)
+
+
+### chain 和 lcel
+
+### 智能体
+
+### LangServe
+
+### LangChain.js
+
+[项目地址](https://github.com/langchain-ai/langchainjs)
+
+[文档地址](https://js.langchain.com/docs/)
+
+未来发展应该是不错的一个库。可以关注
 
 ## Fine-tuning
 
