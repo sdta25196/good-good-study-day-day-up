@@ -469,6 +469,8 @@ Assistants API 目前支持RAG、function calling、无限上下文等功能。
 
 ## SK（semantic-kernel）
 
+TODO 最新版本不稳定，等6期再重新看一遍
+
 **说明：** Sematic Kernel 通过 **Kernel** 链接 LLM 与 **Functions**（功能）:
 
 - Semantic Functions：通过 Prompt 实现的 LLM 能力
@@ -577,9 +579,11 @@ print(result)
 
 ### Native Functions
 
-最新版本不稳定，等6期再重新看一遍
+等6期
 
 ## langchain
+
+[langchain官网](https://python.langchain.com/docs/get_started/introduction)
 
 核心组件
 
@@ -627,7 +631,6 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
-from langchain_openai import ChatOpenAI
 
 # 加载文档
 loader = PyPDFLoader("llama2.pdf")
@@ -660,50 +663,13 @@ print(docs[0].page_content)
 
 ### Memory
 
+`ConversationBufferMemory` 实现上下文控制
+
 `ConversationBufferWindowMemory` 窗口上下文，可以控制最大轮次
 
-基础demo如下：
+`ConversationTokenBufferMemory`可以通过 Token 数控制上下文长度
 
-```py
-from langchain.memory import ConversationBufferMemory, ConversationBufferWindowMemory
-
-history = ConversationBufferMemory()
-history.save_context({"input": "你好啊"}, {"output": "你也好啊"})
-
-print(history.load_memory_variables({}))
-
-history.save_context({"input": "你再好啊"}, {"output": "你又好啊"})
-
-print(history.load_memory_variables({}))
-
-# ! 控制直线制2轮上下文
-
-window = ConversationBufferWindowMemory(k=2)
-window.save_context({"input": "第一轮问"}, {"output": "第一轮答"})
-window.save_context({"input": "第二轮问"}, {"output": "第二轮答"})
-window.save_context({"input": "第三轮问"}, {"output": "第三轮答"})
-print(window.load_memory_variables({})) # {'history': 'Human: 第二轮问\nAI: 第二轮答\nHuman: 第三轮问\nAI: 第三轮答'}
-
-```
-
-ConversationTokenBufferMemory可以通过 Token 数控制上下文长度：
-
-```py
-from langchain.memory import ConversationTokenBufferMemory
-from langchain_openai import ChatOpenAI
-
-memory = ConversationTokenBufferMemory(
-    llm=ChatOpenAI(),
-    max_token_limit=40  # 限制最多40个字
-)
-memory.save_context(
-    {"input": "你好啊"}, {"output": "你好，我是你的AI助手。"})
-memory.save_context(
-    {"input": "你会干什么"}, {"output": "我什么都会"})
-
-print(memory.load_memory_variables({}))  # {'history': 'AI: 你好，我是你的AI助手。\nHuman: 你会干什么\nAI: 我什么都会'}
-
-```
+**资料**
 
 - [ConversationSummaryMemory: 对上下文做摘要](https://python.langchain.com/docs/modules/memory/types/summary)
 
@@ -714,9 +680,41 @@ print(memory.load_memory_variables({}))  # {'history': 'AI: 你好，我是你�
 
 ### chain 和 lcel
 
+LCEL的一些亮点包括：
+
+- 流支持：使用 LCEL 构建 Chain 时，你可以获得最佳的首个令牌时间（即从输出开始到首批输出生成的时间）。对于某些 Chain，这意味着可以直接从LLM流式传输令牌到流输出解析器，从而以与 LLM 提供商输出原始令牌相同的速率获得解析后的、增量的输出。
+
+- 异步支持：任何使用 LCEL 构建的链条都可以通过同步API（例如，在 Jupyter 笔记本中进行原型设计时）和异步 API（例如，在 LangServe 服务器中）调用。这使得相同的代码可用于原型设计和生产环境，具有出色的性能，并能够在同一服务器中处理多个并发请求。
+
+- 优化的并行执行：当你的 LCEL 链条有可以并行执行的步骤时（例如，从多个检索器中获取文档），我们会自动执行，无论是在同步还是异步接口中，以实现最小的延迟。
+
+- 重试和回退：为 LCEL 链的任何部分配置重试和回退。这是使链在规模上更可靠的绝佳方式。目前我们正在添加重试/回退的流媒体支持，因此你可以在不增加任何延迟成本的情况下获得增加的可靠性。
+
+- 访问中间结果：对于更复杂的链条，访问在最终输出产生之前的中间步骤的结果通常非常有用。这可以用于让最终用户知道正在发生一些事情，甚至仅用于调试链条。你可以流式传输中间结果，并且在每个LangServe服务器上都可用。
+
+- 输入和输出模式：输入和输出模式为每个 LCEL 链提供了从链的结构推断出的 Pydantic 和 JSONSchema 模式。这可以用于输入和输出的验证，是 LangServe 的一个组成部分。
+
+- 无缝LangSmith跟踪集成：随着链条变得越来越复杂，理解每一步发生了什么变得越来越重要。通过 LCEL，所有步骤都自动记录到 LangSmith，以实现最大的可观察性和可调试性。
+
+- 无缝LangServe部署集成：任何使用 LCEL 创建的链都可以轻松地使用 LangServe 进行部署。
+
+**更多示例**
+
+- [配置运行时变量](https://python.langchain.com/docs/expression_language/how_to/configure)
+- [故障回退](https://python.langchain.com/docs/expression_language/how_to/fallbacks)
+- [并行调用](https://python.langchain.com/docs/expression_language/how_to/map)
+- [逻辑分支](https://python.langchain.com/docs/expression_language/how_to/routing)
+- [调用自定义流式函数](https://python.langchain.com/docs/expression_language/how_to/generators)
+- [链接外部Memory](https://python.langchain.com/docs/expression_language/how_to/message_history)
+- [更多例子](https://python.langchain.com/docs/expression_language/cookbook/)
+
 ### 智能体
 
+TODO 后面有autoGPT,那个是一个完整的智能体
+
 ### LangServe
+
+安装`pip install "langserve[server]`, 快速启动一个server
 
 ### LangChain.js
 
