@@ -12,4 +12,4 @@
 - [上下文封装memory](./index5.py)
 - [LCEL链式调用](./index6.py)
 - [LCEL实现RAG](./index7.py) `pip install pypdf`、 `pip install --upgrade langchain-text-splitters`、 `pip install chromadb`
-- [LangServer](./index8.py) `pip install "langserve[server]` 所有路径后面多一个invoke
+- [LangServer](./index8.py) `pip install "langserve[server]`

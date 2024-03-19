@@ -714,7 +714,33 @@ TODO 后面有autoGPT,那个是一个完整的智能体
 
 ### LangServe
 
-安装`pip install "langserve[server]`, 快速启动一个server
+安装`pip install "langserve[server]`, 快速启动一个server, 访问`docs`路由可以看到文档。
+
+设置CORS: 
+
+```py
+# Set all CORS enabled origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    expose_headers=["*"],
+)
+```
+
+path后面有固定的后缀，文档如下:
+
+- POST /my_runnable/invoke- 在单个输入上调用可运行程序
+- POST /my_runnable/batch- 对一批输入调用可运行程序
+- POST /my_runnable/stream- 调用单个输入并流式传输输出
+- POST /my_runnable/stream_log- 调用单个输入并流式传输输出，包括生成的中间步骤的输出
+- POST /my_runnable/astream_events- 在生成单个输入和流事件时调用它们，包括中间步骤。
+- GET /my_runnable/input_schema- 用于输入可运行的 json 模式
+- GET /my_runnable/output_schema- 可运行的输出的 json 模式
+- GET /my_runnable/config_schema- 可运行配置的 json 模式
+
 
 ### LangChain.js
 
