@@ -750,6 +750,34 @@ path后面有固定的后缀，文档如下:
 
 未来发展应该是不错的一个库。可以关注
 
+## llm-tools
+
+- LangFuse: 开源 + SaaS（免费/付费），LangSmith 平替，可集成 LangChain 也可直接对接 OpenAI API；
+- LangSmith: LangChain 的官方平台，SaaS 服务（付费），非开源；
+- Prompt Flow：微软开发，开源 + Azure AI云服务，可集成 Semantic Kernel（但貌合神离）。
+
+### langFuse
+
+[官方网站](https://langfuse.com/)
+
+[项目地址](https://github.com/langfuse)
+
+
+注册: cloud.langfuse.com 创建 API Key
+
+`LANGFUSE_SECRET_KEY="sk-lf-..."`
+
+`LANGFUSE_PUBLIC_KEY="pk-lf-..."`
+
+
+需要安装对应的py库 `pip install --upgrade langfuse`
+
+
+
+
+
+
+
 ## Fine-tuning
 
 数据集的处理需要尽可能覆盖当前场景的所有输入输出。
