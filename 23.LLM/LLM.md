@@ -758,23 +758,44 @@ path后面有固定的后缀，文档如下:
 
 ### langFuse
 
-[官方网站](https://langfuse.com/)
+模型部署到生产环境之后，langFuse可以帮助我们做这些：
 
-[项目地址](https://github.com/langfuse)
+- 各种指标监控与统计：访问记录、响应时长、Token用量、计费等等
+- 调试 Prompt
+- 测试/验证系统的相关评估指标
+- 数据集管理（便于回归测试）
+- Prompt 版本管理（便于升级/回滚）
 
 
-注册: cloud.langfuse.com 创建 API Key
+[langFuse官方网站](https://langfuse.com/)
+
+[langFuse项目地址](https://github.com/langfuse)
+
+
+**使用方式1 - 官方服务**
+
+去[注册](cloud.langfuse.com)并在settings中创建`API Keys`
 
 `LANGFUSE_SECRET_KEY="sk-lf-..."`
 
 `LANGFUSE_PUBLIC_KEY="pk-lf-..."`
 
+**使用方式2 - docker部署**
 
-需要安装对应的py库 `pip install --upgrade langfuse`
+```py
+# Clone repository
+git clone https://github.com/langfuse/langfuse.git
+cd langfuse
+ 
+# Run server and db
+docker compose up -d
+```
 
+**使用方式**
 
+首先需要安装对应的py库 `pip install --upgrade langfuse`
 
-
+在langchain的回调中集成，通过`callbacks`把langfuse的handler传进去即可。
 
 
 
