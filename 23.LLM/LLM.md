@@ -583,6 +583,8 @@ print(result)
 
 ## langchain
 
+基础demo位于[langchain_demo](./langchain/readme.md)
+
 [langchain官网](https://python.langchain.com/docs/get_started/introduction)
 
 核心组件
@@ -605,8 +607,6 @@ print(result)
    - Agent：根据用户输入，自动规划执行步骤，自动选择每步需要的工具，最终完成用户指定的功能
      - Tools：调用外部功能的函数，例如：调 google 搜索、文件 I/O、Linux Shell 等等
      - Toolkits：操作某软件的一组工具集，例如：操作 DB、操作 Gmail 等等
-
-基础demo位于[langchain_demo](./langchain/readme.md)
 
 ### 实现RAG
 
@@ -758,6 +758,8 @@ path后面有固定的后缀，文档如下:
 
 ### langFuse
 
+基础demo位于[langfuse_demo](./langfuse/readme.md)
+
 模型部署到生产环境之后，langFuse可以帮助我们做这些：
 
 - 各种指标监控与统计：访问记录、响应时长、Token用量、计费等等
@@ -766,11 +768,19 @@ path后面有固定的后缀，文档如下:
 - 数据集管理（便于回归测试）
 - Prompt 版本管理（便于升级/回滚）
 
+**基本概念**
 
-[langFuse官方网站](https://langfuse.com/)
+- Trace 一般表示用户与系统的一次交互，其中记录输入、输出，也包括自定义的 metadata 比如用户名、session id等；
+- 一个 trace 内部可以包含多个子过程，这里叫 observarions；
+- Observation 可以是多个类型：
+    - Event 是最基本的单元，用于记录一个 trace 中的每个事件；
+    - Span 表一个 trace 中的一个"耗时"的过程；
+    - Generation 是用于记录与 AI 模型交互的 span，例如：调用 embedding 模型、调用 LLM。
+- Observation 可以嵌套使用。
 
-[langFuse项目地址](https://github.com/langfuse)
+> 一个trace代表一次会话，langchain中的一个任务代表一个Observation，如果是与大模型交互的任务就是Generation
 
+### langfuse使用方式
 
 **使用方式1 - 官方服务**
 
@@ -791,12 +801,61 @@ cd langfuse
 docker compose up -d
 ```
 
-**使用方式**
-
 首先需要安装对应的py库 `pip install --upgrade langfuse`
 
 在langchain的回调中集成，通过`callbacks`把langfuse的handler传进去即可。
 
+用`Trace`的`handler`来记录一个trace中多次调用LLM的情况 ，通过`handler = trace.get_langchain_handler()`获取handler, 然后再每个LLM调用时传入这个handler即可。
+
+```py
+import uuid
+from langfuse.client import Langfuse
+
+# 创建一个新trace
+def create_trace(user_id):
+    langfuse = Langfuse()
+    # 创建一个不重复的 id
+    trace_id = str(uuid.uuid4())
+    trace = langfuse.trace(
+        name="agiclass_assistant",
+        id=trace_id,
+        user_id=user_id
+    )
+    return trace
+
+trace = create_trace(user_id)
+handler = trace.get_langchain_handler()
+chain1.invoke({"user_input":question,"outlines": outlines},config={"callbacks":[handler]})
+chain2.invoke({"user_input":question,"outlines": outlines},config={"callbacks":[handler]})
+```
+
+用`Session`记录一个用户的多轮对话,`CallbackHandler`中传入同一个`session_id`即可
+
+```py
+handler = CallbackHandler(
+    user_id="wzr",
+    session_id="my_chat_session"
+)
+```
+
+### langfuse数据集与测试
+
+数据集可以在管理后台手动创建，也可以通过程序上传已有数据集
+
+需要定义一个评估函数，用来评估提示词结果和数据集结果的对比
+
+使用提示词对测试数据集进行执行，执行之后后原答案做对比，就可以判断提示词好坏了
+
+demo位于[langfuse_dataset](./langfuse/index2.py)
+
+
+### langfuse资料
+- [langFuse官方网站](https://langfuse.com/)
+
+- [langFuse项目地址](https://github.com/langfuse)
+
+
+## autoGPT
 
 
 ## Fine-tuning
@@ -895,3 +954,6 @@ loss 就是这个函数得到的结果和真实期望的结果之间的差异值
 
 正确结果出现在top_n中的概率。
 
+* 两个句子的相似性评测方法`BLEU`与`ROUGE`的对比：
+    - BLEU 能评估流畅度，但指标偏向于较短的翻译结果（brevity penalty 没有想象中那么强）
+    - ROUGE 不管流畅度，所以只适合深度学习的生成模型：结果都是流畅的前提下，ROUGE 反应参照句中多少内容被生成的句子包含（召回）

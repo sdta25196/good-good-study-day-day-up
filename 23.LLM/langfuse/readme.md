@@ -9,3 +9,5 @@
 执行结果可以在[langfuse网站](https://cloud.langfuse.com)中查看
 
 - [集成langchain初级版](./index.py)
+- [程序创建数据集](./index1.py)
+- [使用数据集测试prompt](./index2.py)

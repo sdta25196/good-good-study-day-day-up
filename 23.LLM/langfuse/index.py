@@ -6,11 +6,11 @@ from langchain.prompts import (
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
 from langchain_core.runnables import RunnablePassthrough
+from loadenv import loadenv
 
-# 加载 .env 到环境变量
-from dotenv import load_dotenv, find_dotenv
-_ = load_dotenv(find_dotenv())
+loadenv()
 
+# ! 集成langchain初级版
 
 handler = CallbackHandler(
     trace_name="SayHello",
