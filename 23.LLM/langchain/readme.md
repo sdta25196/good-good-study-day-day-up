@@ -2,7 +2,7 @@
 
 `pip install --upgrade langchain`
 
-`pip install --upgrade langchain-openai`
+`pip install --upgrade langchain-openai` 使用langchain封装的openai
 
 - [openai基础对话](./index1.py)
 - [多轮对话](./index1.py)
