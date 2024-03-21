@@ -857,6 +857,10 @@ demo位于[langfuse_dataset](./langfuse/index2.py)
 
 ## autoGPT
 
+autoGPT就是一个agent，复杂的业务流程自动化，可以使用agent技术
+
+![autoGPT智能体流程图](./lecture-notes/10-autogpt/agent-flowchart.png)
+
 
 ## Fine-tuning
 
