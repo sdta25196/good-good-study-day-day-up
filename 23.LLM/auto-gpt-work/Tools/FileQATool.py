@@ -8,6 +8,7 @@ from langchain.document_loaders.word_document import UnstructuredWordDocumentLoa
 from langchain.chains import RetrievalQA
 from langchain.llms import OpenAI
 
+# ! RAG实现
 
 class FileLoadFactory:
     @staticmethod
