@@ -861,6 +861,7 @@ autoGPT就是一个agent，复杂的业务流程自动化，可以使用agent技
 
 ![autoGPT智能体流程图](./lecture-notes/10-autogpt/agent-flowchart.png)
 
+代码在[auto-gpt](./auto-gpt-work/main.py)
 
 ## Fine-tuning
 
@@ -959,5 +960,10 @@ loss 就是这个函数得到的结果和真实期望的结果之间的差异值
 正确结果出现在top_n中的概率。
 
 * 两个句子的相似性评测方法`BLEU`与`ROUGE`的对比：
-    - BLEU 能评估流畅度，但指标偏向于较短的翻译结果（brevity penalty 没有想象中那么强）
-    - ROUGE 不管流畅度，所以只适合深度学习的生成模型：结果都是流畅的前提下，ROUGE 反应参照句中多少内容被生成的句子包含（召回）
+  
+BLEU 能评估流畅度，但指标偏向于较短的翻译结果（brevity penalty 没有想象中那么强）
+ROUGE 不管流畅度，所以只适合深度学习的生成模型：结果都是流畅的前提下，ROUGE 反应参照句中多少内容被生成的句子包含（召回）
+
+* lora数据量的选择
+
+根据问题的复杂性，训练数据要尽可能的覆盖问题所有场景。约复杂的问题所需要的数据就越多。
