@@ -3,7 +3,7 @@ import fs from 'fs'
 import data from './major.js'
 
 const AK = "ValorZdwc6EBQd1xaimWhQZNyc3Wi"
-const SK = "eNFwdAXM4DSg26I5GDWuBqU4OYaTnSSv"
+const SK = ""
 
 async function main(data, index) {
   let { major: base_major, name: job_name, code: job_code } = data
