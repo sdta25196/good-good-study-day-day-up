@@ -12,7 +12,7 @@ prompt = PromptTemplate(input_variables=["x"], template="你懂不懂{x}?")
 output_parser = StrOutputParser()  # 解析成字符串
 
 runnable = (
-  {"x": RunnablePassthrough()} | prompt | llm | output_parser
+    {"x": RunnablePassthrough()} | prompt | llm | output_parser
 )
 
 # ! 普通请求
@@ -20,6 +20,10 @@ runnable = (
 # # print(res.json())
 # print(res)
 
+# ! 批量请求
+# res = runnable.batch(["ice cream", "高考", "买别墅"])
+# print(res)
+
 # ! 流式请求
 for chunk in runnable.stream("高考"):
-  print(chunk, end="", flush=True)
+    print(chunk, end="", flush=True)
