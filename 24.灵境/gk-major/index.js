@@ -2,7 +2,9 @@ import request from 'request'
 import fs from 'fs'
 import data from './major.js'
 
-const AK = "ValorZdwc6EBQd1xaimWhQZNyc3Wi"
+// data：[]
+
+const AK = "Zdwc6EBQd1xaimWhQZNyc3Wi"
 const SK = ""
 
 async function main(data, index) {
@@ -39,7 +41,7 @@ async function main(data, index) {
       if (error) throw new Error(error);
       let res = JSON.parse(response.body)
       try {
-        console.log(res)
+        // console.log(res)
         let { majors } = JSON.parse(res.result.match(/```json((?:.|\n)+)```/)[1])
         majors.push(base_major)
         const obj = {
@@ -47,11 +49,11 @@ async function main(data, index) {
           'code': job_code,
           'majors': majors.toString()
         }
-        fs.appendFileSync('./data/majors.js', JSON.stringify(obj, null, 2) + ',\n')
+        fs.appendFileSync('./data/majors3.js', JSON.stringify(obj, null, 2) + ',\n')
         console.log(index + '完成，耗时：' + (Date.now() - start) / 1000 + 's')
         resolve()
       } catch (error) {
-        fs.appendFileSync('./data/majors.js', JSON.stringify({ 'name': job_name, 'code': job_code, 'majors': base_major, 'error': '1' }, null, 2) + ',\n')
+        fs.appendFileSync('./data/majors3.js', JSON.stringify({ 'name': job_name, 'code': job_code, 'majors': base_major, 'error': '1' }, null, 2) + ',\n')
         console.log(index + '出错并完成' + (Date.now() - start) / 1000 + 's')
         resolve()
       }
@@ -77,9 +79,18 @@ function getAccessToken() {
   })
 }
 
-for (let i = 0; i < data.length; i++) {
-  let dataChildren = data[i].children
-  for (let l = 0; l < dataChildren.length; l++) {
-    await main({ code: data[i].code, name: data[i].name, major: dataChildren[l].name }, '0' + '-' + i + '-' + l);
+async function processArray(data, k) {
+  for (let i = 0; i < data.length; i++) {
+    let dataChildren = data[i].children
+    for (let l = 0; l < dataChildren.length; l++) {
+      await main({ code: data[i].code, name: data[i].name, major: dataChildren[l].name }, k + '-' + i + '-' + l + '::' + dataChildren[l].name);
+    }
   }
 }
+
+Promise.all([
+  processArray(data.splice(0, 164), 1),
+  processArray(data.splice(0, 164), 2),
+  processArray(data.splice(0, 164), 3),
+  processArray(data.splice(0, 164), 4),
+]);
