@@ -369,6 +369,42 @@ RAG 检索增强生成， 就是字面意思：用检索来增强（LLM的）生
 
 向量数据库并不产生向量模型，解决向量快速检索的能力。
 
+**向量数据库的应用场景**
+
+1. **知识库/问答系统**：通过大模型对大量的文本数据进行编码，将结果存储在向量数据库中。当有新的查询进来时，可以迅速找到与查询最相似的文档或文本段落，从而快速返回答案。
+2. **图像识别与搜索**：图片经过 Embedding 技术后，可以转化为一个向量。当用户上传一张图片进行搜索时，向量数据库可以快速找到与其最相似的图片。
+3. **内容推荐系统**：根据用户的浏览、购买或其他行为，可以使用模型为用户生成一个向量表示，然后查询向量数据库中最相似的内容向量，从而为用户推荐相关内容。
+
+![vectordb](./lecture-notes/05-rag-embeddings/vectordb.png)
+
+- FAISS: Meta 开源的向量检索引擎 https://github.com/facebookresearch/faiss
+- Pinecone: 商用向量数据库，只有云服务 https://www.pinecone.io/
+- Milvus: 开源向量数据库，同时有云服务 https://milvus.io/
+- Weaviate: 开源向量数据库，同时有云服务 https://weaviate.io/
+- Qdrant: 开源向量数据库，同时有云服务 https://qdrant.tech/
+- PGVector: Postgres 的开源向量检索引擎 https://github.com/pgvector/pgvector
+- RediSearch: Redis 的开源向量检索引擎 https://github.com/RediSearch/RediSearch
+- ElasticSearch 也支持向量检索 https://www.elastic.co/enterprise-search/vector-search
+
+**选择向量数据库：**
+
+| 数据库   | 适用场景                                | 集成与生态系统                                                             | 性能                                 | 本地使用                               | 近期筹资                 | 特异性                              |
+| -------- | --------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------ | -------------------------------------- | ------------------------ | ----------------------------------- |
+| Pinecone | 适合那些寻找即插即用解决方案的企业      | 与 TensorFlow、PyTorch 和 Scikit-learn 等主要机器学习框架有良好的集成      | 与其他矢量数据库相似                 | 不可能（非开源）                       | 1 亿 B 轮于 27/04/23     | 是唯一一个非开源的，不能本地迭代    |
+| Qdrant   | 适用于要求高性能和灵活性的应用          | 主要与 DVC 集成，同时支持常见的数据版本控制工具                            | 优越（Rust 编码）；基准测试对比      | 可以（docker-compose, 磁盘文件, 内存） | 7.5m 种子轮于 24/04/23   | 高性能，本地灵活，与 DVC 集成       |
+| Weaviate | 适用于需要 GraphQL 查询和本地存储的应用 | 提供开放 API 以供开发，支持 Python、JavaScript 和 Go 等多种客户端库        | 与其他矢量数据库相似                 | 可以（docker-compose, 磁盘文件）       | 5000 万 B 轮于 21/04/23  | 支持 GraphQL 查询，本地磁盘文件使用 |
+| Milvus   | 适合大型组织和需求复杂的应用            | 提供丰富的插件，如数据导入工具、数据标注工具和与其他数据库的连接器         | 与其他矢量数据库相似                 | 可以（docker-compose）                 | 60M B 轮于 24/08/22      | 经过时间验证，但微服务架构复杂      |
+| ChromaDB | 适用于简单的应用和 Python 环境          | 主要集成 Python 生态，如 NumPy、Pandas 和 Scikit-learn，方便数据分析和处理 | 可能较差（完全 Python 编码，无基准） | 可以（docker-compose, 磁盘文件, 内存） | 1800 万种子轮于 06/04/23 | 简单，完全用 Python 编码，易于定制  |
+
+
+- 通用数据库最初不是为矢量搜索而设计的，因此不如专用矢量数据库效率高。
+- 当成本和/或延迟成为问题时，请考虑使用专用的矢量数据库（如 Pinecone、Qdrant、Weaviate、Milvus）可以实现更高性能和更好的查询结果。
+- 如果您使用少量向量（例如<10万）并且已经使用了其中一个数据库（根据stackoverflow 2023调查，49%的专业开发人员使用PostgreSQL），务实的选择肯定是坚持下去，以保持您的技术堆栈简单。
+
+参考资料：
+[How to choose your vector database?](https://www.sicara.fr/blog-technique/how-to-choose-your-vector-database-in-2023)
+
+
 ### 常见问题
 
 **文件分割的粒度**
