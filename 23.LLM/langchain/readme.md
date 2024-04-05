@@ -38,4 +38,4 @@ LangChain 是一个开发由语言模型驱动的应用程序的框架。主要�
 
 `pip install --upgrade langchain-text-splitters` RAG入库时文本拆分
 
-
+`pip install unstructured` 解析excel文档需要
