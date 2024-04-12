@@ -3,12 +3,12 @@ import request from 'request'
 // ! 大纲生成
 
 const AK = "Zdwc6EBQd1xaimWhQZNyc3Wi"
-const SK = ""
+const SK = "eNFwdAXM4DSg26I5GDWuBqU4OYaTnSSv"
 
 async function main(info) {
   var options = {
     'method': 'POST',
-    // EB
+    // EB 3.5
     // 'url': 'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions?access_token=' + await getAccessToken(),
     // EB 4.0
     'url': 'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions_pro?access_token=' + await getAccessToken(),
