@@ -3,7 +3,7 @@ import request from 'request'
 // ! 大纲生成
 
 const AK = "Zdwc6EBQd1xaimWhQZNyc3Wi"
-const SK = "eNFwdAXM4DSg26I5GDWuBqU4OYaTnSSv"
+const SK = ""
 
 async function main(info) {
   var options = {
