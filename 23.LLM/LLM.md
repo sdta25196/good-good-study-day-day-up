@@ -971,7 +971,9 @@ loss 就是这个函数得到的结果和真实期望的结果之间的差异值
 
 以随即采样的方式，按照8：1：1的比例拆分训练集、验证集、测试集。确保三个集合中的数据分布性是一致的。
 
-### QA
+
+
+### 微调QA
 
 * 训练完成之后，换一种问法问不到怎么办？
 
@@ -992,6 +994,209 @@ loss 就是这个函数得到的结果和真实期望的结果之间的差异值
 模型参数 *4 是推理所需的显存。
 
 目前模型的参数绝大多数都是float32类型, 占用4个字节。所以一个粗略的计算方法就是，每10亿个参数，占用4G显存(实际应该是10^9*4/1024/1024/1024=3.725G，为了方便可以记为4G)。
+
+
+## 部署与交付
+
+GPU cuda核心 和 tensor核心
+
+cuda核心更万能一些，适合游戏、渲染、特效等
+tensor核心更适合矩阵计算、语音助手、人脸识别等
+
+| 显卡 | 目标市场 | 性能 | 应用场景 | 价格 |
+| :---: | :-----------: | :----: | :--------------------------------: | :----------: |
+| T4 | 企业/AI 推理 | 适中 | AI 推理, 轻量级训练, 图形渲染 | 7999(14G) |
+| 4090 | 消费者 | 非常高 | 通用计算, 图形渲染, 高端游戏, 4K/8K 视频编辑 | 14599(24G) |
+| A10 | 企业/图形 | 适中 | 图形渲染, 轻量级计算 | 18999(24G) |
+| A6000 | 企业/图形 | 适中 | 图形渲染, 轻量级计算 | 32999（48G） |
+| V100 | 数据中心/AI | 高 | 深度学习训练/推理, 高性能计算 | 42999(32G) |
+| A100 | 数据中心/AI | 高 | 深度学习训练/推理, 高性能计算 | 69999(40G) |
+| A800 | 数据中心/AI | 中等 | 深度学习推理, 高性能计算, 大数据分析 | 110000 |
+| H100 | 数据中心/AI | 高 | 深度学习训练/推理, 高性能计算, 大数据分析 | 242000 |
+
+
+**云服务厂商对比**
+
+### 国内主流
+
+- **阿里云**：https://www.aliyun.com/product/ecs/gpu （可[申请免费试用](https://free.aliyun.com/?product=9602825&spm=5176.28055625.J_5831864660.9.e939154aYoM8ST&scm=20140722.M_9553144.P_154.MO_1802-ID_9553144-MID_9553144-CID_20080-ST_7663-V_1)）
+- **腾讯云**：https://cloud.tencent.com/act/pro/gpu-study
+- **火山引擎**：https://www.volcengine.com/product/gpu
+
+### 国外主流
+
+- **AWS**：[https://aws.amazon.com](https://aws.amazon.com)
+- **Vultr**：[https://www.vultr.com](https://www.vultr.com)
+- **TPU**：[https://cloud.google.com/tpu](https://cloud.google.com/tpu?hl=zh-cn)
+
+TPU 是 Google 专门用于加速机器学习的硬件。它特别适合大规模深度学习任务，通过高效的架构在性能和能源消耗上表现出色。
+
+它的优点和应用场景：
+
+1. **高性能和能效：** TPU 可以更快地完成任务，同时消耗较少的能源，降低成本。
+
+2. **大规模训练：** TPU 适用于大规模深度学习训练，能够高效地处理大量数据。
+
+3. **实时推理：** 适合需要快速响应的任务，如实时图像识别和文本分析。
+
+4. **云端使用：** Google Cloud 提供 TPU 服务，允许用户根据需求使用，无需购买硬件。
+
+适用于图像处理、自然语言处理、推荐系统等多个领域。
+
+在国外，科研机构、大公司和初创企业普遍使用 TPU。
+
+### 价格对比
+**下面是对两款 NVIDIA GPU 在他主流厂商的价格进行对比：**
+
+- A100：在云服务中，A100 是顶级的企业级 GPU，适用于高性能计算需求。
+- T4：相比之下，T4 更为经济，适合日常模型微调和推理任务。
+
+NVIDIA A100：
+
+| 云服务提供商 | GPU 型号 | CPU 核心数 | 内存（GiB） | 价格（元/小时） |
+| ------------ | -------- | ---------- | ----------- | --------------- |
+| 火山引擎     | A100     | 14 核      | 245         | 40.39           |
+| 阿里云       | A100     | 16 vCPU    | 125         | 34.742          |
+| 腾讯云       | A100     | 16 核      | 96          | 28.64           |
+
+NVIDIA T4：
+
+| 云服务提供商 | CPU 核心数 | 内存（GiB） | GPU 型号 | 价格（元/小时） |
+| ------------ | ---------- | ----------- | -------- | --------------- |
+| 阿里云       | 4 vCPU     | 15          | T4       | 11.63           |
+| 火山引擎     | 4 核       | 16          | T4       | 11.28           |
+| 腾讯云       | 8 核       | 32          | T4       | 8.68            |
+
+**基于显卡 4090 上的 chatglm 和 chatglm2 模型的 Fine tuning 实验数据概览**
+
+| 模型     | 数据条数 | 时长    | 技术 |
+| -------- | -------- | ------- | ---- |
+| chatglm  | 9999     | 1:42:46 | pt2  |
+| chatglm  | 39333    | 6:45:21 | pt2  |
+| chatglm  | 9999     | 1:31:05 | Lora |
+| chatglm  | 39333    | 5:40:16 | Lora |
+| chatglm2 | 9999     | 1:50:27 | pt2  |
+| chatglm2 | 39333    | 7:26:25 | pt2  |
+| chatglm2 | 9999     | 1:29:08 | Lora |
+| chatglm2 | 39333    | 5:45:08 | Lora |
+
+
+### 模型对比
+
+[https://chat.lmsys.org/](https://chat.lmsys.org/)
+
+### 部署平台
+
+nginx
+
+[proxy-nginx](https://github.com/agicto/agi-proxy/blob/master/nginx/proxy.conf)
+
+node 服务
+
+[agi-proxy](https://github.com/agicto/agi-proxy)
+
+纯 js 方案
+
+复制以下代码，去 cloudflare 建立一个 worker 即可
+
+[worker](https://github.com/agicto/agi-proxy/blob/master/worker/index.js)
+
+
+#### 服务器选择
+
+| 服务商                | 访问地址                                         | 主要服务                | 特性                                               | 适用场景                             | 起始价格             |
+| --------------------- | ------------------------------------------------ | ----------------------- | -------------------------------------------------- | ------------------------------------ | -------------------- |
+| Cloudflare            | [cloudflare.com](https://cloudflare.com/)        | CDN, 安全服务           | 全球 CDN, DDoS 保护, 自动 HTTPS                    | 增强网站性能和安全                   | 免费计划开始         |
+| Vercel                | [vercel.com](https://vercel.com/)                | 静态站点和 SSR 应用托管 | 集成 Git, 自动部署, 无服务器函数                   | 前端开发和 JAMstack 项目             | 免费计划开始         |
+| Render                | [render.com](https://render.com)                 | 应用托管, 数据库托管    | 易于使用, 自动部署, 免费 SSL 证书                  | 适合所有类型的 Web 应用和数据库托管  | 免费计划开始         |
+| DigitalOcean          | [digitalocean.com](https://digitalocean.com)     | 云基础设施服务          | 简单易用, SSD 存储, 数据中心选择                   | 中小型企业的 Web 应用托管            | $5/月起              |
+| AWS                   | aws.amazon.com                                   | 综合云服务              | 广泛的服务选择, 可扩展性, 全球数据中心             | 适合各种规模和需求的企业             | 按使用付费，有免费层 |
+| Microsoft Azure       | azure.microsoft.com                              | 综合云服务              | 多样的服务, 企业级功能, 混合云支持                 | 企业级应用和混合云解决方案           | 按使用付费，有免费层 |
+| Google Cloud Platform | cloud.google.com                                 | 综合云服务              | 高性能计算服务, 数据分析, 机器学习                 | 数据密集型应用和机器学习项目         | 按使用付费，有免费层 |
+| 阿里云国际版          | [intl.aliyun.com](https://www.alibabacloud.com/) | 综合云服务              | 全球化数据中心, 多语言客户支持, 丰富的云产品和服务 | 适合需要在中国以外地区扩展业务的企业 | 按使用付费           |
+
+#### 选择合适的域名运营商
+
+建议域名在国外的域名服务商，DNS 解析路径缩短
+
+#### 测试速度
+
+搭建完代理后，在国内的云服务器测试
+
+![ping-run.png.png](./img/ping-run.png)
+
+![own-build.png](./img/own-build.png)
+
+#### 建议方案
+
+建议方案国外提供 CDN 云服务商结合自建云服务业务做负载均衡
+
+#### 加入业务
+
+- 限制模型
+- 限制接口
+- 限制速率
+
+#### 推荐项目
+
+[agi-proxy](https://github.com/agicto/agi-proxy)
+
+[openai-forward](https://github.com/KenyonY/openai-forward)
+
+[one-api](https://github.com/songquanpeng/one-api)
+
+
+
+## ollama
+
+量化了很多大模型，支持我们本地运行
+
+几乎所有的热门模型都支持
+
+https://ollama.com/library
+
+https://ollama.com/
+
+使用流程：
+
+1. 下载 ollama
+2. 运行 `ollama run llama3:8b`
+3. 发起请求
+
+```js
+curl http://localhost:11434/v1/chat/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "wizardlm2",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant."
+            },
+            {
+                "role": "user",
+                "content": "你是谁？"
+            }
+        ]
+    }'
+```
+
+webui调用:
+
+- [openwebui](https://openwebui.com/)
+- [lobe-chat-ui 文档地址](https://lobehub.com/docs/usage/features/local-llm)
+    - lobe 使用docker启动服务，配合本地ollama： `docker run -d -p 3210:3210 -e OLLAMA_PROXY_URL=http://host.docker.internal:11434/v1 lobehub/lobe-chat`
+- [ChatGPT-Next-Web](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web)
+
+### llmstudio 平台
+
+https://lmstudio.ai/
+
+https://github.com/li-plus/chatglm.cpp
+
+https://github.com/ggerganov/llama.cpp
+
+
 
 
 ## 概念和Q&A
