@@ -39,14 +39,16 @@ const config = {
   },
 };
 
-// const response = await withMessageHistory.invoke(
-//   {
-//     input: "Hi! I'm Bob",
-//   },
-//   config
-// );
+const response = await withMessageHistory.invoke(
+  {
+    input: "Hi! I'm Bob",
+  },
+  config
+);
 
-// console.log(response.content)
+console.log(response.content)
+
+console.log(messageHistories)
 
 const followupResponse = await withMessageHistory.invoke(
   {
@@ -55,3 +57,4 @@ const followupResponse = await withMessageHistory.invoke(
   config
 );
 console.log(followupResponse.content)
+

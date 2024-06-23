@@ -21,26 +21,33 @@ const messages = [
 
 const chain = model.pipe(parser); // 请求和处理器 pipe起来
 
-let str = await chain.invoke(messages);
+// let str = await chain.invoke(messages); // 普通调用
+// console.log(str)
 
-console.log(str)
+let stream = await chain.stream(messages); // 流式调用
+const chunks = [];
+
+for await (const chunk of stream) {
+  chunks.push(chunk);
+}
+console.log(chunks);
 
 
 
 // 提示词 chain
 
-const systemTemplate = "Translate the following into {language}:"; // 提示词
+// const systemTemplate = "Translate the following into {language}:"; // 提示词
 
-const promptTemplate = ChatPromptTemplate.fromMessages([
-  ["system", systemTemplate],
-  ["user", "{text}"],
-]);
+// const promptTemplate = ChatPromptTemplate.fromMessages([
+//   ["system", systemTemplate],
+//   ["user", "{text}"],
+// ]);
 
-// const result = await promptTemplate.invoke({ language: "italian", text: "hi" });
+// // const result = await promptTemplate.invoke({ language: "italian", text: "hi" });
 
-const chain1 = promptTemplate.pipe(model).pipe(parser);
+// const chain1 = promptTemplate.pipe(model).pipe(parser);
 
-let a = await chain1.invoke({ language: "italian", text: "hi" });
-console.log(a)
+// let a = await chain1.invoke({ language: "italian", text: "hi" });
+// console.log(a)
 
 
