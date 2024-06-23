@@ -81,8 +81,8 @@ const parser = new StringOutputParser(); // 解析器
 // const chain = model.pipe(parser); 
 
 ```
-`JsonOutputParser`  对输出json格式化
-`StringOutputParser`  对输出字符串格式化
+- `JsonOutputParser`  对输出json格式化
+- `StringOutputParser`  对输出字符串格式化
 
 
 ## prompt模块
@@ -104,6 +104,17 @@ let res = await chain.invoke({ language: "italian", text: "hi" });
 console.log(res)
 
 ```
+
+- `ChatPromptTemplate` 用来做对话提示词模版
+- `PromptTemplate` 用来做提示词模版
+
+## 示例
+
+- 平行发送多个请求：`src/how-parallel.js`
+- 传递原始问题至链中：`src/how-parallel.js`
+- 管道操作：`src/how-runnables-pipe.js`
+- 自定义函数处理输入、输出：`src/how-custom-function.js`
+- 判别器，判断执行路径：`src/how-routing.js` [官方示例](https://js.langchain.com/v0.2/docs/how_to/routing)
 
 ## 其他模型
 

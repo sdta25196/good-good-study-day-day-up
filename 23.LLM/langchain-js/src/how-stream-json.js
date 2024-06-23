@@ -11,8 +11,6 @@ const parser = new JsonOutputParser(); // 解析器
 
 // ! 流式情况下使用json.
 
-// TODO 还没处理完
-
 // A function that does not operates on input streams and breaks streaming.
 const extractCountryNames = (inputs) => {
   if (!Array.isArray(inputs.countries)) {

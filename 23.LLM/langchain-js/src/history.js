@@ -7,6 +7,8 @@ import dotenv from "dotenv"
 
 dotenv.config() // 加载环境变量
 
+// ! 记录上下文
+
 const model = new ChatOpenAI("gpt-3.5-turbo");
 const messageHistories = {};
 
