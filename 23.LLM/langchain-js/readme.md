@@ -108,6 +108,15 @@ console.log(res)
 - `ChatPromptTemplate` 用来做对话提示词模版
 - `PromptTemplate` 用来做提示词模版
 
+
+## Runnable 能力 
+
+- `RunnableBranch` 可以根据判断条件执行具体的分支逻辑
+- `RunnableSequence.from`  按顺序逐一执行，链
+- `RunnableMap` 并发执行多个任务
+- `RunnablePassthrough` 保留数据，向下传递
+- `RunnableLambda` 处理自定义函数，可以控制向下传递的数据
+
 ## 示例
 
 - 平行发送多个请求：`src/how-parallel.js`
@@ -115,6 +124,7 @@ console.log(res)
 - 管道操作：`src/how-runnables-pipe.js`
 - 自定义函数处理输入、输出：`src/how-custom-function.js`
 - 判别器，判断执行路径：`src/how-routing.js` [官方示例](https://js.langchain.com/v0.2/docs/how_to/routing)
+- fallback 保底逻辑：`src/how-fallback.js`
 
 ## 其他模型
 
