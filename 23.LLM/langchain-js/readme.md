@@ -109,6 +109,28 @@ console.log(res)
 - `PromptTemplate` 用来做提示词模版
 
 
+**部分格式化提示词**
+
+```js
+import { PromptTemplate } from "langchain/prompts";
+
+const prompt = new PromptTemplate({
+  template: "{foo}{bar}",
+  inputVariables: ["foo", "bar"],
+});
+
+const partialPrompt = await prompt.partial({
+  foo: "foo",
+});
+
+const formattedPrompt = await partialPrompt.format({
+  bar: "baz",
+});
+
+console.log(formattedPrompt);
+
+```
+
 ## Runnable 能力 
 
 - `RunnableBranch` 可以根据判断条件执行具体的分支逻辑
@@ -125,7 +147,11 @@ console.log(res)
 - 自定义函数处理输入、输出：`src/how-custom-function.js`
 - 判别器，判断执行路径：`src/how-routing.js` [官方示例](https://js.langchain.com/v0.2/docs/how_to/routing)
 - fallback 保底逻辑：`src/how-fallback.js`
+- few-shot ，不咋好使：`src/how-few-shot.js`
+
+
 
 ## 其他模型
 
-`toolLama` ，训练用来精准调用API的模型
+`toolLama`，训练用来精准调用API的模型
+
