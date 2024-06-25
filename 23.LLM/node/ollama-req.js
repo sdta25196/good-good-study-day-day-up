@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 启动 ollama 即可开启11434端口
 axios.post('http://localhost:11434/v1/chat/completions', {
-  "model": "llama3",
+  "model": "llama3:8b",
   "messages": [
     {
       "role": "system",

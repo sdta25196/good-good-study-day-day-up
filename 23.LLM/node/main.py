@@ -1,6 +1,7 @@
 import requests
 
 # 设置要发送的POST请求的URL
+# url = 'http://localhost:11434/api/generate'
 url = 'http://localhost:11434/v1/chat/completions'
 
 # 设置请求的头部信息，例如Content-Type
@@ -10,7 +11,8 @@ headers = {
 
 # 设置请求的JSON数据
 data = {
-  "model": "llama3",
+  "model": "llama3:8b",
+  # "prompt":"Why is the sky blue?"
   "messages": [
     {
       "role": "system",
