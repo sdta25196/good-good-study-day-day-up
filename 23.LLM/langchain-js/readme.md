@@ -107,6 +107,7 @@ console.log(res)
 
 - `ChatPromptTemplate` 用来做对话提示词模版
 - `PromptTemplate` 用来做提示词模版
+- `HumanMessagePromptTemplate` 
 
 
 **部分格式化提示词**
@@ -154,4 +155,15 @@ console.log(formattedPrompt);
 ## 其他模型
 
 `toolLama`，训练用来精准调用API的模型
+
+
+
+
+
+
+
+
+
+
+
 
