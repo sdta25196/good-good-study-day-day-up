@@ -101,7 +101,6 @@ transformer，2017年谷歌发布的论文，
 
 ![lora](./assets/ft-lora.png)
 
-
 - QLoRA
 
 ![float](./assets/ft-float.png)
