@@ -9,7 +9,7 @@ _roadhog-api-doc
 # production
 /dist
 .vscode
-
+.env
 **/target
 
 # misc
