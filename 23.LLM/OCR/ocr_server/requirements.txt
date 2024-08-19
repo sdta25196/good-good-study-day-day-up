@@ -1,0 +1,7 @@
+numpy==1.22.4
+opencv-python==4.9.0.80
+fastapi==0.104.1
+uvicorn==0.24.0.post1
+modelscope==1.14.0
+paddleocr==2.7.3
+paddlepaddle==2.6.1

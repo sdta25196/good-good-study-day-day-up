@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="ms_ocr()">点击发送魔塔</button>
+  <button onclick="pp_ocr()">点击发送paddle</button>
+  <button onclick="all_ocr()">点击发送全部</button>
+  <script>
+    function all_ocr() {
+      ms_ocr()
+      pp_ocr()
+    }
+    function ms_ocr() {
+      fetch('http://localhost:8000/ms_ocr').then(r => r.json()).then(res => {
+        console.log(res)
+      })
+    }
+    function pp_ocr() {
+      fetch('http://localhost:8000/pp_ocr').then(r => r.json()).then(res => {
+        console.log(res)
+      })
+    }
+
+  </script>
+</body>
+
+</html>
