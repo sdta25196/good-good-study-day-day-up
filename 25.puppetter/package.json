@@ -1,0 +1,16 @@
+{
+  "name": "25.puppetter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^1.6.3",
+    "puppeteer": "19.5.1"
+  }
+}
