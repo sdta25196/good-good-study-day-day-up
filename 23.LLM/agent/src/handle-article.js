@@ -32,6 +32,8 @@ async function getFile() {
 
 async function main(filePath, article) {
   console.log('----- 开始 -----')
+  article.replace('@无限好文，尽在晋江文学城', '')
+  article.replace('求月票', '')
   let prompt = `
 ${article}
 
