@@ -13,6 +13,7 @@
   "dependencies": {
     "docenv": "^2.0.6",
     "docxtemplater": "^3.50.0",
-    "openai": "^4.56.0"
+    "openai": "^4.56.0",
+    "request": "^2.88.2"
   }
 }
