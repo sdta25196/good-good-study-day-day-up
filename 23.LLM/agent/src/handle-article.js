@@ -16,12 +16,12 @@ const openai = new OpenAI();
 
 getFile()
 async function getFile() {
-  const sourceDir = path.join(__dirname, '../data/a');
+  const sourceDir = path.join(__dirname, '../data/不是吧君子也防');
   const files = fs.readdirSync(sourceDir);
   for (let i = 0; i < files.length; i++) {
     // 构建完整的文件路径
     const filePath = path.join(sourceDir, files[i]);
-    const newfilePath = path.join(sourceDir, '../n/' + files[i]);
+    const newfilePath = path.join(sourceDir, '../../n/' + files[i]);
     // 读取文件内容
     let article = fs.readFileSync(filePath, 'utf8');
     await main(newfilePath, article);
