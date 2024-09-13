@@ -32,13 +32,16 @@ async function getFile() {
 
 async function main(filePath, article) {
   console.log('----- 开始 -----')
-  article.replace('@无限好文，尽在晋江文学城', '')
-  article.replace('求月票', '')
+  article = article.replace('@无限好文，尽在晋江文学城', '')
+  article = article.replace('求月票', '')
   let prompt = `
 ${article}
 
-对上述文章进行段落排版，删除不合理的标点符号。
-只返回排版后的新文章，不要返回其他内容。
+## 要求
+- 对上述小说进行段落排版，只进行段落排版，不能编辑小说
+- 排版过程中可以删除不合理的标点符号，但是不能修改小说文字内容
+- 不要回答我，直接开始排版任务。
+- 只返回排版后的新文章，不要返回其他内容。
   `
   const res = await openai.chat.completions.create({
     messages: [
