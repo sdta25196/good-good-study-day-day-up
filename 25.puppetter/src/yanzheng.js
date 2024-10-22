@@ -758,43 +758,46 @@ let data = [
 ];
 
 // 判断data页面是不是404
-(async () => {
-
+async function main(url) {
   const browser = await puppeteer.launch({
-    headless: false,  // ! windows版本如果需要可以关闭无头模式，puppeteer版本为 19.1.1 或 20.10.0
+    headless: true,  // ! windows版本如果需要可以关闭无头模式，puppeteer版本为 19.1.1 或 20.10.0
     // args: ['--no-sandbox', '--disable-setuid-sandbox', '--referrer-policy=no-referrer-when-downgrade', '--allow-file-access-from-files', '--disable-web-security'],
     executablePath: 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe', // ! windows版本 需要chrome浏览器的绝对路径
   })
 
-  for (let i = 0; i < data.length; i++) {
-    const page = await browser.newPage()
-    page.on('response', response => {
-      const headers = response.headers();
-      // 获取content-type
-      const contentType = headers['content-type'] || '';
+  const page = await browser.newPage()
+  page.on('response', response => {
+    const headers = response.headers();
+    // 获取content-type
+    const contentType = headers['content-type'] || '';
 
-      // 检查content-type是否包含"text/html"
-      if (contentType.includes('text/html')) {
-        const requestUrl = response.url();
-        const statusCode = response.status();
-        if (requestUrl.includes('?wid') && statusCode == 404) {
-          fs.appendFile('.a.txt', requestUrl, async (err) => {
-            console.log(requestUrl)
-            if (err) {
-              console.log('写入失败')
-            }
-          })
-        }
-        console.log(`URL: ${requestUrl} - Status Code:${statusCode}`);
+    // 检查content-type是否包含"text/html"
+    if (contentType.includes('text/html')) {
+      const requestUrl = response.url();
+      const statusCode = response.status();
+      if (requestUrl.includes('?wid') && statusCode == 404) {
+        fs.appendFile('.a.txt', requestUrl + '\n', async (err) => {
+          if (err) {
+            console.log(requestUrl, '写入失败')
+          }
+        })
       }
-    });
-    let url = data[i]
-    // await page.goto('https://www.toutiao.com/article/7425998791523795496/')
-    await page.goto(url)
-    await new Promise(res => {
-      setTimeout(res, 2000)
-    })
-    await page.close()
-  }
+      console.log(`URL: ${requestUrl} - Status Code:${statusCode}`);
+    }
+  });
+  await page.goto(url)
+  await new Promise(res => {
+    setTimeout(res, 5000)
+  })
+  await page.close()
+  await browser.close();
+}
 
-})()
+
+async function a() {
+  for (let i = 0; i < data.length; i++) {
+    await main(data[i])
+  }
+}
+
+a()
