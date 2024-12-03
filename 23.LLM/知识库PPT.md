@@ -25,7 +25,7 @@ RAG（Retrieval-Augmented Generation） 检索增强生成
 > 示例3：官网中各产品操作手册问答
 > 示例4：推荐系统、搜索系统、数据挖掘等
 
-![rag](./assets/rag1.jpg)
+![rag](./assets/rag.png)
 
 **基于这个逻辑展开解释**
 
