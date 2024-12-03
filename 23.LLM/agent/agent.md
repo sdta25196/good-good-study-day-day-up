@@ -32,7 +32,7 @@ City	District	Site	Address	Latitude	Longitude
 6、输出纯python代码，不要markdonw的任何格式，代码前后不要添加""```python"
 
 7、只输出可执行的python代码，其他任何内容都不要输出
-``
+```
 
 2. 运行生成的代码时，需要把相关资源准备好，放到对应的位置
 
@@ -62,3 +62,30 @@ City	District	Site	Address	Latitude	Longitude
 ## 特定的节点使用工作流
 
 工作流是可以编写成公共的，在特定的节点使用
+
+
+## RAG处理文件中的图片
+
+1. GPT-4o给图片写一段描述文字
+2. 把这段文字生成向量，加入向量数据库
+3. 这段文字被检索到后，取出原图片
+4. 把原图 + 提示词 扔给多模态模型。
+
+## function call 追问
+
+function calling + work flow，来实现工具调用中途追问，并且不丢失工具使用场景。
+
+function calling 在系统提示词中添加我都可以用哪些工具。
+
+## COT
+
+使用COT来提升大模型的基础能力
+
+## 添加纠错、打分、验证的逻辑
+
+在agent的流程中添加纠错、打分、验证的逻辑。来提升响应准确度
+
+## workflow
+
+纯提示词的任务执行不稳定，这时候可以考虑加入工作流来提升稳定度。
+
