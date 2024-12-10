@@ -124,6 +124,79 @@ function calling 在系统提示词中添加我都可以用哪些工具。
 
 # 电商零售行业
 
-啊
+啊SD团队的人 去做的flux，flux是非常好的文生图模型
+
+-----------------------
+FancyTech 做出的产品用到了60多个模型。
+1. 首先需要生成图片
+huggingface 平台：
+
+删除背景的模型
+background removal
+
+快手处理图片的模型
+kolors virtual try-on in the wild
+
+打标签的模型，【长对长，短对短，有标签才好做自动化】
+Qwen2-VL
+
+更换模型背景
+BRIA background Generation
+
+【需要对背景打标签，光影融合很重要，服装和场景很重要， 背景和模特的关联关系，需要有大量数据测试】
+
+2. 然后图片生成视频
+
+图片生成视频的方案：
+
+套视频模版，人物跟着视频动，用照片 + 模版视频
+MimicMotion
+
+人物和背景一起微微动，起始帧+结束帧，堆分镜
+
+3. 长视频、营销内容生成
+
+识别视频的关键帧，通过关键帧来识别不同的场景，
+通过常见切分段落，来缩短需要处理的长度。
+再加上标签信息，就可以进行混剪
+用脚本 + prompt，就可以确定最终生成的效果 
+再加上文字、音频、配乐等
+
+
+**上述模型地址**
+
+
+1. 生图（用于生成更多模特）：https://huggingface.co/spaces/black-forest-labs/FLUX.1-dev
+2. 给生成的模特换上不同款式的衣服：https://huggingface.co/spaces/black-forest-labs/FLUX.1-Fill-dev
+3. 去背景：https://huggingface.co/spaces/not-lain/background-removal
+4. 衣服上模特：https://huggingface.co/spaces/Kwai-Kolors/Kolors-Virtual-Try-On
+5. 给图片写文字描述打标签：https://huggingface.co/spaces/Qwen/Qwen2-VL
+6. 给图片生成新背景：https://huggingface.co/spaces/briaai/BRIA-Background-Generation
+7. 图片跟着视频动：https://huggingface.co/spaces/fffiloni/MimicMotion
+8. 人和背景一起微微动：https://huggingface.co/spaces/wangfuyun/AnimateLCM-SVD
+9. 起始帧、结束帧：https://huggingface.co/spaces/fffiloni/svd_keyframe_interpolation
+
+
+
+# 用户互动方向
+
+1. 导购助手-参考dayDream
+
+通过用户输入自然语言，然后给出相关推荐、搭配等。
+1、用自然语言搜索
+2、导购助手随时都在，用户的每一步操作都在记录及预测
+3、随时可以互动，甚至主动互动，形态尽量区别于客服窗口
+4、不仅要预测感兴趣的商品，更要预测用户可能需要什么
+5、反复强调的重点:收集数据
+
+2. 直播助手
+ 
+帮助主播控制直播间, 有autoGLM、web VQA等技术可以协作实现
+
+
+
+# 教育行业
+
+
 
 
