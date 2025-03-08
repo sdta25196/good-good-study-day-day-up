@@ -173,6 +173,12 @@ AI目前能做到的只有描述和预测，他懂的一切都来源于训练数
 
 
 > 让gpt有事说事的一个提示词： NO COMMENTS. NO ACKNOWLEDGEMENTS.
+>
+
+## prompt对话技巧
+
+可以用APE和BROKE的对话技巧
+
 
 ### prompt提升大模型准确率的其他技巧
 
