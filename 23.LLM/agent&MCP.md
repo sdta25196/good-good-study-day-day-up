@@ -32,6 +32,11 @@ agent也需要PDAC
 - 多智能体合作（multi-agent）：未来的场景巨大。
 
 
+
+## Agent智能体白皮书-谷歌
+
+
+
 # MCP
 
 Anthropic 提出的，包含客户端、工具、服务器
@@ -54,14 +59,10 @@ npm publish--access public
 ```
 
 
-# agent白皮书
- 
 
 # 备注
 
 https://www.anthropic.com/news/model-context-protocol
-
-https://hai.stanford.edu/news/computational-agents-exhibit-believable-humanlike-behavior
 
 https://drive.google.com/file/d/1oEjiRCTbd54aSdB_eEe3UShxLBWK9xkt/view?pli=1
 
@@ -72,5 +73,3 @@ https://lilianweng.github.io/posts/2023-06-23-agent/
 https://www.anthropic.com/engineering/building-effective-agents
 
 https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/clients/simple-chatbot/mcp simple_chatbot/main.py
-
-https://mp.weixin.qq.com/s/xbWDFydh1LC2xiPa6d-w_A
