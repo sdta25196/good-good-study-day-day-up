@@ -1,9 +1,9 @@
-# MCP demo
+# MCP demo - 来自于 https://github.com/modelcontextprotocol/typescript-sdk
 
 # MCP TypeScript SDK ![NPM版本](https://img.shields.io/npm/v/%40modelcontextprotocol%2Fsdk) ![MIT许可](https://img.shields.io/npm/l/%40modelcontextprotocol%2Fsdk)
 
 ## 目录
-- [MCP demo](#mcp-demo)
+- [MCP demo - 来自于 https://github.com/modelcontextprotocol/typescript-sdk](#mcp-demo---来自于-httpsgithubcommodelcontextprotocoltypescript-sdk)
 - [MCP TypeScript SDK  ](#mcp-typescript-sdk--)
   - [目录](#目录)
   - [概述](#概述)
