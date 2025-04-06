@@ -33,5 +33,9 @@
 
 ## DEMO学习
 
-- get-alerts
-- get-forecast
+**知学堂-15.Fine-tuning技术与大模型优化**
+[MCP官方文档](https://modelcontextprotocol.io/quickstart/client)
+[MCP开源项目](https://github.com/modelcontextprotocol/)
+[MCP快速开始demo](https://github.com/modelcontextprotocol/quickstart-resources)
+[MCP-py-demo](https://github.com/modelcontextprotocol/python-sdk/tree/main)
+[MCP-ts-demo](https://github.com/modelcontextprotocol/typescript-sdk)
