@@ -1,17 +1,20 @@
-import { Anthropic } from "@anthropic-ai/sdk";
+import OpenAI from 'openai';
+// import { Anthropic } from "@anthropic-ai/sdk";
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import readline from "readline/promises";
 
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 
-dotenv.config(); // load environment variables from .env
+// dotenv.config(); // load environment variables from .env
 
-const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-if (!ANTHROPIC_API_KEY) {
-  throw new Error("ANTHROPIC_API_KEY is not set");
-}
+const model = 'doubao-1-5-pro-32k-250115'
+
+// const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+// if (!OPENAI_API_KEY) {
+//   throw new Error("OPENAI_API_KEY is not set");
+// }
 
 class MCPClient {
   mcp;
@@ -21,9 +24,14 @@ class MCPClient {
 
   constructor() {
     // Initialize Anthropic client and MCP client
-    this.anthropic = new Anthropic({
-      apiKey: ANTHROPIC_API_KEY,
+    // this.anthropic = new Anthropic({
+    //   apiKey: OPENAI_API_KEY,
+    // });
+    this.anthropic = new OpenAI({
+      apiKey: "4bd4ee52-4438-4bab-b28d-284aa6a3cb43",
+      baseURL: "https://ark.cn-beijing.volces.com/api/v3"
     });
+
     this.mcp = new Client({ name: "mcp-client-cli", version: "1.0.0" });
   }
 
@@ -86,13 +94,20 @@ class MCPClient {
       },
     ];
 
+    console.log(messages)
+
     // Initial Claude API call
-    const response = await this.anthropic.messages.create({
-      model: "claude-3-5-sonnet-20241022",
+    const response = await this.anthropic.chat.completions.create({
+      model: model,
       max_tokens: 1000,
       messages,
-      tools: this.tools,
+      tools: this.tools, // ! 这个tools打开之后就导致不能输出了
+      // temperature: 1,
+      // top_p: 1,
+      // stream: true,
     });
+    // console.log(response)
+    // return response.choices[0]?.message?.content
 
     // Process response and handle tool calls
     const finalText = [];
@@ -122,10 +137,17 @@ class MCPClient {
         });
 
         // Get next response from Claude
-        const response = await this.anthropic.messages.create({
-          model: "claude-3-5-sonnet-20241022",
-          max_tokens: 1000,
-          messages,
+        const response = await this.anthropic.chat.completions.create({
+          messages: [
+            { role: 'user', content: 'who are you' },
+          ],
+          temperature: 1,
+          top_p: 1,
+          model: model,
+          stream: true,
+          // model: model,
+          // max_tokens: 1000,
+          // messages,
         });
 
         finalText.push(
