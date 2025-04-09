@@ -57,7 +57,7 @@ server.tool(
   async ({ state }) => {
     const stateCode = state.toUpperCase();
     const alertsUrl = `${NWS_API_BASE}/alerts?area=${stateCode}`;
-    const alertsData = await makeNWSRequest < AlertsResponse > (alertsUrl);
+    const alertsData = await makeNWSRequest(alertsUrl);
 
     if (!alertsData) {
       return {

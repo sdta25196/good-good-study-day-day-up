@@ -94,6 +94,7 @@ class MCPClient {
       },
     ];
 
+    console.log(this.tools)
     console.log(messages)
 
     // Initial Claude API call
@@ -101,13 +102,13 @@ class MCPClient {
       model: model,
       max_tokens: 1000,
       messages,
-      tools: this.tools, // ! 这个tools打开之后就导致不能输出了
+      tool_calls: this.tools, // ! 这个tools打开之后就导致不能输出了
       // temperature: 1,
       // top_p: 1,
       // stream: true,
     });
-    // console.log(response)
-    // return response.choices[0]?.message?.content
+    console.log(response)
+    return response.choices[0]?.message?.content
 
     // Process response and handle tool calls
     const finalText = [];
