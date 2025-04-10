@@ -4,9 +4,9 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import readline from "readline/promises";
 
-// import dotenv from "dotenv";
+import dotenv from "dotenv";
 
-// dotenv.config(); // load environment variables from .env
+dotenv.config(); // load environment variables from .env
 
 const model = 'doubao-1-5-pro-32k-250115'
 
@@ -23,7 +23,7 @@ class MCPClient {
 
   constructor() {
     this.doubao = new OpenAI({
-      apiKey: "4bd4ee52-4438-4bab-b28d-284aa6a3cb43",
+      apiKey: OPENAI_API_KEY,
       baseURL: "https://ark.cn-beijing.volces.com/api/v3"
     });
 
