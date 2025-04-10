@@ -1,5 +1,4 @@
 import OpenAI from 'openai';
-// import { Anthropic } from "@anthropic-ai/sdk";
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
@@ -18,16 +17,12 @@ const model = 'doubao-1-5-pro-32k-250115'
 
 class MCPClient {
   mcp;
-  anthropic;
+  doubao;
   transport = null;
   tools = [];
 
   constructor() {
-    // Initialize Anthropic client and MCP client
-    // this.anthropic = new Anthropic({
-    //   apiKey: OPENAI_API_KEY,
-    // });
-    this.anthropic = new OpenAI({
+    this.doubao = new OpenAI({
       apiKey: "4bd4ee52-4438-4bab-b28d-284aa6a3cb43",
       baseURL: "https://ark.cn-beijing.volces.com/api/v3"
     });
@@ -94,70 +89,101 @@ class MCPClient {
       },
     ];
 
-    console.log(this.tools)
+    console.log(this.tools[0].input_schema.properties)
     console.log(messages)
 
+    //! MCP怎么使用openai规范的内容
     // Initial Claude API call
-    const response = await this.anthropic.chat.completions.create({
-      model: model,
-      max_tokens: 1000,
-      messages,
-      tool_calls: this.tools, // ! 这个tools打开之后就导致不能输出了
-      // temperature: 1,
-      // top_p: 1,
-      // stream: true,
-    });
-    console.log(response)
-    return response.choices[0]?.message?.content
+    try {
+      const response = await this.doubao.chat.completions.create({
+        model: model,
+        max_tokens: 1000,
+        messages,
+        tools: [
+          {
+            state: {
+              type: 'string',
+              minLength: 2,
+              maxLength: 2,
+              description: 'Two-letter state code (e.g. CA, NY)'
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "加法",
+              "description": "Multiply two integers together.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "a": { "type": "number", "description": "First integer" },
+                  "b": { "type": "number", "description": "Second integer" },
+                },
+                "required": ["a", "b"],
+              },
+            },
+          }
+        ]
+        // tools: this.tools, // ! 这个tools打开之后就导致不能输出了, 因为server服务那边返回的数据结构不是 tools需要的。 需要再确认怎么才能返回想要的数据结构
+        // temperature: 1,
+        // top_p: 1,
+        // stream: true,
+      });
 
-    // Process response and handle tool calls
-    const finalText = [];
-    const toolResults = [];
+      console.log(response.choices[0])
+      return response.choices[0]?.message?.content
 
-    for (const content of response.content) {
-      if (content.type === "text") {
-        finalText.push(content.text);
-      } else if (content.type === "tool_use") {
-        // Execute tool call
-        const toolName = content.name;
-        const toolArgs = content.input;
+      // Process response and handle tool calls
+      const finalText = [];
+      const toolResults = [];
 
-        const result = await this.mcp.callTool({
-          name: toolName,
-          arguments: toolArgs,
-        });
-        toolResults.push(result);
-        finalText.push(
-          `[Calling tool ${toolName} with args ${JSON.stringify(toolArgs)}]`,
-        );
+      for (const content of response.content) {
+        if (content.type === "text") {
+          finalText.push(content.text);
+        } else if (content.type === "tool_use") {
+          // Execute tool call
+          const toolName = content.name;
+          const toolArgs = content.input;
 
-        // Continue conversation with tool results
-        messages.push({
-          role: "user",
-          content: result.content,
-        });
+          const result = await this.mcp.callTool({
+            name: toolName,
+            arguments: toolArgs,
+          });
+          toolResults.push(result);
+          finalText.push(
+            `[Calling tool ${toolName} with args ${JSON.stringify(toolArgs)}]`,
+          );
 
-        // Get next response from Claude
-        const response = await this.anthropic.chat.completions.create({
-          messages: [
-            { role: 'user', content: 'who are you' },
-          ],
-          temperature: 1,
-          top_p: 1,
-          model: model,
-          stream: true,
-          // model: model,
-          // max_tokens: 1000,
-          // messages,
-        });
+          // Continue conversation with tool results
+          messages.push({
+            role: "user",
+            content: result.content,
+          });
 
-        finalText.push(
-          response.content[0].type === "text" ? response.content[0].text : "",
-        );
+          // Get next response from Claude
+          const response = await this.doubao.chat.completions.create({
+            messages: [
+              { role: 'user', content: 'who are you' },
+            ],
+            temperature: 1,
+            top_p: 1,
+            model: model,
+            stream: true,
+            // model: model,
+            // max_tokens: 1000,
+            // messages,
+          });
+
+          finalText.push(
+            response.content[0].type === "text" ? response.content[0].text : "",
+          );
+        }
       }
-    }
 
-    return finalText.join("\n");
+      return finalText.join("\n");
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   async chatLoop() {
