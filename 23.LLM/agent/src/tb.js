@@ -19,12 +19,12 @@ let userInfo = {
   "省份": "山东",
   "选科": "物化生",
   "分数": "580",
-  "性别": "",
-  "外语语种": "",
-  "色盲色弱": "",
   "意向城市": "",
   "意向院校": "",
   "意向专业": "",
+  "性别": "",
+  "外语语种": "",
+  "色盲色弱": "",
 }
 
 async function chatLoop() {
@@ -70,7 +70,13 @@ async function main(q) {
 当前用户信息：${JSON.stringify(userInfo)}
 你可以使用的工具有：专业、院校、城市，这三个工具可以查询相关的信息，你可以先查询对应的信息再回复用户
 如果用户自己也不知道应该选什么好的时候，结合用户的信息，以及使用工具获取你想要获得的信息，来给用户提出推荐。
-user和assistant的历史对话如下：${history.map(x => JSON.stringify(x)).join('\n')}`
+user和assistant的历史对话如下：${history.map(x => JSON.stringify(x)).join('\n')}
+
+## 注意
+当第一次对话的时候，你要基于用户的信息生成用户画像，基于用户画像给出一些志愿填报的建议和风险预警，最后再提出城市引导。使用markdown的语法格式化的输出
+
+永远使用第一人称对话，不要输出你要干什么和你的思路，直接与用户沟通即可
+`
       },
       {
         role: "user", content: `
@@ -95,6 +101,7 @@ user和assistant的历史对话如下：${history.map(x => JSON.stringify(x)).jo
             "properties": {
               "性格": { "type": "string", "description": "性格相匹配的专业" },
               "视觉": { "type": "string", "description": "对色盲色弱有要求的专业" },
+              "专业名": { "type": "string", "description": "获取特定专业的介绍和信息" },
             },
             "required": [],
           },
@@ -110,6 +117,7 @@ user和assistant的历史对话如下：${history.map(x => JSON.stringify(x)).jo
             "properties": {
               "层次": { "type": "string", "description": "985、211等层次院校" },
               "类型": { "type": "string", "description": "综合类、理工、农林等类型的院校" },
+              "院校名": { "type": "string", "description": "获取特定院校的介绍和信息" },
             },
             "required": [],
           },
@@ -136,13 +144,11 @@ user和assistant的历史对话如下：${history.map(x => JSON.stringify(x)).jo
     // stream: true,
   });
 
+  let A = response.choices[0]?.message?.content
   if (response.choices[0]?.message.tool_calls?.length > 0) {
     console.log(response.choices[0]?.message.tool_calls)
-    return "拿到了上面的信息。根据这些信息再次又提示词输出内容。"
+    A = "拿到了上面的信息。根据这些信息再次又提示词输出内容。"
   }
-
-
-  let A = response.choices[0]?.message?.content
 
   if (response.choices[0]?.message?.content.includes('1-')) {
     return JSON.stringify(userInfo)
@@ -153,7 +159,7 @@ user和assistant的历史对话如下：${history.map(x => JSON.stringify(x)).jo
   }
 
   if (response.choices[0]?.message?.content.includes('3-')) {
-    A = response.choices[0]?.message?.content.split('3-')[1]
+    A = "好的，开始生成志愿表"
   }
   history.push({ "user": q, "assistant": A })
   info()
