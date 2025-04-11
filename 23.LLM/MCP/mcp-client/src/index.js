@@ -10,7 +10,7 @@ dotenv.config(); // load environment variables from .env
 
 const model = 'doubao-1-5-pro-32k-250115'
 
-// const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 // if (!OPENAI_API_KEY) {
 //   throw new Error("OPENAI_API_KEY is not set");
 // }
