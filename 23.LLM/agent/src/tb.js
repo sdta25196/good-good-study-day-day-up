@@ -5,14 +5,9 @@ import dotenv from "dotenv";
 import readline from "readline/promises";
 
 dotenv.config(); // load environment variables from .env
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_BASE_URL = process.env.OPENAI_BASE_URL;
 
 const model = 'doubao-1-5-pro-32k-250115'
-const doubao = new OpenAI({
-  apiKey: OPENAI_API_KEY,
-  baseURL: OPENAI_BASE_URL
-});
+const doubao = new OpenAI();
 
 let history = []
 let userInfo = {

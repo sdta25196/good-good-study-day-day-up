@@ -1,3 +1,10 @@
+# 困惑
+
+MCP 怎么使用工具的？不是FC么？
+rest API是怎么转换成MCP服务器的？ HSF怎么转的？为什么能转？
+
+MCP服务器和MCP客户端到底是个啥情况？ SSE、标准等输出方式怎么实现的？
+
 # MCP
 
 - [MCP文档](https://modelcontextprotocol.io/quickstart/server)
@@ -43,3 +50,17 @@
 [MCP快速开始demo](https://github.com/modelcontextprotocol/quickstart-resources)
 [MCP-py-demo](https://github.com/modelcontextprotocol/python-sdk/tree/main)
 [MCP-ts-demo](https://github.com/modelcontextprotocol/typescript-sdk)
+
+
+
+## 官方demo
+
+### 客户端
+
+自己写了MCPClient，使用mcp接入服务端，然后结构化了服务端返回的工具，
+
+- 链接服务端
+- 从服务端拿到工具列表
+- 大模型使用FC进行工具列表的使用
+- 客户端调用工具（calltool），服务端执行。
+- 大模型根据API返回的结果，进行回复
