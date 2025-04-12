@@ -6,7 +6,7 @@ import readline from "readline/promises";
 
 dotenv.config(); // load environment variables from .env
 
-const model = 'doubao-1-5-pro-32k-250115'
+const model = 'doubao-1.5-pro-32k-250115'
 const doubao = new OpenAI();
 
 let history = []
