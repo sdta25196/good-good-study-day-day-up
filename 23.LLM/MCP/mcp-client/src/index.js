@@ -8,7 +8,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const model = 'doubao-1-5-pro-32k-250115'
+const model = 'doubao-1.5-pro-32k-250115'
 
 if (!process.env.OPENAI_API_KEY || !process.env.OPENAI_BASE_URL) {
   throw new Error("OPENAI_API_KEY or OPENAI_BASE_URL is not set");
@@ -65,11 +65,11 @@ class MCPClient {
         }
       });
       console.log(
-        "Connected to server with tools:",
+        "客户端：从服务端获取的工具：",
         this.tools.map((tool) => tool.function.name),
       );
     } catch (e) {
-      console.log("Failed to connect to MCP server: ", e);
+      console.log("客户端：Failed to connect to MCP server: ", e);
       throw e;
     }
   }
@@ -84,6 +84,7 @@ class MCPClient {
     ];
 
     try {
+      console.log("客户端：开始调用AI")
       const response = await this.openai.chat.completions.create({
         model: model,
         max_tokens: 1000,
@@ -99,19 +100,20 @@ class MCPClient {
 
       let calltools = response.choices[0].message.tool_calls
       let content = response.choices[0]?.message?.content
-      console.log(calltools)
-      if (calltools.length > 0) {
+      if (calltools?.length > 0) {
+
         // calltools.forEach(tools=>{
         // 准备执行工具调用
         const toolName = calltools[0].function.name;
+        console.log("客户端：AI判定使用工具：" + toolName)
         const toolArgs = JSON.parse(calltools[0].function.arguments);
         // ! 前面确定使用，这里执行API调用
+        console.log("客户端：发送回服务端进行API调用：" + toolName)
         const result = await this.mcp.callTool({
           name: toolName,
           arguments: toolArgs,
         });
-
-        console.log('result:' + JSON.stringify(result))
+        console.log("客户端：服务端返回结果：" + JSON.stringify(result))
 
         toolResults.push(result);
         finalText.push(
@@ -125,6 +127,7 @@ class MCPClient {
         });
 
         // 最终获取到数据由大模型进行分析
+        console.log("客户端：下方AI根据数据和提示词进行回答")
         const aiResponse = await this.openai.chat.completions.create({
           messages: messages,
           temperature: 1,
@@ -159,8 +162,8 @@ class MCPClient {
     });
 
     try {
-      console.log("\nMCP Client Started!");
-      console.log("Type your queries or 'quit' to exit.");
+      console.log("\nMCP 客户端启动!");
+      // console.log("Type your queries or 'quit' to exit.");
 
       while (true) {
         const message = await rl.question("\nQuery: ");

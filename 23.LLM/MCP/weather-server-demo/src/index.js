@@ -12,24 +12,6 @@ const server = new McpServer({
   },
 });
 
-// Register weather tools
-
-// {
-//   "type": "function",
-//   "function": {
-//     "name": "加法",
-//     "description": "计算两个数相加",
-//     "parameters": {
-//       "type": "object",
-//       "properties": {
-//         "a": { "type": "number", "description": "First integer" },
-//         "b": { "type": "number", "description": "Second integer" },
-//       },
-//       "required": ["a", "b"],
-//     },
-//   },
-// },
-
 server.tool(
   "加法",
   "计算数字相加",
@@ -39,11 +21,7 @@ server.tool(
     "c": z.number().describe("加法的第三个数字").optional(),
   },
   async ({ a, b, c }) => {
-    // ! 工具的处理逻辑
-    // const stateCode = state.toUpperCase();
-    // const alertsUrl = `${NWS_API_BASE}/alerts?area=${stateCode}`;
-    // const alertsData = await makeNWSRequest(alertsUrl);
-    console.log(`发送算法API，计算${a}和${b}两个数的和。c是这个：${c}`)
+    console.error(`服务端: 收到加法API，计算${a}和${b}两个数的和。模型API发送`) //
     let data = a + b
     if (!data) {
       return {
@@ -76,10 +54,7 @@ server.tool(
   },
   async ({ a, b, c }) => {
     // ! 工具的处理逻辑
-    // const stateCode = state.toUpperCase();
-    // const alertsUrl = `${NWS_API_BASE}/alerts?area=${stateCode}`;
-    // const alertsData = await makeNWSRequest(alertsUrl);
-    console.log(`发送算法API，计算${a}和${b}两个数的差。c是这个：${c}`)
+    console.error(`服务端: 发送减法API，计算${a}和${b}两个数的差。c是这个：${c}`)
     let data = a - b
     if (!data) {
       return {
@@ -106,7 +81,7 @@ server.tool(
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("111Weather MCP Server running on stdio");
+  console.error("MCP服务器启动成功");
 }
 
 main().catch((error) => {
