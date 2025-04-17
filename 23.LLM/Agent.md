@@ -1,3 +1,11 @@
+# agent方向
+
+未来，Agent的发展方向是：长期的记忆、自我的反思、过去踩过的坑、总结过的经验、自我进行升级
+
+不再由人类提供反馈，而是大模型自我收集环境信息的反馈，自我升级。
+
+未来AI相信数据而不是相信人类。
+
 # agent笔记
 
 [构建智能体原文](https://www.anthropic.com/engineering/building-effective-agents)
