@@ -1,4 +1,4 @@
-//! 志愿填报模拟
+//! 志愿填报模拟 - 直接运行本文件即可
 
 import OpenAI from 'openai';
 import dotenv from "dotenv";
