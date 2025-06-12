@@ -6,6 +6,11 @@
 
 未来AI相信数据而不是相信人类。
 
+**The Hedgehog and the Fox：狐狸知道很多事情，但刺猬知道一件大事**，目前我们的Agent做垂直应该是更好的。
+
+
+
+
 # agent笔记
 
 [构建智能体原文](https://www.anthropic.com/engineering/building-effective-agents)
