@@ -13,6 +13,8 @@ Agent做的不是工具，而是人力替代。**核心是代理**
 
 **真正能让 AI 落地的，是那些没人愿意做的工作。（例如：BPO 电话客服，没人想干一辈子，最多做半年就跳槽了，流动性极大）**这句话也侧面印证了代理的重要性
 
+**Agent 是让 AI 模拟“非线性思考”的结构单位，就像人写文章要列提纲、查资料、反复修改。**
+
 # agent笔记
 
 [构建智能体原文](https://www.anthropic.com/engineering/building-effective-agents)
