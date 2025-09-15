@@ -68,6 +68,12 @@ AI目前能做到的只有描述和预测，他懂的一切都来源于训练数
 
 ### 技术架构
 
+* transformer
+* 
+![transformer](./lecture-notes/11-fine-tuning-01/optional/encoder-decoder.jpg)
+
+传统的transformer是encoder-decoder架构，目前实现的方案主要都是decoder-only。
+
 * prompt：用户和大模型一问一答。
 
 ![prompt](./lecture-notes/01-intro/prompt_arch.png)
