@@ -29,8 +29,12 @@ Playwright 是一个比puppeteer更新的浏览器自动化工具。
 ```
 
 
-## Playwright MCP Server
+## Playwright MCP Server【AI员工】
 
-研究一下这个MCP是个什么效果。
+下载playwright-mcp-main项目，然后再其根目录执行`npx @playwright/mcp@latest --port 8931` 可在8931端口打开mcp服务。
+
+1. 启动`playwright-mcp-main`项目，打开`playwright mcp的服务端`。
+2. 运行`src/mcp`，会连接服务端。
+3. 调用大模型开始干活。
 
 
