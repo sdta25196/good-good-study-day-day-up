@@ -1,0 +1,10 @@
+{
+  "browser": {
+    "executablePath": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+    "userDataDir": "G:/Playwright Data/",
+    "launchOptions": {
+      "headless": false
+    }
+  },
+  "outputDir": "D:/MY_DEMO/LLM/playwright/output"
+}

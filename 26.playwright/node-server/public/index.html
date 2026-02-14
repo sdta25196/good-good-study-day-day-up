@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playwright MCP 控制台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            min-height: 50px;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result.success {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+
+        .result.error {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+        }
+
+        .result-content {
+            color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 500px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .result-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .result-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .result-content::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .result-content::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #667eea;
+            margin-top: 10px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎭 Playwright MCP 控制台</h1>
+        <p class="subtitle">输入您的指令，让 AI 通过 Playwright 执行浏览器任务</p>
+
+        <form id="queryForm">
+            <div class="input-group">
+                <label for="query">请输入您的指令：</label>
+                <textarea id="query" name="query" placeholder="例如：打开浏览器，访问百度的首页" required></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">执行任务</button>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>正在处理您的请求...</div>
+        </div>
+
+        <div class="result" id="result">
+            <div class="result-content" id="resultContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('queryForm');
+        const queryInput = document.getElementById('query');
+        const submitBtn = document.getElementById('submitBtn');
+        const loading = document.getElementById('loading');
+        const result = document.getElementById('result');
+        const resultContent = document.getElementById('resultContent');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const query = queryInput.value.trim();
+            if (!query) {
+                alert('请输入查询内容');
+                return;
+            }
+
+            // 显示加载状态
+            submitBtn.disabled = true;
+            loading.classList.add('show');
+            result.classList.add('show');
+            result.className = 'result show success';
+            resultContent.textContent = ''; // 清空之前的内容
+
+            try {
+                // 使用 fetch 发送 POST 请求并处理 SSE 流
+                const response = await fetch('/api/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ query }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+
+                // 解析 SSE 数据
+                const parseSSE = (text) => {
+                    const lines = text.split('\n');
+                    const data = {};
+                    let currentEvent = 'message';
+
+                    for (const line of lines) {
+                        if (line.startsWith('event: ')) {
+                            currentEvent = line.substring(7).trim();
+                        } else if (line.startsWith('data: ')) {
+                            try {
+                                data[currentEvent] = JSON.parse(line.substring(6));
+                            } catch (e) {
+                                data[currentEvent] = line.substring(6);
+                            }
+                        }
+                    }
+                    return data;
+                };
+
+                // 处理流式数据
+                while (true) {
+                    const { done, value } = await reader.read();
+
+                    if (done) {
+                        break;
+                    }
+
+                    buffer += decoder.decode(value, { stream: true });
+                    const chunks = buffer.split('\n\n');
+                    buffer = chunks.pop() || ''; // 保留最后一个不完整的块
+
+                    for (const chunk of chunks) {
+                        if (chunk.trim()) {
+                            const sseData = parseSSE(chunk);
+
+                            // 处理不同类型的消息
+                            if (sseData.message) {
+                                const msg = sseData.message;
+
+                                switch (msg.type) {
+                                    case 'start':
+                                    case 'info':
+                                        // 添加信息提示
+                                        resultContent.textContent += `[${new Date().toLocaleTimeString()}] ${msg.message}\n`;
+                                        break;
+                                    case 'tool':
+                                        // 工具调用开始
+                                        resultContent.textContent += `\n[${new Date().toLocaleTimeString()}] ${msg.message}\n`;
+                                        break;
+                                    case 'result':
+                                        // 工具调用结果
+                                        resultContent.textContent += `${msg.message}\n`;
+                                        // if (msg.content) {
+                                        //     resultContent.textContent += `${msg.content}\n`;
+                                        // }
+                                        if (msg.separator) {
+                                            resultContent.textContent += `${msg.separator}\n`;
+                                        }
+                                        break;
+                                    case 'exit':
+                                        // 退出信息
+                                        resultContent.textContent += `\n${msg.message}\n`;
+                                        break;
+                                    case 'done':
+                                        // 完成信息
+                                        resultContent.textContent += `\n[${new Date().toLocaleTimeString()}] ${msg.message}\n`;
+                                        break;
+                                }
+
+                                // 自动滚动到底部
+                                resultContent.scrollTop = resultContent.scrollHeight;
+                            }
+
+                            // 处理错误
+                            if (sseData.error) {
+                                result.className = 'result show error';
+                                resultContent.textContent += `\n错误: ${sseData.error.error || sseData.error}\n`;
+                            }
+                        }
+                    }
+                }
+
+                // 确保显示结果区域
+                loading.classList.remove('show');
+
+            } catch (error) {
+                result.classList.add('show');
+                result.className = 'result show error';
+                resultContent.textContent = '请求失败: ' + error.message;
+                loading.classList.remove('show');
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>
