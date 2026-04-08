@@ -284,3 +284,10 @@
 
 banana-img 生图技能，参考`D:\openclaw\workspace\skills\g-img`
 
+
+## 插件
+
+中国插件, 可以接入各个对话
+
+https://github.com/BytePioneer-AI/openclaw-china
+
